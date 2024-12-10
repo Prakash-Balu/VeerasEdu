@@ -3,5 +3,5 @@
 export const environment = {
   production: true,
   razorPayKeyId: "rzp_test_UJT02PVMbPZRkF",
-  baseURL: "https://veerasapi.onrender.com",
+  baseURL: "https://veeras-api.onrender.com/",
 };
