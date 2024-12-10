@@ -1,0 +1,35 @@
+
+ <!-- <app-audio-chat (audioRespBlob)="receiveAudioBlob($event);" *ngIf="isEnableAudio" ></app-audio-chat> -->
+
+<div class="audio-recorder">
+    <!-- Container -->
+    <div class="recording-controls d-flex align-items-center gap-3 p-2 rounded shadow">
+      <!-- Start Recording Button -->
+      <button
+        class="btn btn-danger rounded-circle"
+        (click)="startRecording()"
+        [disabled]="isRecording"
+        title="Start Recording"
+      >
+        <i class="fa-solid fa-microphone"></i>
+      </button>
+  
+      <!-- Timer and Stop Button -->
+      <div class="timer-container" *ngIf="isRecording">
+        <i class="fa-solid fa-circle-xmark"
+          (click)="stopRecording()"
+          title="Stop Recording"
+        ></i>
+        <span class="timer">{{ timer }}</span>
+      </div>
+    </div>
+  
+    <!-- Audio Player -->
+    <div class="audio-player mt-4" *ngIf="audioUrl">
+      <audio #audioPlayer controls class="w-100">
+        <source [src]="audioUrl" type="audio/webm" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+  

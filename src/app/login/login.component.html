@@ -1,0 +1,45 @@
+<div class="main">
+  <span class="circle green-circle"></span>
+  <span class="circle1 orange-circle"></span>
+  <span class="circle2 yellow-circle"></span>
+  <span class="square brown-square"></span>
+  <fa-icon [icon]="faBars" class="icon-bar"></fa-icon>
+  <div class="title">
+    <h1 class="title-text">
+      "Learning a language is not a course ;
+      <span class="d-md-block">it's a practice."</span>
+    </h1>
+  </div>
+  <p class="qr-link">Log in with QR Code</p>
+  <div class="qr-container">
+    <div>
+      <div class="qrcode-login-section">
+        <qrcode
+          [qrdata]="chanelId"
+          [width]="220"
+          [imageSrc]="imageSrc"
+          [imageWidth]="50"
+          [imageHeight]="50"
+          [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+      <div class="qr-content-title">Use Veeras App on your Computer</div>
+      <div>
+        <ol class="qr-list">
+          <li>Install Veeras App on your phone from Play Store</li>
+          <li>Tap Scanner and Link a Device</li>
+          <li>Point your Phone to this screen to Capture the Code</li>
+        </ol>
+      </div>
+    </div>
+    <div class="qr-image">
+      <img
+        src="assets\images\Youtube_Thum.jpg"
+        class="img-fluid"
+        alt="QR Code" />
+    </div>
+  </div>
+  <div class="login-copyrights">
+    &copy; 2024 NJVeerasmission Education Pvt Ltd | Terms & Condition | Privacy
+    Policy
+  </div>
+</div>

@@ -1,0 +1,108 @@
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppins", "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+body {
+  font-family: "Poppins", "Montserrat", sans-serif;
+  overflow: hidden;
+}
+:root {
+  --tg-body-font-family: "Hind", sans-serif;
+  --tg-heading-font-family: "Lexend Deca", sans-serif;
+  --tg-icon-font-family: "Font Awesome 5 Free";
+  --tg-body-font-size: 16px;
+  --tg-body-line-height: 1.75;
+  --tg-heading-line-height: 1.2;
+  --tg-text-blue: #0058ff;
+  --tg-text-green: #0a3622;
+  --tg-common-color-primary: #5a4b26;
+  --tg-common-color-secondary: #ae9975;
+  --tg-common-color-blue: #2494e4;
+  --tg-common-color-indigo: #9b51e0;
+  --tg-common-color-purple: #8121fb;
+  --tg-common-color-pink: #d63384;
+  --tg-common-color-red: #ff2e2e;
+  --tg-common-color-orange: #fd7e14;
+
+  --tg-common-color-yellow: #fab123;
+  --tg-common-color-green: #12bb6a;
+  --tg-common-color-green-2: #009889;
+  --tg-common-color-teal: #219653;
+  --tg-common-color-cyan: #0dcaf0;
+  --tg-common-color-white: #fff;
+
+  --tg-common-color-gray: #e7effc;
+  --tg-common-color-gray-2: #f4f7fb;
+  --tg-common-color-gray-3: #f5f7fb;
+  --tg-common-color-gray-4: #d6d6d6;
+  --tg-common-color-dark: #061e43;
+  --tg-common-color-black: #000;
+  --tg-common-color-heading: #001c58;
+  --tg-body-color: #39557e;
+  --tg-heading-color: #082a5e;
+  --tg-text-blue: #1363df;
+  --tg-text-darkblue: #082a5e;
+  --tg-text-orange: #fb7d17;
+  --tg-border-1: #ececec;
+  --tg-border-2: #d0dae9;
+  --tg-border-3: #e2e2e2;
+  --tg-border-4: #d7dce3;
+  --tg-border-5: #2f466a;
+  --tg-fw-extra-bold: 800;
+  --tg-fw-bold: 700;
+  --tg-fw-semi-bold: 600;
+  --tg-fw-medium: 500;
+  --tg-fw-regular: 400;
+  --tg-fw-light: 300;
+  --tg-fontfamily-copperplate: "Copperplate", sans-serif;
+  --tg-fontfamily-apple-chancery: "Apple Chancery", sans-serif;
+  --tg-fontfamily-youtube-dark: "YouTube Sans Dark", sans-serif;
+  --tg-fontfamily-youtube-light: "YouTube Sans Light", sans-serif;
+  --tg-fontfamily-lexend-deca: "Lexend Deca", sans-serif;
+}
+@font-face {
+  font-family: "Copperplate";
+  src: url("./assets/fonts/Copperplate/CopperPlate.ttf");
+}
+
+@font-face {
+  font-family: "Apple Chancery";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Apple Chancery"),
+    url("./assets/fonts/Apple Chancery.woff") format("woff");
+}
+
+@font-face {
+  font-family: "tw_cen_mt_condensedregular";
+  src: url("./assets/fonts/tccm____-webfont.woff2") format("woff2"),
+    url("./assets/fonts/tccm____-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "YouTube Sans Dark";
+  font-style: normal;
+  font-weight: normal;
+  src: local("YouTube Sans Dark"),
+    url("./assets/fonts/YouTubeSansDarkBlack.otf") format("otf");
+}
+
+@font-face {
+  font-family: "YouTube Sans Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("YouTube Sans Light"),
+    url("./assets/fonts/YouTubeSansLight.otf") format("otf");
+}

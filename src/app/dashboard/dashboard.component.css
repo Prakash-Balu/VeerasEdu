@@ -1,0 +1,108 @@
+.wrapper {
+  padding: 30px;
+}
+.rg-30 {
+  row-gap: 30px;
+}
+.dashboard-text {
+  font-size: 32px;
+  font-weight: bold;
+}
+.decorator {
+  position: relative;
+}
+.line-svg {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sec-1 {
+  margin-top: 12rem !important;
+}
+
+.gude {
+  border: 7px solid #00000038;
+  border-radius: 40px;
+  color: #000;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 45px 10px 45px 10px;
+}
+
+.row-1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sec2 {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.veera-img {
+  width: 100%;
+  max-width: 470px;
+}
+
+.footer {
+  background-color: #1363df;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background-color: #1363df;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.back-to-top:hover {
+  background-color: #1363df; /* Darken on hover */
+}
+
+.back-to-top i {
+  font-size: 20px; /* Adjust the arrow size */
+}
+
+.back-to-top.hidden {
+  display: none; /* Hide button by default */
+}
+
+.footer-sec {
+  font-size: 17px;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper {
+    padding: 30px 15px;
+  }
+  .footer-sec {
+    row-gap: 30px;
+    font-size: 14px;
+  }
+  .dashboard-text {
+    font-size: 24px;
+  }
+}

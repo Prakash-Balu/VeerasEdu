@@ -1,0 +1,198 @@
+<section class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="plan-title text-center">
+        Choose your
+        <span class="plan-subtitle">Plan
+          <div class="plan-svg-wrapper">
+            <svg width="100%" height="100%" viewBox="0 0 145 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.00016 15.2711C18.1407 8.34427 70.832 -1.93441 144.473 12.3652" stroke="currentcolor"
+                stroke-width="4" style="stroke-dasharray: 146, 148; stroke-dashoffset: 0"></path>
+              <path d="M26.2943 14.0041C38.9177 9.44643 77.3772 3.50055 130.227 16.1786" stroke="currentcolor"
+                stroke-width="2" style="stroke-dasharray: 106, 108; stroke-dashoffset: 0"></path>
+            </svg>
+          </div>
+        </span>
+      </h2>
+    </div>
+  </div>
+  <div class="row mt-5 mx-auto gy-5 plans-row">
+
+    @for(plan of plans; track plan){
+    <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-between">
+      <div class="plan-card card">
+
+        @if(plan?.monthsno !== 1){
+        <div class="prefer">Best Value</div>
+        }
+
+        <div class="card-header mt-2">
+          <h4 class="card-title">{{plan?.name}}</h4>
+          <h3 class="card-price">
+            {{ plan?.locationInfo?.currency_symbol }}
+            @if(plan?.monthsno === 1){
+            {{ plan?.locationPrice?.month_fee }} /<span>{{plan?.monthsno}}- Month</span>
+            }@else if(plan?.monthsno === 3){
+            {{ plan?.locationPrice?.extendedplan1_fee }} /<span>{{plan?.monthsno}}- Months</span>
+            }@else{
+            {{ plan?.locationPrice?.extendedplan2_fee }} /<span>{{plan?.monthsno}}- Months</span>
+            }
+          </h3>
+        </div>
+
+        <div class="card-body plan-card-body">
+          <ul class="plan-specific-list">
+            @if(plan?.monthsno === 1){
+            <li>
+              <i class="fa-regular fa-square-xmark" style="color: red;"></i>No Refferal
+              code applies
+            </li>
+            }@else if(plan?.monthsno === 3){
+            <li class="align-items-start">
+              <i class="fa-regular fa-square-check mt-1" style="color: #84cc16"></i>Refferal code applies for every
+              subscription. <br />"Join your
+              friend or relatives and enjoy benefits for the next 3 months
+              absolutely free"
+            </li>
+            }@else{
+            <li class="align-items-start">
+              <i class="fa-regular fa-square-check mt-1" style="color: #84cc16"></i>Refferal code applies for every
+              subscription. <br />"Join your
+              friend or relatives and enjoy benefits for the next 12 months
+              absolutely free"
+            </li>
+            }
+            <li>
+              <i class="fa-regular fa-square-check" style="color: #84cc16"></i>Class Room
+            </li>
+            <li>
+              <i class="fa-regular fa-square-check" style="color: #84cc16"></i>Practice with the master
+            </li>
+            <li>
+              <i class="fa-regular fa-square-check" style="color: #84cc16"></i>Self practice
+            </li>
+            <li>
+              <i class="fa-regular fa-square-check" style="color: #84cc16"></i>Speaking room
+            </li>
+          </ul>
+        </div>
+
+        <div class="">
+          <button class="btn btn-primary subscribe-button" 
+            (click)="onSubcribeClick(plan?.code)">SUBSCRIBE</button>
+        </div>
+
+      </div>
+    </div>
+    }
+
+
+    <!-- <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="plan-card card">
+          
+          <div class="card-header">
+            <h4 class="card-title">MONTHLY <span>PLAN</span></h4>
+            <h3 class="card-price">
+              {{ plans[0]?.locationInfo?.currency_symbol }}
+              {{ plans[0]?.locationPrice?.month_fee }} /<span>- Month</span>
+            </h3>
+          </div>
+          <div class="card-body plan-card-body">
+            <ul class="plan-specific-list">
+              <li>
+                <i class="fa-regular fa-square-xmark" style="color: red;"></i>No Refferal
+                code applies
+              </li>
+              <li>
+                <i class="fa-regular fa-square-check" style="color: #84cc16"></i
+                >Class Room
+              </li>
+              <li>
+                <i class="fa-regular fa-square-check" style="color: #84cc16"></i
+                >Practice with the master
+              </li>
+              <li>
+                <i class="fa-regular fa-square-check" style="color: #84cc16"></i
+                >Self practice
+              </li>
+              <li>
+                <i class="fa-regular fa-square-check" style="color: #84cc16"></i
+                >Speaking room
+              </li>
+            </ul>
+          </div>
+          <div class="">
+            <button class="btn btn-outline-warning" style="width:300px;" (click)="onSubcribeClick(plans[0])">SUBSCRIBE</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="plan-card card">
+          <div class="prefer">Best Value</div>
+          <div class="card-header">
+            <h4 class="card-title">EXTENDABLE <span>PLAN</span></h4>
+            <h3 class="card-price">
+              {{ plans[1]?.locationInfo?.currency_symbol }}
+              {{ plans[1]?.locationPrice?.extendedplan1_fee }} /<span
+                >- 6 Months</span
+              >
+            </h3>
+          </div>
+          <div class="card-body plan-card-body">
+            <ul class="plan-specific-list">
+              <li class="align-items-start">
+                <i
+                  class="fa-regular fa-square-check mt-1"
+                  style="color: #84cc16"></i
+                >Refferal code applies for every subscription. <br />"Join your
+                friend or relatives and enjoy benefits for the next 6 months
+                absolutely free"
+              </li>
+              <li>
+                <i class="fa-regular fa-square-check" style="color: #84cc16"></i
+                >Class Room
+              </li>
+              <li>
+                <i class="fa-regular fa-square-check" style="color: #84cc16"></i
+                >Practice with the master
+              </li>
+              <li>
+                <i class="fa-regular fa-square-check" style="color: #84cc16"></i
+                >Self practice
+              </li>
+              <li>
+                <i class="fa-regular fa-square-check" style="color: #84cc16"></i
+                >Speaking room
+              </li>
+            </ul>
+          </div>
+          <div>
+            <button class="btn btn-outline-warning" style="width:300px;" (click)="onSubcribeClick(plans[1])">SUBSCRIBE</button>
+          </div>
+        </div>
+      </div> -->
+  </div>
+
+  <!-- @if(isSubcribeOpen){
+    <div class="mx-auto summary-box">
+      <h3 class="text-center">Order Summary</h3>
+      <div class="mt-5 d-flex justify-content-between">
+        <span>{{selectPlan?.monthsno}} Month X 830</span>
+        <span>{{ selectPlan?.locationInfo?.currency_symbol }} {{ planCrossAmount }}</span>
+      </div>
+      <div class="mt-5 d-flex justify-content-between">
+        <span>GST 18%</span>
+        <span>{{gstAmount}}</span>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between">
+        <span>Total</span>
+        <span>{{totalAmount}}</span>
+      </div>
+      <hr>
+      <div class="text-center">
+        <button class="btn btn-warning text-dark" style="width:200px">PAY NOW</button>
+      </div>
+    </div>
+  } -->
+</section>

@@ -1,0 +1,58 @@
+<div class="container-fluid p-0 m-0">
+  <div class="top-banner">
+    <div class="row gy-3">
+      <div class="col-6 order-1 col-md-2 order-md-1">
+        <div class="arrow-left cursor-pointer" routerLink="/home">
+          <fa-icon [icon]="faArrowLeft" class="cursor-pointer"></fa-icon>
+        </div>
+        <div class="fw-bold d-none d-md-block cursor-pointer">back</div>
+      </div>
+
+      <div
+        class="sec2 col-12 col-md-8 order-3 order-md-2 d-flex justify-content-center"
+      >
+        <span>
+          <span>{{ page }}</span>
+
+          >
+
+          <span>{{ selectedSegment?.name }}</span>
+        </span>
+      </div>
+
+      <div class="col-6 order-2 col-md-2 order-md-3">
+        <img src="assets/images/fabellalert.png" class="alert-img" />
+        <span class="notify">3</span>
+        <div class="qa-content">Q&A</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-wrapper position-relative">
+    <aside
+      class="sidebar shadow"
+      [ngClass]="isSidebarVisible ? 'open' : 'close'"
+    >
+      <div class="sidebar-header">
+        <h5 class="text-uppercase fw-bold">INDEX</h5>
+      </div>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <span>SEGMENT 1 - 10</span>
+        </li>
+        <li
+          *ngFor="let segment of segmentlist"
+          (click)="onSegmentClick(segment._id)"
+         
+          class="menu-item"
+        >
+          <span>{{ segment.name }}<span class="status-dot" [class.online]="segment._id === activeSegmentId"></span></span>
+        </li>
+      </ul>
+    </aside>
+
+    <div class="video-container">
+      <app-video-player [videoObj]="videoObj"></app-video-player>
+    </div>
+  </div>
+</div>

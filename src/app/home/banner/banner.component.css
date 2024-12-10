@@ -1,0 +1,361 @@
+.banner {
+  background-image: url("../../../assets/images/banner/banner_bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 100px;
+}
+.banner-row {
+  row-gap: 100px;
+}
+.carousel-first {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.carousel-subtitle-box {
+  display: block;
+  text-align: center;
+  width: max-content;
+  margin: 0 auto;
+  border-top: 4px solid var(--tg-common-color-yellow);
+  border-bottom: 4px solid var(--tg-common-color-yellow);
+  padding: 3px 0;
+}
+.carousel-subtitle-box h2 {
+  font-size: 24px;
+  font-weight: var(--tg-fw-medium);
+  color: var(--tg-text-blue);
+  margin: 0;
+}
+.carousel-title-box {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-title-box h1 {
+  font-size: 45px;
+  color: var(--tg-common-color-dark);
+  font-weight: var(--tg-fw-semi-bold);
+  font-family: var(--tg-fontfamily-lexend-deca);
+}
+
+.main-title {
+  color: var(--tg-text-blue);
+  font-weight: var(--tg-fw-bold);
+  position: relative;
+  display: inline-block;
+}
+.main-title .highlighter {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 35px;
+  pointer-events: none;
+  color: var(--tg-common-color-yellow);
+}
+.carousel-second .carousel-subtitle-box {
+  margin: 0;
+}
+.carousel-second .carousel-subtitle-box h2 {
+  color: var(--tg-common-color-dark);
+}
+.carousel-second .carousel-title-box {
+  text-align: start;
+}
+.carousel-second .carousel-title-box h1 {
+  color: var(--tg-common-color-black);
+}
+
+.carousel-third .carousel-subtitle-box {
+  margin: 0;
+}
+.carousel-third .carousel-subtitle-box h2 {
+  color: var(--tg-common-color-black);
+  margin: 0;
+}
+.carousel-third .carousel-title-box {
+  text-align: start;
+}
+.carousel-third .carousel-title-box h1 {
+  color: var(--tg-text-green);
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  width: 8%;
+}
+
+.prev-btn,
+.next-btn {
+  color: var(--tg-common-color-primary);
+  font-weight: var(--tg-fw-medium);
+  font-size: 20px;
+}
+
+.banner_images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.main-img {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  z-index: 2;
+}
+.tamil {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  top: -10%;
+  left: 10%;
+}
+.english {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  top: 15%;
+  right: 9%;
+}
+.hindi {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  left: -10%;
+  bottom: 20%;
+}
+.experience {
+  position: absolute;
+}
+.methodology {
+  position: absolute;
+}
+
+.experience {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(var(--tg-common-color-white), 0.5);
+  backdrop-filter: blur(100px);
+  border-radius: 6px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 5px 25px;
+  gap: 5px;
+}
+.experience .icon {
+  background-color: var(--tg-common-color-green);
+  color: var(--tg-common-color-white);
+  padding: 5px;
+  clip-path: circle();
+  box-shadow: 0px 15px 15px rgba(33, 150, 83, 0.2);
+}
+.experience .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info .h-text {
+  font-size: 18px;
+  font-weight: var(--tg-fw-bold);
+  margin: 0;
+}
+.info .b-text {
+  font-size: 10px;
+  font-weight: var(--tg-fw-regular);
+}
+
+.methodology {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(var(--tg-common-color-white), 0.5);
+  backdrop-filter: blur(100px);
+  border-radius: 6px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px 5px 5px 5px;
+}
+.methodology .icon {
+  position: absolute;
+  top: -15px;
+  background-color: var(--tg-common-color-purple);
+  color: var(--tg-common-color-white);
+  padding: 4px;
+  clip-path: circle();
+  box-shadow: 15px 15px 15px rgba(var(--tg-common-color-purple), 0.24);
+}
+.methodology .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.info .head-text {
+  font-size: 9px;
+}
+.info .body-text {
+  font-size: 10px;
+  font-weight: var(--tg-fw-bold);
+}
+
+.tamil {
+  animation: left-move 0.4s ease-in-out 0.4s forwards;
+  animation: tamil 5s ease infinite;
+  animation-delay: 1s;
+}
+
+@keyframes tamil {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-35px);
+  }
+
+  100% {
+    transform: translateY(-0px);
+  }
+}
+
+.english {
+  animation: english 5s ease infinite;
+  animation-delay: 3s;
+}
+
+@keyframes english {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-35px);
+  }
+
+  100% {
+    transform: translateY(-0px);
+  }
+}
+
+.hindi {
+  animation: hindi 5s ease infinite;
+  animation-delay: 5s;
+}
+
+@keyframes hindi {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-35px);
+  }
+
+  100% {
+    transform: translateX(-0px);
+  }
+}
+
+@keyframes left-move {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+}
+
+@keyframes left-out {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .hindi {
+    left: 0;
+  }
+  .carousel-control-next,
+  .carousel-control-prev {
+    top: -50%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main-img {
+    max-width: 300px;
+  }
+
+  .methodology {
+    right: 30px;
+  }
+  .banner {
+    padding-top: 50px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .carousel-title-box h1 {
+    font-size: 24px;
+  }
+  .carousel-subtitle-box h2 {
+    font-size: 16px;
+  }
+  .main-title .highlighter {
+    height: 20px;
+  }
+  .carousel-control-next,
+  .carousel-control-prev {
+    top: -25%;
+  }
+  .tamil {
+    width: 70px;
+  }
+  .english {
+    width: 70px;
+  }
+  .hindi {
+    width: 70px;
+  }
+  .main-img {
+    max-width: 250px;
+  }
+  .experience {
+    top: 15%;
+    left: 0;
+  }
+  .methodology {
+    right: 0;
+  }
+}

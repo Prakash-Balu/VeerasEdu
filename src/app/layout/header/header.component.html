@@ -1,0 +1,25 @@
+<header class="main-header sticky-top">
+  <a
+    [routerLink]="['/']"
+    routerLinkActive="router-link-active"
+    class="header-img-wrapper"
+  >
+    <div [innerHtml]="headerLogo" class="logo img-fluid"></div>
+  </a>
+  @if(isLogginRoute){ @if(!isMobile){
+  <div class="header-right-sec">
+    <a
+      [routerLink]="['/login']"
+      routerLinkActive="router-link-active"
+      class="login-btn"
+    >
+      Login
+      <div [innerHtml]="lockIcon" class="login-btn-icon"></div>
+    </a>
+  </div>
+  }}@else if(!islogin){
+  <div class="btns-wrapper">
+    <button (click)="logout()" class="login-btn">Logout</button>
+  </div>
+  }
+</header>

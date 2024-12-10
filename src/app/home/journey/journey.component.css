@@ -1,0 +1,192 @@
+.journey-bg {
+  background-color: var(--tg-common-color-black);
+  margin-top: 50px;
+  padding: 3rem 0 1.5rem 0;
+}
+.journey-title {
+  font-size: 30px;
+  font-weight: var(--tg-fw-bold);
+  color: var(--tg-common-color-white);
+  font-family: var(--tg-fontfamily-apple-chancery);
+  width: max-content;
+  margin: 0 auto;
+}
+.journey-title .sub-title {
+  position: relative;
+}
+.journey-highlighter {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  color: var(--tg-common-color-yellow);
+}
+
+.flow-chart-top {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  position: relative;
+  align-items: end;
+}
+
+.flow-chart-bottom {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding-left: 15%;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  align-items: start;
+}
+
+.flow-box {
+  width: 33.33%;
+  position: relative;
+  height: 100%;
+  padding: 20px 0;
+  color: var(--tg-common-color-white);
+}
+
+.flow-chart-top .flow-box:nth-child(even) {
+  transform: translate(0px, 100%);
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.flow-chart-main {
+  min-height: 490px;
+  width: 100%;
+}
+
+.flow-chart-top:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #d6d6d6;
+  bottom: 0;
+}
+
+.flow-chart-top .flow-box:after {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 1px;
+
+  background: var(--tg-common-color-gray-4);
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0px;
+}
+
+.flow-chart-top .flow-box:nth-child(even):after {
+  bottom: initial;
+  top: 0;
+}
+
+.flow-chart-bottom .flow-box:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 1px;
+  background: var(--tg-common-color-black);
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -20px;
+}
+
+.flowchart_seperator {
+  width: 1px;
+  min-width: 1px;
+  height: 400px;
+  background: rgb(255 255 255 / 20%);
+}
+
+.chart-year {
+  font-weight: bold;
+  color: var(--tg-common-color-green-2);
+  font-size: 1.2rem;
+}
+
+.flow-group-section {
+  display: flex;
+  align-items: center;
+}
+
+.flow-right-grp-box {
+  /* position: relative;
+  left: 10px; */
+  background: linear-gradient(115deg, #000000, #001c58, #000000);
+  /* padding: 10px; */
+  border-radius: 10px;
+  /* width: 500px; */
+  /* min-width: 350px; */
+  margin: auto;
+  border: 1px solid rgb(255 255 255 / 17%);
+  width: 400px;
+    padding: 10px;
+}
+
+.team-img{
+  height: 300px;  
+  width: 380px;
+  object-fit: contain;
+}
+
+.grpbox_right_text2 {
+  font-size: 13px;
+  padding-top: 15px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--tg-common-color-white);
+  font-weight: var(--tg-fw-medium);
+}
+
+.flow-right-grp-box img {
+  /* max-width: 100%; */
+  border-radius: 10px;
+}
+
+.flow-right-grp-box p {
+ font-family: var(--tg-fontfamily-apple-chancery);
+}
+
+@media screen and (max-width: 767px) {
+  .flow-chart-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .flow-chart-top:after {
+    display: none;
+  }
+  .flow-chart-top .flow-box:nth-child(even):after {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 1px;
+    background: #d6d6d6;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -120px;
+  }
+  .flow-box:last-child:after {
+    display: none;
+  }
+  .flow-box {
+    width: 100%;
+  }
+  .flow-chart-top .flow-box:nth-child(even) {
+    position: relative;
+    transform: translate(0px, 0px);
+    display: flex;
+    flex-direction: column;
+  }
+}

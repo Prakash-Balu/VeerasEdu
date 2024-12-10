@@ -1,0 +1,58 @@
+<div class="container-fluid wrapper">
+  <div class="row rg-30">
+    <div class="col-lg-3 center" for="sec1">
+      <span class="gude">Gudeline Video</span>
+    </div>
+    <div class="col-lg-5 center text-center" for="sec2">
+      <h1 class="dashboard-text">
+        You aren't
+        <span class="decorator">
+          alone.
+          <div class="line-svg">
+            <div [innerHtml]="underlineIcon"></div>
+          </div>
+        </span>
+        <span class="d-md-block">We are here to support and</span>
+        care for you in your <span class="d-md-block">learning.</span>
+      </h1>
+    </div>
+    <div class="col-lg-4 center" for="sec3">
+      <div [innerHtml]="dashVeera" class="veera-img"></div>
+    </div>
+  </div>
+
+  <div>
+    <app-feature></app-feature>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <div class="footer-sec row">
+      <div class="col-md-3 col-6">
+        <span class="center gap-3"
+          ><fa-icon [icon]="faBook"></fa-icon>My Learning</span
+        >
+      </div>
+      <div class="col-md-3 col-6">
+        <span class="center gap-3"
+          ><fa-icon [icon]="faAddressCard"></fa-icon>My Responsbility</span
+        >
+      </div>
+      <div class="col-md-3 col-6">
+        <span class="center gap-3"
+          ><fa-icon [icon]="faGraduationCap"></fa-icon>My Progress</span
+        >
+      </div>
+      <div class="col-md-3 col-6">
+        <span class="center gap-3"
+          ><fa-icon [icon]="faUser"></fa-icon>My Pride</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <button id="backToTop" class="back-to-top hidden" (click)="scrollToTop()">
+    <fa-icon [icon]="faArrowUp"></fa-icon>
+  </button>
+</div>
