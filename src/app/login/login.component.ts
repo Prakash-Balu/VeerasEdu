@@ -7,12 +7,11 @@ import { AuthService } from "../core/services/auth.service";
 import { PusherService } from "../core/services/pusher.service";
 import { Router } from "@angular/router";
 import { UserService } from "../core/services/user.service";
-import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: "app-login",
   standalone: true,
-  imports: [CommonModule, QRCodeModule, FontAwesomeModule, MatIconModule],
+  imports: [CommonModule, QRCodeModule, FontAwesomeModule],
   templateUrl: "./login.component.html",
   styleUrl: "./login.component.css",
 })

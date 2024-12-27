@@ -13,7 +13,7 @@
   <p class="qr-link">Log in with QR Code</p>
   <div class="qr-container">
     <div>
-      <!-- <div class="qrcode-login-section">
+      <div class="qrcode-login-section">
         <qrcode
           [qrdata]="chanelId"
           [width]="220"
@@ -21,25 +21,6 @@
           [imageWidth]="50"
           [imageHeight]="50"
           [errorCorrectionLevel]="'M'"></qrcode>
-      </div> -->
-      <div class="qrcode-login-section">
-        <ng-container *ngIf="chanelId">
-          <qrcode
-            [qrdata]="chanelId"
-            [width]="220"
-            [imageSrc]="imageSrc"
-            [imageWidth]="50"
-            [imageHeight]="50"
-            [errorCorrectionLevel]="'M'"
-          ></qrcode>
-          <div class="confirm_icon" *ngIf="isAuthorize">
-            <mat-icon class="material-icons-outlined">done</mat-icon>
-            <p>Confirm on your App</p>
-          </div>
-        </ng-container>
-        <!-- <ng-container *ngIf="chanelId && isAuthorize">
-            <img src="assets/images/qr-code.jpg" class="qrcode-img1 img-fluid" width="256" alt="QR Code" />
-        </ng-container> -->
       </div>
       <div class="qr-content-title">Use Veeras App on your Computer</div>
       <div>
@@ -54,8 +35,7 @@
       <img
         src="assets\images\Youtube_Thum.jpg"
         class="img-fluid"
-        alt="QR Code"
-      />
+        alt="QR Code" />
     </div>
   </div>
   <div class="login-copyrights">
