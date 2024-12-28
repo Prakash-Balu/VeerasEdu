@@ -136,10 +136,18 @@
   position: absolute;
 }
 
+.methodology .icon i{
+  font-size: 30px;
+}
+
+.methodology .icon i::before{
+  font-size: 25px;
+}
+
 .experience {
   position: absolute;
-  top: 20%;
-  left: 10%;
+  top: 14%;
+  left: 7%;
   width: 90px;
   display: flex;
   flex-direction: column;
@@ -152,6 +160,9 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   padding: 5px 25px;
   gap: 5px;
+  width: 120px;
+  height: 132px;
+  z-index: 9;
 }
 .experience .icon {
   background-color: var(--tg-common-color-green);
@@ -167,14 +178,19 @@
   justify-content: center;
 }
 
+.experience .icon i {
+  font-size: 20px;
+}
+
 .info .h-text {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: var(--tg-fw-bold);
   margin: 0;
 }
 .info .b-text {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: var(--tg-fw-regular);
+  line-height: 18px;
 }
 
 .methodology {
@@ -192,6 +208,9 @@
   border-radius: 6px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   padding: 20px 5px 5px 5px;
+  width: 175px;
+  height: 91px;
+  z-index: 9;
 }
 .methodology .icon {
   position: absolute;
@@ -209,10 +228,10 @@
   justify-content: center;
 }
 .info .head-text {
-  font-size: 9px;
+  font-size: 14px;
 }
 .info .body-text {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: var(--tg-fw-bold);
 }
 

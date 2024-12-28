@@ -3,12 +3,14 @@ import { SafeHtml } from '@angular/platform-browser';
 import { UtilsService } from '../core/services/utils.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { DynamicAttendanceComponent } from '../components/dynamic-attendance/dynamic-attendance.component';
 @Component({
   selector: 'app-attedence',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink
+    RouterLink,
+    DynamicAttendanceComponent
   ],
   templateUrl: './attedence.component.html',
   styleUrl: './attedence.component.css'
