@@ -162,6 +162,10 @@
   background-color: #fff;
 }
 
+.qa_container:hover {
+  cursor: pointer;
+}
+
 .qa-content {
   font-weight: 700;
   letter-spacing: 1px;

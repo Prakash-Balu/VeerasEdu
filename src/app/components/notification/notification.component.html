@@ -1,0 +1,32 @@
+<div class="sidebar-notification" [class.open]="isOpen">
+    <div class="header">
+      <h3>Questions Asked</h3>
+      <button class="close-btn" (click)="toggleNotification()">×</button>
+    </div>
+    <div class="notification-list">
+      <div class="notification-item" *ngFor="let item of notifications">
+        <!-- <div class="votes">{{ item.votes }}</div> -->
+        <div class="content">
+          <div class="segment_content">
+            <span class="segment_name">
+              {{ item.segmentName }} :
+            </span>
+            &nbsp;
+            <span class="segment_description"> {{ item.segmentDesc }}</span>
+          </div>
+          <div>
+            <span class="asked_date_text">
+              Asked on :
+            </span>
+            &nbsp;
+            <span class="asked_date">
+              {{ item.askedOn }}
+            </span>
+            <p>{{ item.question }}</p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  

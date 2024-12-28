@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -14,11 +14,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { SegmentService } from '../core/services/segments.service';
 import { VideoPlayerComponent } from '../components/video-player/video-player.component';
+import { NotificationComponent } from '../components/notification/notification.component';
 
 @Component({
   selector: 'app-segments',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, RouterLink, VideoPlayerComponent],
+  imports: [FontAwesomeModule, CommonModule, RouterLink, VideoPlayerComponent, NotificationComponent],
   templateUrl: './segments.component.html',
   styleUrls: ['./segments.component.css'],
 })
@@ -40,11 +41,16 @@ export class SegmentsComponent {
   currentUrl: string = '';
   activeSegmentId: string | null = null;
   page!: string;
+  @ViewChild(NotificationComponent) notification!: NotificationComponent;
 
   constructor(public segmentservice: SegmentService, private route: Router, private actRoute: ActivatedRoute) {}
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
+  toggleNotification(): void {
+    this.notification.toggleNotification();
   }
 
   ngOnInit() {
