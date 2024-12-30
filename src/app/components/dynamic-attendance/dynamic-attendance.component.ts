@@ -56,23 +56,21 @@ export class DynamicAttendanceComponent implements OnInit {
 
     // Fill the rest of the month with days
     for (let day = 1; day <= this.daysInMonth; day++) {
-      const date = new Date(year, month, day).toISOString().split('T')[0];
-      // const date = moment().startOf('month').add(day, 'day').format('DD-MM-YYYY');
-      console.log(date)
+      const date = new Date(year, month, day+1).toISOString().split('T')[0];
       this.calendar.push({ date, status: 'absent' });
     }
   }
 
   // Toggle attendance
   toggleAttendance(day: any) {
-    if (!day.date) return; // Skip blank cells
-    if (day.status === 'present') {
-      day.status = 'absent';
-    } else if (day.status === 'absent') {
-      day.status = '';
-    } else {
-      day.status = 'present';
-    }
+    // if (!day.date) return; // Skip blank cells
+    // if (day.status === 'present') {
+    //   day.status = 'absent';
+    // } else if (day.status === 'absent') {
+    //   day.status = '';
+    // } else {
+    //   day.status = 'present';
+    // }
   }
 
   // Navigate to the previous month
