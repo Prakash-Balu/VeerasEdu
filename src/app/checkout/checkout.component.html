@@ -1,4 +1,4 @@
-<div class="main">
+<div class="container">
   <div class="heading">
     <img class="logo-img" src="assets/images/logo_icon.png" alt="logo" />
     <span class="title">"Welcome to NJveerasmissioneducation Pvt. Ltd."</span>
@@ -10,60 +10,92 @@
     >
   </div>
 
-  <div class="section">
-    <div class="form">
+  <div class="row row-gap-5 justify-content-between mt-5 mb-3">
+    <div class="form col-12 col-lg-6 col-xxl-5">
       <form [formGroup]="regForm">
         <h5>User Registration</h5>
         <div class="mt-4">
-          <input placeholder="Full Name" formControlName="firstName" />
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Full Name"
+              formControlName="firstName"
+            />
+          </mat-form-field>
         </div>
-        <div class="mt-4">
-          <input placeholder="Phone Number" formControlName="phoneNo" />
+        <div class="mt-2">
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Phone Number"
+              formControlName="phoneNo"
+            />
+          </mat-form-field>
         </div>
-        <div class="mt-4">
-          <input placeholder="Whatsapp Number" formControlName="whatsappNo" />
+        <div class="mt-2">
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Whatsapp Number"
+              formControlName="whatsappNo"
+            />
+          </mat-form-field>
         </div>
-        <div class="mt-4">
-          <input placeholder="E-mail address" formControlName="email" />
-        </div>
-
-        <div class="mt-4">
-          <select
-            id="dropdown"
-            formControlName="country"
-            (change)="onOptionSelected($event)"
-          >
-            <option value="" disabled selected hidden>Country</option>
-            <!-- Placeholder option -->
-            <option *ngFor="let option of countrys" [value]="option?.id">
-              {{ option?.name }}
-            </option>
-          </select>
-        </div>
-
-        <div class="mt-4 d-flex gap-4">
-          <input
-            placeholder="City/Town"
-            formControlName="city"
-            style="width: 150px"
-          />
-
-          <select id="dropdown" formControlName="state" style="width: 150px">
-            <option value="" disabled selected hidden>State</option>
-            <!-- Placeholder option -->
-            <option *ngFor="let option of states" [value]="option?.id">
-              {{ option?.name }}
-            </option>
-          </select>
-
-          <input
-            placeholder="Zip/Pincode"
-            formControlName="zipcode"
-            style="width: 150px"
-          />
+        <div class="mt-2">
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="E-mail address"
+              formControlName="email"
+            />
+          </mat-form-field>
         </div>
 
-        <div class="mt-4">
+        <div class="mt-2">
+          <mat-form-field appearance="outline">
+            <mat-select
+              id="dropdown"
+              formControlName="country"
+              (selectionChange)="onOptionSelected($event)"
+            >
+              <mat-option value="" disabled hidden> Country </mat-option>
+              <mat-option *ngFor="let option of countrys" [value]="option?.id">
+                {{ option?.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="mt-2 row">
+          <div class="col-12 col-lg-4">
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="City/Town" formControlName="city" />
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <mat-form-field appearance="outline">
+              <mat-select id="dropdown" formControlName="state">
+                <mat-option value="" disabled hidden> State </mat-option>
+                <mat-option *ngFor="let option of states" [value]="option?.id">
+                  {{ option?.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Zip/Pincode"
+                formControlName="zipcode"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="mt-2">
           <input
             type="checkbox"
             id="isCompanyAdd"
@@ -73,13 +105,21 @@
           <label for="isCompanyAdd">Add Company details(if have any)</label>
         </div>
 
-        <div class="mt-4">
-          <input placeholder="Company Name" formControlName="companyName" />
+        <div class="mt-2">
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Company Name"
+              formControlName="companyName"
+            />
+          </mat-form-field>
         </div>
-        <div class="mt-4">
-          <input placeholder="GST Number" formControlName="gst" />
+        <div class="mt-2">
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="GST Number" formControlName="gst" />
+          </mat-form-field>
         </div>
-        <div class="mt-4">
+        <div class="mt-2">
           <span
             >** Our company will never call you, the required number to share
             only information.</span
@@ -87,8 +127,49 @@
         </div>
       </form>
     </div>
-    <div class="subscription">
-      <h5 class="text-start text-primary fw-600">Order Summary</h5>
+
+    <div class="subscription col-12 col-lg-6 col-xxl-5">
+      <div class="order-wrapper">
+        <h2>Order Summary</h2>
+        <p>Please take a moment to review your plan</p>
+        <div class="row">
+          <div class="order-key col-6">
+            <div class="select-plan">
+              <div>
+                <p>Select Plan</p>
+                <input type="radio" id="isThreeMonth" style="width: 20px;"/>
+                <label for="isThreeMonth"><span>3 </span>Month Plan</label>
+              </div>
+              <span>(₹599 × 3)</span>
+            </div>
+
+            <div class="discount"><span>Flat Discount</span>17%</div>
+            <div>GST 18%</div>
+            <div>Payment processing charge</div>
+          </div>
+
+          <div class="order-value col-6">
+            <div>
+              <div>Validity (3 month)</div>
+              <span>₹1791</span>
+            </div>
+
+            <div><span class="minus">(-) </span><span>₹347</span></div>
+
+            <span>(+) ₹261</span>
+            <span>(+) ₹33</span>
+
+            <div class="total">Total <span>1,744/-</span></div>
+
+            <button
+              class="btn btn-primary continue-button"
+            >
+              Continue To Payment
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- <h5 class="text-start text-primary fw-600">Order Summary</h5>
       <div class="mx-auto summary-box mt-3">
         <div class="d-flex justify-content-between">
           <div class="">
@@ -149,7 +230,7 @@
         <button class="btn btn-primary text-white" style="width: 400px">
           Continue to checkout
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

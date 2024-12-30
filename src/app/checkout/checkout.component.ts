@@ -3,13 +3,15 @@ import { CommonService } from '../core/services/common.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../material-module';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
@@ -71,7 +73,7 @@ export class CheckoutComponent implements OnInit {
     return this.regForm.get(controlName) as FormControl;
   }
 
-  onOptionSelected(event: Event) {
+  onOptionSelected(event: any) {
     const selectedValue = (event.target as HTMLSelectElement).value;
     console.log('Selected country ID:', selectedValue);
   }
