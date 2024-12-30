@@ -11,7 +11,8 @@ import { FeatureComponent } from "../components/common/feature/feature.component
 import { BannerComponent } from "./banner/banner.component";
 import { VideoDemoComponent } from "./video-demo/video-demo.component";
 import { JourneyComponent } from "./journey/journey.component";
-import { PlansComponent } from "./plans/plans.component";
+// import { PlansComponent } from "./plans/plans.component";
+import { NewPlansComponent } from "./new-plans/new-plans.component";
 import { FooterComponent } from "../layout/footer/footer.component";
 import { AuthService } from "../core/services/auth.service";
 
@@ -32,7 +33,8 @@ interface User {
     BannerComponent,
     VideoDemoComponent,
     JourneyComponent,
-    PlansComponent,
+    // PlansComponent,
+    NewPlansComponent,
     FooterComponent,
   ],
   templateUrl: "./home.component.html",

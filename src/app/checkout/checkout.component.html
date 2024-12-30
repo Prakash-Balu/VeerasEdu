@@ -1,105 +1,155 @@
 <div class="main">
-    <div class="heading">
-        <img class="logo-img" src="assets/images/logo_icon.png" alt="logo" />
-        <span class="title">"Welcome to NJveerasmissioneducation Pvt. Ltd."</span>
-    </div>
-    <div>
-        <span class="title-1">To create a new account and please an order, please fill out the details below."</span>
-    </div>
+  <div class="heading">
+    <img class="logo-img" src="assets/images/logo_icon.png" alt="logo" />
+    <span class="title">"Welcome to NJveerasmissioneducation Pvt. Ltd."</span>
+  </div>
+  <div>
+    <span class="title-1"
+      >To create a new account and please an order, please fill out the details
+      below."</span
+    >
+  </div>
 
-    <div class="section">
-        <div class="form">
-            <form [formGroup]="regForm">
-                <h5>User Registration</h5>
-                <div class="mt-4">
-                    <input placeholder="Full Name" formControlName="firstName" />
-                </div>
-                <div class="mt-4">
-                    <input placeholder="Phone Number" formControlName="phoneNo" />
-                </div>
-                <div class="mt-4">
-                    <input placeholder="Whatsapp Number" formControlName="whatsappNo" />
-                </div>
-                <div class="mt-4">
-                    <input placeholder="E-mail address" formControlName="email" />
-                </div>
-
-                <div class="mt-4">
-                    <select id="dropdown"  formControlName="country" (change)="onOptionSelected($event)">
-                      <option value="" disabled selected hidden>Country</option> <!-- Placeholder option -->
-                      <option *ngFor="let option of countrys" [value]="option?.id">{{ option?.name }}</option>
-                    </select>
-                </div>
-
-                <div class="mt-4 d-flex gap-4" > 
-                    <input placeholder="City/Town" formControlName="city" style="width:150px"/>
-
-                    <select id="dropdown"  formControlName="state" style="width:150px">
-                        <option value="" disabled selected hidden>State</option> <!-- Placeholder option -->
-                        <option *ngFor="let option of states" [value]="option?.id">{{ option?.name }}</option>
-                      </select>
-                    
-                    <input placeholder="Zip/Pincode" formControlName="zipcode" style="width:150px"/>
-                </div>
-                 
-                <div class="mt-4">
-                    <input type="checkbox" id="isCompanyAdd" formControlName="isCompanyAdd" style="width:20px">
-                    <label for="isCompanyAdd" >Add Company details(if have any)</label>
-                </div>
-
-                <div class="mt-4">
-                    <input placeholder="Company Name" formControlName="companyName" />
-                </div>
-                <div class="mt-4">
-                    <input placeholder="GST Number" formControlName="gst" />
-                </div>
-                <div class="mt-4">
-                    <span >** Our company will never call you, the required number to share only information.</span>
-                </div>
-            </form>
-
+  <div class="section">
+    <div class="form">
+      <form [formGroup]="regForm">
+        <h5>User Registration</h5>
+        <div class="mt-4">
+          <input placeholder="Full Name" formControlName="firstName" />
         </div>
-        <div class="subscription">
-        <h5 class="text-start text-primary fw-600">Order Summary</h5>
-        <div class="mx-auto summary-box mt-3">
+        <div class="mt-4">
+          <input placeholder="Phone Number" formControlName="phoneNo" />
+        </div>
+        <div class="mt-4">
+          <input placeholder="Whatsapp Number" formControlName="whatsappNo" />
+        </div>
+        <div class="mt-4">
+          <input placeholder="E-mail address" formControlName="email" />
+        </div>
+
+        <div class="mt-4">
+          <select
+            id="dropdown"
+            formControlName="country"
+            (change)="onOptionSelected($event)"
+          >
+            <option value="" disabled selected hidden>Country</option>
+            <!-- Placeholder option -->
+            <option *ngFor="let option of countrys" [value]="option?.id">
+              {{ option?.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mt-4 d-flex gap-4">
+          <input
+            placeholder="City/Town"
+            formControlName="city"
+            style="width: 150px"
+          />
+
+          <select id="dropdown" formControlName="state" style="width: 150px">
+            <option value="" disabled selected hidden>State</option>
+            <!-- Placeholder option -->
+            <option *ngFor="let option of states" [value]="option?.id">
+              {{ option?.name }}
+            </option>
+          </select>
+
+          <input
+            placeholder="Zip/Pincode"
+            formControlName="zipcode"
+            style="width: 150px"
+          />
+        </div>
+
+        <div class="mt-4">
+          <input
+            type="checkbox"
+            id="isCompanyAdd"
+            formControlName="isCompanyAdd"
+            style="width: 20px"
+          />
+          <label for="isCompanyAdd">Add Company details(if have any)</label>
+        </div>
+
+        <div class="mt-4">
+          <input placeholder="Company Name" formControlName="companyName" />
+        </div>
+        <div class="mt-4">
+          <input placeholder="GST Number" formControlName="gst" />
+        </div>
+        <div class="mt-4">
+          <span
+            >** Our company will never call you, the required number to share
+            only information.</span
+          >
+        </div>
+      </form>
+    </div>
+    <div class="subscription">
+      <h5 class="text-start text-primary fw-600">Order Summary</h5>
+      <div class="mx-auto summary-box mt-3">
         <div class="d-flex justify-content-between">
-            <div class="">
-                <div>Monthly Fee Plan</div>
-                <div style="font-size: small;" class="fw-600 text-secondary">{{plan?.monthsno}} Month X 830</div>
+          <div class="">
+            <div>Monthly Fee Plan</div>
+            <div style="font-size: small" class="fw-600 text-secondary">
+              {{ plan?.monthsno }} Month X 830
             </div>
-            <span class="text-secondary">{{ plan?.locationInfo?.currency_symbol }} {{ planCrossAmount }}</span>
+          </div>
+          <span class="text-secondary"
+            >{{ plan?.locationInfo?.currency_symbol }}
+            {{ planCrossAmount }}</span
+          >
         </div>
-        <hr>
+        <hr />
         <div class="d-flex justify-content-between">
-            <span>GST 18%</span>
-            <span class="text-secondary">{{ plan?.locationInfo?.currency_symbol }} {{gstAmount}}</span>
+          <span>GST 18%</span>
+          <span class="text-secondary"
+            >{{ plan?.locationInfo?.currency_symbol }} {{ gstAmount }}</span
+          >
         </div>
-        <hr>
+        <hr />
         <div class="d-flex justify-content-between">
-            <span>Total (INR)</span>
-            <span class="text-primary fw-bold " style="font-size: large;"> {{ plan?.locationInfo?.currency_symbol }} {{totalAmount}}</span>
+          <span>Total (INR)</span>
+          <span class="text-primary fw-bold" style="font-size: large">
+            {{ plan?.locationInfo?.currency_symbol }} {{ totalAmount }}</span
+          >
         </div>
-        <hr>
+        <hr />
         <div>
-            <img class="" src="assets/images/card.png" alt="logo" style="width:300px"/>
+          <img
+            class=""
+            src="assets/images/card.png"
+            alt="logo"
+            style="width: 300px"
+          />
         </div>
-        <hr>
+        <hr />
         <div class="d-flex gap-2 mt-3">
-            <div>
-                <img class="" src="assets/images/ssl-badge.png" alt="logo" style="width:45px"/>
+          <div>
+            <img
+              class=""
+              src="assets/images/ssl-badge.png"
+              alt="logo"
+              style="width: 45px"
+            />
+          </div>
+          <div>
+            <div style="font-size: large; font-weight: 600">
+              SSL Secure Payment
             </div>
-            <div>
-                <div style="font-size: large; font-weight: 600;">SSL Secure Payment</div>
-                <div style="font-size: small;" class="fw-600 text-secondary">Your encryption is protected by 256-bit SSL encryption</div>
+            <div style="font-size: small" class="fw-600 text-secondary">
+              Your encryption is protected by 256-bit SSL encryption
             </div>
+          </div>
         </div>
-
-        
-        </div>
-        <div class="text-center mt-3">
-            <button class="btn btn-primary text-white" style="width:400px">Continue to checkout</button>
-        </div>
-        </div>
+      </div>
+      <div class="text-center mt-3">
+        <button class="btn btn-primary text-white" style="width: 400px">
+          Continue to checkout
+        </button>
+      </div>
     </div>
-
+  </div>
 </div>
