@@ -16,38 +16,26 @@
         <h5>User Registration</h5>
         <div class="mt-4">
           <mat-form-field appearance="outline">
-            <input
-              matInput
-              placeholder="Full Name"
-              formControlName="firstName"
-            />
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="firstName" />
           </mat-form-field>
         </div>
         <div class="mt-2">
           <mat-form-field appearance="outline">
-            <input
-              matInput
-              placeholder="Phone Number"
-              formControlName="phoneNo"
-            />
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNo" />
           </mat-form-field>
         </div>
         <div class="mt-2">
           <mat-form-field appearance="outline">
-            <input
-              matInput
-              placeholder="Whatsapp Number"
-              formControlName="whatsappNo"
-            />
+            <mat-label>Whatsapp Number</mat-label>
+            <input matInput formControlName="whatsappNo" />
           </mat-form-field>
         </div>
         <div class="mt-2">
           <mat-form-field appearance="outline">
-            <input
-              matInput
-              placeholder="E-mail address"
-              formControlName="email"
-            />
+            <mat-label>E-mail address</mat-label>
+            <input matInput formControlName="email" />
           </mat-form-field>
         </div>
 
@@ -69,7 +57,8 @@
         <div class="mt-2 row">
           <div class="col-12 col-lg-4">
             <mat-form-field appearance="outline">
-              <input matInput placeholder="City/Town" formControlName="city" />
+              <mat-label>City/Town</mat-label>
+              <input matInput formControlName="city" />
             </mat-form-field>
           </div>
 
@@ -86,9 +75,9 @@
 
           <div class="col-12 col-lg-4">
             <mat-form-field appearance="outline">
+              <mat-label>Zip/Pincode</mat-label>
               <input
                 matInput
-                placeholder="Zip/Pincode"
                 formControlName="zipcode"
               />
             </mat-form-field>
@@ -107,16 +96,17 @@
 
         <div class="mt-2">
           <mat-form-field appearance="outline">
+            <mat-label>Company Name</mat-label>
             <input
               matInput
-              placeholder="Company Name"
               formControlName="companyName"
             />
           </mat-form-field>
         </div>
         <div class="mt-2">
           <mat-form-field appearance="outline">
-            <input matInput placeholder="GST Number" formControlName="gst" />
+            <mat-label>GST Number</mat-label>
+            <input matInput formControlName="gst" />
           </mat-form-field>
         </div>
         <div class="mt-2">
@@ -137,7 +127,7 @@
             <div class="select-plan">
               <div>
                 <p>Select Plan</p>
-                <input type="radio" id="isThreeMonth" style="width: 20px;"/>
+                <input type="radio" id="isThreeMonth" style="width: 20px" />
                 <label for="isThreeMonth"><span>3 </span>Month Plan</label>
               </div>
               <span>(₹599 × 3)</span>
@@ -161,9 +151,7 @@
 
             <div class="total">Total <span>1,744/-</span></div>
 
-            <button
-              class="btn btn-primary continue-button"
-            >
+            <button class="btn btn-primary continue-button">
               Continue To Payment
             </button>
           </div>
