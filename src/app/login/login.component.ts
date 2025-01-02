@@ -21,7 +21,7 @@ export class LoginComponent {
   public chanelId: string = "123456";
   public isAuthorize: boolean = false;
   public imageSrc: string =
-    "https://veerasapi.onrender.com/images/logo_icon.png";
+    "https://veeras-api.onrender.com/images/logo_icon.png";
   private intervalId: any;
 
   constructor(
