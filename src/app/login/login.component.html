@@ -13,6 +13,7 @@
   <p class="qr-link">Log in with QR Code</p>
   <div class="qr-container">
     <div>
+      @if(!isAuthorize){
       <div class="qrcode-login-section">
         <qrcode
           [qrdata]="chanelId"
@@ -20,8 +21,10 @@
           [imageSrc]="imageSrc"
           [imageWidth]="50"
           [imageHeight]="50"
-          [errorCorrectionLevel]="'M'"></qrcode>
+          [errorCorrectionLevel]="'M'"
+        ></qrcode>
       </div>
+      } @if(isAuthorize){ }
       <div class="qr-content-title">Use Veeras App on your Computer</div>
       <div>
         <ol class="qr-list">
@@ -35,7 +38,8 @@
       <img
         src="assets\images\Youtube_Thum.jpg"
         class="img-fluid"
-        alt="QR Code" />
+        alt="QR Code"
+      />
     </div>
   </div>
   <div class="login-copyrights">

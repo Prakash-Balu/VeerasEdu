@@ -13,11 +13,12 @@ import {
 import Player from "@vimeo/player";
 import { CommentsComponent } from "../components/common/comments/comments.component";
 import { RouterModule } from "@angular/router";
+import { CommentsNewComponent } from "../components/comments-new/comments-new.component";
 
 @Component({
   selector: "app-classroom",
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, CommentsComponent,RouterModule],
+  imports: [FontAwesomeModule, CommonModule, CommentsComponent,RouterModule, CommentsNewComponent],
   templateUrl: "./classroom.component.html",
   styleUrl: "./classroom.component.css",
 })

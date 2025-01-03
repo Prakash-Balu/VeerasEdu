@@ -21,6 +21,8 @@ export class AuthService {
   private mobileSub: BehaviorSubject<string | null>;
   isMobile$!: Observable<string | null>;
 
+  private userDataSubject!: BehaviorSubject<any>;
+
   constructor(private router: Router, private http: HttpClient) {
     this.tokenSubject = new BehaviorSubject<string | null>(
       localStorage.getItem('token')
@@ -31,6 +33,11 @@ export class AuthService {
     this.mobileSub = new BehaviorSubject<string | null>(
       localStorage.getItem('isMobile')
     );
+
+    this.userDataSubject = new BehaviorSubject<any>(
+      localStorage.getItem('userData')
+    );
+    this.userDataSubject.asObservable();
   }
 
   get token(): string | null {
@@ -90,5 +97,34 @@ export class AuthService {
     );
   }
 
+  userAttendance() {
+    return this.http
+      .get<any>(`${environment.baseURL}${API_URL.GET_ATTENDANCE}`)
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError(this.handleError)
+      );
+  }
 
+  recordSession() {
+    return this.http
+      .get<any>(`${environment.baseURL}${API_URL.RECORD_SESSION}`)
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getUserData() {
+    return JSON.parse(this.userDataSubject.value);
+  }
+
+  setUserData(userData: any) {
+    localStorage.setItem('userData', JSON.stringify(userData));
+    this.userDataSubject.next(JSON.stringify(userData));
+  }
 }

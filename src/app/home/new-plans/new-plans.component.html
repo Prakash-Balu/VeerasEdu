@@ -37,7 +37,7 @@
     <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
       <div class="plan-card">
         <div>
-          <span class="plan-price">₹599</span>/month
+          <span class="plan-price">{{ plan?.locationInfo?.currency_symbol }}{{ plan?.locationPrice?.month_fee }}</span>/month
           <small class="plan-gst">+ GST</small>
         </div>
         <div class="plan-details">
@@ -81,7 +81,7 @@
                 <input type="radio" id="isThreeMonth" />
                 <label for="isThreeMonth"><span>3 </span>Month Plan</label>
               </div>
-              <span>(₹599 × 3)</span>
+              <span>(₹{{ plan?.locationPrice?.month_fee }} × 3)</span>
             </div>
 
             <div class="discount"><span>Flat Discount</span>17%</div>
