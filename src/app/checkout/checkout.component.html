@@ -15,74 +15,58 @@
       <form [formGroup]="regForm">
         <h5>User Registration</h5>
         <div class="mt-4">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Full Name</mat-label>
-            <input matInput formControlName="firstName" />
+            <input matInput formControlName="fullName" />
           </mat-form-field>
         </div>
         <div class="mt-2">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Phone Number</mat-label>
             <input matInput formControlName="phoneNo" />
           </mat-form-field>
         </div>
         <div class="mt-2">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Whatsapp Number</mat-label>
             <input matInput formControlName="whatsappNo" />
           </mat-form-field>
         </div>
         <div class="mt-2">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>E-mail address</mat-label>
             <input matInput formControlName="email" />
           </mat-form-field>
         </div>
 
         <div class="mt-2">
-          <mat-form-field appearance="outline">
-            <mat-select
-              id="dropdown"
-              formControlName="country"
-              (selectionChange)="onOptionSelected($event)"
-            >
-              <mat-option value="" disabled hidden> Country </mat-option>
-              <mat-option *ngFor="let option of countrys" [value]="option?.id">
-                {{ option?.name }}
-              </mat-option>
-            </mat-select>
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" />
+          </mat-form-field>
+        </div>
+        @if(isIndia){
+        <div class="mt-2">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
+            <mat-label>State</mat-label>
+            <input matInput formControlName="state" />
           </mat-form-field>
         </div>
 
-        <div class="mt-2 row">
-          <div class="col-12 col-lg-4">
-            <mat-form-field appearance="outline">
-              <mat-label>City/Town</mat-label>
-              <input matInput formControlName="city" />
-            </mat-form-field>
-          </div>
-
-          <div class="col-12 col-lg-4">
-            <mat-form-field appearance="outline">
-              <mat-select id="dropdown" formControlName="state">
-                <mat-option value="" disabled hidden> State </mat-option>
-                <mat-option *ngFor="let option of states" [value]="option?.id">
-                  {{ option?.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div class="col-12 col-lg-4">
-            <mat-form-field appearance="outline">
-              <mat-label>Zip/Pincode</mat-label>
-              <input
-                matInput
-                formControlName="zipcode"
-              />
-            </mat-form-field>
-          </div>
+        <div class="mt-2">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
+            <mat-label>City/Town</mat-label>
+            <input matInput formControlName="city" />
+          </mat-form-field>
         </div>
+
+        <div class="mt-2">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
+            <mat-label>Zip/Pincode</mat-label>
+            <input matInput formControlName="zipcode" />
+          </mat-form-field>
+        </div>
+        }
 
         <div class="mt-2">
           <input
@@ -94,24 +78,23 @@
           <label for="isCompanyAdd">Add Company details(if have any)</label>
         </div>
 
+        @if(isCompanyAdd){
         <div class="mt-2">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Company Name</mat-label>
-            <input
-              matInput
-              formControlName="companyName"
-            />
+            <input matInput formControlName="companyName" />
           </mat-form-field>
         </div>
         <div class="mt-2">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>GST Number</mat-label>
             <input matInput formControlName="gst" />
           </mat-form-field>
         </div>
+        }
         <div class="mt-2">
           <span
-            >** Our company will never call you, the required number to share
+            >* Our company will never call you, the required number to share
             only information.</span
           >
         </div>
@@ -151,7 +134,10 @@
 
             <div class="total">Total <span>1,744/-</span></div>
 
-            <button class="btn btn-primary continue-button">
+            <button
+              class="btn btn-primary continue-button"
+              (click)="onContinueToPayment()"
+            >
               Continue To Payment
             </button>
           </div>

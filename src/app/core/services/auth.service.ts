@@ -119,6 +119,17 @@ export class AuthService {
       );
   }
 
+  getLocation() {
+    return this.http
+      .get<any>(`${environment.baseURL}${API_URL.RECORD_SESSION}`)
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
   getUserData() {
     return JSON.parse(this.userDataSubject.value);
   }
