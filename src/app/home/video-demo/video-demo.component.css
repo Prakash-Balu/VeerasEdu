@@ -27,18 +27,18 @@
 }
 .video-outer {
   width: 100%;
-  position: absolute;
+  /* position: absolute; */
   z-index: 1;
 }
 .video-inner {
-  width: 100%;
-  position: absolute;
+  width: max-content;
+  /* position: absolute; */
   z-index: -1;
 }
 .video-thumbnail {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 .thumbnail-lhs {
   display: flex;

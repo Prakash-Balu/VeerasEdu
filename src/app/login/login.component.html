@@ -12,19 +12,23 @@
   </div>
   <p class="qr-link">Log in with QR Code</p>
   <div class="qr-container">
-    <div>
+    <div class="position-relative">
       @if(!isAuthorize){
       <div class="qrcode-login-section">
-        <qrcode
-          [qrdata]="chanelId"
-          [width]="220"
-          [imageSrc]="imageSrc"
-          [imageWidth]="50"
-          [imageHeight]="50"
-          [errorCorrectionLevel]="'M'"
-        ></qrcode>
+        <qrcode [qrdata]="chanelId" [width]="220" [imageSrc]="imageSrc" [imageWidth]="50" [imageHeight]="50"
+          [errorCorrectionLevel]="'M'"></qrcode>
       </div>
       } @if(isAuthorize){ }
+      <div class="scanned_sec_wrapper">
+        <div class="scanned_sec"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="50px" width="50px"
+          version="1.1" id="Layer_1" viewBox="0 0 512 512" xml:space="preserve">
+          <ellipse style="fill:#5a4b26;" cx="256" cy="256" rx="256" ry="255.832" />
+          <polygon style="fill:#fff;"
+            points="235.48,392.08 114.44,297.792 148.84,253.616 223.176,311.512 345.848,134.504   391.88,166.392 " />
+        </svg>
+        <p>Confirm on your App</p>
+      </div>
       <div class="qr-content-title">Use Veeras App on your Computer</div>
       <div>
         <ol class="qr-list">
@@ -35,11 +39,7 @@
       </div>
     </div>
     <div class="qr-image">
-      <img
-        src="assets\images\Youtube_Thum.jpg"
-        class="img-fluid"
-        alt="QR Code"
-      />
+      <img src="assets\images\Youtube_Thum.jpg" class="img-fluid" alt="QR Code" />
     </div>
   </div>
   <div class="login-copyrights">

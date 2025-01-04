@@ -7,8 +7,7 @@
             <div class="thumbnail-lhs">
               <h3 class="text-box">
                 This is how
-                <span class="d-block text-uppercase thumb-title">veera's</span
-                >magic method
+                <span class="d-block text-uppercase thumb-title">veera's</span>magic method
                 <span class="thumb-subtitle">works!</span>
               </h3>
               <button class="demo-btn">Do Not Skip or Miss</button>
@@ -17,22 +16,29 @@
               <i class="fa-regular fa-circle-play" (click)="onClickPlay()"></i>
             </div>
             <div> -->
-              <!-- <ng-container *ngIf="!isVideoPlaying; else videoPlayer">
+            <!-- <ng-container *ngIf="!isVideoPlaying; else videoPlayer">
                 <div [innerHtml]="videPageVeeraImage" class="cursor-pointer"></div>
               </ng-container> -->
-              <!-- <ng-template #videoPlayer> -->
-                <!-- <div #vimeoPlayer></div> -->
-              <!-- </ng-template> -->
+            <!-- <ng-template #videoPlayer> -->
+            <!-- <div #vimeoPlayer></div> -->
+            <!-- </ng-template> -->
             <!-- </div> -->
             <!-- <div [innerHtml]="videPageVeeraImage" class="cursor-pointer" *ngIf="!isVideoPlaying"></div> -->
 
-            <div class="thumbnail-center" (click)="onClickPlayPause()">
+            <!-- <div class="thumbnail-center" (click)="onClickPlayPause()">
               <i class="fa-regular" [ngClass]="isVideoPlaying ? 'fa-circle-pause' : 'fa-circle-play'"></i>
-            </div>
-            <div #vimeoPlayer ></div>
+            </div> -->
+            <!-- <div #vimeoPlayer></div> -->
           </div>
         </div>
         <div class="video-inner"></div>
+
+
+
+        <video width="400" height="300" poster="../../../assets/images/veera-method.jpeg" controls>
+          <source src="../../../assets/videos/demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </div>
