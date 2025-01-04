@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h2 class="plan-title text-center">
-        Veera's 
+        Veera's
         <span class="plan-subtitle"
           >Plan
           <div class="plan-svg-wrapper">
@@ -37,18 +37,21 @@
     <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
       <div class="plan-card">
         <div>
-          <span class="plan-price">{{ plan?.locationInfo?.currency_symbol }}{{ plan?.locationPrice?.month_fee }}</span>/month
+          <span class="plan-price"
+            >{{ plan?.locationInfo?.currency_symbol
+            }}{{ plan?.locationPrice?.month_fee }}</span
+          >/month
           <small class="plan-gst">+ GST</small>
         </div>
         <div class="plan-details">
           <h4>Details</h4>
           <div class="plan-duration-wrapper">
+            @if(isPercentage){
             <div class="plan-offer">17% off</div>
+            } @if(!isPercentage){
+            <div class="plan-offer-not"></div>
+            }
             <ul>
-              <li>
-                <input name="plan" type="radio" id="isOneMonth" />
-                <label for="isOneMonth"><span>1 </span>Month Plan</label>
-              </li>
               <li>
                 <input name="plan" type="radio" id="isThreeMonth" />
                 <label for="isThreeMonth"><span>3 </span>Month Plan</label>
@@ -66,6 +69,13 @@
             after joining
           </p>
         </div>
+        <button
+          class="btn btn-primary continue-button"
+          style="border-radius: 80px"
+          (click)="onSubcribeClick(1)"
+        >
+          Subscribe
+        </button>
       </div>
     </div>
 
@@ -104,7 +114,7 @@
 
             <button
               class="btn btn-primary continue-button"
-              (click)="onSubcribeClick(1)"
+              (click)="onContinueClick(1)"
             >
               Continue To Payment
             </button>

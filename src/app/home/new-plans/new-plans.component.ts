@@ -10,18 +10,27 @@ import { CommonService } from '../../core/services/common.service';
   styleUrl: './new-plans.component.css',
 })
 export class NewPlansComponent {
+  public isPercentage: boolean = false
   constructor(private router: Router, private commonService: CommonService) {
     this.getPlans();
   }
   public plan: any;
+  // onSubcribeClick(id: any) {
+  //   // this.isSubcribeOpen = true;
+  //   // console.log(plan)
+  //   // this.selectPlan = plan;
+  //   // this.planCrossAmount = this.selectPlan?.monthsno*830;
+  //   // this.gstAmount = (this.planCrossAmount*18)/100;
+  //   // this.totalAmount = this.planCrossAmount + this.gstAmount;
+  //   this.router.navigateByUrl(`/checkout/${id}`);
+  // }
+
   onSubcribeClick(id: any) {
-    // this.isSubcribeOpen = true;
-    // console.log(plan)
-    // this.selectPlan = plan;
-    // this.planCrossAmount = this.selectPlan?.monthsno*830;
-    // this.gstAmount = (this.planCrossAmount*18)/100;
-    // this.totalAmount = this.planCrossAmount + this.gstAmount;
-    this.router.navigateByUrl(`/checkout/${id}`);
+    console.log(id)
+  }
+
+  onContinueClick(id: any) {
+    console.log(id)
   }
 
   getPlans() {
