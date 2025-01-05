@@ -4,59 +4,54 @@
       Post your doubts here related to the above class
     </p>
     <div class="comment__initial_input">
-      <textarea
-        class="form-control reply_comment_text"
-        placeholder="Leave a comment here"
-        [(ngModel)]="commentsText"></textarea>
-      <div class="comment_recorder">
-        <!-- <span
-          class="comment__audio_btn"
-          *ngIf="!recording"
-          (click)="startRecording()"
-          ><i class="fa-solid fa-microphone-slash"></i
-        ></span>
-        <span
-          class="comment__audio_btn"
-          *ngIf="recording"
-          (click)="stopRecording()"
-          ><i class="fa fa-microphone" aria-hidden="true"></i
-        ></span> -->
-        <span
-          class="comment__audio_btn"
-          (click)="enableAudioChat()"
-          ><i class="fa-solid" [ngClass]="isEnableAudio ? 'fa-microphone': 'fa-microphone-slash'"></i
-        ></span>
-      </div>
-    </div>
-    <div class="audio-recorder" *ngIf="isEnableAudio">
       <!-- Container -->
-      <div class="recording-controls d-flex align-items-center gap-3 p-2 rounded shadow">
+      <div class="audio-recorder" *ngIf="isEnableAudio">
         <!-- Start Recording Button -->
-        <button
-          class="btn btn-danger rounded-circle"
-          (click)="startRecording()"
-          [disabled]="recording"
-          title="Start Recording"
-        >
-          <i class="fa-solid fa-record-vinyl"></i>
-        </button>
-    
+        <!-- <button  
+   class="btn btn-danger rounded-circle"  
+   (click)="startRecording()"  
+   [disabled]="recording"  
+   title="Start Recording"  
+  >  
+   <i class="fa-solid fa-record-vinyl"></i>  
+  </button> -->
+
         <!-- Timer and Stop Button -->
+
         <div class="timer-container" *ngIf="recording">
-          <i class="fa-solid fa-circle-xmark"
-            (click)="stopRecording()"
-            title="Stop Recording"
-          ></i>
           <span class="timer">{{ timer }}</span>
+          <div class="wave-container">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+            <div class="wave wave4"></div>
+          </div>
+          <span>Listening...</span>
+          <i class="fa-solid fa-play" (click)="stopRecording()"></i>
+        </div>
+
+        <!-- Audio Player -->
+        <div class="audio-player mt-4" *ngIf="url">
+          <i class="fa-solid fa-trash-can" (click)="deleteRecording()"></i>
+          <audio #audioPlayer controls class="w-100">
+            <source [src]="url" type="audio/webm" />
+            Your browser does not support the audio element.
+          </audio>
         </div>
       </div>
-    
-      <!-- Audio Player -->
-      <div class="audio-player mt-4" *ngIf="url">
-        <audio #audioPlayer controls class="w-100">
-          <source [src]="url" type="audio/webm" />
-          Your browser does not support the audio element.
-        </audio>
+      <textarea
+        *ngIf="!isEnableAudio"
+        class="form-control reply_comment_text"
+        placeholder="Leave a comment here"
+        [(ngModel)]="commentsText"
+      ></textarea>
+      <div class="comment_recorder">
+        <span class="comment__audio_btn" (click)="enableAudioChat()">
+          <i
+            class="fa-solid"
+            [ngClass]="isEnableAudio ? 'fa-microphone-slash' : 'fa-microphone'"
+          ></i>
+        </span>
       </div>
     </div>
 
@@ -74,7 +69,7 @@
 
 <mat-card>
   <mat-tab-group>
-    <mat-tab >
+    <mat-tab>
       <ng-template mat-tab-label>
         <div class="badge all_comments" [textContent]="comments.length"></div>
         <span class="comments_tab_text">All Comments</span>
@@ -122,7 +117,8 @@
     [pageSize]="10"
     [pageSizeOptions]="[5, 10, 25, 100]"
     aria-label="Select page"
-    class="comments_pagination">
+    class="comments_pagination"
+  >
   </mat-paginator>
 </mat-card>
 
@@ -137,18 +133,18 @@
             height="40"
             alt=""
             *ngIf="comment.userType == 'ADMIN'"
-            src="assets/images/logo_icon.png" />
+            src="assets/images/logo_icon.png"
+          />
           <span
             class="user_avatar"
             *ngIf="comment.userType != 'ADMIN'"
-            [textContent]="comment.usrAvatar"></span>
+            [textContent]="comment.usrAvatar"
+          ></span>
           <a class="t-link" href="" [textContent]="comment.fullName"></a>
           <span class="e-text-label" [textContent]="comment.userType"></span>
         </div>
         <div class="comment__info_right">
-          <span
-            class="comment__date"
-            [textContent]="comment.dateAgoTxt "></span>
+          <span class="comment__date" [textContent]="comment.dateAgoTxt"></span>
           <span
             *ngIf="userType == 'ADMIN' && comment.reply.length == 0"
             class="comment__reply_btn btn submit_btn"
@@ -160,7 +156,8 @@
       <div class="comment__body">
         <div
           class="audio-container audio-comment audio-container-49"
-          *ngIf="!!comment.audioPath">
+          *ngIf="!!comment.audioPath"
+        >
           <audio controls *ngIf="comment.audioPath">
             <source [src]="sanitize(comment.audioPath)" type="audio/wav" />
             Your browser does not support the audio element.
@@ -169,7 +166,8 @@
         <p
           *ngIf="!!comment.description"
           [textContent]="comment.description"
-          class="comment__text"></p>
+          class="comment__text"
+        ></p>
       </div>
 
       <div class="comment__reply">
@@ -177,18 +175,21 @@
         <textarea
           class="form-control reply_comment_text"
           placeholder="Leave a comment here"
-          [(ngModel)]="replyText"></textarea>
+          [(ngModel)]="replyText"
+        ></textarea>
         <div class="comment__button_section">
           <button
             class="btn cancel_btn"
             type="button"
-            (click)="closeReply($event)">
+            (click)="closeReply($event)"
+          >
             Cancel
           </button>
           <button
             class="btn submit_btn"
             type="button"
-            (click)="submitReply(comment, $event)">
+            (click)="submitReply(comment, $event)"
+          >
             Submit
           </button>
         </div>
@@ -196,7 +197,8 @@
     </div>
     <div
       class="comment__item comment__item_response"
-      *ngFor="let reply of comment.reply; let i = index">
+      *ngFor="let reply of comment.reply; let i = index"
+    >
       <div class="comment__info">
         <div class="comment__info_left">
           <img
@@ -205,18 +207,18 @@
             height="40"
             alt=""
             *ngIf="reply.userType == 'ADMIN'"
-            src="assets/images/logo_icon.png" />
+            src="assets/images/logo_icon.png"
+          />
           <span
             class="user_avatar"
             *ngIf="reply.userType != 'ADMIN'"
-            [textContent]="reply.usrAvatar"></span>
+            [textContent]="reply.usrAvatar"
+          ></span>
           <a class="t-link" href="" [textContent]="reply.fullName"></a>
           <span class="e-text-label" [textContent]="reply.userType"></span>
         </div>
         <div class="comment__info_right">
-          <span
-            class="comment__date"
-            [textContent]="reply.dateAgoTxt "></span>
+          <span class="comment__date" [textContent]="reply.dateAgoTxt"></span>
           <span
             *ngIf="
               reply.seqNo == comment.reply.length && comment.userId == userId
@@ -230,7 +232,8 @@
       <div class="comment__body">
         <div
           class="audio-container audio-comment audio-container-49"
-          *ngIf="!!reply.audioPath">
+          *ngIf="!!reply.audioPath"
+        >
           <audio controls="" controlslist="noplaybackrate nodownload">
             <source [src]="reply.audioPath" />
             Your browser does not support the audio element.
@@ -239,7 +242,8 @@
         <p
           *ngIf="!!reply.description"
           [textContent]="reply.description"
-          class="comment__text"></p>
+          class="comment__text"
+        ></p>
       </div>
       <div class="comment__reply">
         <p class="comment_reply_head">Please briefly explain your doubts</p>
@@ -247,18 +251,21 @@
           class="form-control"
           placeholder="Leave a comment here"
           style="height: 100px"
-          [(ngModel)]="replyText"></textarea>
+          [(ngModel)]="replyText"
+        ></textarea>
         <div class="comment__button_section">
           <button
             class="btn cancel_btn"
             type="button"
-            (click)="closeReply($event)">
+            (click)="closeReply($event)"
+          >
             Cancel
           </button>
           <button
             class="btn submit_btn"
             type="button"
-            (click)="submitReply(comment, $event)">
+            (click)="submitReply(comment, $event)"
+          >
             Submit
           </button>
         </div>
@@ -266,15 +273,18 @@
     </div>
     <div
       class="comment__hidden_response"
-      *ngIf="comment.hiddenReply.length > 0">
+      *ngIf="comment.hiddenReply.length > 0"
+    >
       <span
         class="otherreply_btn"
         (click)="moreReply($event)"
-        [textContent]="comment.hiddenReply.length + ' other replie(s)'"></span>
+        [textContent]="comment.hiddenReply.length + ' other replie(s)'"
+      ></span>
     </div>
     <div
       class="comment__item comment__item_response comment__item_hidden"
-      *ngFor="let hiddenReply of comment.hiddenReply">
+      *ngFor="let hiddenReply of comment.hiddenReply"
+    >
       <div class="comment__info">
         <div class="comment__info_left">
           <img
@@ -283,20 +293,24 @@
             height="40"
             alt=""
             *ngIf="hiddenReply.userType == 'ADMIN'"
-            src="assets/images/logo_icon.png" />
+            src="assets/images/logo_icon.png"
+          />
           <span
             class="user_avatar"
             *ngIf="hiddenReply.userType != 'ADMIN'"
-            [textContent]="hiddenReply.usrAvatar"></span>
+            [textContent]="hiddenReply.usrAvatar"
+          ></span>
           <a class="t-link" href="" [textContent]="hiddenReply.fullName"></a>
           <span
             class="e-text-label"
-            [textContent]="hiddenReply.userType"></span>
+            [textContent]="hiddenReply.userType"
+          ></span>
         </div>
         <div class="comment__info_right">
           <span
             class="comment__date"
-            [textContent]="hiddenReply.dateAgoTxt "></span>
+            [textContent]="hiddenReply.dateAgoTxt"
+          ></span>
           <span
             *ngIf="
               hiddenReply.seqNo ==
@@ -312,7 +326,8 @@
       <div class="comment__body">
         <div
           class="audio-container audio-comment audio-container-49"
-          *ngIf="!!hiddenReply.audioPath">
+          *ngIf="!!hiddenReply.audioPath"
+        >
           <audio controls="" controlslist="noplaybackrate nodownload">
             <source [src]="hiddenReply.audioPath" />
             Your browser does not support the audio element.
@@ -321,7 +336,8 @@
         <p
           *ngIf="!!hiddenReply.description"
           [textContent]="hiddenReply.description"
-          class="comment__text"></p>
+          class="comment__text"
+        ></p>
       </div>
       <div class="comment__reply">
         <p class="comment_reply_head">Please briefly explain your doubts</p>
@@ -329,18 +345,21 @@
           class="form-control"
           placeholder="Leave a comment here"
           style="height: 100px"
-          [(ngModel)]="replyText"></textarea>
+          [(ngModel)]="replyText"
+        ></textarea>
         <div class="comment__button_section">
           <button
             class="btn cancel_btn"
             type="button"
-            (click)="closeReply($event)">
+            (click)="closeReply($event)"
+          >
             Cancel
           </button>
           <button
             class="btn submit_btn"
             type="button"
-            (click)="submitReply(comment, $event)">
+            (click)="submitReply(comment, $event)"
+          >
             Submit
           </button>
         </div>

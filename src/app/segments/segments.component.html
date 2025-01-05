@@ -43,10 +43,15 @@
         <li
           *ngFor="let segment of segmentlist"
           (click)="onSegmentClick(segment._id)"
-         
           class="menu-item"
         >
-          <span>{{ segment.name }}<span class="status-dot" [class.online]="segment._id === activeSegmentId"></span></span>
+          <span
+            >{{ segment.name
+            }}<span
+              class="status-dot"
+              [class.online]="segment._id === activeSegmentId"
+            ></span
+          ></span>
         </li>
       </ul>
     </aside>

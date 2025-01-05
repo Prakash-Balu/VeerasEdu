@@ -250,6 +250,8 @@
 
 .comment__initial_input {
   display: flex;
+  justify-content: space-between;
+  gap: 20px;
   max-width: 800px;
   width: 100%;
 }
@@ -369,64 +371,145 @@
 
 /* Audio Recorder css styles */
 .audio-recorder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:center;
-    /* min-height: 100vh; */
-    margin-top: 20px;
-    /* background-color: #212529; */
-    color: #000;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  color: #000;
+  padding: 15px 0;
+}
+
+.stop__recorder-btn {
+  outline: none;
+  border: none;
+  background-color: inherit;
+}
+
+.stop__recorder-btn i {
+  color: red;
+}
+.timer-container i {
+  color: #dc3545;
+}
+
+.wave-container {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #007bff;
+  animation: wave 2s infinite;
+}
+
+.wave1 {
+  width: 10px;
+  height: 10px;
+  animation-delay: 0s;
+}
+
+.wave2 {
+  width: 20px;
+  height: 20px;
+  animation-delay: 0.2s;
+}
+
+.wave3 {
+  width: 30px;
+  height: 30px;
+  animation-delay: 0.4s;
+}
+
+.wave4 {
+  width: 40px;
+  height: 40px;
+  animation-delay: 0.6s;
+}
+
+
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 1;
   }
-  
-  .recording-controls {
-    /* background-color: #343a40; */
-    color: #000;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-radius: 50px;
-    gap: 10px;
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
   }
-  
-  .audio-player {
-    /* background-color: #343a40; */
-    padding: 15px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  audio {
-    width: 100%;
-    display: block;
-  }
-  
-  .timer-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  button {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  i {
-    cursor: pointer;
-    font-size: 25px;
-  }
-  
-  .bi-check-circle-fill {
-    color: #28a745;
-  }
-  
-  .bi-x-circle-fill {
-    color: #dc3545;
-  }
-  
+}
+.recording-controls {
+  /* background-color: #343a40; */
+  color: #000;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50px;
+  gap: 10px;
+}
+
+.audio-player {
+  /* background-color: #343a40; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+audio {
+  width: 100%;
+  display: block;
+}
+
+.timer-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 700px;
+  padding: 15px 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+i {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.bi-check-circle-fill {
+  color: #28a745;
+}
+
+.bi-x-circle-fill {
+  color: #dc3545;
+}

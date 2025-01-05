@@ -1,4 +1,12 @@
-import { Component, OnInit, AfterViewInit, Input, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  Input,
+  SimpleChanges,
+  OnChanges,
+  OnDestroy,
+} from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommentsService } from '../../../core/services/comments.service';
@@ -24,7 +32,9 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.css',
 })
-export class CommentsComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class CommentsComponent
+  implements OnInit, AfterViewInit, OnChanges, OnDestroy
+{
   constructor(
     public commentsService: CommentsService,
     public authService: AuthService,
@@ -47,6 +57,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
   id: any;
   record: any;
   recording: boolean = false;
+
   url: any;
   error: any;
   audioBlob: Blob | null = null;
@@ -104,11 +115,36 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
 
   enableAudioChat() {
     this.isEnableAudio = !this.isEnableAudio;
+    this.startRecording();
+  }
+
+  private startTimer() {
+    let seconds = 0;
+
+    this.timerInterval = setInterval(() => {
+      seconds++;
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      this.timer = `${this.pad(mins)}:${this.pad(secs)}`;
+    }, 1000);
+  }
+
+  private stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+    this.timer = '00:00';
+  }
+
+  private pad(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
   }
 
   startRecording() {
     this.url = null;
+    this.startTimer();
     this.recording = true;
+
     let mediaConstraints = {
       video: false,
       audio: true,
@@ -125,7 +161,6 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
     var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
     this.record = new StereoAudioRecorder(stream, options);
     this.record.record();
-    this.startTimer();
   }
 
   stopRecording() {
@@ -137,10 +172,14 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
   processRecording(blob: Blob) {
     this.audioBlob = blob;
     this.url = URL.createObjectURL(blob);
-    // this.uploadAudio(blob);
   }
-
+  deleteRecording() {
+    this.url = null;
+    this.audioBlob = null;
+    this.isEnableAudio = !this.isEnableAudio;
+  }
   uploadAudio(blob: Blob) {
+    this.isEnableAudio = !this.isEnableAudio;
     const file = new File([blob], 'audio.wav', { type: 'audio/wav' });
 
     if (file.size > 10 * 1024 * 1024) {
@@ -183,28 +222,6 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
 
   errorCallback(error: any) {
     console.error('Cannot play audio in your browser', error);
-  }
-
-  private startTimer() {
-    let seconds = 0;
-
-    this.timerInterval = setInterval(() => {
-      seconds++;
-      const mins = Math.floor(seconds / 60);
-      const secs = seconds % 60;
-      this.timer = `${this.pad(mins)}:${this.pad(secs)}`;
-    }, 1000);
-  }
-
-  private stopTimer() {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-    }
-    this.timer = '00:00';
-  }
-
-  private pad(value: number): string {
-    return value < 10 ? `0${value}` : `${value}`;
   }
 
   toggleReply(event: MouseEvent): void {
@@ -289,14 +306,14 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
     this.url = null;
     this.isEnableAudio = false;
   }
-  
+
   addComment() {
-    if(!!this.audioBlob) {
+    if (!!this.audioBlob) {
       this.uploadAudio(this.audioBlob);
     } else {
       this.addCommentApi();
     }
-  };
+  }
 
   addCommentApi() {
     const seqNo = this.comments.length
@@ -359,8 +376,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
                 seqNo: element1.seqNo,
                 description: element1.text,
                 dateAgoTxt: element1.createdAt,
-                audioPath:
-                  element.audioPath === '' ? null : element.audioPath,
+                audioPath: element.audioPath === '' ? null : element.audioPath,
               };
 
               if (replyData.length < 2) {

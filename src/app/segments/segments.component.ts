@@ -16,7 +16,7 @@ import { SegmentService } from '../core/services/segments.service';
 import { VideoPlayerComponent } from '../components/video-player/video-player.component';
 
 @Component({
-  selector: 'app-segments',
+  selector: 'ments',
   standalone: true,
   imports: [FontAwesomeModule, CommonModule, RouterLink, VideoPlayerComponent],
   templateUrl: './segments.component.html',
@@ -41,7 +41,11 @@ export class SegmentsComponent {
   activeSegmentId: string | null = null;
   page!: string;
 
-  constructor(public segmentservice: SegmentService, private route: Router, private actRoute: ActivatedRoute) {}
+  constructor(
+    public segmentservice: SegmentService,
+    private route: Router,
+    private actRoute: ActivatedRoute
+  ) {}
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
@@ -51,7 +55,9 @@ export class SegmentsComponent {
     document.documentElement.style.overflowY = 'hidden';
     this.currentUrl = this.route.url;
     const routeData = this.actRoute.snapshot.data;
-    this.page = routeData['page'].charAt(0).toUpperCase() + routeData['page'].slice(1).toLowerCase();
+    this.page =
+      routeData['page'].charAt(0).toUpperCase() +
+      routeData['page'].slice(1).toLowerCase();
 
     this.fetchSegments();
   }
