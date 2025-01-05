@@ -1,69 +1,40 @@
 <div class="main">
-    <div class="attedence">
-        <div class="smiley-1">
-            <div [innerHtml]="smileyIcon" class="img-1"></div>
+  <div class="attedence">
+    <div class="smiley-1">
+      <div [innerHtml]="smileyIcon" class="img-1"></div>
 
-            <div class="text-1">
-                <div>Welcome To</div>
-                <div>VEERA'S EDUCATION</div>
-            </div>
-            <div class="text-2">
-                <div>Ha Ha! I am going to improve</div>
-                <div>myself today...</div>
-            </div>
-
-        </div>
-        <div class="calender">
-            <div class="att-head">ATTENDENCE</div>
-            <div class="month">October 2024</div>
-
-            <div class="">
-                <table class="calendar-table">
-                    <thead class="bg-primary">
-                        <tr>
-                            <th>Sunday</th>
-                            <th>Monday</th>
-                            <th>Tuesday</th>
-                            <th>Wednesday</th>
-                            <th>Thursday</th>
-                            <th>Friday</th>
-                            <th>Saturday</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for(date of data; track date){
-                        <tr>
-                            <td class="text-danger">{{date?.Sunday}}</td>
-                            <td>{{date?.Monday}}</td>
-                            <td>{{date?.Tuesday}}</td>
-                            <td>{{date?.Wednesday}}</td>
-                            <td>{{date?.Thursday}}</td>
-                            <td>{{date?.Friday}}</td>
-                            <td class="text-primary">{{date?.Saturday}}</td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-
-
-
-            </div>
-        </div>
-        <div class="smiley-2">
-            <div [innerHtml]="smileyIcon" class="img-2"></div>
-            <div class="text-3">
-                <div>Oops!</div>
-                <div>WE MISSIED YOU YESTERDAY.</div>
-            </div>
-        </div>
-
+      <div class="text-1">
+        <div>Welcome To</div>
+        <div>VEERA'S EDUCATION</div>
+      </div>
+      <div class="text-2">
+        <div>Ha Ha! I am going to improve</div>
+        <div>myself today...</div>
+      </div>
     </div>
-    <div class="button-row">
-        <button class="btn btn-outline-dark next-button" [routerLink]="['/dashboard']">Next</button>
+    <div class="calender">
+      <div class="att-head">ATTENDENCE</div>
+      <app-dynamic-attendance></app-dynamic-attendance>
     </div>
-    <div class="declaration">
-        <div class="dec-header"> BACKGROUND ATTENDENCE SHEET COLOR</div>
-        <div class="present">PRESENT: GREEN</div>
-        <div class="absent">ABSENT: RED</div>
+    <div class="smiley-2">
+      <div [innerHtml]="smileyIcon" class="img-2"></div>
+      <div class="text-3">
+        <div>Oops!</div>
+        <div>WE MISSIED YOU YESTERDAY.</div>
+      </div>
     </div>
+  </div>
+  <div class="button-row">
+    <button
+      class="btn btn-outline-dark next-button"
+      [routerLink]="['/dashboard']"
+    >
+      Next
+    </button>
+  </div>
+  <div class="declaration">
+    <div class="dec-header">BACKGROUND ATTENDENCE SHEET COLOR</div>
+    <div class="present">PRESENT: GREEN</div>
+    <div class="absent">ABSENT: RED</div>
+  </div>
 </div>

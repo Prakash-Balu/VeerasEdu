@@ -17,19 +17,19 @@
         <div class="mt-4">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Full Name</mat-label>
-            <input matInput formControlName="fullName" />
+            <input matInput formControlName="name" />
           </mat-form-field>
         </div>
         <div class="mt-2">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Phone Number</mat-label>
-            <input matInput formControlName="phoneNo" />
+            <input matInput formControlName="phone" />
           </mat-form-field>
         </div>
         <div class="mt-2">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Whatsapp Number</mat-label>
-            <input matInput formControlName="whatsappNo" />
+            <input matInput formControlName="whatsapp" />
           </mat-form-field>
         </div>
         <div class="mt-2">
@@ -105,34 +105,49 @@
       <div class="order-wrapper">
         <h2>Order Summary</h2>
         <p>Please take a moment to review your plan</p>
+
+        <p>Your Selected {{ months }} Months Plan</p>
         <div class="row">
           <div class="order-key col-6">
             <div class="select-plan">
-              <div>
-                <p>Select Plan</p>
-                <input type="radio" id="isThreeMonth" style="width: 20px" />
-                <label for="isThreeMonth"><span>3 </span>Month Plan</label>
-              </div>
-              <span>(₹599 × 3)</span>
+              <span
+                >({{ plan?.locationInfo?.currency_symbol }}
+                {{ plan?.locationPrice?.month_fee }} × {{ months }}months)</span
+              >
             </div>
 
-            <div class="discount"><span>Flat Discount</span>17%</div>
+            <div class="discount" *ngIf="plan?.isDiscount">
+              <span>Flat Discount</span>17%
+            </div>
             <div>GST 18%</div>
             <div>Payment processing charge</div>
           </div>
 
           <div class="order-value col-6">
             <div>
-              <div>Validity (3 month)</div>
-              <span>₹1791</span>
+              <span>{{ plan?.locationInfo?.currency_symbol }} 1791</span>
             </div>
 
-            <div><span class="minus">(-) </span><span>₹347</span></div>
+            <div *ngIf="plan?.isDiscount">
+              <span class="minus"></span
+              ><span>{{ plan?.locationInfo?.currency_symbol }} 347</span>
+            </div>
 
-            <span>(+) ₹261</span>
-            <span>(+) ₹33</span>
+            <span
+              >{{ plan?.locationInfo?.currency_symbol }} {{ this.tax }}</span
+            >
+            <span
+              >{{ plan?.locationInfo?.currency_symbol }}
+              {{ this.processingFee }}</span
+            >
 
-            <div class="total">Total <span>1,744/-</span></div>
+            <div class="total">
+              Total
+              <span
+                >{{ plan?.locationInfo?.currency_symbol }}
+                {{ this.planTotal }}/-</span
+              >
+            </div>
 
             <button
               class="btn btn-primary continue-button"

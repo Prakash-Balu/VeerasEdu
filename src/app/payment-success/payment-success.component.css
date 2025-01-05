@@ -1,0 +1,20 @@
+.success-container {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .success-icon {
+    margin-bottom: 20px;
+    .icon-success {
+      font-size: 72px;
+      color: #4caf50;
+    }
+  }
+  button {
+    margin-top: 20px;
+  }
+  

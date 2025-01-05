@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material-module';
+import { AuthService } from '../core/services/auth.service';
+import codes from 'country-calling-code';
 
 @Component({
   selector: 'app-checkout',
@@ -21,21 +23,24 @@ import { MaterialModule } from '../material-module';
 export class CheckoutComponent implements OnInit {
   public plan: any;
   public regForm!: FormGroup;
-  public planCrossAmount: number = 0;
-  public gstAmount: number = 0;
-  public totalAmount: number = 0;
+  public planCost: any;
+  public tax: any;
+  public planTotal: any;
   public isIndia: boolean = true;
-
+  public months: number = 1;
+  public processingFee: any = 33;
+  public currencyCode: any;
   constructor(
     private commonService: CommonService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder
   ) {
     this.regForm = this.fb.group({
-      fullName: [null, Validators.required],
-      phoneNo: [null, Validators.required],
-      whatsappNo: [null],
+      name: [null, Validators.required],
+      phone: [null, Validators.required],
+      whatsapp: [null],
       email: [null, Validators.required],
       country: [''],
       state: [''],
@@ -49,18 +54,12 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      const id = param['id'];
-      let plan = this.commonService.plans;
-      plan = typeof plan === 'string' ? JSON.parse(plan) : plan;
-      this.plan = plan?.filter((item: any) => item?.code === id)[0];
-      console.log(this.plan);
-      this.planCrossAmount = this.plan?.monthsno * 830;
-      this.gstAmount = (this.planCrossAmount * 18) / 100;
-      this.totalAmount = this.planCrossAmount + this.gstAmount;
+      this.months = Number(param['id']);
     });
 
     this.commonService.getLocation().subscribe((resp) => {
       if (resp) {
+        this.currencyCode = resp?.data?.countryCurrency?.code;
         if (resp.data.country !== 'India') {
           this.isIndia = false;
           this.regForm.patchValue({
@@ -76,6 +75,30 @@ export class CheckoutComponent implements OnInit {
         }
       }
     });
+
+    this.getPlans();
+  }
+
+  getPlans() {
+    const payload = {};
+    this.commonService.getPlans(payload).subscribe((res: any) => {
+      if (res) {
+        this.plan = res?.data[0];
+        this.onSubcribeClick();
+      }
+    });
+  }
+
+  onSubcribeClick() {
+    this.planCost = (
+      Number(this.plan?.locationPrice?.month_fee) * Number(this.months)
+    ).toFixed(2);
+    this.tax = ((Number(this.planCost) / 100) * 18).toFixed(2);
+    this.planTotal = (
+      Number(this.planCost) +
+      Number(this.tax) +
+      Number(this.processingFee)
+    ).toFixed(2);
   }
 
   getControl(controlName: string) {
@@ -91,11 +114,27 @@ export class CheckoutComponent implements OnInit {
     console.log('Selected country ID:', selectedValue);
   }
   onContinueToPayment() {
-    console.log('regForm,', this.regForm);
-    console.log(this.regForm.valid)
     if (!this.regForm.valid) {
-      console.log("test")
       return;
     }
+    console.log('reg', this.regForm.value);
+    let phCode: any = codes.find(
+      (e: any) => e.country === this.regForm.value.country
+    );
+    phCode = phCode?.countryCodes[0];
+
+    const payload = {
+      user: { ...this.regForm.value, phoneCode: `+${phCode}` },
+      planId: this.plan._id,
+      currencyCode: this.currencyCode,
+      amount: this.planTotal,
+      duration: this.months,
+    };
+    console.log('payload::', payload);
+    this.authService.checkout(payload).subscribe((resp) => {
+      if(resp.meta.code === 200){
+        window.location.href = resp?.data;
+      }
+    });
   }
 }

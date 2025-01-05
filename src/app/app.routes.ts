@@ -84,6 +84,22 @@ export const routes: Routes = [
           ),
         data: { showFooter: false, showHeader: false, isMobile: false },
       },
+      {
+        path: 'payment-success',
+        loadComponent: () =>
+          import('./payment-success/payment-success.component').then(
+            (m) => m.PaymentSuccessComponent
+          ),
+        data: { showFooter: false, showHeader: false, isMobile: false },
+      },
+      {
+        path: 'payment-failure',
+        loadComponent: () =>
+          import('./payment-failure/payment-failure.component').then(
+            (m) => m.PaymentFailureComponent
+          ),
+        data: { showFooter: false, showHeader: false, isMobile: false },
+      },
     ],
   },
 ];

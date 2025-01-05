@@ -1,3 +1,4 @@
+@if(showSummary){
 <section class="container">
   <div class="row">
     <div class="col-md-12">
@@ -53,11 +54,21 @@
             }
             <ul>
               <li>
-                <input name="plan" type="radio" id="isThreeMonth" />
+                <input
+                  name="plan"
+                  type="radio"
+                  id="isThreeMonth"
+                  (click)="onClick(3)"
+                />
                 <label for="isThreeMonth"><span>3 </span>Month Plan</label>
               </li>
               <li>
-                <input name="plan" type="radio" id="isSixMonth" />
+                <input
+                  name="plan"
+                  type="radio"
+                  id="isSixMonth"
+                  (click)="onClick(6)"
+                />
                 <label for="isSixMonth"><span>6 </span>Month Plan</label>
               </li>
             </ul>
@@ -72,7 +83,7 @@
         <button
           class="btn btn-primary continue-button"
           style="border-radius: 80px"
-          (click)="onSubcribeClick(1)"
+          (click)="onSubcribeClick()"
         >
           Subscribe
         </button>
@@ -83,34 +94,52 @@
       <div class="order-wrapper">
         <h2>Order Summary</h2>
         <p>Please take a moment to review your plan</p>
+
+        <!-- <div> -->
+        <p>Your Selected {{ months }} Months Plan</p>
+        <!-- </div> -->
         <div class="order-bill-wrapper">
           <div class="order-key">
             <div class="select-plan">
-              <div>
-                <p>Select Plan</p>
-                <input type="radio" id="isThreeMonth" />
-                <label for="isThreeMonth"><span>3 </span>Month Plan</label>
-              </div>
-              <span>(₹{{ plan?.locationPrice?.month_fee }} × 3)</span>
+              <span
+                >({{ plan?.locationInfo?.currency_symbol
+            }} {{ plan?.locationPrice?.month_fee }} ×
+                {{ months }}months)</span
+              >
             </div>
 
-            <div class="discount"><span>Flat Discount</span>17%</div>
+            <div class="discount" *ngIf="plan?.isDiscount">
+              <span>Flat Discount</span>17%
+            </div>
             <div>GST 18%</div>
             <div>Payment processing charge</div>
           </div>
 
           <div class="order-value">
             <div>
-              <div>Validity (3 month)</div>
-              <span>₹1791</span>
+              <div class="select-plan">
+                <div>
+                  <p></p>
+                </div>
+              </div>
+              <span>{{ plan?.locationInfo?.currency_symbol
+            }} {{ this.planCost }}</span>
             </div>
 
-            <div><span class="minus">(-) </span><span>₹347</span></div>
+            <div *ngIf="plan?.isDiscount">
+              <span class="minus"></span><span>{{ plan?.locationInfo?.currency_symbol
+            }} 347</span>
+            </div>
 
-            <span>(+) ₹261</span>
-            <span>(+) ₹33</span>
+            <span>{{ plan?.locationInfo?.currency_symbol
+            }} {{ this.tax }}</span>
+            <span>{{ plan?.locationInfo?.currency_symbol
+            }} {{ this.processingFee }}</span>
 
-            <div class="total">Total <span>1,744/-</span></div>
+            <div class="total">
+              Total <span>{{ plan?.locationInfo?.currency_symbol
+            }} {{ this.planTotal }}/-</span>
+            </div>
 
             <button
               class="btn btn-primary continue-button"
@@ -124,3 +153,97 @@
     </div>
   </div>
 </section>
+} @if(!showSummary){
+<section class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="plan-title text-center">
+        Veera's
+        <span class="plan-subtitle"
+          >Plan
+          <div class="plan-svg-wrapper">
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 145 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.00016 15.2711C18.1407 8.34427 70.832 -1.93441 144.473 12.3652"
+                stroke="currentcolor"
+                stroke-width="4"
+                style="stroke-dasharray: 146, 148; stroke-dashoffset: 0"
+              ></path>
+              <path
+                d="M26.2943 14.0041C38.9177 9.44643 77.3772 3.50055 130.227 16.1786"
+                stroke="currentcolor"
+                stroke-width="2"
+                style="stroke-dasharray: 106, 108; stroke-dashoffset: 0"
+              ></path>
+            </svg>
+          </div>
+        </span>
+      </h2>
+    </div>
+  </div>
+
+  <div class="row row-gap-5 mt-3">
+    <!-- <div class="col-12 plan-title"></div> -->
+    <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
+      <div class="plan-card">
+        <div>
+          <span class="plan-price"
+            >{{ plan?.locationInfo?.currency_symbol
+            }}{{ plan?.locationPrice?.month_fee }}</span
+          >/month
+          <small class="plan-gst">+ GST</small>
+        </div>
+        <div class="plan-details">
+          <h4>Details</h4>
+          <div class="plan-duration-wrapper">
+            @if(isPercentage){
+            <div class="plan-offer">17% off</div>
+            } @if(!isPercentage){
+            <div class="plan-offer-not"></div>
+            }
+            <ul>
+              <li>
+                <input
+                  name="plan"
+                  type="radio"
+                  id="isThreeMonth"
+                  (click)="onClick(3)"
+                />
+                <label for="isThreeMonth"><span>3 </span>Month Plan</label>
+              </li>
+              <li>
+                <input
+                  name="plan"
+                  type="radio"
+                  id="isSixMonth"
+                  (click)="onClick(6)"
+                />
+                <label for="isSixMonth"><span>6 </span>Month Plan</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p>
+            You can renew your plan for as many periods as you want,anytime
+            after joining
+          </p>
+        </div>
+        <button
+          class="btn btn-primary continue-button"
+          style="border-radius: 80px"
+          (click)="onSubcribeClick()"
+        >
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+}

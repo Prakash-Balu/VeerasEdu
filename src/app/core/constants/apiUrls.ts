@@ -5,6 +5,7 @@ export const API_URL = {
   GET_ATTENDANCE: "/user/attendance",
   RECORD_SESSION: "/user/record-sesion",
   GET_LOCATION: "/payment/location",
+  CHECK_OUT: "/payment/create",
   add_comments: "/comments/addComment",
   GET_SEGMENTS:"/segments/getSegments"
 };

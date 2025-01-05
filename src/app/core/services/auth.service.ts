@@ -75,6 +75,15 @@ export class AuthService {
     return this.mobileSub.value;
   }
 
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      Accept: '*/*',
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+  }
+
   getQrCode() {
     return this.http
       .get<any>(`${environment.baseURL}${API_URL.GET_QR_CODE}`)
@@ -87,19 +96,26 @@ export class AuthService {
   }
 
   userMeApi() {
-    return this.http.get<any>(`${environment.baseURL}${API_URL.USER_ME}`).pipe(
-      map((response) => {
-        localStorage.setItem('user', response.data);
-        this.userObj.next(response.data);
-        return response;
-      }),
-      catchError(this.handleError)
-    );
+    return this.http
+      .get<any>(`${environment.baseURL}${API_URL.USER_ME}`, {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        map((response) => {
+          localStorage.setItem('user', response.data);
+          this.userObj.next(response.data);
+          return response;
+        }),
+        catchError(this.handleError)
+      );
   }
 
-  userAttendance() {
+  userAttendance(payload: any) {
+    const { start, end } = payload;
     return this.http
-      .get<any>(`${environment.baseURL}${API_URL.GET_ATTENDANCE}`)
+      .get<any>(`${environment.baseURL}${API_URL.GET_ATTENDANCE}?start=${start}&end=${end}`, {
+        headers: this.getHeaders(),
+      })
       .pipe(
         map((response) => {
           return response;
@@ -132,6 +148,17 @@ export class AuthService {
 
   getUserData() {
     return JSON.parse(this.userDataSubject.value);
+  }
+
+  checkout(payload: any) {
+    return this.http
+      .post<any>(`${environment.baseURL}${API_URL.CHECK_OUT}`, payload)
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError(this.handleError)
+      );
   }
 
   setUserData(userData: any) {
