@@ -14,7 +14,7 @@
             <div class="wave wave4"></div>
           </div>
           <span>Listening...</span>
-          <i class="fa-solid fa-pause" (click)="stopRecording()"></i>
+          <i class="fa-solid fa-stop" (click)="stopRecording()"></i>
         </div>
         <div class="audio-player" *ngIf="url && !isEnableReplyAudio">
           <i class="fa-solid fa-trash-can" (click)="deleteRecording('NEW')"></i>
@@ -153,7 +153,16 @@
           class="audio-container audio-comment audio-container-49"
           *ngIf="!!comment.audioPath"
         >
-          <audio controls *ngIf="comment.audioPath">
+          <audio
+            controls
+            controlslist="noplaybackrate nodownload"
+            *ngIf="comment.audioPath"
+            style="
+              background-color: #5a4b26;
+              border-radius: 30px 0px 30px 0px;
+              padding: 5px;
+            "
+          >
             <source [src]="sanitize(comment.audioPath)" type="audio/wav" />
             Your browser does not support the audio element.
           </audio>
@@ -182,7 +191,7 @@
                 <div class="wave wave4"></div>
               </div>
               <span>Listening...</span>
-              <i class="fa-solid fa-pause" (click)="stopRecording()"></i>
+              <i class="fa-solid fa-stop" (click)="stopRecording()"></i>
             </div>
             <div class="audio-player" *ngIf="url && isEnableReplyAudio">
               <i
@@ -276,7 +285,15 @@
           class="audio-container audio-comment audio-container-49"
           *ngIf="!!reply.audioPath"
         >
-          <audio controls="" controlslist="noplaybackrate nodownload">
+          <audio
+            controls
+            controlslist="noplaybackrate nodownload"
+            style="
+              background-color: #5a4b26;
+              border-radius: 30px 0px 30px 0px;
+              padding: 5px;
+            "
+          >
             <source [src]="reply.audioPath" />
             Your browser does not support the audio element.
           </audio>
@@ -370,7 +387,15 @@
           class="audio-container audio-comment audio-container-49"
           *ngIf="!!hiddenReply.audioPath"
         >
-          <audio controls="" controlslist="noplaybackrate nodownload">
+          <audio
+            controls
+            controlslist="noplaybackrate nodownload"
+            style="
+              background-color: #5a4b26;
+              border-radius: 30px 0px 30px 0px;
+              padding: 5px;
+            "
+          >
             <source [src]="hiddenReply.audioPath" />
             Your browser does not support the audio element.
           </audio>

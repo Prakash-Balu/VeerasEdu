@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from '../../../../environments/environment';
+import moment from 'moment';
 
 @Component({
   selector: 'app-comments',
@@ -78,7 +79,7 @@ export class CommentsComponent
     console.log(this.userDetails);
     this.userId = this.userDetails._id;
     this.userType = this.userDetails.role;
-    
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       // this.segmentId = params.get("id");
       this.segmentId = this.segment._id;
@@ -195,7 +196,6 @@ export class CommentsComponent
       this.mediaRecorder.stop();
       this.recording = false;
       this.stopTimer();
-      
     }
   }
 
@@ -449,8 +449,8 @@ export class CommentsComponent
                 userId: element1.user_id,
                 seqNo: element1.seqNo,
                 description: element1.text,
-                dateAgoTxt: element1.createdAt,
-                audioPath: element.audioPath === '' ? null : element.audioPath,
+                dateAgoTxt: moment(element1.createdAt).fromNow(),
+                audioPath: element1.audioPath === '' ? null : element1.audioPath,
               };
 
               if (replyData.length < 2) {
@@ -469,7 +469,7 @@ export class CommentsComponent
             userId: element.user_id,
             seqNo: element.seqNo,
             description: element.text || '',
-            dateAgoTxt: element.createdAt,
+            dateAgoTxt: moment(element.createdAt).fromNow(),
             audioPath: element.audioPath === '' ? null : element.audioPath,
             reply: replyData,
             hiddenReply: hiddenReplyData,

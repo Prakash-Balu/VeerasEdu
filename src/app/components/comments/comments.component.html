@@ -168,7 +168,16 @@
           class="audio-container audio-comment audio-container-49"
           *ngIf="!!comment.audioPath"
         >
-          <audio controls *ngIf="comment.audioPath">
+          <audio
+            controls
+            controlslist="noplaybackrate nodownload"
+            *ngIf="comment.audioPath"
+            style="
+              background-color: #5a4b26;
+              border-radius: 30px 0px 30px 0px;
+              padding: 5px;
+            "
+          >
             <source [src]="sanitize(comment.audioPath)" type="audio/wav" />
             Your browser does not support the audio element.
           </audio>
@@ -244,7 +253,15 @@
           class="audio-container audio-comment audio-container-49"
           *ngIf="!!reply.audioPath"
         >
-          <audio controls="" controlslist="noplaybackrate nodownload">
+          <audio
+            controls
+            controlslist="noplaybackrate nodownload"
+            style="
+              background-color: #5a4b26;
+              border-radius: 30px 0px 30px 0px;
+              padding: 5px;
+            "
+          >
             <source [src]="reply.audioPath" />
             Your browser does not support the audio element.
           </audio>
@@ -338,7 +355,15 @@
           class="audio-container audio-comment audio-container-49"
           *ngIf="!!hiddenReply.audioPath"
         >
-          <audio controls="" controlslist="noplaybackrate nodownload">
+          <audio
+            controls
+            controlslist="noplaybackrate nodownload"
+            style="
+              background-color: #5a4b26;
+              border-radius: 30px 0px 30px 0px;
+              padding: 5px;
+            "
+          >
             <source [src]="hiddenReply.audioPath" />
             Your browser does not support the audio element.
           </audio>
