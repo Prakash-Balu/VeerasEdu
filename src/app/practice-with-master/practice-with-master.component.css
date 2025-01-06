@@ -359,3 +359,21 @@
     outline: none;
   }
   
+  .call-controll-block {
+    border: 1px solid #E8E8E9;
+    padding: 15px 20px;
+    background: #F8F9FB;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.call-controll-block .call-controll {
+  border: 1px solid #E8E8E9;
+  background: #FFF;
+  color: #72767D;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1019607843);
+  text-decoration: none;
+}
