@@ -61,7 +61,6 @@ export class NewPlansComponent {
 
   onClick(id: any) {
     this.months = id;
-    this.onSubcribeClick()
   }
 
   onContinueClick(id: any) {
