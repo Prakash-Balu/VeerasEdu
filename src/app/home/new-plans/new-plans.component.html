@@ -1,16 +1,30 @@
-@if(showSummary){
 <section class="container">
   <div class="row">
     <div class="col-md-12">
       <h2 class="plan-title text-center">
         Veera's
-        <span class="plan-subtitle">Plan
+        <span class="plan-subtitle"
+          >Plan
           <div class="plan-svg-wrapper">
-            <svg width="100%" height="100%" viewBox="0 0 145 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.00016 15.2711C18.1407 8.34427 70.832 -1.93441 144.473 12.3652" stroke="currentcolor"
-                stroke-width="4" style="stroke-dasharray: 146, 148; stroke-dashoffset: 0"></path>
-              <path d="M26.2943 14.0041C38.9177 9.44643 77.3772 3.50055 130.227 16.1786" stroke="currentcolor"
-                stroke-width="2" style="stroke-dasharray: 106, 108; stroke-dashoffset: 0"></path>
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 145 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.00016 15.2711C18.1407 8.34427 70.832 -1.93441 144.473 12.3652"
+                stroke="currentcolor"
+                stroke-width="4"
+                style="stroke-dasharray: 146, 148; stroke-dashoffset: 0"
+              ></path>
+              <path
+                d="M26.2943 14.0041C38.9177 9.44643 77.3772 3.50055 130.227 16.1786"
+                stroke="currentcolor"
+                stroke-width="2"
+                style="stroke-dasharray: 106, 108; stroke-dashoffset: 0"
+              ></path>
             </svg>
           </div>
         </span>
@@ -18,13 +32,15 @@
     </div>
   </div>
 
-  <div class="row row-gap-5 mt-3">
+  <div class="row row-gap-5 mt-3 d-flex justify-content-center">
     <!-- <div class="col-12 plan-title"></div> -->
     <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
       <div class="plan-card">
         <div>
-          <span class="plan-price">{{ plan?.locationInfo?.currency_symbol
-            }}{{ plan?.locationPrice?.month_fee }}</span>/month
+          <span class="plan-price"
+            >{{ plan?.locationInfo?.currency_symbol
+            }}{{ plan?.locationPrice?.month_fee }}</span
+          >/month
           <small class="plan-gst">+ GST</small>
         </div>
         <div class="plan-details">
@@ -37,11 +53,21 @@
             }
             <ul>
               <li>
-                <input name="plan" type="radio" id="isThreeMonth" (click)="onClick(3)" />
+                <input
+                  name="plan"
+                  type="radio"
+                  id="isThreeMonth"
+                  (click)="onClick(3)"
+                />
                 <label for="isThreeMonth"><span>3 </span>Month Plan</label>
               </li>
               <li>
-                <input name="plan" type="radio" id="isSixMonth" (click)="onClick(6)" />
+                <input
+                  name="plan"
+                  type="radio"
+                  id="isSixMonth"
+                  (click)="onClick(6)"
+                />
                 <label for="isSixMonth"><span>6 </span>Month Plan</label>
               </li>
             </ul>
@@ -53,12 +79,16 @@
             after joining
           </p>
         </div>
-        <button class="btn btn-primary continue-button w-50 m-auto" style="border-radius: 80px" (click)="onSubcribeClick()">
+        <button
+          class="btn btn-primary continue-button w-50 m-auto"
+          style="border-radius: 80px"
+          (click)="onSubcribeClick()"
+        >
           Subscribe
         </button>
       </div>
     </div>
-
+    @if(showSummary){
     <div class="col-12 col-xxl-9 col-xl-8 col-lg-7">
       <div class="order-wrapper">
         <h2>Order Summary</h2>
@@ -127,140 +157,80 @@
               </td>
               <td>
                 <div class="select-plan">
-                  <span>{{ plan?.locationInfo?.currency_symbol }} {{ this.planCost }}</span>
+                  <span
+                    >{{ plan?.locationInfo?.currency_symbol }}
+                    {{ this.planCost }}</span
+                  >
                 </div>
               </td>
             </tr>
 
             <tr *ngIf="plan?.isDiscount">
               <td *ngIf="plan?.isDiscount">
-                <div class="discount">
-                  <span>Flat Discount</span>17%
-                </div>
+                <div class="discount"><span>Flat Discount</span>17%</div>
               </td>
               <td *ngIf="plan?.isDiscount">
-                <span class="minus"></span><span>{{ plan?.locationInfo?.currency_symbol
-                  }} 347</span>
+                <span class="minus"></span
+                ><span>{{ plan?.locationInfo?.currency_symbol }} 347</span>
               </td>
             </tr>
 
             <tr>
               <td>
-                <div>
-                  GST 18%
-                </div>
+                <div>GST 18%</div>
               </td>
               <td>
                 <div class="select-plan">
-                  <span>{{ plan?.locationInfo?.currency_symbol
-                    }} {{ this.tax }}</span>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <div>
-                  Payment processing charge
-                </div>
-              </td>
-              <td>
-                <div class="select-plan">
-                  <span>{{ plan?.locationInfo?.currency_symbol
-                    }} {{ this.processingFee }}</span>
+                  <span
+                    >{{ plan?.locationInfo?.currency_symbol }}
+                    {{ this.tax }}</span
+                  >
                 </div>
               </td>
             </tr>
 
             <tr>
               <td>
-                <div>
-                  Total
-                </div>
+                <div>Payment processing charge</div>
               </td>
               <td>
                 <div class="select-plan">
-                  <span>{{ plan?.locationInfo?.currency_symbol
-                    }} {{ this.planTotal }}/-</span>
+                  <span
+                    >{{ plan?.locationInfo?.currency_symbol }}
+                    {{ this.processingFee }}</span
+                  >
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <div>Total</div>
+              </td>
+              <td>
+                <div class="select-plan">
+                  <span
+                    >{{ plan?.locationInfo?.currency_symbol }}
+                    {{ this.planTotal }}/-</span
+                  >
                 </div>
               </td>
             </tr>
 
             <tr>
               <td colspan="2" class="text-end">
-                <button class="btn btn-primary continue-button" (click)="onContinueClick(1)">
+                <button
+                  class="btn btn-primary continue-button"
+                  (click)="onContinueClick(1)"
+                >
                   Continue To Payment
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
-
       </div>
     </div>
+    }
   </div>
 </section>
-} @if(!showSummary){
-<section class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="plan-title text-center">
-        Veera's
-        <span class="plan-subtitle">Plan
-          <div class="plan-svg-wrapper">
-            <svg width="100%" height="100%" viewBox="0 0 145 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.00016 15.2711C18.1407 8.34427 70.832 -1.93441 144.473 12.3652" stroke="currentcolor"
-                stroke-width="4" style="stroke-dasharray: 146, 148; stroke-dashoffset: 0"></path>
-              <path d="M26.2943 14.0041C38.9177 9.44643 77.3772 3.50055 130.227 16.1786" stroke="currentcolor"
-                stroke-width="2" style="stroke-dasharray: 106, 108; stroke-dashoffset: 0"></path>
-            </svg>
-          </div>
-        </span>
-      </h2>
-    </div>
-  </div>
-
-  <div class="row row-gap-5 mt-3 d-flex justify-content-center">
-    <!-- <div class="col-12 plan-title"></div> -->
-    <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
-      <div class="plan-card">
-        <div>
-          <span class="plan-price">{{ plan?.locationInfo?.currency_symbol
-            }}{{ plan?.locationPrice?.month_fee }}</span>/month
-          <small class="plan-gst">+ GST</small>
-        </div>
-        <div class="plan-details">
-          <h4>Details</h4>
-          <div class="plan-duration-wrapper">
-            @if(isPercentage){
-            <div class="plan-offer">17% off</div>
-            } @if(!isPercentage){
-            <div class="plan-offer-not"></div>
-            }
-            <ul>
-              <li>
-                <input name="plan" type="radio" id="isThreeMonth" (click)="onClick(3)" />
-                <label for="isThreeMonth"><span>3 </span>Month Plan</label>
-              </li>
-              <li>
-                <input name="plan" type="radio" id="isSixMonth" (click)="onClick(6)" />
-                <label for="isSixMonth"><span>6 </span>Month Plan</label>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div>
-          <p>
-            You can renew your plan for as many periods as you want,anytime
-            after joining
-          </p>
-        </div>
-        <button class="btn btn-primary continue-button w-50 m-auto" style="border-radius: 80px"
-          (click)="onSubcribeClick()">
-          Subscribe
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-}

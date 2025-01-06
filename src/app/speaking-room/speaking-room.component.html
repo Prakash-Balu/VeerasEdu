@@ -1,0 +1,60 @@
+<div class="container-fluid p-0 m-0">
+  <div class="top-banner">
+    <div class="row gy-3">
+      <div class="col-6 order-1 col-md-2 order-md-1">
+        <div class="arrow-left cursor-pointer" routerLink="/home">
+          <fa-icon [icon]="faArrowLeft" class="cursor-pointer"></fa-icon>
+        </div>
+        <div class="fw-bold d-none d-md-block cursor-pointer">back</div>
+      </div>
+
+      <div
+        class="sec2 col-12 col-md-8 order-3 order-md-2 d-flex justify-content-center"
+      >
+        <span>
+          <span>Speaking Room</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calls -->
+  <div class="calls-page">
+    <aside class="sidebar">
+      <h3>Calls</h3>
+      <input type="text" placeholder="Search" class="search-bar" />
+      <div class="online-users">
+        <h4>Online Users</h4>
+        <div class="user-card" *ngFor="let user of users">
+          <div class="user-info">
+            <img
+              src="https://via.placeholder.com/50"
+              alt="User Avatar"
+              class="avatar"
+            />
+            <div>
+              <h5>{{ user.name }}</h5>
+              <p>{{ user.lastActive }}</p>
+            </div>
+          </div>
+          <mat-icon
+            class="call-icon"
+            [ngClass]="user.callType === 'video' ? 'video-call' : 'voice-call'"
+          >
+            {{ user.callType === 'video' ? 'videocam' : 'call' }}
+          </mat-icon>
+        </div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <h2>Hi Tamizharasan! <span>😊</span></h2>
+      <p>Try the wholesome experience of Veeras.</p>
+      <div class="buttons">
+        <button class="btn btn-primary">Voice</button>
+        <button class="btn btn-primary">Video</button>
+      </div>
+    </main>
+  </div>
+  
+  <!-- /Calls -->
+</div>

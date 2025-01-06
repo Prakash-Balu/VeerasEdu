@@ -1,69 +1,95 @@
 <div class="container-fluid p-0 m-0">
-    <div class="top-banner">
-      <div class="row gy-3">
-        <div class="col-6 order-1 col-md-2 order-md-1">
-          <div class="arrow-left">
-            <fa-icon [icon]="faArrowLeft"> </fa-icon>
-          </div>
-          <div class="fw-bold d-none d-md-block">back</div>
+  <div class="top-banner">
+    <div class="row gy-3">
+      <div class="col-6 order-1 col-md-2 order-md-1">
+        <div class="arrow-left">
+          <fa-icon [icon]="faArrowLeft"> </fa-icon>
         </div>
-  
-        <div
-          class="sec2 col-12 col-md-8 order-3 order-md-2 d-flex justify-content-center"
-        >
-          <span>Practice with the Master ></span>
-          <span>SEGMENT - 1</span>
-        </div>
-        <div class="col-6 order-2 col-md-2 order-md-3">
-          <img src="assets/images/fabellalert.png" class="alert-img" />
-          <span class="notify">3</span>
-          <div class="qa-content">Q&A</div>
-        </div>
+        <div class="fw-bold d-none d-md-block">back</div>
       </div>
-    </div>
-  
-    <div class="row-wrapper row">
-      <div class="col-2 d-flex align-items-start justify-content-center">
-        <button class="sidebar-toggle d-md-none" (click)="toggleSidebar()">
-          <fa-icon [icon]="isSidebarVisible ? faTimes : faBars"></fa-icon>
-        </button>
-        <ul class="menu-list" [class.active]="isSidebarVisible">
-          <li
-            *ngFor="let segment of segmentlist"
-            [ngClass]="getSegmentClass(segment)"
-          >
-            {{ segment }}
-          </li>
-        </ul>
+
+      <div class="sec2 col-12 col-md-8 order-3 order-md-2 d-flex justify-content-center">
+        <span>Practice with the Master ></span>
+        <span>SEGMENT - 1</span>
       </div>
-  
-      <div class="col-9 col-md-8 offset-md-1">
-        <div class="video-container">
-         
-          <div class="vimeo-video">
-            <div #vimeoPlayer></div>
-          </div>
-          <div class="video-down">
-            <span class="mt-5 p-2 fw-bold text-secondary">
-              Post your doubts here related to the above class
-            </span>
-            <div class="d-flex">
-              <textarea
-                class="form-control"
-                rows="3"
-                placeholder="Leave a comment here"
-              ></textarea>
-              <fa-icon [icon]="faMicrophone" class="audio"></fa-icon>
-            </div>
-            <div class="d-flex gap-2 mt-3">
-              <button class="btn btn-outline-secondary">Post</button>
-              <span class="text-center chat-subtitle mt-3">
-                (Ask Your doubts by writing comments or Record audio and post it.)
-              </span>
-            </div>
-          </div>
-        </div>
+      <div class="col-6 order-2 col-md-2 order-md-3">
+        <img src="assets/images/fabellalert.png" class="alert-img" />
+        <span class="notify">3</span>
+        <div class="qa-content">Q&A</div>
       </div>
     </div>
   </div>
-  
+
+  <div class="row-wrapper row">
+    <div class="col-2 d-flex align-items-start justify-content-center">
+      <button class="sidebar-toggle d-md-none" (click)="toggleSidebar()">
+        <fa-icon [icon]="isSidebarVisible ? faTimes : faBars"></fa-icon>
+      </button>
+      <ul class="menu-list" [class.active]="isSidebarVisible">
+        <li *ngFor="let segment of segmentlist" [ngClass]="getSegmentClass(segment)">
+          {{ segment }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-9 col-md-8 offset-md-1">
+      <div class="video-container">
+
+        <div class="voice-container">
+          <div class="card bg-light mb-0">
+            <div class="card-body d-flex justify-content-center">
+              <div class="text-center">
+                <span class="avatar avatar-xxl">
+                  <img src="assets/images/voice_call_admin.png" style="width: 30%" class="rounded-circle" alt="user">
+                </span>
+                <h6 class="fs-14 text-center">Veeras Speaking <img style="width: 32px;"
+                    src="assets/images/audio_speaking.gif" class="rounded-circle" alt="user"></h6>
+                <h5>
+                  <span class="fs-15"><i class="fa-solid fa-microphone"></i></span> Tum long aaji keya kanare jaa Rahe
+                  hai?
+                </h5>
+                <h5>
+                  <span class="fs-15"><i class="fa-solid fa-microphone"></i></span> Tum long aaji keya kanare jaa Rahe
+                  hai?
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="voice-container mt-5">
+          <div class="card bg-light mb-0">
+            <div class="card-body d-flex justify-content-center">
+              <div class="text-center">
+                <span class="avatar avatar-xxl">
+                  <img src="assets/images/avatar-06.jpg" style="width: 30%" class="rounded-circle" alt="user">
+                </span>
+                <h6 class="fs-14 text-center">Tamil (wait for yor turn) </h6>
+
+              </div>
+            </div>
+            <div class="card_footer">
+              <div class="call-controll-block d-flex align-items-center justify-content-center rounded-pill">
+                <a href="#" class="btn btn-primary me-2">
+                  Try in Hindi
+                </a>
+                <a href="javascript:void(0);" class="call-controll d-flex align-items-center justify-content-center">
+                  <i class="ti fa-solid fa-pause"></i>
+                </a>
+                <a href="javascript:void(0);" data-bs-dismiss="modal"
+                  class="call-controll call-decline d-flex align-items-center justify-content-center">
+                  <i class="ti fa-solid fa-rotate-right"></i>
+                </a>
+                <a href="javascript:void(0);" class="call-controll d-flex align-items-center justify-content-center">
+                  <i class="ti fa-solid fa-arrow-right"></i>
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
