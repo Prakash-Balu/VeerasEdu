@@ -55,9 +55,12 @@ export class CommentsComponent
   userType = 'ADMIN';
   userDetails: any;
   id: any;
+  isEnableAudio: boolean = false;
+  isEnableReplyAudio: boolean = false;
   record: any;
   recording: boolean = false;
-
+  errorMessage: string | null = null;
+  mediaRecorder: MediaRecorder | null = null;
   url: any;
   error: any;
   audioBlob: Blob | null = null;
@@ -66,7 +69,7 @@ export class CommentsComponent
   dataResp1: any[] = [];
   audioUrl: string | '' = '';
   @Input() segment: { _id?: string } = {};
-  isEnableAudio: boolean = false;
+
   timer: string = '00:00';
   private timerInterval!: any;
 
@@ -75,6 +78,7 @@ export class CommentsComponent
     console.log(this.userDetails);
     this.userId = this.userDetails._id;
     this.userType = this.userDetails.role;
+    
     this.route.paramMap.subscribe((params: ParamMap) => {
       // this.segmentId = params.get("id");
       this.segmentId = this.segment._id;
@@ -113,9 +117,22 @@ export class CommentsComponent
     return this.domSanitizer.bypassSecurityTrustUrl(url);
   }
 
-  enableAudioChat() {
-    this.isEnableAudio = !this.isEnableAudio;
-    this.startRecording();
+  enableAudioChat(type: 'NEW' | 'REPLY') {
+    if (type === 'NEW') {
+      this.isEnableAudio = !this.isEnableAudio;
+      if (this.isEnableAudio) {
+        this.requestMicrophoneAccess(type);
+      } else {
+        this.stopRecording();
+      }
+    } else {
+      this.isEnableReplyAudio = !this.isEnableReplyAudio;
+      if (this.isEnableReplyAudio) {
+        this.requestMicrophoneAccess(type);
+      } else {
+        this.stopRecording();
+      }
+    }
   }
 
   private startTimer() {
@@ -140,20 +157,6 @@ export class CommentsComponent
     return value < 10 ? `0${value}` : `${value}`;
   }
 
-  startRecording() {
-    this.url = null;
-    this.startTimer();
-    this.recording = true;
-
-    let mediaConstraints = {
-      video: false,
-      audio: true,
-    };
-    navigator.mediaDevices
-      .getUserMedia(mediaConstraints)
-      .then(this.successCallback.bind(this), this.errorCallback.bind(this));
-  }
-
   successCallback(stream: MediaStream) {
     var options = {
       mimeType: 'audio/wav' as const,
@@ -163,61 +166,122 @@ export class CommentsComponent
     this.record.record();
   }
 
-  stopRecording() {
-    this.recording = false;
-    this.record.stop(this.processRecording.bind(this));
-    this.stopTimer();
+  async requestMicrophoneAccess(type: 'NEW' | 'REPLY') {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      this.startRecording(stream, type);
+    } catch (error) {
+      console.error('Microphone access denied:', error);
+      this.showPermissionDeniedMessage(type);
+    }
   }
 
-  processRecording(blob: Blob) {
-    this.audioBlob = blob;
-    this.url = URL.createObjectURL(blob);
-  }
-  deleteRecording() {
+  startRecording(stream: MediaStream, type: 'NEW' | 'REPLY') {
+    this.mediaRecorder = new MediaRecorder(stream);
     this.url = null;
-    this.audioBlob = null;
-    this.isEnableAudio = !this.isEnableAudio;
+    this.startTimer();
+    this.recording = true;
+
+    this.mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        this.processRecording(event.data, type);
+      }
+    };
+    this.mediaRecorder.start();
   }
-  uploadAudio(blob: Blob) {
-    this.isEnableAudio = !this.isEnableAudio;
+
+  stopRecording() {
+    if (this.mediaRecorder) {
+      this.mediaRecorder.stop();
+      this.recording = false;
+      this.stopTimer();
+      
+    }
+  }
+
+  processRecording(blob: Blob, type: 'NEW' | 'REPLY') {
+    try {
+      this.audioBlob = blob;
+      this.url = URL.createObjectURL(blob);
+      this.errorMessage = null;
+    } catch (error) {
+      console.error('Error processing audio recording:', error);
+      this.showPermissionDeniedMessage(type);
+    }
+  }
+
+  showPermissionDeniedMessage(type: 'NEW' | 'REPLY') {
+    this.errorMessage =
+      'Permission denied. Please allow access to the microphone.';
+    setTimeout(() => {
+      if (type === 'NEW') {
+        this.isEnableAudio = !this.isEnableAudio;
+      } else if (type === 'REPLY') {
+        this.isEnableReplyAudio = !this.isEnableReplyAudio;
+      }
+      this.stopRecording();
+      this.errorMessage = null;
+    }, 5000);
+  }
+
+  deleteRecording(type: 'NEW' | 'REPLY') {
+    if (type === 'NEW') {
+      this.url = null;
+      this.audioBlob = null;
+      this.isEnableAudio = false;
+    } else if (type === 'REPLY') {
+      this.url = null;
+      this.audioBlob = null;
+      this.isEnableReplyAudio = false;
+    }
+  }
+
+  uploadAudio(blob: Blob, type: 'NEW' | 'REPLY'): void {
     const file = new File([blob], 'audio.wav', { type: 'audio/wav' });
 
     if (file.size > 10 * 1024 * 1024) {
       alert('File size exceeds the 10MB limit.');
       return;
     }
+    if (type === 'NEW') {
+      this.isEnableAudio = !this.isEnableAudio;
 
-    this.commentsService.uploadAudio(file).subscribe(
-      (response: any) => {
-        if (response.meta.code === 200) {
-          const audioPath = response?.data;
-          this.audioUrl = `${this.audioBaseUrl}${audioPath}`;
-          // const payload = {
-          //   segmentId: this.segmentId,
-          //   seqNo: this.seqNo,
-          //   text: '',
-          //   audioPath: this.audioUrl,
-          // };
-          // this.commentsService
-          //   .addComments(payload)
-          //   .subscribe((respData: any) => {
-          //     if (respData.meta.code === 200) {
-          //       this.resetCommentInputs();
-          //       this.viewComments();
-          //     }
-          //   });
+      this.commentsService.uploadAudio(file).subscribe(
+        (response: any) => {
+          if (response.meta.code === 200) {
+            const audioPath = response?.data;
+            this.audioUrl = `${this.audioBaseUrl}${audioPath}`;
 
-          this.addCommentApi();
+            this.addCommentApi();
+          }
+        },
+        (error) => {
+          console.log('error::', error);
+          this.recording = false;
+          this.url = null;
+          this.audioBlob = null;
+          alert('Failed to upload audio. Please try again or contact support.');
         }
-      },
-      (error) => {
-        console.log('error::', error);
-        this.recording = false;
-        this.url = null;
-        this.audioBlob = null;
-        alert('Failed to upload audio. Please try again or contact support.');
-      }
-    );
+      );
+    } else if (type === 'REPLY') {
+      this.isEnableReplyAudio = !this.isEnableReplyAudio;
+
+      this.commentsService.uploadAudio(file).subscribe(
+        (response: any) => {
+          if (response.meta.code === 200) {
+            const audioPath = response?.data;
+            this.audioUrl = `${this.audioBaseUrl}${audioPath}`;
+          }
+        },
+        (error) => {
+          console.log('error::', error);
+          this.recording = false;
+          this.url = null;
+          this.audioBlob = null;
+          alert('Failed to upload audio. Please try again or contact support.');
+        }
+      );
+    }
   }
 
   errorCallback(error: any) {
@@ -253,6 +317,10 @@ export class CommentsComponent
       if (closestReply) {
         closestReply.classList.remove('active');
         this.replyText = '';
+        this.recording = false;
+        this.isEnableReplyAudio = false;
+        this.url = null;
+        this.stopRecording();
       } else {
         console.error(
           '.comment__reply not found within closest .comment__item'
@@ -305,11 +373,17 @@ export class CommentsComponent
     this.audioBlob = null;
     this.url = null;
     this.isEnableAudio = false;
+    this.isEnableReplyAudio = false;
   }
 
   addComment() {
+    if (this.recording) {
+      alert('Please wait for the audio recording to finish.');
+      return;
+    }
+
     if (!!this.audioBlob) {
-      this.uploadAudio(this.audioBlob);
+      this.uploadAudio(this.audioBlob, 'NEW');
     } else {
       this.addCommentApi();
     }
@@ -407,20 +481,22 @@ export class CommentsComponent
         console.log(this.comments);
       });
   }
-  submitReply(comment: any, event: MouseEvent) {
-    console.log(comment);
-    if (comment.reply.length == 0) {
-      this.seqNo = 1;
+
+  calculateSequenceNumber(comment: any): number {
+    if (comment.reply.length === 0) {
+      return 1;
+    } else if (comment.reply.length <= 2 && comment.hiddenReply.length === 0) {
+      return parseInt(comment.reply[comment.reply.length - 1].seqNo) + 1;
     } else {
-      if (comment.reply.length <= 2 && comment.hiddenReply.length == 0) {
-        this.seqNo =
-          parseInt(comment.reply[comment.reply.length - 1].seqNo) + 1;
-      } else {
-        this.seqNo =
-          parseInt(comment.hiddenReply[comment.hiddenReply.length - 1].seqNo) +
-          1;
-      }
+      return (
+        parseInt(comment.hiddenReply[comment.hiddenReply.length - 1].seqNo) + 1
+      );
     }
+  }
+
+  async submitReply(comment: any, event: MouseEvent) {
+    this.seqNo = await this.calculateSequenceNumber(comment);
+
     const replyData = {
       commentId: comment.commentId,
       userId: this.userId,
@@ -430,13 +506,24 @@ export class CommentsComponent
       audioPath: '',
     };
 
-    this.commentsService.addComments(replyData).subscribe((respData: any) => {
-      console.log(respData);
-
-      if (respData.meta.code == 200) {
-        this.closeReply(event);
-        this.viewComments();
+    try {
+      if (this.audioBlob && this.isEnableReplyAudio) {
+        await this.uploadAudio(this.audioBlob, 'REPLY');
+        replyData.audioPath = this.audioUrl;
       }
-    });
+
+      this.commentsService.addComments(replyData).subscribe((respData: any) => {
+        console.log(respData);
+        if (respData.meta.code === 200) {
+          this.closeReply(event);
+          this.viewComments();
+        } else {
+          alert('Failed to submit reply. Please try again.');
+        }
+      });
+    } catch (error) {
+      console.error('Failed to submit reply:', error);
+      alert('An error occurred while submitting your reply. Please try again.');
+    }
   }
 }

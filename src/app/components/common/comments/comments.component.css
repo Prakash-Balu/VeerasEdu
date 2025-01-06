@@ -198,6 +198,8 @@
   border: 2px solid #999999;
   margin-right: 5px;
   font: 16px / 22px proxima-nova, sans-serif;
+  padding: 4px 8px;
+  width: max-content;
 }
 .comment__button_section .cancel_btn:hover {
   background: #999999 !important;
@@ -209,6 +211,8 @@
   color: #000 !important;
   border: 2px solid #5a4b26;
   font: 16px / 22px proxima-nova, sans-serif;
+  padding: 4px 8px;
+  width: max-content;
 }
 .comment__button_section .submit_btn:hover {
   background: #5a4b26 !important;
@@ -390,7 +394,7 @@
   color: red;
 }
 .timer-container i {
-  color: #dc3545;
+  color: #5a4b26;
 }
 
 .wave-container {
@@ -439,8 +443,6 @@
   animation-delay: 0.6s;
 }
 
-
-
 @keyframes wave {
   0% {
     transform: translate(-50%, -50%) scale(0.5);
@@ -462,14 +464,15 @@
 }
 
 .audio-player {
-  /* background-color: #343a40; */
+  width: 100%;
+  max-width: 700px;
+  padding: 15px 20px;
+  border-radius: 12px;
+  background-color: inherit;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 15px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
 }
 
 audio {
