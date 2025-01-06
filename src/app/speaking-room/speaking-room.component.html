@@ -1,313 +1,60 @@
 <div class="container-fluid p-0 m-0">
-    <div class="top-banner">
-      <div class="row gy-3">
-        <div class="col-6 order-1 col-md-2 order-md-1">
-          <div class="arrow-left cursor-pointer" routerLink="/home">
-            <fa-icon [icon]="faArrowLeft" class="cursor-pointer"></fa-icon>
-          </div>
-          <div class="fw-bold d-none d-md-block cursor-pointer">back</div>
+  <div class="top-banner">
+    <div class="row gy-3">
+      <div class="col-6 order-1 col-md-2 order-md-1">
+        <div class="arrow-left cursor-pointer" routerLink="/home">
+          <fa-icon [icon]="faArrowLeft" class="cursor-pointer"></fa-icon>
         </div>
-  
-        <div
-          class="sec2 col-12 col-md-8 order-3 order-md-2 d-flex justify-content-center">
-          <span>
-            <span>Speaking Room</span>
-  
-            <span>{{ selectedSegment?.name }}</span>
-          </span>
-        </div>
-  
-        <div class="col-6 order-2 col-md-2 order-md-3 qa_container" (click)="sidenav.toggle()">
-          <img src="assets/images/fabellalert.png" class="alert-img" />
-          <span class="notify">3</span>
-          <div class="qa-content">Q&A</div>
-        </div>
+        <div class="fw-bold d-none d-md-block cursor-pointer">back</div>
       </div>
-    </div>
-  
-    <div class="row-wrapper position-relative">
-      <aside
-        class="sidebar shadow"
-        [ngClass]="isSidebarVisible ? 'open' : 'close'"
+
+      <div
+        class="sec2 col-12 col-md-8 order-3 order-md-2 d-flex justify-content-center"
       >
-        <div class="sidebar-header">
-          <h5 class="text-uppercase fw-bold">INDEX</h5>
-        </div>
-        <ul class="menu-list">
-          <li class="menu-item">
-            <span>SEGMENT 1 - 10</span>
-          </li>
-          <li
-            *ngFor="let segment of segmentlist"
-            (click)="onSegmentClick(segment._id)"
-            class="menu-item"
-          >
-            <span
-              >{{ segment.name
-              }}<span
-                class="status-dot"
-                [class.online]="segment._id === activeSegmentId"
-              ></span
-            ></span>
-          </li>
-        </ul>
-      </aside>
-  
-      <div class="video-container">
-        <app-video-player [videoObj]="videoObj"></app-video-player>
+        <span>
+          <span>Speaking Room</span>
+        </span>
       </div>
     </div>
   </div>
+
+  <!-- Calls -->
+  <div class="calls-page">
+    <aside class="sidebar">
+      <h3>Calls</h3>
+      <input type="text" placeholder="Search" class="search-bar" />
+      <div class="online-users">
+        <h4>Online Users</h4>
+        <div class="user-card" *ngFor="let user of users">
+          <div class="user-info">
+            <img
+              src="https://via.placeholder.com/50"
+              alt="User Avatar"
+              class="avatar"
+            />
+            <div>
+              <h5>{{ user.name }}</h5>
+              <p>{{ user.lastActive }}</p>
+            </div>
+          </div>
+          <mat-icon
+            class="call-icon"
+            [ngClass]="user.callType === 'video' ? 'video-call' : 'voice-call'"
+          >
+            {{ user.callType === 'video' ? 'videocam' : 'call' }}
+          </mat-icon>
+        </div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <h2>Hi Tamizharasan! <span>😊</span></h2>
+      <p>Try the wholesome experience of Veeras.</p>
+      <div class="buttons">
+        <button class="btn btn-primary">Voice</button>
+        <button class="btn btn-primary">Video</button>
+      </div>
+    </main>
+  </div>
   
-  
-  <mat-sidenav-container class="notification-container">
-    <mat-sidenav #sidenav mode="over" position="end">
-        <mat-card class="example-card" appearance="outlined">
-            <mat-card-header>
-                <mat-card-title> <mat-icon
-                        style="color:#fff;vertical-align: sub;">notifications</mat-icon>Notifications</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-tab-group>
-                    <mat-tab style="min-width: 50% !important;">
-                        <ng-template mat-tab-label class="mat-tab-label-content">
-                            <div class="mat-tab-label" style="display: block;color: #000;font-weight: 900;">Asked Question <div class="mat-tab-label-count">05</div></div>
-                        </ng-template>
-                        <ul class="notification-list">
-                            <li class="list-user-avatar">
-                                <div style="display: flex;">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar">
-                                            <span class="avatar-initial rounded-circle bg-label-danger">RR</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <small class="mb-1 d-block text-body notification-list-question"><a ng-reflect-router-link="/admin/segments" href="/admin/segments"> Is this statement, “i
-                                            see him last night” can be understood as “I saw him last night”?</a></small>
-                                    </div>
-        
-                                </div>
-                                
-                                <mat-card-actions>
-                                    <div class="notification-list-footer">
-                                        <span style="font-size: 10px;">Asked on Jan 05, 2025</span>
-                                        <span class="notification-list-footer-label">Segment - 1</span>
-                                    </div>
-                                </mat-card-actions>
-                            </li>
-                            <li class="list-user-avatar">
-                                <div style="display: flex;">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar">
-                                            <span class="avatar-initial rounded-circle bg-label-danger">RR</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <small class="mb-1 d-block text-body notification-list-question"><a ng-reflect-router-link="/admin/segments" href="/admin/segments"> Is this statement, “i
-                                            see him last night” can be understood as “I saw him last night”?</a></small>
-                                    </div>
-        
-                                </div>
-                                
-                                <mat-card-actions>
-                                    <div class="notification-list-footer">
-                                        <span style="font-size: 10px;">Asked on Jan 05, 2025</span>
-                                        <span class="notification-list-footer-label">Segment - 1</span>
-                                    </div>
-        
-        
-                                </mat-card-actions>
-                            </li>
-                            <li class="list-user-avatar">
-                                <div style="display: flex;">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar">
-                                            <span class="avatar-initial rounded-circle bg-label-danger">RR</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <small class="mb-1 d-block text-body notification-list-question"><a ng-reflect-router-link="/admin/segments" href="/admin/segments"> Is this statement, “i
-                                            see him last night” can be understood as “I saw him last night”?</a></small>
-                                    </div>
-        
-                                </div>
-                                
-                                <mat-card-actions>
-                                    <div class="notification-list-footer">
-                                        <span style="font-size: 10px;">Asked on Jan 05, 2025</span>
-                                        <span class="notification-list-footer-label">Segment - 1</span>
-                                    </div>
-        
-        
-                                </mat-card-actions>
-                            </li>
-                            <li class="list-user-avatar">
-                                <div style="display: flex;">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar">
-                                            <span class="avatar-initial rounded-circle bg-label-danger">RR</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <small class="mb-1 d-block text-body notification-list-question"><a ng-reflect-router-link="/admin/segments" href="/admin/segments"> Is this statement, “i
-                                            see him last night” can be understood as “I saw him last night”?</a></small>
-                                    </div>
-        
-                                </div>
-                                
-                                <mat-card-actions>
-                                    <div class="notification-list-footer">
-                                        <span style="font-size: 10px;">Asked on Jan 05, 2025</span>
-                                        <span class="notification-list-footer-label">Segment - 1</span>
-                                    </div>
-        
-        
-                                </mat-card-actions>
-                            </li>
-                            <li class="list-user-avatar">
-                                <div style="display: flex;">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar">
-                                            <span class="avatar-initial rounded-circle bg-label-danger">RR</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <small class="mb-1 d-block text-body notification-list-question"><a ng-reflect-router-link="/admin/segments" href="/admin/segments"> Is this statement, “i
-                                            see him last night” can be understood as “I saw him last night”?</a></small>
-                                    </div>
-        
-                                </div>
-                                
-                                <mat-card-actions>
-                                    <div class="notification-list-footer">
-                                        <span style="font-size: 10px;">Asked on Jan 05, 2025</span>
-                                        <span class="notification-list-footer-label">Segment - 1</span>
-                                    </div>
-        
-        
-                                </mat-card-actions>
-                            </li>
-                        </ul>
-                    </mat-tab>
-                    <mat-tab style="min-width: 50% !important;">
-                        <ng-template mat-tab-label class="mat-tab-label-content text-success">
-                            <div class="mat-tab-label" style="display: block;color:#699834 !important;font-weight: 900;">Answered <div class="mat-tab-label-count text-success">01</div></div>
-                        </ng-template>
-                        <ul class="notification-list">
-                            <li class="list-user-avatar">
-                                <div class="top-cross-ribbon ribbon-success">Solved</div>
-                                <div style="display: flex;">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar">
-                                            <span class="avatar-initial rounded-circle bg-label-danger">RR</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <small class="mb-1 d-block text-body notification-list-question"><a ng-reflect-router-link="/admin/segments" href="/admin/segments"> Is this statement, “i
-                                            see him last night” can be understood as “I saw him last night”?</a></small>
-                                    </div>
-        
-                                </div>
-                                <mat-card-actions>
-                                    <div class="notification-list-footer">
-                                        <span style="font-size: 10px;">Asked on Jan 05, 2025</span>
-                                        <span class="notification-list-footer-label">Segment - 1</span>
-                                    </div>
-                                </mat-card-actions>
-  
-                                <div class="notifcation-answer-list">
-                                    <div style="display: flex;">
-                                        <div class="flex-shrink-0 me-3">
-                                            <div class="avatar">
-                                                <img src="assets/images/logo_icon.png" alt="Logo" width="30" height="30" /> 
-                                            </div>
-                                            <small class="mb-1 text-body">Answered by Veeras</small> 
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <small class="text-muted notification-list-timezone">12hr ago</small>
-                                        </div>
-            
-                                    </div>
-                                    <p class="notification-list-desc">In my local language (Bahasa Indonesia) there are no verb-2 or past tense form as time tracker. So, I often forget to use the past form of verb when speaking english.
-                                       
-                                    </p>
-                                    <div class="notification-ans-review">This answer has helpful <mat-icon class="like ms-2" style="color:#4CAF50;vertical-align: sub;">thumb_up</mat-icon> <mat-icon class="dislike ms-2" style="color:#fe0000;vertical-align: sub;">thumb_down</mat-icon></div>
-                                </div>
-                                
-                            </li>
-                            <li class="list-user-avatar">
-                                <div class="top-cross-ribbon ribbon-pending">Processing</div>
-                                <div style="display: flex;">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar">
-                                            <span class="avatar-initial rounded-circle bg-label-danger">RR</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <small class="mb-1 d-block text-body notification-list-question"><a ng-reflect-router-link="/admin/segments" href="/admin/segments"> Is this statement, “i
-                                            see him last night” can be understood as “I saw him last night”?</a></small>
-                                    </div>
-        
-                                </div>
-                                
-                                <mat-card-actions>
-                                    <div class="notification-list-footer">
-                                        <span style="font-size: 10px;">Asked on Jan 05, 2025</span>
-                                        <span class="notification-list-footer-label">Segment - 1</span>
-                                    </div>
-        
-        
-                                </mat-card-actions>
-                            </li>
-                            <li class="list-user-avatar">
-                                <div class="top-cross-ribbon ribbon-success">Solved</div>
-                                <div style="display: flex;">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar">
-                                            <span class="avatar-initial rounded-circle bg-label-danger">RR</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <audio controls="" controlslist="noplaybackrate nodownload" style="width: 84%;height: 86%;">
-                                            <source src="https://veerasapi-production.up.railway.app/audios/6650c5ce74c3379810be1f50/hindi_edu_1735847821392.wav" />
-                                            Your browser does not support the audio element.
-                                        </audio>
-                                    </div>
-        
-                                </div>
-                            
-                                <mat-card-actions>
-                                    <div class="notification-list-footer">
-                                        <span style="font-size: 10px;">Asked on Jan 05, 2025</span>
-                                        <span class="notification-list-footer-label">Segment - 1</span>
-                                    </div>
-                                </mat-card-actions>
-                                <div class="notifcation-answer-list">
-                                    <div style="display: flex;" class="mb-2">
-                                        <div class="flex-shrink-0 me-3">
-                                            <div class="avatar">
-                                                <img src="assets/images/logo_icon.png" alt="Logo" width="30" height="30" /> 
-                                            </div>
-                                            <small class="mb-1 text-body">Answered by Veeras</small> 
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <small class="text-muted notification-list-timezone">12hr ago</small>
-                                        </div>
-                                    </div>
-                                    <audio controls="" controlslist="noplaybackrate nodownload" style="width: 84%;padding: 6px;">
-                                        <source src="https://veerasapi-production.up.railway.app/audios/6650c5ce74c3379810be1f50/hindi_edu_1735847821392.wav" />
-                                        Your browser does not support the audio element.
-                                    </audio>
-                                    <div class="notification-ans-review">This answer has helpful <mat-icon class="like ms-2" style="color:#4CAF50;vertical-align: sub;">thumb_up</mat-icon> <mat-icon class="dislike ms-2" style="color:#fe0000;vertical-align: sub;">thumb_down</mat-icon></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </mat-tab>
-                </mat-tab-group>
-                
-  
-            </mat-card-content>
-  
-        </mat-card>
-    </mat-sidenav>
-  </mat-sidenav-container>
+  <!-- /Calls -->
+</div>
