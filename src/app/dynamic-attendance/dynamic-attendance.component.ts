@@ -17,7 +17,15 @@ export class DynamicAttendanceComponent {
   currentMonth!: number;
   currentYear!: number;
   daysInMonth!: number;
-  weekDays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  weekDays: string[] = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
   momentCurrentMonth: any;
   public attendance: any = [];
   constructor(private authService: AuthService) {}
@@ -63,7 +71,11 @@ export class DynamicAttendanceComponent {
     // Fill the rest of the month with days
     for (let day = 1; day <= this.daysInMonth; day++) {
       const date = new Date(year, month, day + 1).toISOString().split('T')[0];
-      this.calendar.push({ date, status: '' });
+      if (date !== '') {
+        console.log('date::', date);
+        console.log('date::', this.calendar);
+        this.calendar.push({ date, status: '' });
+      }
     }
   }
 

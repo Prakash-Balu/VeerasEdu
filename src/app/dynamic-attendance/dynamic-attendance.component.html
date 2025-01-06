@@ -1,22 +1,25 @@
 <div class="calendar">
   <div class="calendar-header">
-    <button (click)="previousMonth()">&#8249;</button>
     <span>{{ currentYear }} - {{ getMonthName(currentMonth) }}</span>
-    <button (click)="nextMonth()">&#8250;</button>
+    <div class="calendar_arrows">
+      <button (click)="previousMonth()">&#8249;</button>
+      <button (click)="nextMonth()">&#8250;</button>
+    </div>
   </div>
   <div class="weekdays">
     <span *ngFor="let day of weekDays">{{ day }}</span>
   </div>
   <div class="days">
-    <div
-      class="day"
-      *ngFor="let day of calendar"
-      [ngClass]="{
+    <div  class="day day_absent" *ngFor="let day of calendar" [ngClass]="{
         present: day.status === 'present',
         absent: day.status === 'absent'
-      }"
-    >
-      {{ day.date ? day.date.split("-")[2] : "" }}
+      }">
+      <p>
+        {{ day.date ? day.date.split("-")[2] : "" }}
+      </p>
+      <span>
+        {{day.status === "" ? 'Absent' : 'Present'}}
+      </span>
     </div>
   </div>
 </div>
