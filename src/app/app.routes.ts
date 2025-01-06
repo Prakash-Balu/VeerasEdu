@@ -43,8 +43,8 @@ export const routes: Routes = [
         path: 'practice-with-the-master',
         canActivate: [AuthGuard],
         loadComponent: () =>
-          import('./segments/segments.component').then(
-            (m) => m.SegmentsComponent
+          import('./practice-with-master/practice-with-master.component').then(
+            (m) => m.PracticeWithMasterComponent
           ),
         data: { showFooter: false, isMobile: false, page: 'practice' },
       },
@@ -100,6 +100,15 @@ export const routes: Routes = [
           ),
         data: { showFooter: false, showHeader: false, isMobile: false },
       },
+      {
+        path: 'speaking-room',
+        loadComponent: () =>
+          import('./speaking-room/speaking-room.component').then(
+            (m) => m.SpeakingRoomComponent
+          ),
+        data: { showFooter: false, showHeader: false, isMobile: false },
+      },
+
     ],
   },
 ];
