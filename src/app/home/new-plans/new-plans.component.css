@@ -213,6 +213,21 @@
   border-radius: 0;
 }
 
+.plan_table
+{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.plan_table tbody tr td{
+  border-width: 2px;
+  padding: 10px;
+}
+
+.plan_table tbody tr td:nth-child(2){
+  text-align: end;
+}
+
 @media (max-width: 768px) {
   .continue-button {
     font-size: 11px;
