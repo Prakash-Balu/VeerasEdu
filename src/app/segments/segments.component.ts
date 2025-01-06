@@ -14,11 +14,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { SegmentService } from '../core/services/segments.service';
 import { VideoPlayerComponent } from '../components/video-player/video-player.component';
+import { MaterialModule } from '../material-module';
 
 @Component({
   selector: 'ments',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, RouterLink, VideoPlayerComponent],
+  imports: [FontAwesomeModule, CommonModule, RouterLink, VideoPlayerComponent, MaterialModule],
   templateUrl: './segments.component.html',
   styleUrls: ['./segments.component.css'],
 })
