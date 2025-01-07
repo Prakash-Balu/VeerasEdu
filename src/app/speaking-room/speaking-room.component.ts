@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { MaterialModule } from '../material-module';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
   selector: 'app-speaking-room',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, RouterLink, MaterialModule],
+  imports: [FontAwesomeModule, CommonModule, RouterLink, MaterialModule, NgScrollbarModule],
   templateUrl: './speaking-room.component.html',
   styleUrl: './speaking-room.component.css',
 })
@@ -24,4 +25,16 @@ export class SpeakingRoomComponent {
   constructor() {}
 
   ngOnInit() {}
+
+  isClassVisible = false;
+
+  toggleClass(show: boolean) {
+    this.isClassVisible =show; // Toggle the class visibility
+  }
+
+  isMuted: boolean[] = [false, false, false]; 
+
+  toggleMute(index: number): void {
+    this.isMuted[index] = !this.isMuted[index];
+  }
 }
