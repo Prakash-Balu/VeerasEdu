@@ -20,6 +20,7 @@
           <app-dynamic-attendance></app-dynamic-attendance>
         </div>
       </div>
+      @if(showAbsent){
       <div class="col-12 col-sm-12 col-md-3">
         <div class="smiley-2">
           <div [innerHtml]="smileyIcon" class="img-2"></div>
@@ -29,10 +30,14 @@
           </div>
         </div>
       </div>
+      }
     </div>
   </div>
   <div class="button-row">
-    <button class="btn btn-outline-dark next-button" [routerLink]="['/dashboard']">
+    <button
+      class="btn btn-outline-dark next-button"
+      [routerLink]="['/dashboard']"
+    >
       Next
     </button>
   </div>
