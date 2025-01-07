@@ -36,6 +36,7 @@
     "pusher-js": "^8.4.0-rc2",
     "recordrtc": "^5.6.2",
     "rxjs": "~7.8.0",
+    "slimscroll": "^0.9.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

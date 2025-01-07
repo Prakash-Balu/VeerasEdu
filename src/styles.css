@@ -1,5 +1,27 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* You can add global styles to this file, and also import other style files */
+/* @import './assets/tabler-icons/tabler-icons.min.css'; */
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css");
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css");
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-video.css");
+
+
+  .offcanvas-body{
+    height: 100vh !important;;
+  }
+  .ng-scroll-content {
+    height: 100vh;
+  }
+  .ng-scroll-viewport[_nghost-ng-c299950523] > .ng-scroll-content[_ngcontent-ng-c299950523], .ng-scrollbar-external-viewport[_nghost-ng-c299950523] .ng-scroll-viewport>.ng-scroll-content {
+    width: unset !important;
+    z-index: 1;
+    min-width: 100%;
+    min-height: 100%;
+    contain: unset !important;
+    padding: var(--_viewport-padding-top, 0) var(--_viewport-padding-right, 0) var(--_viewport-padding-bottom, 0) var(--_viewport-padding-left, 0);
+}
+
 *,
 *::after,
 *::before {
