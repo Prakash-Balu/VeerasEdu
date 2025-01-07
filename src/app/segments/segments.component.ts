@@ -16,10 +16,18 @@ import { SegmentService } from '../core/services/segments.service';
 import { VideoPlayerComponent } from '../components/video-player/video-player.component';
 import { MaterialModule } from '../material-module';
 
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'ments',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, RouterLink, VideoPlayerComponent, MaterialModule],
+  imports: [
+    FontAwesomeModule,
+    CommonModule,
+    RouterLink,
+    VideoPlayerComponent,
+    MaterialModule,
+  ],
   templateUrl: './segments.component.html',
   styleUrls: ['./segments.component.css'],
 })
@@ -36,6 +44,9 @@ export class SegmentsComponent {
   isSidebarVisible: boolean = true;
   videoObj: any = {};
   segmentlist: any[] = [];
+  notifications: any[] = [];
+  asked: any[] = [];
+  answered: any[] = [];
   selectedSegment: any;
   segmentId: string = '';
   currentUrl: string = '';
@@ -45,7 +56,9 @@ export class SegmentsComponent {
   constructor(
     public segmentservice: SegmentService,
     private route: Router,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+
+    private domSanitizer: DomSanitizer
   ) {}
 
   toggleSidebar() {
@@ -61,6 +74,7 @@ export class SegmentsComponent {
       routeData['page'].slice(1).toLowerCase();
 
     this.fetchSegments();
+    this.viewNotification();
   }
   ngOnDestroy() {
     document.documentElement.style.overflowY = 'auto';
@@ -83,10 +97,29 @@ export class SegmentsComponent {
     );
   }
 
+  viewNotification() {
+    this.segmentservice.viewNotification().subscribe(
+      (response: any) => {
+        if (response.meta.code === 200) {
+          this.notifications = response.data;
+          this.asked = response.data.askedQuestions;
+          this.answered = response.data.answeredQuestions;
+        }
+      },
+      (error) => {
+        console.error('An error occurred:', error);
+      }
+    );
+  }
+
   sortData(respData: any) {
     return respData.sort((a: any, b: any) => {
       return <any>new Date(a.createdAt) - <any>new Date(b.createdAt);
     });
+  }
+
+  sanitize(url: string) {
+    return this.domSanitizer.bypassSecurityTrustUrl(url);
   }
 
   onSegmentClick(segmentId: string) {

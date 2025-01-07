@@ -10,7 +10,6 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
-        // canActivate: [AuthGuard],
         loadComponent: () =>
           import('./home/home.component').then((m) => m.HomeComponent),
         data: { showHeader: true, isMobile: true },
@@ -77,7 +76,6 @@ export const routes: Routes = [
       },
       {
         path: 'checkout/:id',
-        // canActivate: [AuthGuard],
         loadComponent: () =>
           import('./checkout/checkout.component').then(
             (m) => m.CheckoutComponent

@@ -42,6 +42,14 @@ export class SegmentService {
       .pipe(catchError(this.handleError));
   }
 
+  viewNotification(): Observable<Segment[]> {
+    return this.http
+      .get<Segment[]>(`${this.url}${API_URL.VIEW_NOTIFICATIONS}`, {
+        headers: this.getHeaders(),
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
     return throwError(
@@ -53,7 +61,7 @@ export class SegmentService {
     const token = localStorage.getItem('token');
     const url = `${this.url}/user/web-logout`;
     const headers = new HttpHeaders({
-      Accept:'*/*',
+      Accept: '*/*',
       Authorization: `Bearer ${token}`,
     });
 

@@ -7,5 +7,6 @@ export const API_URL = {
   GET_LOCATION: "/payment/location",
   CHECK_OUT: "/payment/create",
   add_comments: "/comments/addComment",
-  GET_SEGMENTS:"/segments/getSegments"
+  GET_SEGMENTS:"/segments/getSegments",
+  VIEW_NOTIFICATIONS: "/comments/view-notification"
 };

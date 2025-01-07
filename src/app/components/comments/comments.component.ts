@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  SimpleChanges,
+  OnChanges,
+  OnDestroy,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Comment } from '../../state/comments.model';
@@ -14,11 +21,19 @@ import { AuthService } from '../../core/services/auth.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SnackbarService } from '../../core/services/snackbar.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-comments',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatCardModule, MatTabsModule, MatPaginatorModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatTabsModule,
+    MatPaginatorModule,
+  ],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.css',
 })
@@ -47,10 +62,9 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
     private store: Store,
     private domSanitizer: DomSanitizer,
     public commentsService: CommentsService,
-    public authService: AuthService,
-  ) {
-    
-  }
+    public snackbarService: MatSnackBar,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.userDetails = this.authService.userMeApi();
@@ -199,15 +213,17 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   addComment() {
-    if(!!this.audioBlob) {
+    console.log('insideadd');
+    if (!!this.audioBlob) {
       this.uploadAudio(this.audioBlob);
     } else {
       this.addCommentApi();
     }
-  };
+  }
 
   comments: any[] = [];
   addCommentApi() {
+    console.log('inside');
     const seqNo = this.comments.length
       ? parseInt(this.comments[this.comments.length - 1].seqNo) + 1
       : 1;
@@ -225,12 +241,20 @@ export class CommentsComponent implements OnInit, OnChanges, OnDestroy {
         if (respData.meta.code === 200) {
           this.resetCommentInputs();
           this.viewComments(this.segment);
+          this.snackbarService.open('Comment Posted Successfully', 'Close', {
+            duration: 2000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar'],
+          });
         }
       });
   }
 
-  viewComments(segment :any) {
-    this.store.dispatch(CommentsActions.loadComments({ segmentId: segment._id }));
+  viewComments(segment: any) {
+    this.store.dispatch(
+      CommentsActions.loadComments({ segmentId: segment._id })
+    );
   }
 
   toggleReply(event: MouseEvent): void {

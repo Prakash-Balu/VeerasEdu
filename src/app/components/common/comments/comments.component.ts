@@ -19,6 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from '../../../../environments/environment';
 import moment from 'moment';
+import { SnackbarService } from '../../../core/services/snackbar.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-comments',
@@ -40,7 +42,8 @@ export class CommentsComponent
     public commentsService: CommentsService,
     public authService: AuthService,
     private route: ActivatedRoute,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    public snackbarService: MatSnackBar
   ) {}
 
   audioBaseUrl: string = environment.baseURL;
@@ -407,6 +410,13 @@ export class CommentsComponent
         if (respData.meta.code === 200) {
           this.resetCommentInputs();
           this.viewComments();
+          // this.snackbarService.Success('Comment Posted Successfully');
+          this.snackbarService.open('Comment Posted Successfully', 'Close', {
+            duration: 2000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar'],
+          });
         }
       });
   }
@@ -450,7 +460,8 @@ export class CommentsComponent
                 seqNo: element1.seqNo,
                 description: element1.text,
                 dateAgoTxt: moment(element1.createdAt).fromNow(),
-                audioPath: element1.audioPath === '' ? null : element1.audioPath,
+                audioPath:
+                  element1.audioPath === '' ? null : element1.audioPath,
               };
 
               if (replyData.length < 2) {
