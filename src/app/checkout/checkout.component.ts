@@ -27,8 +27,9 @@ export class CheckoutComponent implements OnInit {
   public tax: any;
   public planTotal: any;
   public isIndia: boolean = true;
+  public formsubmitted: boolean = true;
   public months: number = 1;
-  public processingFee: any = 33;
+  public processingFee: any = 33.0;
   public currencyCode: any;
   constructor(
     private commonService: CommonService,
@@ -39,10 +40,24 @@ export class CheckoutComponent implements OnInit {
   ) {
     this.regForm = this.fb.group({
       name: [null, Validators.required],
-      phone: [null, Validators.required],
-      whatsapp: [null],
-      email: [null, Validators.required],
-      country: [''],
+      phone: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ],
+      ],
+      whatsapp: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ],
+      ],
+      email: [null, [Validators.required, Validators.email]],
+      country: [{ value: '', disabled: true }],
       state: [''],
       city: [null],
       zipcode: [null],
@@ -68,9 +83,6 @@ export class CheckoutComponent implements OnInit {
         } else {
           this.regForm.patchValue({
             country: resp.data.country,
-            state: resp.data.region,
-            city: resp.data.city,
-            zipcode: resp.data.postal,
           });
         }
       }
@@ -99,12 +111,19 @@ export class CheckoutComponent implements OnInit {
       Number(this.tax) +
       Number(this.processingFee)
     ).toFixed(2);
+    this.processingFee = Number(this.processingFee).toFixed(2);
   }
 
   getControl(controlName: string) {
     return this.regForm.get(controlName) as FormControl;
   }
 
+  private markAllAsTouched() {
+    Object.keys(this.regForm.controls).forEach((controlName) => {
+      const control = this.getControl(controlName);
+      control.markAsTouched();
+    });
+  }
   get isCompanyAdd(): boolean {
     return this.regForm.get('isCompanyAdd')?.value;
   }
@@ -114,7 +133,9 @@ export class CheckoutComponent implements OnInit {
     console.log('Selected country ID:', selectedValue);
   }
   onContinueToPayment() {
-    if (!this.regForm.valid) {
+    this.formsubmitted = true;
+    if (this.regForm.invalid) {
+      this.markAllAsTouched();
       return;
     }
     console.log('reg', this.regForm.value);
@@ -132,9 +153,11 @@ export class CheckoutComponent implements OnInit {
     };
     console.log('payload::', payload);
     this.authService.checkout(payload).subscribe((resp) => {
-      if(resp.meta.code === 200){
+      if (resp.meta.code === 200) {
         window.location.href = resp?.data;
       }
     });
+
+    this.formsubmitted = false;
   }
 }
