@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit {
     this.logoutService.logout().subscribe(
       (response: any) => {
         if (response.meta.code === 200) {
-          localStorage.clear();
+          this.authService.clearLocalStorage();
           this.router.navigate(['/login']);
         } else {
           alert('Retry to logout...!');

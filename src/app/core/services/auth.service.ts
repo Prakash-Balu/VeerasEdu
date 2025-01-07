@@ -102,8 +102,7 @@ export class AuthService {
       })
       .pipe(
         map((response) => {
-          localStorage.setItem('user', response.data);
-          this.userObj.next(response.data);
+          this.setUserObj(response.data);
           return response;
         }),
         catchError(this.handleError)
@@ -164,5 +163,16 @@ export class AuthService {
   setUserData(userData: any) {
     localStorage.setItem('userData', JSON.stringify(userData));
     this.userDataSubject.next(JSON.stringify(userData));
+  }
+
+  setUserObj(userObj: any) {
+    localStorage.setItem('user', JSON.stringify(userObj));
+    this.userObj.next(JSON.stringify(userObj));
+  }
+
+  clearLocalStorage() {
+    localStorage.clear();
+    this.tokenSubject.next(null);
+    this.userObj.next(null)
   }
 }
