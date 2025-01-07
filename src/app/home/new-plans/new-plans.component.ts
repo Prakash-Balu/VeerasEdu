@@ -52,11 +52,16 @@ export class NewPlansComponent {
 
   onSubcribeClick() {
     this.showSummary = true;
-    this.planCost = (Number(this.plan?.locationPrice?.month_fee) * Number(this.months)).toFixed(
-      2
-    );
+    this.planCost = (
+      Number(this.plan?.locationPrice?.month_fee) * Number(this.months)
+    ).toFixed(2);
     this.tax = ((Number(this.planCost) / 100) * 18).toFixed(2);
-    this.planTotal = (Number(this.planCost) + Number(this.tax) + Number(this.processingFee)).toFixed(2);
+    this.planTotal = (
+      Number(this.planCost) +
+      Number(this.tax) +
+      Number(this.processingFee)
+    ).toFixed(2);
+    this.processingFee = Number(this.processingFee).toFixed(2);
   }
 
   onClick(id: any) {

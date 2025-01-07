@@ -70,7 +70,8 @@
         </ng-container>
       </mat-card-content>
     </mat-tab>
-    <mat-tab *ngIf="userType == 'ADMIN'">
+
+    <!-- <mat-tab *ngIf="userType == 'ADMIN'">
       <ng-template mat-tab-label>
         <div class="badge all_comments" [textContent]="comments.length"></div>
         <span class="comments_tab_text">All Comments</span>
@@ -101,7 +102,7 @@
         <ng-container *ngTemplateOutlet="commentsContainerTemplate">
         </ng-container>
       </mat-card-content>
-    </mat-tab>
+    </mat-tab> -->
   </mat-tab-group>
   <mat-paginator
     [length]="100"
@@ -270,14 +271,14 @@
         </div>
         <div class="comment__info_right">
           <span class="comment__date" [textContent]="reply.dateAgoTxt"></span>
-          <span
+          <!-- <span
             *ngIf="
               reply.seqNo == comment.reply.length && comment.userId == userId
             "
             class="comment__reply_btn btn"
             (click)="toggleReply($event)"
             >Reply</span
-          >
+          > -->
         </div>
       </div>
       <div class="comment__body">
