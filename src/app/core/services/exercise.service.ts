@@ -12,10 +12,10 @@ export class ExerciseService {
   ) { }
   
   fetchData(id:string): Observable<any> {
-    return this.http.get<any>(environment.baseURL+`getqa/${id}`);
+    return this.http.get<any>(environment.baseURL+`/api/getqa/${id}`);
   }
   
   fetchsegments():Observable<any>{
-    return this.http.get<any>(environment.baseURL+'segments');
+    return this.http.get<any>(environment.baseURL+'/api/segments');
   }
 }

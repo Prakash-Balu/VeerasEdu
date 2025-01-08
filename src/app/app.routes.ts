@@ -51,8 +51,8 @@ export const routes: Routes = [
         path: 'self-practice',
         canActivate: [AuthGuard],
         loadComponent: () =>
-          import('./segments/segments.component').then(
-            (m) => m.SegmentsComponent
+          import('./self-pratice/self-pratice.component').then(
+            (m) => m.SelfPraticeComponent
           ),
         data: { showFooter: false, isMobile: false, page: 'self' },
       },

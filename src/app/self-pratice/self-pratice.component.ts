@@ -232,7 +232,7 @@ export class SelfPraticeComponent implements OnInit {
     const formData = this.getFormGroup(i);
     formData.get('isfeed')?.setValue(true);
     if (formData.valid) {
-      const url = `${environment.baseURL}check-answer/${this.currentSegment._id}`;
+      const url = `${environment.baseURL}/api/check-answer/${this.currentSegment._id}`;
       console.log("API URL:", url);
       console.log("Form Data:", formData.value);
       this.http.put(url, formData.value).subscribe({
