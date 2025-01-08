@@ -1,4 +1,4 @@
-<div class="calendar">
+<div class="calendar" style="margin-right: 40px;">
   <div class="calendar-header">
     <span>{{ currentYear }} - {{ getMonthName(currentMonth) }}</span>
     <div class="calendar_arrows">
@@ -10,16 +10,44 @@
     <span *ngFor="let day of weekDays">{{ day }}</span>
   </div>
   <div class="days">
-    <div  class="day day_absent" *ngFor="let day of calendar" [ngClass]="{
-        present: day.status === 'present',
-        absent: day.status === 'absent'
-      }">
+    @for(day of calendar; track day.date){
+    <div
+      *ngIf="day.status === 'present'"
+      class="day"
+      [ngClass]="{
+        present: day.status === 'present'
+      }"
+    >
       <p>
         {{ day.date ? day.date.split("-")[2] : "" }}
       </p>
       <span>
-        {{day.status === "" ? 'Absent' : 'Present'}}
+        {{ "Present" }}
       </span>
     </div>
+    <div
+      *ngIf="day.status === 'absent'"
+      class="day day_absent"
+      [ngClass]="{
+        absent: day.status === 'absent'
+      }"
+    >
+      <p>
+        {{ day.date ? day.date.split("-")[2] : "" }}
+      </p>
+      <span style="color: rgb(218, 41, 41);">
+        {{ "Absent" }}
+      </span>
+    </div>
+
+    <div *ngIf="day.status === ''" class="day no_day">
+      <p>
+        {{ day.date ? day.date.split("-")[2] : "" }}
+      </p>
+      <span>
+        {{ "Text" }}
+      </span>
+    </div>
+    }
   </div>
 </div>

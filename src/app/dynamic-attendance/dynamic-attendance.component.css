@@ -84,6 +84,12 @@
   border-top: 2px solid #ffb1a4;
 }
 
+.no_day {
+  background-color: aliceblue !important;
+  color: aliceblue;
+  border-top: 2px solid #635f5f;
+}
+
 .day span {
   font-size: 12px;
 }
@@ -94,8 +100,8 @@
 }
 
 .day.present {
-  background-color: green;
-  color: white;
+  background-color: #89eb89;
+  color: rgb(19, 76, 9);
 }
 
 .day.absent {
