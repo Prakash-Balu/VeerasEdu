@@ -1,3 +1,4 @@
+
 <div class="container-fluid p-0 m-0">
   <div class="top-banner">
     <div class="row gy-3">
@@ -8,10 +9,9 @@
         <div class="fw-bold d-none d-md-block">back</div>
       </div>
 
-      <div
-        class="sec2 col-12 col-md-8 order-3 order-md-2 d-flex justify-content-center">
+      <div *ngIf="currentSegment" class="sec2 col-12 col-md-8 order-3 order-md-2 d-flex justify-content-center">
         <span>Self Practice ></span>
-        <span>SEGMENT - 1</span>
+        <span>{{this.currentSegment.segmentid}}</span>
       </div>
       <div class="col-6 order-2 col-md-2 order-md-3">
         <img src="assets/images/fabellalert.png" class="alert-img" />
@@ -27,37 +27,94 @@
         <fa-icon [icon]="isSidebarVisible ? faTimes : faBars"></fa-icon>
       </button>
       <ul class="menu-list" [class.active]="isSidebarVisible">
+        <li class="index-heading"> INDEX </li>
         <li
-          *ngFor="let segment of segmentlist"
-          [ngClass]="getSegmentClass(segment)">
-          {{ segment }}
+          *ngFor="let item of segments"
+          [ngClass]="getSegmentClass(item.segmentid)"
+          (click)="changeSegment(item)"
+          >
+          {{ item.segmentid }}
         </li>
       </ul>
     </div>
 
     <div class="col-9 col-md-8 offset-md-1">
       <div class="video-container">
-        <div class="vimeo-video">
+        <div class="vimeo-video mx-auto">
           <div #vimeoPlayer></div>
         </div>
-        <div class="video-down">
-          <span class="mt-5 p-2 fw-bold text-secondary">
-            Post your doubts here related to the above class
-          </span>
-          <div class="d-flex">
-            <textarea
-              class="form-control"
-              rows="3"
-              placeholder="Leave a comment here"></textarea>
-            <fa-icon [icon]="faMicrophone" class="audio"></fa-icon>
+      </div>
+      
+      <div class="card shadow-sm" *ngFor="let question of form.controls; let i = index" [formGroup]="getFormGroup(i)">
+        <div class="card-body" *ngIf="currentExerciseIndex === i">
+          <h5 class="card-title">
+            Practice Exercise - {{i + 1}}/{{exercises.length}}
+          </h5>
+          <p class="card-text">Exercise:</p>
+          <p class="card-text"><b>{{question.get('exercise')?.value}}</b></p>
+          <p class="card-text">Try in Hindi:</p>      
+          <ng-container *ngIf="!question.get('hide')?.value; else show">
+          <div class="question-container">
+            <div class="question">
+              <ng-container  *ngFor="let part of replacePlaceholders(exercises[i].question, i); let j = index">
+                <span *ngIf="part !== '{{}}'">{{ part }}</span>
+                <span class="blank" *ngIf="part === '{{}}'">
+                  <input
+                    [formControl]="getAnswerControl(i, j / 2 | replaceBlanks:'floor')"
+                    (focus)="question.get('isfeed')?.setValue(false);"
+                    class="input-box"
+                  />
+                </span>
+              </ng-container>
+            </div>
+            <ng-container *ngIf="question.get('isfeed')?.value">
+              <div class="question">
+                <ng-container  *ngFor="let part of replacePlaceholders(exercises[i].question, i); let j = index">
+                  <span *ngIf="part !== '{{}}'">{{ part }}</span>
+                  <span class="blank" *ngIf="part === '{{}}'">
+                    <input
+                      [formControl]="getAnswerControl(i, j / 2 | replaceBlanks:'floor')"
+                      (focus)="question.get('isfeed')?.setValue(false);"
+                      class="input-box"
+                      [value]="question.get('blanks')?.value.at(j/2|replaceBlanks:'floor')"
+                    />
+                    <span class="status"
+                      (click)="openModal(i,j/2)"
+                      [ngClass]="{
+                        'correct':question.get('results')?.value.at(j/2|replaceBlanks:'floor'),
+                        'wrong':!question.get('results')?.value.at(j/2|replaceBlanks:'floor'),
+                      }"
+                    >
+                    {{question.get('results')?.value.at(j/2|replaceBlanks:'floor')?'✔ Correct':'✘ Check'}}
+                  </span>
+                  </span>
+                </ng-container>
+              </div>
+            </ng-container>
           </div>
-          <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-outline-secondary">Post</button>
-            <span class="text-center chat-subtitle mt-3">
-              (Ask Your doubts by writing comments or Record audio and post it.)
-            </span>
-          </div>
+          </ng-container>
+          <ng-template #show>
+            <p [innerHTML]="showAnswer(i)"></p>
+          </ng-template>
+          <button class="float-end mt-1 btn btn-warning d-block text-white" type="button" *ngIf="getFormGroup(i).valid && !isAllCorrect(i)" (click)="checkAnswer(i)">Check Answer</button>
+          <button class="float-end mt-1 btn btn-warning d-block text-white" type="button" *ngIf="isAllCorrect(i) && !question.get('hide')?.value" (click)="finalCheck(i)">Final Check</button>
+          <button type="button" (click)="nextExercise()" *ngIf="question.get('hide')?.value && (currentExerciseIndex < exercises.length-1)" [disabled]="!(currentExerciseIndex <= exercises.length)" class="float-end mt-1 btn btn-warning d-block text-white">Next</button>
+          <button class="float-end mt-1 btn btn-warning d-block text-white" onclick="alert('finished');" *ngIf="(currentExerciseIndex === exercises.length - 1) && question.get('hide')?.value"  >Finish</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="vimeo-answer" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Answer</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" ></button>
+      </div>
+      <div class="modal-body">
+        
       </div>
     </div>
   </div>
