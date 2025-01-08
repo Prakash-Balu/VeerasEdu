@@ -17,11 +17,12 @@ import { environment } from "../../environments/environment";
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ReplaceBlanksPipe } from "../replace-blanks.pipe";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-self-pratice",
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule,ReactiveFormsModule,ReplaceBlanksPipe],
+  imports: [FontAwesomeModule, CommonModule,ReactiveFormsModule,ReplaceBlanksPipe, RouterLink],
   templateUrl: "./self-pratice.component.html",
   styleUrl: "./self-pratice.component.css",
   providers:[ReplaceBlanksPipe],
