@@ -417,7 +417,7 @@
   transform: scaleY(.4);
   height: 100%;
   width: var(--boxSize);
-  background: #12E2DC;
+  background: #0d6efd;
   animation-duration: 1.2s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
@@ -445,7 +445,7 @@
 }
 .badge-primary-transparent{
   background: #d6e7ff !important;
-    color: #0d6efd !important;
+  color: #0d6efd !important;
 }
 .span-text{
   font-size: 10px;
