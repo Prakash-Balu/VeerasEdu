@@ -81,6 +81,10 @@ export class PracticeWithMasterComponent implements OnInit {
       question:"bhaarat ka pita kaun hai",
       answer:"bhaarat ke raashtrapita mahaatma gaandhee hain"
     },
+    {
+      question:"aapaka kya naam hai",
+      answer:"mera naam anavar hai"
+    },
   ];
 
   public currQuestion:any;
@@ -167,7 +171,6 @@ export class PracticeWithMasterComponent implements OnInit {
   }
 
   checkAnswer(){
-    const common:number = similarityPercentage(this.transcription,this.currQuestion.answer,'common');
     const levenshtein:number = similarityPercentage(this.transcription,this.currQuestion.answer,'levenshtein');
     if(levenshtein >= 60){
       alert("Correct !");
