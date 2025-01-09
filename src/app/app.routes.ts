@@ -40,7 +40,7 @@ export const routes: Routes = [
       },
       {
         path: 'practice-with-the-master',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadComponent: () =>
           import('./practice-with-master/practice-with-master.component').then(
             (m) => m.PracticeWithMasterComponent
@@ -64,6 +64,15 @@ export const routes: Routes = [
             (m) => m.SegmentsComponent
           ),
         data: { showFooter: false, isMobile: false, page: 'classroom' },
+      },
+      {
+        path: 'new-classroom',
+        canActivate: [AuthGuard],
+        loadComponent: () =>
+          import('./segment-new/segment-new.component').then(
+            (m) => m.SegmentNewComponent
+          ),
+        data: { showFooter: false, isMobile: false, page: 'new-classroom' },
       },
       {
         path: 'classrooms',

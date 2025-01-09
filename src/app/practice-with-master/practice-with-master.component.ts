@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, ElementRef, ViewChild,NgZone  } from "@angular/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+
 import {
   faArrowCircleLeft,
   faCircleArrowLeft,
@@ -12,14 +13,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Player from "@vimeo/player";
 
+
 @Component({
   selector: "app-practice-with-master",
   standalone: true,
   imports: [FontAwesomeModule, CommonModule],
   templateUrl: "./practice-with-master.component.html",
-  styleUrl: "./practice-with-master.component.css",
+  styleUrls: ["./practice-with-master.component.css","../../assets/scss/main.scss"],
 })
 export class PracticeWithMasterComponent {
+
   faArrowCircleLeft = faArrowCircleLeft;
   faCircleArrowLeft = faCircleArrowLeft;
   faArrowLeft = faArrowLeft;
@@ -31,11 +34,22 @@ export class PracticeWithMasterComponent {
   @ViewChild("vimeoPlayer") vimeoPlayerElement!: ElementRef;
   player!: Player;
   videoId: number = 1019160112;
-  //don't delete this//
-  //1017352356 payment-mode
-  //1017352427 sample-video
-  //1017352439 demo-1
-  //don't delete this//
+
+  audioBlob: Blob | null = null;
+  audioURL: string | null = null;
+  private recognition: any;
+  
+  isListen = false;
+  isRecording = false;
+
+  mediaRecorder: MediaRecorder | null = null;
+  audioChunks: Blob[] = [];
+  transcription: string = '';
+
+  question:string = 'helo sab log, main anavar mayadeen hoon';
+  currentTurn:string = 'veera';
+  correctAnswer:string = 'Apna time agaya';
+  isVisible:boolean = false;
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
@@ -72,26 +86,118 @@ export class PracticeWithMasterComponent {
     }
   }
 
-  ngAfterViewInit() {
-    this.initializePlayer();
+  changeTurn(user:string){
+    this.currentTurn = user;
   }
 
-  initializePlayer() {
-    const options = {
-      id: this.videoId,
-      width: 1000,
-      loop: false,
-      title: false,
-      byline: false,
-      portrait: false,
-      dnt: true,
-      transparent: false,
+  showAnswer(){
+    this.isVisible = !this.isVisible;
+  }
+
+  hearAgain(){
+    
+    const speechSynthesis = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(this.question);
+    utterance.onend = () => {
+      this.ngZone.run(() => {
+        this.isListen = false;
+        this.changeTurn('you');
+        console.log('Speech has finished.');
+      });
     };
+    utterance.onstart = () => {
+      this.ngZone.run(() => {
+        this.isListen = true;
+        this.changeTurn('veera');
+        console.log('Speech has finished.');
+      });
+    };
+    speechSynthesis.speak(utterance);
+  }
 
-    this.player = new Player(this.vimeoPlayerElement.nativeElement, options);
+  retry(){
+    this.transcription = "";
+    this.audioBlob = null;
+    this.audioURL = null;
+    this.audioChunks = [];
+  }
 
-    this.player.on("play", () => {
-      console.log("Video played!");
-    });
+  constructor(private ngZone: NgZone) {
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      this.recognition = new SpeechRecognition();
+      this.recognition.lang = 'en-US';
+      this.recognition.interimResults = true;
+      this.recognition.continuous = true;
+
+      this.recognition.onresult = (event: any) => {
+        const transcriptArray = Array.from(event.results)
+          .map((result: any) => result[0].transcript);
+        this.transcription = transcriptArray.join(' ');
+      };
+
+      this.recognition.onerror = (error: any) => {
+        console.error('SpeechRecognition error:', error);
+      };
+
+      this.recognition.onend = () => {
+        console.log('SpeechRecognition stopped.');
+      };
+    } else {
+      console.error('SpeechRecognition is not supported in this browser.');
+    }
+  }
+
+  startRecording() {
+    this.isRecording = true;
+    this.changeTurn('you');
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then((stream) => {
+          this.isRecording = true;
+
+          // Initialize MediaRecorder
+          const mediaRecorder = new MediaRecorder(stream);
+          mediaRecorder.ondataavailable = (event) => {
+            this.audioChunks.push(event.data);
+          };
+
+          mediaRecorder.onstop = () => {
+            this.audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+            this.audioURL = URL.createObjectURL(this.audioBlob);
+            this.audioChunks = [];
+            console.log('Audio recorded successfully.');
+          };
+
+          mediaRecorder.start();
+          this.mediaRecorder = mediaRecorder;
+
+          console.log('Recording started.');
+
+          if (this.recognition) {
+            this.recognition.start();
+          }
+        })
+        .catch((error) => {
+          console.error('Error accessing microphone:', error);
+        });
+    } else {
+      console.error('getUserMedia is not supported in this browser.');
+    }
+  }
+
+  stopRecording() {
+    if (this.mediaRecorder) {
+      this.isRecording = false;
+      this.mediaRecorder.stop();
+      console.log('Recording stopped.');
+    }
+
+    if (this.recognition) {
+      this.recognition.stop();
+      // console.log('SpeechRecognition stopped.');
+    }
+    // this.changeTurn('veera');
   }
 }

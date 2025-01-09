@@ -12,8 +12,8 @@
         <span>Practice with the Master ></span>
         <span>SEGMENT - 1</span>
       </div>
-      <div class="col-6 order-2 col-md-2 order-md-3">
-        <img src="assets/images/fabellalert.png" class="alert-img" />
+      <div class="col-6 order-2 col-md-2 order-md-3 qa_container">
+        <img src="assets/images/fabellalert.png" class="alert-img d-inline-block" />
         <span class="notify">3</span>
         <div class="qa-content">Q&A</div>
       </div>
@@ -33,62 +33,119 @@
     </div>
 
     <div class="col-9 col-md-8 offset-md-1">
-      <div class="video-container">
-
-        <div class="voice-container">
-          <div class="card bg-light mb-0">
-            <div class="card-body d-flex justify-content-center">
-              <div class="text-center">
-                <span class="avatar avatar-xxl">
-                  <img src="assets/images/voice_call_admin.png" style="width: 30%" class="rounded-circle" alt="user">
-                </span>
-                <h6 class="fs-14 text-center">Veeras Speaking <img style="width: 32px;"
-                    src="assets/images/audio_speaking.gif" class="rounded-circle" alt="user"></h6>
-                <h5>
-                  <span class="fs-15"><i class="fa-solid fa-microphone"></i></span> Tum long aaji keya kanare jaa Rahe
-                  hai?
-                </h5>
-                <h5>
-                  <span class="fs-15"><i class="fa-solid fa-microphone"></i></span> Tum long aaji keya kanare jaa Rahe
-                  hai?
-                </h5>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="card audio-crd bg-transparent-dark" [ngClass]="{'active-turn':this.currentTurn === 'veera','border':this.currentTurn !== 'veera'}" style="height: calc(100% - 20px);">
+              <div class="modal-bgimg">
+                  <span class="modal-bg1">
+                      <img src="assets/img/bg/bg-02.png" class="img-fluid" alt="bg">
+                  </span>
+                  <span class="modal-bg2">
+                      <img src="assets/img/bg/bg-03.png" class="img-fluid" alt="bg">
+                  </span>
               </div>
+              <div class="card-body p-3">
+                  <div class="d-flex flex-column justify-content-center align-items-center pt-5">
+                      <span class="avatar avatar-xxxl bg-soft-primary rounded-circle p-2">
+                          <img src="assets/images/voice_call_admin.png " class="rounded-circle" alt="user">
+                      </span>
+                      <span>Veera's</span>
+                  </div>
+                  <div class="align-items-center d-flex justify-content-center position-relative pt-5" style="bottom: 40px;">
+                    <div class="audio" *ngIf="isListen">
+                      <div class="sound sound1"></div>
+                      <div class="sound sound2"></div>
+                      <div class="sound sound3"></div>
+                      <div class="sound sound4"></div>
+                      <div class="sound sound5"></div>
+                    </div>
+                    <button (click)="hearAgain()" *ngIf="!isListen" class="badge badge-primary-transparent btn">Listen</button>
+                  </div>
+                  <div class="text-center">
+                    <p class="fs-12 badge badge-primary-transparent">
+                      <span><i class="ti ti-microphone"></i></span>{{question}}
+                    </p>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="card audio-crd bg-transparent-dark" [ngClass]="{'active-turn':this.currentTurn === 'you','border':this.currentTurn !== 'you'}" style="height: calc(100% - 20px);">
+              <div class="modal-bgimg">
+                  <span class="modal-bg1">
+                      <img src="assets/img/bg/bg-02.png" class="img-fluid" alt="bg">
+                  </span>
+                  <span class="modal-bg2">
+                      <img src="assets/img/bg/bg-03.png" class="img-fluid" alt="bg">
+                  </span>
+              </div>
+              <div class="card-body p-3">
+                  <div class="d-flex flex-column justify-content-center align-items-center pt-5">
+                      <span class="avatar avatar-xxxl bg-soft-primary rounded-circle p-2">
+                          <img src="assets/images/cardsimg/practice.jpg" class="rounded-circle" alt="user">
+                      </span>
+                      <span>You</span>
+                  </div>
+                  <div class="align-items-center d-flex justify-content-center position-relative pt-5" style="bottom: 40px;">
+                    <div class="audio" *ngIf="isRecording">
+                      <div class="sound sound1"></div>
+                      <div class="sound sound2"></div>
+                      <div class="sound sound3"></div>
+                      <div class="sound sound4"></div>
+                      <div class="sound sound5"></div>
+                    </div>
+                    <button (click)="startRecording()" *ngIf="!isRecording" class="badge badge-primary-transparent btn">Let's Talk</button>
+                  </div>
+                  <div class="text-center mb-2" *ngIf="isVisible" >
+                    <p class="fs-12 badge badge-soft-success">{{correctAnswer}}</p>
+                  </div>
+                  <div class="text-center" *ngIf="transcription" >
+                    <p class="fs-12 badge  badge-primary-transparent">
+                      <span><i class="ti ti-microphone"></i></span>
+                      {{transcription}}
+                    </p>
+                  </div>
+              </div>
+              <div class="modal-footer justify-content-around border-0 pt-0 pb-2 z-3">
+                <button (click)="showAnswer()" *ngIf="false" class="btn badge badge-primary-transparent rounded-pill">Try in hindi</button>
+                <div class="z-3 call-controll-block d-flex align-items-center justify-content-center rounded-pill" style="padding: 5px 10px !important;background: none;border: none;">
+                  <div class="text-center">
+                    <button (click)="showAnswer()" class="call-controll d-flex align-items-center justify-content-center">
+                      <i class="ti ti-question-mark"></i>
+                    </button>                    
+                    <span class="span-text"><b>Try in Hindi</b></span>
+                  </div>
+                  <div class="text-center">
+                    <button (click)="retry()" class="call-controll d-flex align-items-center justify-content-center">
+                      <i class="ti ti-reload"></i>
+                    </button>                    
+                    <span class="span-text"><b>Retry</b></span>
+                  </div>
+
+                  <div class="text-center" *ngIf="isRecording">
+                      <button *ngIf="isRecording" (click)="stopRecording()" class="call-controll d-flex align-items-center justify-content-center">
+                          <i class="ti ti-player-pause"></i>
+                      </button>
+                      <span class="span-text" *ngIf="isRecording"><b>Stop</b></span>
+                  </div>
+                  
+                  <div class="text-center" *ngIf="!isRecording">
+                      <button *ngIf="!isRecording" (click)="startRecording()" class="call-controll d-flex align-items-center justify-content-center">
+                          <i class="ti ti-microphone"></i>
+                      </button>
+                      <span class="span-text"><b>Start</b></span>
+                  </div>
+                  
+                  <div class="text-center">
+                      <button class="call-controll d-flex align-items-center justify-content-center">
+                          <i class="ti ti-arrow-badge-right"></i>
+                      </button>
+                      <span class="span-text"><b>Next</b></span>
+                  </div>
+                </div>                             
             </div>
           </div>
         </div>
-        <div class="voice-container mt-5">
-          <div class="card bg-light mb-0">
-            <div class="card-body d-flex justify-content-center">
-              <div class="text-center">
-                <span class="avatar avatar-xxl">
-                  <img src="assets/images/avatar-06.jpg" style="width: 30%" class="rounded-circle" alt="user">
-                </span>
-                <h6 class="fs-14 text-center">Tamil (wait for yor turn) </h6>
-
-              </div>
-            </div>
-            <div class="card_footer">
-              <div class="call-controll-block d-flex align-items-center justify-content-center rounded-pill">
-                <a href="#" class="btn btn-primary me-2">
-                  Try in Hindi
-                </a>
-                <a href="javascript:void(0);" class="call-controll d-flex align-items-center justify-content-center">
-                  <i class="ti fa-solid fa-pause"></i>
-                </a>
-                <a href="javascript:void(0);" data-bs-dismiss="modal"
-                  class="call-controll call-decline d-flex align-items-center justify-content-center">
-                  <i class="ti fa-solid fa-rotate-right"></i>
-                </a>
-                <a href="javascript:void(0);" class="call-controll d-flex align-items-center justify-content-center">
-                  <i class="ti fa-solid fa-arrow-right"></i>
-                </a>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-
       </div>
     </div>
   </div>
