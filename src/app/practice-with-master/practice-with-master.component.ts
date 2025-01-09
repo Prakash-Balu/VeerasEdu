@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, ViewChild,NgZone  } from "@angular/core";
+import { Component, ElementRef, ViewChild,NgZone, OnInit  } from "@angular/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { levenshteinDistance,similarityPercentage } from "../core/utils/compare";
 
 import {
   faArrowCircleLeft,
@@ -21,7 +22,7 @@ import Player from "@vimeo/player";
   templateUrl: "./practice-with-master.component.html",
   styleUrls: ["./practice-with-master.component.css","../../assets/scss/main.scss"],
 })
-export class PracticeWithMasterComponent {
+export class PracticeWithMasterComponent implements OnInit {
 
   faArrowCircleLeft = faArrowCircleLeft;
   faCircleArrowLeft = faCircleArrowLeft;
@@ -34,26 +35,6 @@ export class PracticeWithMasterComponent {
   @ViewChild("vimeoPlayer") vimeoPlayerElement!: ElementRef;
   player!: Player;
   videoId: number = 1019160112;
-
-  audioBlob: Blob | null = null;
-  audioURL: string | null = null;
-  private recognition: any;
-  
-  isListen = false;
-  isRecording = false;
-
-  mediaRecorder: MediaRecorder | null = null;
-  audioChunks: Blob[] = [];
-  transcription: string = '';
-
-  question:string = 'helo sab log, main anavar mayadeen hoon';
-  currentTurn:string = 'veera';
-  correctAnswer:string = 'Apna time agaya';
-  isVisible:boolean = false;
-
-  toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
 
   segmentlist = [
     "INDEX",
@@ -76,51 +57,33 @@ export class PracticeWithMasterComponent {
     "SEGMENT 15",
   ];
 
-  getSegmentClass(segment: string) {
-    if (segment === "INDEX") {
-      return "index-heading";
-    } else if (segment.includes("SEGMENT") && segment.includes("-")) {
-      return "segment-parent";
-    } else {
-      return "segment-child";
-    }
-  }
+  audioBlob: Blob | null = null;
+  audioURL: string | null = null;
+  private recognition: any;
+  
+  isListen = false;
+  isRecording = false;
 
-  changeTurn(user:string){
-    this.currentTurn = user;
-  }
+  mediaRecorder: MediaRecorder | null = null;
+  audioChunks: Blob[] = [];
+  transcription: string = '';
 
-  showAnswer(){
-    this.isVisible = !this.isVisible;
-  }
+  currentTurn:string = 'veera';
+  isVisible:boolean = false;
+  questionIndex:number = 0;
 
-  hearAgain(){
-    
-    const speechSynthesis = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(this.question);
-    utterance.onend = () => {
-      this.ngZone.run(() => {
-        this.isListen = false;
-        this.changeTurn('you');
-        console.log('Speech has finished.');
-      });
-    };
-    utterance.onstart = () => {
-      this.ngZone.run(() => {
-        this.isListen = true;
-        this.changeTurn('veera');
-        console.log('Speech has finished.');
-      });
-    };
-    speechSynthesis.speak(utterance);
-  }
+  public questions:any[] = [
+    {
+      question:"kya tumane khaaya",
+      answer:"haan, main abhee kha raha hoon"
+    },
+    {
+      question:"bhaarat ka pita kaun hai",
+      answer:"bhaarat ke raashtrapita mahaatma gaandhee hain"
+    },
+  ];
 
-  retry(){
-    this.transcription = "";
-    this.audioBlob = null;
-    this.audioURL = null;
-    this.audioChunks = [];
-  }
+  public currQuestion:any;
 
   constructor(private ngZone: NgZone) {
 
@@ -146,6 +109,70 @@ export class PracticeWithMasterComponent {
       };
     } else {
       console.error('SpeechRecognition is not supported in this browser.');
+    }
+  }
+
+  ngOnInit(): void {
+    this.currQuestion = this.questions.at(this.questionIndex);
+  }
+
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
+  getSegmentClass(segment: string) {
+    if (segment === "INDEX") {
+      return "index-heading";
+    } else if (segment.includes("SEGMENT") && segment.includes("-")) {
+      return "segment-parent";
+    } else {
+      return "segment-child";
+    }
+  }
+
+  changeTurn(user:string){
+    this.currentTurn = user;
+  }
+
+  showAnswer(){
+    this.isVisible = !this.isVisible;
+  }
+
+  hearAgain(){
+    
+    const speechSynthesis = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(this.currQuestion.question);
+    utterance.onend = () => {
+      this.ngZone.run(() => {
+        this.isListen = false;
+        this.changeTurn('you');
+        console.log('Speech has finished.');
+      });
+    };
+    utterance.onstart = () => {
+      this.ngZone.run(() => {
+        this.isListen = true;
+        this.changeTurn('veera');
+        console.log('Speech has finished.');
+      });
+    };
+    speechSynthesis.speak(utterance);
+  }
+
+  retry(){
+    this.transcription = "";
+    this.audioBlob = null;
+    this.audioURL = null;
+    this.audioChunks = [];
+  }
+
+  checkAnswer(){
+    const common:number = similarityPercentage(this.transcription,this.currQuestion.answer,'common');
+    const levenshtein:number = similarityPercentage(this.transcription,this.currQuestion.answer,'levenshtein');
+    if(levenshtein >= 60){
+      alert("Correct !");
+    }else{
+      alert("Wrong !");
     }
   }
 
@@ -200,4 +227,19 @@ export class PracticeWithMasterComponent {
     }
     // this.changeTurn('veera');
   }
+
+  next(){
+    if(this.questionIndex >= 0 && this.questionIndex <= this.questions.length){
+      this.questionIndex++;
+      this.currQuestion = this.questions[this.questionIndex];
+    }
+  }
+
+  prev(){
+    if(this.questionIndex <= this.questions.length){
+      this.questionIndex--;
+      this.currQuestion = this.questions[this.questionIndex];
+    }
+  }
+
 }

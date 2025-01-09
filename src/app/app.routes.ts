@@ -67,7 +67,7 @@ export const routes: Routes = [
       },
       {
         path: 'new-classroom',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadComponent: () =>
           import('./segment-new/segment-new.component').then(
             (m) => m.SegmentNewComponent
