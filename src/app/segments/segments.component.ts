@@ -85,7 +85,7 @@ export class SegmentsComponent {
       (response: any) => {
         if (response.meta.code === 200) {
           this.segmentlist = this.sortData(response.data);
-          if (this.segmentlist.length > 1) {
+          if (this.segmentlist.length > 0) {
             this.segmentId = this.segmentlist[0]._id;
             this.onSegmentClick(this.segmentId);
           }

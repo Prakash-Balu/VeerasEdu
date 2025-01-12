@@ -98,6 +98,7 @@ export class CommentsComponent
   ngOnChanges(changes: SimpleChanges) {
     if (changes['segment']) {
       this.segmentId = this.segment._id;
+      console.log('this.segmentId', this.segmentId);
       this.resetCommentInputs();
       if (!!this.segmentId) {
         console.log(this.segment);
@@ -393,6 +394,7 @@ export class CommentsComponent
   }
 
   addCommentApi() {
+    console.log('add');
     const seqNo = this.comments.length
       ? parseInt(this.comments[this.comments.length - 1].seqNo) + 1
       : 1;
@@ -412,9 +414,9 @@ export class CommentsComponent
           this.viewComments();
           // this.snackbarService.Success('Comment Posted Successfully');
           this.snackbarService.open('Comment Posted Successfully', 'Close', {
-            duration: 2000,
+            duration: 1000,
             horizontalPosition: 'end',
-            verticalPosition: 'top',
+            verticalPosition: 'bottom',
             panelClass: ['success-snackbar'],
           });
         }
