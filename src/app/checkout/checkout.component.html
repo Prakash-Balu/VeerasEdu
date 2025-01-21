@@ -17,11 +17,13 @@
         <div class="mt-4">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Full Name</mat-label>
-            <input matInput formControlName="name" />
+            <input matInput formControlName="fullName" />
             <mat-error
-              *ngIf="getControl('name').invalid && getControl('name').touched"
+              *ngIf="
+                getControl('fullName').invalid && getControl('fullName').touched
+              "
             >
-              <small *ngIf="getControl('name').hasError('required')"
+              <small *ngIf="getControl('fullName').hasError('required')"
                 >Name is required.</small
               >
             </mat-error>
@@ -43,29 +45,22 @@
         <div class="mt-2">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Whatsapp Number</mat-label>
-            <input matInput formControlName="whatsapp" [maxLength]="10" />
-            <mat-error
-              *ngIf="
-                getControl('whatsapp').invalid && getControl('whatsapp').touched
-              "
-            >
-              <small *ngIf="getControl('whatsapp').hasError('required')"
-                >Whatsapp Number is required.</small
-              >
-            </mat-error>
+            <input matInput formControlName="whatsapp_no" [maxLength]="10" />
           </mat-form-field>
         </div>
         <div class="mt-2">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>E-mail address</mat-label>
-            <input matInput formControlName="email" />
+            <input matInput formControlName="mailId" />
             <mat-error
-              *ngIf="getControl('email').invalid && getControl('email').touched"
+              *ngIf="
+                getControl('mailId').invalid && getControl('mailId').touched
+              "
             >
-              <small *ngIf="getControl('email').hasError('required')"
+              <small *ngIf="getControl('mailId').hasError('required')"
                 >Email is required.</small
               >
-              <small *ngIf="getControl('email').hasError('email')"
+              <small *ngIf="getControl('mailId').hasError('mailId')"
                 >Enter a valid email.</small
               >
             </mat-error>
@@ -88,7 +83,7 @@
 
         <div class="mt-2">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
-            <mat-label>City/Town</mat-label>
+            <mat-label>City/Town/Village</mat-label>
             <input matInput formControlName="city" />
           </mat-form-field>
         </div>
@@ -96,7 +91,7 @@
         <div class="mt-2">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Zip/Pincode</mat-label>
-            <input matInput formControlName="zipcode" />
+            <input matInput formControlName="pincode" />
           </mat-form-field>
         </div>
         }
@@ -104,14 +99,14 @@
         <div class="mt-2">
           <input
             type="checkbox"
-            id="isCompanyAdd"
-            formControlName="isCompanyAdd"
+            id="isCompany"
+            formControlName="isCompany"
             style="width: 20px"
           />
-          <label for="isCompanyAdd">Add Company details(if have any)</label>
+          <label for="isCompany">Add Company details(if have any)</label>
         </div>
 
-        @if(isCompanyAdd){
+        @if(isCompany){
         <div class="mt-2">
           <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Company Name</mat-label>

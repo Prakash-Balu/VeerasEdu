@@ -31,6 +31,7 @@ export class CheckoutComponent implements OnInit {
   public months: number = 1;
   public processingFee: any = 33.0;
   public currencyCode: any;
+  public country: any;
   constructor(
     private commonService: CommonService,
     private authService: AuthService,
@@ -39,7 +40,7 @@ export class CheckoutComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.regForm = this.fb.group({
-      name: [null, Validators.required],
+      fullName: [null, Validators.required],
       phone: [
         null,
         [
@@ -48,20 +49,13 @@ export class CheckoutComponent implements OnInit {
           Validators.maxLength(10),
         ],
       ],
-      whatsapp: [
-        null,
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(10),
-        ],
-      ],
-      email: [null, [Validators.required, Validators.email]],
+      whatsapp_no: [null, [Validators.minLength(10), Validators.maxLength(10)]],
+      mailId: [null, [Validators.required, Validators.email]],
       country: [{ value: '', disabled: true }],
       state: [''],
       city: [null],
-      zipcode: [null],
-      isCompanyAdd: [false],
+      pincode: [null],
+      isCompany: [false],
       companyName: [null],
       gst: [null],
     });
@@ -75,6 +69,7 @@ export class CheckoutComponent implements OnInit {
     this.commonService.getLocation().subscribe((resp) => {
       if (resp) {
         this.currencyCode = resp?.data?.countryCurrency?.code;
+        this.country = resp.data.country;
         if (resp.data.country !== 'India') {
           this.isIndia = false;
           this.regForm.patchValue({
@@ -124,8 +119,8 @@ export class CheckoutComponent implements OnInit {
       control.markAsTouched();
     });
   }
-  get isCompanyAdd(): boolean {
-    return this.regForm.get('isCompanyAdd')?.value;
+  get isCompany(): boolean {
+    return this.regForm.get('isCompany')?.value;
   }
 
   onOptionSelected(event: any) {
@@ -138,14 +133,17 @@ export class CheckoutComponent implements OnInit {
       this.markAllAsTouched();
       return;
     }
-    console.log('reg', this.regForm.value);
-    let phCode: any = codes.find(
-      (e: any) => e.country === this.regForm.value.country
-    );
+    let phCode: any = codes.find((e: any) => e.country === this.country);
+    console.log(phCode, this.regForm.value.country, codes);
     phCode = phCode?.countryCodes[0];
+    // return;
 
     const payload = {
-      user: { ...this.regForm.value, phoneCode: `+${phCode}` },
+      user: {
+        ...this.regForm.value,
+        phoneCode: `+${phCode}`,
+        country: this.country,
+      },
       planId: this.plan._id,
       currencyCode: this.currencyCode,
       amount: this.planTotal,

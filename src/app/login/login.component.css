@@ -62,7 +62,7 @@
 }
 
 .qr-container {
-  width: 60%;
+  width:max-content;
   background-color: #fff;
   display: flex;
   margin: auto;
@@ -201,7 +201,7 @@
     font-size: 25px;
   }
   .qr-container{
-    width: 90%;
+    width: max-content;
     flex-direction: column;
     overflow: hidden;
   }
