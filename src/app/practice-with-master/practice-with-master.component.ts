@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ElementRef, ViewChild,NgZone, OnInit  } from "@angular/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { levenshteinDistance,similarityPercentage } from "../core/utils/compare";
+import { similarityPercentage } from "../core/utils/compare";
 
 import {
   faArrowCircleLeft,
@@ -75,15 +75,21 @@ export class PracticeWithMasterComponent implements OnInit {
   public questions:any[] = [
     {
       question:"kya tumane khaaya",
-      answer:"haan, main abhee kha raha hoon"
+      answer:"haan, main abhee kha raha hoon",
+      input:"",
+      result:"",
     },
     {
       question:"bhaarat ka pita kaun hai",
-      answer:"bhaarat ke raashtrapita mahaatma gaandhee hain"
+      answer:"bhaarat ke raashtrapita mahaatma gaandhee hain",
+      input:"",
+      result:"",
     },
     {
       question:"aapaka kya naam hai",
-      answer:"mera naam anavar hai"
+      answer:"mera naam anavar hai",
+      input:"",
+      result:"",
     },
   ];
 
@@ -101,7 +107,11 @@ export class PracticeWithMasterComponent implements OnInit {
       this.recognition.onresult = (event: any) => {
         const transcriptArray = Array.from(event.results)
           .map((result: any) => result[0].transcript);
-        this.transcription = transcriptArray.join(' ');
+        console.log(transcriptArray);
+        this.ngZone.run(() => {
+          this.transcription = transcriptArray.join(' ');
+          this.checkAnswer();
+        });
       };
 
       this.recognition.onerror = (error: any) => {
@@ -164,6 +174,18 @@ export class PracticeWithMasterComponent implements OnInit {
   }
 
   retry(){
+    
+    if (this.mediaRecorder) {
+      this.isRecording = false;
+      this.mediaRecorder.stop();
+      console.log('Recording stopped.');
+    }
+
+    if (this.recognition) {
+      this.recognition.stop();
+      console.log('SpeechRecognition stopped.');
+    }
+
     this.transcription = "";
     this.audioBlob = null;
     this.audioURL = null;
@@ -172,10 +194,16 @@ export class PracticeWithMasterComponent implements OnInit {
 
   checkAnswer(){
     const levenshtein:number = similarityPercentage(this.transcription,this.currQuestion.answer,'levenshtein');
+    const question = this.questions[this.questionIndex];
+    question['input'] = this.transcription;
+    this.currQuestion['input'] = this.transcription;
     if(levenshtein >= 60){
-      alert("Correct !");
+      question['result'] = true;
+      this.currQuestion['result'] = true;
+      this.stopRecording()
     }else{
-      alert("Wrong !");
+      question['result'] = false;
+      this.currQuestion['result'] = false;
     }
   }
 
@@ -228,13 +256,16 @@ export class PracticeWithMasterComponent implements OnInit {
       this.recognition.stop();
       // console.log('SpeechRecognition stopped.');
     }
+    this.checkAnswer();
     // this.changeTurn('veera');
   }
 
   next(){
-    if(this.questionIndex >= 0 && this.questionIndex <= this.questions.length){
+    if(this.questionIndex >= 0 && this.questionIndex < this.questions.length-1 && this.questions[this.questionIndex]['result'] === true){
       this.questionIndex++;
       this.currQuestion = this.questions[this.questionIndex];
+      this.isVisible = false;
+      this.retry();
     }
   }
 

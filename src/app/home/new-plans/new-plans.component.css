@@ -61,6 +61,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  margin: 10px 40px;
 }
 
 .plan-offer {
@@ -134,7 +135,7 @@
 .order-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 50px;
 }
 
 .order-wrapper h2 {
@@ -210,7 +211,7 @@
 }
 
 .continue-button {
-  border-radius: 0;
+  border-radius: 80px;
 }
 
 .plan_table
@@ -222,6 +223,11 @@
 .plan_table tbody tr td{
   border-width: 0px;
   padding: 10px;
+}
+
+.plan_table tbody tr td div{
+  color: var(--tg-common-color-gray-5);
+  font-weight: var(--tg-fw-medium);
 }
 
 .plan_table tbody tr td:nth-child(2){

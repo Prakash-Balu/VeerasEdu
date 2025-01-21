@@ -31,96 +31,60 @@
       </h2>
     </div>
   </div>
-  <div class="row card-feature-row">
-    <div class="col-md-6 col-lg-3 center">
+  <div class="row card-feature-row justify-content-around">
+    <div *ngFor="let videoId of videoIds; let i = index"  class="border center col-lg-3 col-md-6 card-container">
       <div class="card custom-feature-card border-0 gap-3">
-        <div class="img-wrapper">
-          <img
-            class="card-img-top"
-            src="assets/images/cardsimg/class-room.jpg"
-            alt="Card image cap"
-          />
+        <h2 class="text-center title">
+          <span class="sub-title"
+            >{{cards[i].title}}
+            <div class="sub-title-svg">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 145 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.00016 15.2711C18.1407 8.34427 70.832 -1.93441 144.473 12.3652"
+                  stroke="currentcolor"
+                  stroke-width="4"
+                  style="stroke-dasharray: 146, 148; stroke-dashoffset: 0"
+                ></path>
+                <path
+                  d="M26.2943 14.0041C38.9177 9.44643 77.3772 3.50055 130.227 16.1786"
+                  stroke="currentcolor"
+                  stroke-width="2"
+                  style="stroke-dasharray: 106, 108; stroke-dashoffset: 0"
+                ></path>
+              </svg>
+            </div
+          ></span>
+        </h2>
+        <div class="custom-player mt-3">
+          <div class="video-container">
+            <div class="video-item">
+              <div class="thumbnail-container" [ngClass]="{'d-none': isPlayerLoaded[i], 'd-block': !isPlayerLoaded[i]}">
+                <img 
+                  [src]="cards[i].thumbnail" 
+                  alt="Video Thumbnail" 
+                  class="thumbnail"
+                  (click)="loadPlayer(i)"
+                />
+              </div>
+              <div 
+                #vimeoPlayerContainer 
+                class="vimeo-player"
+                [ngClass]="{'d-none': !isPlayerLoaded[i], 'd-block': isPlayerLoaded[i]}"
+              ></div>
+            </div>
+          </div>
         </div>
         <div class="card-body custom-feature-body">
-          <h5 class="card-title">Class Room</h5>
           <p class="card-text">
-            In class, you will learn what spoken Hindi is and how sentences are
-            formed.
+            <b>{{cards[i].content}}</b>
           </p>
-        </div>
-        <div class="card-footer bg-transparent border-0">
-          <a [href]="classroom" class="card-btn">Demo <i class="fa-solid fa-angle-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-3 center">
-      <div class="card custom-feature-card border-0 gap-3">
-        <div class="img-wrapper">
-          <img
-            class="card-img-top"
-            src="assets/images/cardsimg/self-practice.jpg"
-            alt="Card image cap"
-          />
-        </div>
-        <div class="card-body custom-feature-body">
-          <h5 class="card-title">Self Practice</h5>
-          <p class="card-text">
-            "Empower yourself to learn and grow at your own pace".
-          </p>
-        </div>
-        <div class="card-footer bg-transparent border-0">
-          <a href="self-practice" class="card-btn"
-            >Demo <i class="fa-solid fa-angle-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-3 center">
-      <div class="card custom-feature-card border-0 gap-3">
-        <div class="img-wrapper">
-          <img
-            class="card-img-top"
-            src="assets/images/cardsimg/practice.jpg"
-            alt="Card image cap"
-          />
-        </div>
-        <div class="card-body custom-feature-body">
-          <h5 class="card-title">Practice with the master</h5>
-          <p class="card-text">
-            We have created a great platform for You to practice with the Master
-            where you will not forget the lessons. You learned in the previous
-            session.
-          </p>
-        </div>
-        <div class="card-footer bg-transparent border-0">
-          <a href="practice-with-the-master" class="card-btn"
-            >Demo <i class="fa-solid fa-angle-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-3 center">
-      <div class="card custom-feature-card border-0 gap-3">
-        <div class="img-wrapper">
-          <img
-            class="card-img-top"
-            src="assets/images/cardsimg/speaking_room_1.jpg"
-            alt="Card image cap"
-          />
-        </div>
-        <div class="card-body custom-feature-body">
-          <h5 class="card-title">Speaking Room</h5>
-          <p class="card-text">
-            The platform is matter exclusively for youto converse with a
-            Co-learner. Getting an opportunity to speak with others to gain
-            confidence and fluency.
-          </p>
-        </div>
-        <div class="card-footer bg-transparent border-0">
-          <a href="speaking-room" class="card-btn"
-            >Demo <i class="fa-solid fa-angle-right"></i>
-          </a>
+          <a [href]="cards[i].link" class="card-btn">Demo</a>
         </div>
       </div>
     </div>

@@ -32,159 +32,63 @@
     </div>
   </div>
 
-  <div class="row row-gap-5 mt-3 d-flex justify-content-center">
+  <div class="row row-gap-5 mt-3 d-flex flex-start align-items-center">
     <!-- <div class="col-12 plan-title"></div> -->
     <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
       <div class="plan-card">
         <div>
-          <span class="plan-price"
-            >{{ plan?.locationInfo?.currency_symbol
-            }}{{ plan?.locationPrice?.month_fee }}</span
-          >/month
+          <span class="plan-price">₹500</span>/month
           <small class="plan-gst">+ GST</small>
         </div>
         <div class="plan-details">
           <h4>Details</h4>
           <div class="plan-duration-wrapper">
-            @if(isPercentage){
-            <div class="plan-offer">17% off</div>
-            } @if(!isPercentage){
-            <div class="plan-offer-not"></div>
-            }
             <ul>
               <li>
-                <input
-                  name="plan"
-                  type="radio"
-                  id="isThreeMonth"
-                  (click)="onClick(3)"
-                />
+                <input  name="plan" type="radio" id="isThreeMonth" (click)="onClick(3)" />
                 <label for="isThreeMonth"><span>3 </span>Month Plan</label>
               </li>
               <li>
-                <input
-                  name="plan"
-                  type="radio"
-                  id="isSixMonth"
-                  (click)="onClick(6)"
-                />
+                <input name="plan" type="radio"  id="isSixMonth" (click)="onClick(6)" />
                 <label for="isSixMonth"><span>6 </span>Month Plan</label>
               </li>
             </ul>
           </div>
         </div>
-        <div>
+        <div class="d-flex flex-column">
           <p>
             You can renew your plan for as many periods as you want,anytime
             after joining
           </p>
+          <button class="btn btn-primary continue-button w-50 m-auto" (click)="onSubcribeClick()"  > Subscribe </button>
         </div>
-        <button
-          class="btn btn-primary continue-button w-50 m-auto"
-          style="border-radius: 80px"
-          (click)="onSubcribeClick()"
-        >
-          Subscribe
-        </button>
       </div>
     </div>
-    @if(showSummary){
-    <div class="col-12 col-xxl-9 col-xl-8 col-lg-7">
+    <div class="col-12 col-xxl-9 col-xl-8 col-lg-7 align-self-baseline">
       <div class="order-wrapper">
         <h2>Order Summary</h2>
-        <p>Please take a moment to review your plan</p>
-        <p>Your Selected {{ months }} Months Plan</p>
-        <!-- <div class="order-bill-wrapper">
-          <div class="order-key">
-            <div class="select-plan">
-              <span
-                >({{ plan?.locationInfo?.currency_symbol
-            }} {{ plan?.locationPrice?.month_fee }} ×
-                {{ months }}months)</span
-              >
-            </div>
-            <div class="discount" *ngIf="plan?.isDiscount">
-              <span>Flat Discount</span>17%
-            </div>
-            <div>GST 18%</div>
-            <div>Payment processing charge</div>
-          </div>
-          
-          <div class="order-value">
-            <div>
-              <div class="select-plan">
-                <div>
-                  <p>{{ plan?.locationInfo?.currency_symbol }} {{ this.planCost }}</p>
-                </div>
-              </div>
-              <span>{{ plan?.locationInfo?.currency_symbol
-            }} {{ this.planCost }}</span>
-            </div>
-
-            <div *ngIf="plan?.isDiscount">
-              <span class="minus"></span><span>{{ plan?.locationInfo?.currency_symbol
-            }} 347</span>
-            </div>
-
-            <span>{{ plan?.locationInfo?.currency_symbol
-            }} {{ this.tax }}</span>
-            <span>{{ plan?.locationInfo?.currency_symbol
-            }} {{ this.processingFee }}</span>
-
-            <div class="total">
-              Total <span>{{ plan?.locationInfo?.currency_symbol
-            }} {{ this.planTotal }}/-</span>
-            </div>
-
-            <button
-              class="btn btn-primary continue-button"
-              (click)="onContinueClick(1)"
-            >
-              Continue To Payment
-            </button>
-          </div>
-        </div> -->
         <table class="plan_table">
           <tbody>
             <tr>
               <td>
                 <div class="select-plan">
-                  <span>
-                    ({{ plan?.locationInfo?.currency_symbol }}
-                    {{ plan?.locationPrice?.month_fee }} × {{ months }}months)
-                  </span>
+                  <span> (₹500 × 2 months) </span> <br>
+                  <span class="text-primary">+5 months validity free</span>
                 </div>
               </td>
               <td>
                 <div class="select-plan">
-                  <span
-                    >{{ plan?.locationInfo?.currency_symbol }}
-                    {{ this.planCost }}</span
-                  >
+                  <span>₹100</span>
                 </div>
               </td>
             </tr>
-
-            <tr *ngIf="plan?.isDiscount">
-              <td *ngIf="plan?.isDiscount">
-                <div class="discount"><span>Flat Discount</span>17%</div>
-              </td>
-              <td *ngIf="plan?.isDiscount">
-                <span class="minus"></span
-                ><span>{{ plan?.locationInfo?.currency_symbol }} 347</span>
-              </td>
-            </tr>
-
             <tr>
               <td>
                 <div>GST 18%</div>
               </td>
               <td>
                 <div class="select-plan">
-                  <span
-                    >{{ plan?.locationInfo?.currency_symbol }}
-                    {{ this.tax }}</span
-                  >
+                  <span>₹ 500</span>
                 </div>
               </td>
             </tr>
@@ -195,10 +99,7 @@
               </td>
               <td>
                 <div class="select-plan">
-                  <span
-                    >{{ plan?.locationInfo?.currency_symbol }}
-                    {{ this.processingFee }}</span
-                  >
+                  <span>₹ 500 </span>
                 </div>
               </td>
             </tr>
@@ -209,28 +110,21 @@
               </td>
               <td>
                 <div class="select-plan">
-                  <span
-                    >{{ plan?.locationInfo?.currency_symbol }}
-                    {{ this.planTotal }}</span
-                  >
+                  <span>₹ 1000</span>
                 </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td colspan="2" class="text-end">
-                <button
-                  class="btn btn-primary continue-button"
-                  (click)="onContinueClick(1)"
-                >
-                  Continue To Payment
-                </button>
               </td>
             </tr>
           </tbody>
         </table>
+        <div class="row">
+          <div class="col-8">
+            <p>You have selected 6 months plan + 3 month free = 9 months of validity</p>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-primary">Contine to payment</button>
+          </div>
+        </div>
       </div>
     </div>
-    }
   </div>
 </section>

@@ -96,13 +96,15 @@
                     </div>
                     <button (click)="startRecording()" *ngIf="!isRecording" class="badge badge-primary-transparent btn">Let's Talk</button>
                   </div>
-                  <div class="text-center mb-2" *ngIf="isVisible" >
-                    <p class="fs-12 badge badge-soft-success">{{currQuestion.answer}}</p>
+                  <div class="text-center modal-body modal-content mb-2" *ngIf="isVisible" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" >
+                    <p class="fs-12 badge badge-soft-success text-wrap">{{currQuestion.answer}}</p>
                   </div>
                   <div class="text-center" *ngIf="transcription" >
-                    <p class="fs-12 badge  badge-primary-transparent">
+                    <p class="fs-12 badge text-wrap lh-base" [ngClass]="{'badge-success':currQuestion.result,'badge-danger':!currQuestion.result}" >
                       <span><i class="ti ti-microphone"></i></span>
                       {{transcription}}
+                      <span *ngIf="currQuestion.result">✔</span>
+                      <span *ngIf="!currQuestion.result">✘</span>
                     </p>
                   </div>
               </div>
@@ -115,7 +117,7 @@
                     </button>                                     
                     <span class="span-text"><b>Try in Hindi</b></span>
                   </div>
-                  <div class="text-center">
+                  <div class="text-center" *ngIf="false">
                     <button (click)="checkAnswer()" class="call-controll d-flex align-items-center justify-content-center">
                       <i class="ti ti-check"></i>
                     </button>                                     

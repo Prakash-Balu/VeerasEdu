@@ -10,9 +10,11 @@
   color: var(--tg-text-darkblue);
   font-weight: var(--tg-fw-semi-bold);
   margin: 0;
+  font-size: 24px;
+  font-family: "Times New Roman", Times, serif;
 }
 .sub-title {
-    width: max-content;
+  width: max-content;
   position: relative;
   color: var(--tg-text-blue);
   overflow: hidden;
@@ -23,8 +25,14 @@
     left: 0;
     bottom: -20px;
 }
+.card-container{
+  padding: 20px 10px;
+  border-radius: 40px;
+  min-width: 280px;
+}
 .card-feature-row {
   margin-top: 50px;
+  padding: 0 35px;
 }
 .custom-feature-card {
   width: 100%;
@@ -48,7 +56,6 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  height: 200px;
   text-align: center;
 }
 .custom-feature-body .card-title {
@@ -58,6 +65,8 @@
 }
 .custom-feature-body .card-text {
   font-size: 14px;
+  color: #b6b6b6;
+  font-family: "Times New Roman", Times, serif;
 }
 .card-btn {
   display: flex;
@@ -67,11 +76,58 @@
   align-items: center;
   justify-content: center;
   padding: 10px 15px;
-  color: var(--tg-common-color-heading);
+  color: var(--tg-text-blue);
   font-weight: var(--tg-fw-bold);
-  text-decoration: none;
+  text-decoration: underline;
   
 }
+.custom-player{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 280px;
+  align-items: center;
+}
+
+/* .video-container{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.thumbnail-container {
+  position: relative;
+  width: 260px;
+  cursor: pointer;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 144px;
+}
+.vimeo-player {
+  width: 100%; /* Ensure the container is 100% wide */
+  position: relative; /* Required for proper positioning */
+  padding-bottom: 56.25%; /* Maintain aspect ratio (16:9) */
+  height: 0; /* Reset height to enable aspect ratio */
+  overflow: hidden; /* Hide overflow */
+}
+
+.vimeo-player iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Set iframe to 100% of the container */
+  height: 100%; /* Set iframe to 100% of the container's calculated height */
+}
+
 
 @media screen and (max-width:767px){
     .custom-feature-body{
