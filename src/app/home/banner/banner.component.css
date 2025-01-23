@@ -56,6 +56,19 @@
   pointer-events: none;
   color: var(--tg-common-color-yellow);
 }
+.carousel-first .carousel-subtitle-box {
+  margin: 0;
+}
+.carousel-first .carousel-title-box {
+  text-align: start;
+}
+.carousel-title-box h1 {
+  font-size: 27px;
+  margin-bottom: 20px;
+}
+.carousel-title-box .main-title .highlighter svg {
+  margin-top: 25px;
+}
 .carousel-second .carousel-subtitle-box {
   margin: 0;
 }
