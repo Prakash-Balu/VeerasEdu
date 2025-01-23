@@ -18,18 +18,11 @@ import { CommonModule } from '@angular/common';
 })
 export class NewPlansComponent {
   planForm!: FormGroup;
-  public isPercentage: boolean = false;
-  public months: number = 1;
-  public planCost: any;
-  public tax: any;
-  public planTotal: any;
-  public processingFee: any = 33;
-  public showSummary: boolean = false;
-  constructor(
-    private router: Router,
-    private commonService: CommonService,
-    private fb: FormBuilder
-  ) {
+  plans:any[] = [];
+  selectedPlan!:any;
+  showSummary:boolean = false;
+
+  constructor( private router: Router, private commonService: CommonService, private fb: FormBuilder) {
     this.getPlans();
   }
 
@@ -39,7 +32,7 @@ export class NewPlansComponent {
       sixMonth: [''], // Default value
     });
   }
-  public plan: any;
+
   // onSubcribeClick(id: any) {
   //   // this.isSubcribeOpen = true;
   //   // console.log(plan)
@@ -50,34 +43,83 @@ export class NewPlansComponent {
   //   this.router.navigateByUrl(`/checkout/${id}`);
   // }
 
-  onSubcribeClick() {
+  // onSubcribeClick() {
+  //   this.showSummary = true;
+  //   this.planCost = (
+  //     Number(this.plan?.locationPrice?.month_fee) * Number(this.months)
+  //   ).toFixed(2);
+  //   this.tax = ((Number(this.planCost) / 100) * 18).toFixed(2);
+  //   this.planTotal = (
+  //     Number(this.planCost) +
+  //     Number(this.tax) +
+  //     Number(this.processingFee)
+  //   ).toFixed(2);
+  //   this.processingFee = Number(this.processingFee).toFixed(2);
+  // }
+
+  // onClick(id: any) {
+  //   this.months = id;
+  // }
+
+  // onContinueClick(id: any) {
+  //   this.router.navigateByUrl(`/checkout/${this.months}`);
+  // }
+
+
+  choosePlan(index:number):void{
+    this.selectedPlan = this.plans.at(index);
+  }
+
+  subscribe(){
     this.showSummary = true;
-    this.planCost = (
-      Number(this.plan?.locationPrice?.month_fee) * Number(this.months)
-    ).toFixed(2);
-    this.tax = ((Number(this.planCost) / 100) * 18).toFixed(2);
-    this.planTotal = (
-      Number(this.planCost) +
-      Number(this.tax) +
-      Number(this.processingFee)
-    ).toFixed(2);
-    this.processingFee = Number(this.processingFee).toFixed(2);
-  }
-
-  onClick(id: any) {
-    this.months = id;
-  }
-
-  onContinueClick(id: any) {
-    this.router.navigateByUrl(`/checkout/${this.months}`);
   }
 
   getPlans() {
-    const payload = {};
-    this.commonService.getPlans(payload).subscribe((res: any) => {
-      if (res) {
-        this.plan = res?.data[0];
-      }
-    });
+    // const payload = {};
+    // this.commonService.getPlans(payload).subscribe((res: any) => {
+    //   if (res) {
+    //     this.plans = res?.data[0];
+    //     console.log(this.plans);
+    //   }
+    // });
+    this.plans = [
+      {
+        code:'plan1',
+        currencyCode:'INR',
+        currencySymbol:'₹',
+        planFee:599,
+        duration:1,
+        period:'month',
+        hasValidity:false,
+        gstPercent:18,
+        processingFee:33
+      },
+      {
+        code:'plan2',
+        currencyCode:'INR',
+        currencySymbol:'₹',
+        duration:6,
+        planFee:599,
+        period:'month',
+        hasValidity:true,
+        validityDuration:1,
+        validityPeriod:'month',
+        gstPercent:18,
+        processingFee:83
+      },
+      {
+        code:'plan3',
+        currencyCode:'INR',
+        currencySymbol:'₹',
+        duration:10,
+        planFee:599,
+        period:'month',
+        hasValidity:true,
+        validityDuration:2,
+        validityPeriod:'month',
+        gstPercent:18,
+        processingFee:142
+      },
+    ]
   }
 }

@@ -1,5 +1,5 @@
 .demo-video-layout {
-  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  background: #000;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

@@ -21,19 +21,19 @@ export class FeatureComponent implements AfterViewInit {
     {
       title:'Class Room',
       content:'In class, you will learn what spoken Hindi is and how sentences are formed.',
-      thumbnail:'assets/images/cardsimg/vcard.png',
+      thumbnail:'assets/images/cardsimg/thumb1.jpeg',
       link:'/new-classroom'
     },
     {
       title:'Self Practice',
       content:'Learn and Grow at your own pace',
-      thumbnail:'assets/images/cardsimg/vcard.png',
+      thumbnail:'assets/images/cardsimg/thumb1.jpeg',
       link:'/self-practice'
     },
     {
       title:'Speaking Room',
       content:'Practice with Co-learners along with the Master on our great platform',
-      thumbnail:'assets/images/cardsimg/vcard.png',
+      thumbnail:'assets/images/cardsimg/thumb2.jpeg',
       link:'/practice-with-the-master'
     },
   ];
@@ -48,14 +48,16 @@ export class FeatureComponent implements AfterViewInit {
     this.vimeoPlayerContainers.forEach((container, index) => {
       const options = {
         id: this.videoIds[index],
-        width: 260,
+        width: 280,
         height:144,
-        loop: true,
+        loop: false,
         controls: false, // Hide default controls
         dnt: true, // Disable tracking
         byline: false, // Hide byline
         portrait: false, // Hide portrait
-        title: false // Hide title
+        title: false, // Hide title,
+        vimeo_logo:false,
+        play_button_position:'center',
       }; 
       const player = new Player(container.nativeElement, options);
       player.on('play', () => {
@@ -76,11 +78,18 @@ export class FeatureComponent implements AfterViewInit {
     });
   }
 
-  loadPlayer(index: number): void {
+  async loadPlayer(index: number): Promise<void> {
     this.isPlayerLoaded[index] = !this.isPlayerLoaded[index];
-    const player = this.players.at(index);
-    player.play().catch((error:any) => {
-      console.error('Error playing the video:', error);
-    });
+    const player:Player = this.players.at(index);
+    const isPaused = await player.getPaused();
+    if(isPaused){
+      player.play().catch((error:any) => {
+        console.error('Error playing the video:', error);
+      });
+    }else{
+      player.pause().catch((error:any)=>{
+        console.error('Error when pausing the video:',error);
+      });
+    }
   }
 }

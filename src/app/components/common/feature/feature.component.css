@@ -10,6 +10,8 @@
   color: var(--tg-text-darkblue);
   font-weight: var(--tg-fw-semi-bold);
   margin: 0;
+}
+.card-title{
   font-size: 24px;
   font-family: "Times New Roman", Times, serif;
 }
@@ -25,10 +27,23 @@
     left: 0;
     bottom: -20px;
 }
+
+.bottom-line{
+  position: absolute;
+  color: var(--tg-common-color-yellow);
+  left: 25%;
+  bottom: -20px;
+  width: 50%;
+}
+
 .card-container{
   padding: 20px 10px;
   border-radius: 40px;
-  min-width: 280px;
+  border: 1px solid #a3a3a7;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  min-width: 310px;
+  min-height: 280px;
+  max-width: 100%;
 }
 .card-feature-row {
   margin-top: 50px;
@@ -64,8 +79,8 @@
   font-size: 18px;
 }
 .custom-feature-body .card-text {
-  font-size: 14px;
-  color: #b6b6b6;
+  font-size: 17.5px;
+  color: #2e2d2d;
   font-family: "Times New Roman", Times, serif;
 }
 .card-btn {
@@ -85,7 +100,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 280px;
+  max-width: 295px;
   align-items: center;
 }
 
@@ -104,19 +119,20 @@
 
 .thumbnail-container {
   position: relative;
-  width: 260px;
+  width: 295px;
   cursor: pointer;
 }
 
 .thumbnail {
   width: 100%;
   height: 144px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .vimeo-player {
   width: 100%; /* Ensure the container is 100% wide */
   position: relative; /* Required for proper positioning */
-  padding-bottom: 56.25%; /* Maintain aspect ratio (16:9) */
-  height: 0; /* Reset height to enable aspect ratio */
+  height: 144px; /* Reset height to enable aspect ratio */
   overflow: hidden; /* Hide overflow */
 }
 
@@ -128,6 +144,39 @@
   height: 100%; /* Set iframe to 100% of the container's calculated height */
 }
 
+.video-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.play-overlay:hover {
+  opacity: 1;
+}
+
+.play-btn {
+  background: rgba(114, 113, 113, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #e7dfdf;
+  cursor: pointer;
+}
 
 @media screen and (max-width:767px){
     .custom-feature-body{
@@ -138,3 +187,4 @@
         row-gap: 30px;
     }
 }
+

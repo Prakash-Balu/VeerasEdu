@@ -135,7 +135,7 @@
 .order-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 45px;
 }
 
 .order-wrapper h2 {
@@ -150,6 +150,7 @@
 .order-wrapper p {
   text-align: center;
   font-style: italic;
+  font-size: 13px;
   color: var(--tg-common-color-gray-5);
   font-weight: var(--tg-fw-medium);
   margin-bottom: 0;
@@ -223,10 +224,11 @@
 .plan_table tbody tr td{
   border-width: 0px;
   padding: 10px;
+  color: var(--bs-body-color);
 }
 
 .plan_table tbody tr td div{
-  color: var(--tg-common-color-gray-5);
+  color: var(--bs-body-color);
   font-weight: var(--tg-fw-medium);
 }
 

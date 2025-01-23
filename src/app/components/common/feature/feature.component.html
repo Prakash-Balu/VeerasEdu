@@ -34,10 +34,10 @@
   <div class="row card-feature-row justify-content-around">
     <div *ngFor="let videoId of videoIds; let i = index"  class="border center col-lg-3 col-md-6 card-container">
       <div class="card custom-feature-card border-0 gap-3">
-        <h2 class="text-center title">
+        <h2 class="text-center card-title">
           <span class="sub-title"
             >{{cards[i].title}}
-            <div class="sub-title-svg">
+            <div class="bottom-line">
               <svg
                 width="100%"
                 height="100%"
@@ -61,29 +61,35 @@
             </div
           ></span>
         </h2>
-        <div class="custom-player mt-3">
+        <div class="custom-player">
           <div class="video-container">
-            <div class="video-item">
+            <div class="video-wrapper">
               <div class="thumbnail-container" [ngClass]="{'d-none': isPlayerLoaded[i], 'd-block': !isPlayerLoaded[i]}">
                 <img 
                   [src]="cards[i].thumbnail" 
                   alt="Video Thumbnail" 
                   class="thumbnail"
-                  (click)="loadPlayer(i)"
                 />
               </div>
-              <div 
-                #vimeoPlayerContainer 
-                class="vimeo-player"
-                [ngClass]="{'d-none': !isPlayerLoaded[i], 'd-block': isPlayerLoaded[i]}"
-              ></div>
+              <div  #vimeoPlayerContainer  class="vimeo-player" [ngClass]="{'d-none': !isPlayerLoaded[i], 'd-block': isPlayerLoaded[i]}" ></div>
+              <div class="play-overlay">
+                <button (click)="loadPlayer(i)" [ngClass]="{'d-none': isPlayerLoaded[i], 'd-block': !isPlayerLoaded[i]}" class="play-btn">
+                  <i class="fa fa-play"></i>
+                </button>
+                <button (click)="loadPlayer(i)" [ngClass]="{'d-none': !isPlayerLoaded[i], 'd-block': isPlayerLoaded[i]}" class="play-btn">
+                  <i class="fa fa-pause"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
         <div class="card-body custom-feature-body">
           <p class="card-text">
-            <b>{{cards[i].content}}</b>
+            @let count = cards[i].content.length;
+            <b>{{cards[i].content}}
+            </b>
           </p>
+          <ng-container *ngIf="count < 49"><br></ng-container>
           <a [href]="cards[i].link" class="card-btn">Demo</a>
         </div>
       </div>
