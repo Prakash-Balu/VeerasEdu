@@ -1,46 +1,78 @@
 <div class="main">
-  <div class="attedence">
+  <div class="attedence p-0 m-0">
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-3">
-        <div class="smiley-1">
-          <div [innerHtml]="smileyIcon" class="img-1"></div>
-          <div class="text-1">
-            <div>Welcome To</div>
-            <div>VEERA'S EDUCATION</div>
+      <div class="col-12 col-sm-12 col-md-2">
+        <div class="smiley-1 attedence_side_nav box_shadow_right vh-100 h-100">
+          <div class="card text-center">
+            <div class="card-header">
+              Weekly Report
+              <div class="text-success fw-bolder">'Present'</div>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Week 1
+                <h4>-</h4>
+              </li>
+              <li class="list-group-item">
+                Week 2
+                <h4 class="fw-bolder">01</h4>
+              </li>
+              <li class="list-group-item">
+                Week 3
+                <h4>03</h4>
+              </li>
+              <li class="list-group-item">
+                Week 4
+                <h4>02</h4>
+              </li>
+              <li class="list-group-item">
+                Week 5
+                <h4>0</h4>
+              </li>
+            </ul>
           </div>
-          <div class="text-2">
-            <div>Ha Ha! I am going to improve</div>
-            <div>myself today...</div>
-          </div>
+          
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-6">
+      <div class="col-12 col-sm-12 col-md-8">
         <div class="calender">
           <div class="att-head">ATTENDENCE</div>
           <app-dynamic-attendance></app-dynamic-attendance>
         </div>
       </div>
-      @if(showAbsent){
-      <div class="col-12 col-sm-12 col-md-3">
-        <div class="smiley-2">
-          <div [innerHtml]="smileyIcon" class="img-2"></div>
+      
+      <div class="col-12 col-sm-12 col-md-2">
+        <div class="smiley-2 attedence_side_nav box_shadow_left">
+          <div class="attedence_monthly_report text-center">
+              <h4><u>Monthly Report</u></h4>
+              <div class="monthly_report_list">
+                <div class="monthly_report_list_li">Total Number of Days - 22</div>
+                <div class="monthly_report_list_li">Present - <span class="text-success fw-bolder">06 Days</span> </div>
+                <div class="monthly_report_list_li">Absent - <span class="text-danger fw-bolder">16 Days</span></div>
+              </div>
+          </div>
+          @if(showAbsent){
           <div class="text-3">
             <div>Oops!</div>
             <div>WE MISSIED YOU YESTERDAY.</div>
           </div>
+        }
+
+        <div class="button-row">
+          <button
+            class="btn btn-outline-dark next-button"
+            [routerLink]="['/dashboard']"
+          >
+            Next
+          </button>
         </div>
+        </div>
+        
       </div>
-      }
+     
     </div>
   </div>
-  <div class="button-row">
-    <button
-      class="btn btn-outline-dark next-button"
-      [routerLink]="['/dashboard']"
-    >
-      Next
-    </button>
-  </div>
+  
   <!-- <div class="declaration">
     <div class="dec-header">BACKGROUND ATTENDENCE SHEET COLOR</div>
     <div class="present">PRESENT: GREEN</div>

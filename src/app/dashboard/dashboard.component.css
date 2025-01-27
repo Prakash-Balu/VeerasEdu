@@ -106,3 +106,22 @@
     font-size: 24px;
   }
 }
+
+.dashboard-text-2{
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.main-img{
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  z-index: 2;
+}
+
+.display-master-msg-img{
+  position: absolute;
+    bottom: -27px;
+    left: 0;
+    z-index: 3;
+}

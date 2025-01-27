@@ -49,8 +49,11 @@
 .weekdays {
   display: flex;
   justify-content: space-around;
-  /* background-color: #f4f4f4; */
-  padding: 5px;
+  border: 1px solid #ddd;
+  border-bottom: 1px;
+  background: #a79e7b;
+  color: #fff;
+  padding: 8px;
   font-weight: bold;
 }
 
@@ -63,19 +66,24 @@
 .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  gap: 0px;
 }
 
 .day {
   padding: 10px 15px;
   text-align: center;
   cursor: pointer;
-  min-height: 50px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  border-top: 2px solid #0c9d0c;
+  min-height: 82px;
   color: #0c9d0c;
-  border-radius: 5px;
+  border-radius: 0px;
   background-color: rgb(221 255 221 / 45%);
+
+  border-collapse: collapse;
+  border-spacing: 0px;
+  font-size: 1em;
+  border-color: #e6e6e8;
+  border-bottom: 0 !important;
+  border: 1px solid #ddd;
 }
 
 .day_absent {
@@ -87,7 +95,7 @@
 .no_day {
   background-color: aliceblue !important;
   color: aliceblue;
-  border-top: 2px solid #635f5f;
+  border-top: 2px solid #ddd;
 }
 
 .day span {
