@@ -28,13 +28,13 @@
   text-align: start;
   margin-bottom: 10px;
   margin-left: 30px;
-  color: #00000085;
+  color: #fff;
   font-weight: 400;
 }
 
 .qr-list {
   text-align: start;
-  color: #373f3fc7;
+  color: #fff;
   margin-left: 15px;
   font-size: 12px;
   font-weight: bold;
@@ -63,7 +63,7 @@
 
 .qr-container {
   width:max-content;
-  background-color: #fff;
+  background-color: #3e3e3e;
   display: flex;
   margin: auto;
   justify-content: space-between;
