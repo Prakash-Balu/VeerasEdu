@@ -63,7 +63,7 @@
   text-align: start;
 }
 .carousel-title-box h1 {
-  font-size: 35px;
+  font-size: 27px;
   margin-bottom: 20px;
 }
 .carousel-title-box .main-title .highlighter svg {
@@ -334,6 +334,7 @@
   }
 }
 
+
 @media screen and (max-width: 991px) {
   .hindi {
     left: 0;
@@ -389,5 +390,11 @@
   }
   .methodology {
     right: 0;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .carousel-title-box h1 {
+    font-size: 35px;
   }
 }
