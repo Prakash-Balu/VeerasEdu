@@ -1,5 +1,5 @@
 <div class="container-fluid p-0 m-0">
-  <div class="top-banner">
+  <div class="top-banner" style="display: none;">
     <div class="row gy-3">
       <div class="col-6 order-1 col-md-2 order-md-1">
         <div class="arrow-left cursor-pointer" routerLink="/dashboard">
@@ -53,9 +53,26 @@
           ></span>
         </li>
       </ul>
+      <div class="btn_back">
+        <div class="arrow-left cursor-pointer" routerLink="/dashboard">
+          <fa-icon [icon]="faArrowLeft" class="cursor-pointer"></fa-icon>
+        </div>
+        <div class="fw-bold d-none d-md-block cursor-pointer">back</div>
+      </div>
     </aside>
 
     <div class="video-container">
+      <div
+        class="sec2 col-12 col-md-8 d-flex justify-content-center"
+      >
+        <span>
+          <span>{{ page }}</span>
+
+          >
+
+          <span>{{ selectedSegment?.name }}</span>
+        </span>
+      </div>
       <app-video-player [videoObj]="videoObj"></app-video-player>
     </div>
   </div>
