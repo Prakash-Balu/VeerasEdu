@@ -48,7 +48,7 @@ export class FeatureComponent implements AfterViewInit {
     this.vimeoPlayerContainers.forEach((container, index) => {
       const options = {
         id: this.videoIds[index],
-        width: 280,
+        width: 295,
         height:144,
         loop: false,
         controls: false, // Hide default controls

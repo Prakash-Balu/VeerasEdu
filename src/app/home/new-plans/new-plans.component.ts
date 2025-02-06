@@ -72,6 +72,7 @@ export class NewPlansComponent {
 
   subscribe(){
     this.showSummary = true;
+    this.choosePlan(0);
   }
 
   getPlans() {

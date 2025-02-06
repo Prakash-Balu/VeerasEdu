@@ -3,10 +3,9 @@
   width: 100%;
   /* border-radius: 10px; */
   /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
-  
   text-align: center;
   min-height: 88vh;
-  padding: 50px 0 40px 0;
+  padding: 0px 0 40px 0;
   overflow-y: scroll;
 }
 
@@ -19,7 +18,9 @@
 }
 .title .title-text {
   font-size: 40px;
+  font-family: "Times New Roman", Times, serif;
   font-weight: var(--tg-fw-semi-bold);
+  line-height: 40px;
 }
 
 .qr-content-title {
@@ -28,13 +29,13 @@
   text-align: start;
   margin-bottom: 10px;
   margin-left: 30px;
-  color: #00000085;
+  color: #C8C6D1;
   font-weight: 400;
 }
 
 .qr-list {
   text-align: start;
-  color: #373f3fc7;
+  color: #C5CCC4;
   margin-left: 15px;
   font-size: 12px;
   font-weight: bold;
@@ -63,7 +64,7 @@
 
 .qr-container {
   width:max-content;
-  background-color: #fff;
+  background-color: #2D3037;
   display: flex;
   margin: auto;
   justify-content: space-between;
@@ -110,8 +111,8 @@
 }
 
 .circle1 {
-  width: 25px;
-  height: 25px;
+  width: 18px;
+  height: 18px;
 }
 .circle2 {
   width: 15px;
@@ -119,40 +120,40 @@
 }
 
 .square {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 0; /* Makes it a square */
 }
 
 .green-circle {
   background-color: #1d9059;
   top: 90px;
-  right: 650px;
+  right: 450px;
 }
 
 .orange-circle {
   background-color: #f9350cd6;
   top: 100px;
-  left: 350px;
+  left: 265px;
 }
 
 .yellow-circle {
   background-color: #ffa500;
-  top: 170px;
-  right: 350px;
+  top: 152px;
+  right: 310px;
 }
 
 .brown-square {
   background-color: #933d3d;
-  top: 270px;
-  left: 330px;
+  top: 225px;
+  left: 238px;
   transform: rotate(60deg); /* Makes it a tilted square */
 }
 
 .icon-bar {
   position: absolute;
-  top: 248px;
-  right: 378px;
+  top: 200px;
+  right: 330px;
   color: #009aff;
   font-weight: 900;
   transform: rotate(154deg);

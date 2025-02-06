@@ -31,9 +31,7 @@ export class DashboardComponent implements OnInit {
   dashVeera!:SafeHtml;
   underlineIcon!:SafeHtml;
 
-  constructor(
-  private utilsService: UtilsService
-  ){}
+  constructor( private utilsService: UtilsService){}
 
   ngOnInit(): void {
     this.dashVeera = this.utilsService.dashVeera();

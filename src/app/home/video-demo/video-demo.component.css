@@ -48,6 +48,7 @@
 .text-box {
   color: var(--tg-common-color-white);
   font-family: var(--tg-fontfamily-lexend-deca);
+  font-size: 30px;
 }
 .text-box .thumb-title {
   color: var(--tg-text-orange);
