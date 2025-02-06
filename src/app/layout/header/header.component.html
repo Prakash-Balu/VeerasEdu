@@ -4,7 +4,7 @@
     routerLinkActive="router-link-active"
     class="header-img-wrapper"
   >
-    <div [innerHtml]="headerLogo" class="logo img-fluid"></div>
+    <div  class="logo img-fluid"><img style="width: 80%;" src="assets/images/logo_hindi.jpg"></div>
   </a>
   @if(isLogginRoute){ @if(!isMobile){
   <div class="header-right-sec">
@@ -19,6 +19,33 @@
   </div>
   }}@else if(!islogin){
   <div class="btns-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light">
+
+      <div class="collapse navbar-collapse" id="navbarText">
+        
+        <span class="navbar-text">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active pe-3">
+              <a class="nav-link" href="#">Remainders Notification <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item pe-3">
+              <a class="nav-link" href="#">Upgrade Plan</a>
+            </li>
+            <li class="nav-item pe-3">
+              <a class="nav-link" href="#">Subscription</a>
+            </li>
+            <li class="nav-item pe-3">
+              <a class="nav-link" href="#">Billing</a>
+            </li>
+            <li class="nav-item pe-3 qa_container">
+              <img src="assets/images/notification.png" class="alert_img" />
+              <span class="notify">3</span>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </nav>
+
     <button (click)="logout()" class="login-btn">Logout</button>
   </div>
   }

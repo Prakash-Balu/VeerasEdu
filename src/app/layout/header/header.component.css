@@ -98,3 +98,14 @@
     width: 20px;
   }
 }
+
+.notify{
+  background: #F44336;
+  padding: 4px 9px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 10px;
+  position: absolute;
+  top: 8px;
+  font-weight: 600;
+}

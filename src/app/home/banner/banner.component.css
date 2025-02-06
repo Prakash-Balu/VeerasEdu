@@ -23,7 +23,7 @@
   padding: 3px 0;
 }
 .carousel-subtitle-box h2 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: var(--tg-fw-medium);
   color: var(--tg-text-blue);
   margin: 0;
@@ -55,6 +55,19 @@
   height: 35px;
   pointer-events: none;
   color: var(--tg-common-color-yellow);
+}
+.carousel-first .carousel-subtitle-box {
+  margin: 0;
+}
+.carousel-first .carousel-title-box {
+  text-align: start;
+}
+.carousel-title-box h1 {
+  font-size: 27px;
+  margin-bottom: 20px;
+}
+.carousel-title-box .main-title .highlighter svg {
+  margin-top: 25px;
 }
 .carousel-second .carousel-subtitle-box {
   margin: 0;
@@ -321,6 +334,7 @@
   }
 }
 
+
 @media screen and (max-width: 991px) {
   .hindi {
     left: 0;
@@ -376,5 +390,17 @@
   }
   .methodology {
     right: 0;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .carousel-title-box h1 {
+    font-size: 32px;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1250px) {
+  .carousel-title-box h1{
+    font-size: 24px;
   }
 }

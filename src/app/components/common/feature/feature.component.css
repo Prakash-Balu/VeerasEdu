@@ -52,7 +52,7 @@
 }
 .custom-feature-card {
   width: 100%;
-  max-width: 230px;
+  max-width: 100%;
 }
 .img-wrapper {
   display: flex;
@@ -80,7 +80,7 @@
   font-size: 18px;
 }
 .custom-feature-body .card-text {
-  font-size: 17.5px;
+  font-size: 18px;
   color: #2e2d2d;
   font-family: "Times New Roman", Times, serif;
 }

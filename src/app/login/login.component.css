@@ -29,6 +29,7 @@
   text-align: start;
   margin-bottom: 10px;
   margin-left: 30px;
+  color: #fff;
   color: #C8C6D1;
   font-weight: 400;
 }
@@ -64,6 +65,7 @@
 
 .qr-container {
   width:max-content;
+  background-color: #3e3e3e;
   background-color: #2D3037;
   display: flex;
   margin: auto;

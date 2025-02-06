@@ -43,7 +43,7 @@
 .thumbnail-lhs {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 }
 .text-box {
   color: var(--tg-common-color-white);
