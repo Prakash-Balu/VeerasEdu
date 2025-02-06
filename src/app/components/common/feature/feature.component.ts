@@ -17,31 +17,33 @@ export class FeatureComponent implements AfterViewInit {
   @ViewChildren('vimeoPlayerContainer') vimeoPlayerContainers!: QueryList<ElementRef>;
   public isPlayerLoaded: boolean[] = [];
   public players:any[] = [];
-  public cards:any = [
-    {
-      title:'Class Room',
-      content:'In class, you will learn what spoken Hindi is and how sentences are formed.',
-      thumbnail:'assets/images/cardsimg/thumb1.jpeg',
-      link:'/new-classroom'
-    },
-    {
-      title:'Self Practice',
-      content:'Learn and Grow at your own pace',
-      thumbnail:'assets/images/cardsimg/thumb1.jpeg',
-      link:'/self-practice'
-    },
-    {
-      title:'Speaking Room',
-      content:'Practice with Co-learners along with the Master on our great platform',
-      thumbnail:'assets/images/cardsimg/thumb2.jpeg',
-      link:'/practice-with-the-master'
-    },
-  ];
+  public cards:any = [];
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {
     const currentUrl = this.router.url;
     this.classroom = currentUrl.includes('home') ? 'new-classroom' : 'class-room';
     this.isPlayerLoaded = Array(this.videoIds.length).fill(false); // Initialize player load states
+
+    this.cards = [
+      {
+        title:'Class Room',
+        content:'In class, you will learn what spoken Hindi is and how sentences are formed.',
+        thumbnail:'assets/images/cardsimg/thumb1.jpeg',
+        link:'/' + this.classroom
+      },
+      {
+        title:'Self Practice',
+        content:'Learn and Grow at your own pace',
+        thumbnail:'assets/images/cardsimg/thumb1.jpeg',
+        link:'/self-practice'
+      },
+      {
+        title:'Speaking Room',
+        content:'Practice with Co-learners along with the Master on our great platform',
+        thumbnail:'assets/images/cardsimg/thumb2.jpeg',
+        link:'/practice-with-the-master'
+      },
+    ];
   }
 
   ngAfterViewInit(): void {
