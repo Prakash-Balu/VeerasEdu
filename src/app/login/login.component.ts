@@ -34,7 +34,7 @@ export class LoginComponent {
   ngOnInit(): void {
     // redirect to home if already logged in
     if (this.authService.tokenValue) {
-      // this.router.navigate(['/attendence']);
+      this.router.navigate(['/attendence']);
     } else {
       this.getQrCode();
       this.intervalId = setInterval(() => {
