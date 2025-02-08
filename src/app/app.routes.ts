@@ -49,12 +49,20 @@ export const routes: Routes = [
       },
       {
         path: 'self-practice',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadComponent: () =>
           import('./self-pratice/self-pratice.component').then(
             (m) => m.SelfPraticeComponent
           ),
         data: { showFooter: false, isMobile: false, page: 'self' },
+      },
+      {
+        path:'self-practice-new',
+        loadComponent: () =>
+          import('./self-practice-new/self-practice-new.component').then(
+            (m)=>m.SelfPracticeNewComponent
+          ),
+          data: { showFooter: false, isMobile: false, page: 'self' },
       },
       {
         path: 'class-room',

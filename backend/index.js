@@ -326,6 +326,22 @@ app.post('/api/segment/delete',async (req,res)=>{
   }
 });
 
+app.get('/api/self-practice/:id',async (req,res)=>{
+  try{
+    const segment_id = req.params.id;
+    if(!segment_id){
+      return res.status(400).json({ message: 'Segment Id is required' });
+    }
+    const db = await connectToMongoDB();
+    const collection = db.collection("sp_exercises");
+    const segment = await collection.findOne({ _id: new ObjectId(segment_id) });
+    res.status(200).json({ message: 'Segment fetched',data:segment.exercises });
+  }catch(err){
+    console.error(err);
+    res.status(500).json({message:'Internal Server Error'})
+  }
+});
+
 // Start the server
 const HOST = '192.168.29.219'; 
 const PORT = 3000;

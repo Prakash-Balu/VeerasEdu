@@ -26,9 +26,9 @@ export class FeatureComponent implements AfterViewInit {
     },
     {
       title:'Self Practice',
-      content:'Learn and Grow at your own pace',
+      content:'Learn and Grow at your own space',
       thumbnail:'assets/images/cardsimg/thumb1.jpeg',
-      link:'/self-practice'
+      link:'/self-practice-new'
     },
     {
       title:'Speaking Room',
