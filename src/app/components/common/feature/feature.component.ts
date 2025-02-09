@@ -17,30 +17,7 @@ export class FeatureComponent implements AfterViewInit {
   @ViewChildren('vimeoPlayerContainer') vimeoPlayerContainers!: QueryList<ElementRef>;
   public isPlayerLoaded: boolean[] = [];
   public players:any[] = [];
-<<<<<<< HEAD
-  public cards:any = [
-    {
-      title:'Class Room',
-      content:'In class, you will learn what spoken Hindi is and how sentences are formed.',
-      thumbnail:'assets/images/cardsimg/thumb1.jpeg',
-      link:'/new-classroom'
-    },
-    {
-      title:'Self Practice',
-      content:'Learn and Grow at your own space',
-      thumbnail:'assets/images/cardsimg/thumb1.jpeg',
-      link:'/self-practice-new'
-    },
-    {
-      title:'Speaking Room',
-      content:'Practice with Co-learners along with the Master on our great platform',
-      thumbnail:'assets/images/cardsimg/thumb2.jpeg',
-      link:'/practice-with-the-master'
-    },
-  ];
-=======
   public cards:any = [];
->>>>>>> 45e751c7a949d02318526d18cf294160e06bf8e2
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {
     const currentUrl = this.router.url;
@@ -58,7 +35,7 @@ export class FeatureComponent implements AfterViewInit {
         title:'Self Practice',
         content:'Learn and Grow at your own pace',
         thumbnail:'assets/images/cardsimg/thumb1.jpeg',
-        link:'/self-practice'
+        link:'/self-practice-new'
       },
       {
         title:'Speaking Room',
