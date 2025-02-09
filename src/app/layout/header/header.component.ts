@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   lockIcon!: SafeHtml;
   islogin: boolean = false;
   isDemoPage: boolean = false;
+  isCheckOutPage: boolean = false;
 
   constructor(
     private router: Router,
@@ -40,6 +41,10 @@ export class HeaderComponent implements OnInit {
 
     this.router.events.subscribe(() => {
       this.isDemoPage = this.router.url === '/new-classroom';
+    });
+
+    this.router.events.subscribe(() => {
+      this.isCheckOutPage = this.router.url.includes("checkout");
     });
   }
   ngOnInit(): void {
