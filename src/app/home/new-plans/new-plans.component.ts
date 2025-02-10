@@ -80,7 +80,7 @@ export class NewPlansComponent {
   }
 
   getPlans() {
-    //need to change the api response for the segementPlan
+    //need to change the api response for the segementP
     // const payload = {};
     // this.commonService.getPlans(payload).subscribe((res: any) => {
     //   if (res) {
