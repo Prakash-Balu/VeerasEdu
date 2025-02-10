@@ -191,17 +191,18 @@
             <tr>
               <td>
                 <div class="select-plan">
+                  @let s = selectedPlan.duration > 1?'s':'';
                   <span>
-                    ({{ plan?.locationInfo?.currency_symbol }}
-                    {{ plan?.locationPrice?.month_fee }} × {{ months }}months)
+                    ({{selectedPlan.currencySymbol}}{{selectedPlan.planFee}} × {{selectedPlan.duration}}
+                    {{selectedPlan.period}}{{s}} ) 
                   </span>
                 </div>
               </td>
               <td>
                 <div class="select-plan">
                   <span
-                    >{{ plan?.locationInfo?.currency_symbol }}
-                    {{ this.planCost }}</span
+                    >{{ selectedPlan.currencySymbol }}
+                    {{ this.planCost | number:'1.2-2' }}</span
                   >
                 </div>
               </td>
@@ -224,8 +225,8 @@
               <td>
                 <div class="select-plan">
                   <span
-                    >{{ plan?.locationInfo?.currency_symbol }}
-                    {{ this.tax }}</span
+                    >{{selectedPlan.currencySymbol}}
+                    {{ this.tax | number:'1.2-2' }}</span
                   >
                 </div>
               </td>
@@ -238,8 +239,8 @@
               <td>
                 <div class="select-plan">
                   <span
-                    >{{ plan?.locationInfo?.currency_symbol }}
-                    {{ this.processingFee }}</span
+                    >{{selectedPlan.currencySymbol}}
+                    {{ this.processingFee | number:'1.2-2' }}</span
                   >
                 </div>
               </td>
@@ -252,8 +253,8 @@
               <td>
                 <div class="select-plan">
                   <span
-                    >{{ plan?.locationInfo?.currency_symbol }}
-                    {{ this.planTotal }}</span
+                    >{{selectedPlan.currencySymbol}}
+                    {{ this.planTotal | number:'1.2-2' }}</span
                   >
                 </div>
               </td>

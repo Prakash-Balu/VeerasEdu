@@ -84,7 +84,7 @@ export const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'classroom' },
       },
       {
-        path: 'checkout/:id',
+        path: 'checkout',
         loadComponent: () =>
           import('./checkout/checkout.component').then(
             (m) => m.CheckoutComponent

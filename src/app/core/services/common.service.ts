@@ -4,11 +4,27 @@ import { environment } from '../../../environments/environment';
 import { API_URL } from '../constants/apiUrls';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 
+export interface SelectedPlan{
+  _id:string,
+  code:string,
+  currencyCode:string,
+  currencySymbol:string,
+  planFee:number,
+  duration:number,
+  period:string,
+  hasValidity:boolean,
+  validityDuration?:number,
+  validityPeriod?:string,
+  gstPercent:number,
+  processingFee:number
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class CommonService {
   private planSubject!: BehaviorSubject<any>;
+  public selectedPlan!: SelectedPlan;
   plan$!: Observable<any>;
 
   constructor(private http: HttpClient) {
@@ -17,6 +33,15 @@ export class CommonService {
 
   public get plans(): any {
     return this.planSubject.value;
+  }
+
+
+  public setSelectedPlan(plan: SelectedPlan) {
+    this.selectedPlan = plan;
+  }
+
+  public getSelectedPlan():SelectedPlan {
+    return this.selectedPlan;
   }
 
   private handleError(error: HttpErrorResponse) {
