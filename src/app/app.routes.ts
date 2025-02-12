@@ -57,6 +57,10 @@ export const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'self' },
       },
       {
+        path:'self-practice-new',
+        loadChildren:()=>import('./self-practice-new/self-practice-routing.module').then((m)=>m.SelfPracticeRoutingModule)
+      },
+      {
         path: 'class-room',
         canActivate: [AuthGuard],
         loadComponent: () =>

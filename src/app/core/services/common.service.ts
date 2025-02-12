@@ -14,7 +14,7 @@ export interface SelectedPlan{
   period:string,
   hasValidity:boolean,
   validityDuration?:number,
-  validityPeriod?:string,
+  validityPeriod?:number,
   gstPercent:number,
   processingFee:number
 }

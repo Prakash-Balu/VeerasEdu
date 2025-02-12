@@ -109,7 +109,7 @@
               fontSize:selectedPlan.code === plans[0].code ? '16px' : ''
             }">You have selected {{selectedPlan.duration}} {{selectedPlan.period}} plan
               <span *ngIf="selectedPlan.hasValidity">
-                @let totalDuration = selectedPlan.duration + (selectedPlan.validityDuration ?? 0);
+                @let totalDuration = +selectedPlan.duration + +(selectedPlan.validityDuration ?? 0);
                 + {{selectedPlan.validityDuration}} {{selectedPlan.validityPeriod}} free = {{totalDuration}} months of
                 validity
               </span>
