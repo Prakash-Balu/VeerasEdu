@@ -1,0 +1,25 @@
+<div class="container">
+    <h3>Fill in the Blanks using Voice</h3>
+  
+    <form [formGroup]="fillupsForm">
+      <p>
+        Mera naam 
+        <input type="text" formControlName="blank1" placeholder="______" readonly />
+        <button type="button" (click)="startRecognition('blank1')">🎤 Speak</button>
+        hai.
+      </p>
+      <p>
+        Mai 
+        <input type="text" formControlName="blank2" placeholder="______" readonly />
+        <button type="button" (click)="startRecognition('blank2')">🎤 Speak</button>
+        se aaya hoon.
+      </p>
+      <p>
+        Mujhe 
+        <input type="text" formControlName="blank3" placeholder="______" readonly />
+        <button type="button" (click)="startRecognition('blank3')">🎤 Speak</button>
+        pasand hai.
+      </p>
+    </form>
+  </div>
+  

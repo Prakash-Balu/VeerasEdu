@@ -49,7 +49,7 @@ export const routes: Routes = [
       },
       {
         path: 'self-practice',
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         loadComponent: () =>
           import('./self-pratice/self-pratice.component').then(
             (m) => m.SelfPraticeComponent
@@ -58,11 +58,7 @@ export const routes: Routes = [
       },
       {
         path:'self-practice-new',
-        loadComponent: () =>
-          import('./self-practice-new/self-practice-new.component').then(
-            (m)=>m.SelfPracticeNewComponent
-          ),
-          data: { showFooter: false, isMobile: false, page: 'self' },
+        loadChildren:()=>import('./self-practice-new/self-practice-routing.module').then((m)=>m.SelfPracticeRoutingModule)
       },
       {
         path: 'class-room',
@@ -92,7 +88,7 @@ export const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'classroom' },
       },
       {
-        path: 'checkout/:id',
+        path: 'checkout',
         loadComponent: () =>
           import('./checkout/checkout.component').then(
             (m) => m.CheckoutComponent

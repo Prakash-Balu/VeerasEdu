@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../core/services/common.service';
+import { CommonService, SelectedPlan } from '../core/services/common.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormBuilder,
@@ -32,6 +32,9 @@ export class CheckoutComponent implements OnInit {
   public processingFee: any = 33.0;
   public currencyCode: any;
   public country: any;
+
+  public selectedPlan!:SelectedPlan;
+
   constructor(
     private commonService: CommonService,
     private authService: AuthService,
@@ -62,10 +65,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((param) => {
-      this.months = Number(param['id']);
-    });
-
+    this.selectedPlan = this.commonService.getSelectedPlan();
+    if(!this.selectedPlan){
+      this.router.navigateByUrl('home');
+    }
+    this.months = (this.selectedPlan?.duration ?? 0);
+    this.planCost = this.selectedPlan.duration * this.selectedPlan.planFee;
+    this.tax = this.planCost * (this.selectedPlan.gstPercent / 100);
+    this.processingFee = this.selectedPlan.processingFee;
+    this.planTotal = this.processingFee + this.tax + this.planCost;
+    console.log(this.selectedPlan);
     this.commonService.getLocation().subscribe((resp) => {
       if (resp) {
         this.currencyCode = resp?.data?.countryCurrency?.code;
@@ -82,31 +91,6 @@ export class CheckoutComponent implements OnInit {
         }
       }
     });
-
-    this.getPlans();
-  }
-
-  getPlans() {
-    const payload = {};
-    this.commonService.getPlans(payload).subscribe((res: any) => {
-      if (res) {
-        this.plan = res?.data[0];
-        this.onSubcribeClick();
-      }
-    });
-  }
-
-  onSubcribeClick() {
-    this.planCost = (
-      Number(this.plan?.locationPrice?.month_fee) * Number(this.months)
-    ).toFixed(2);
-    this.tax = ((Number(this.planCost) / 100) * 18).toFixed(2);
-    this.planTotal = (
-      Number(this.planCost) +
-      Number(this.tax) +
-      Number(this.processingFee)
-    ).toFixed(2);
-    this.processingFee = Number(this.processingFee).toFixed(2);
   }
 
   getControl(controlName: string) {
@@ -144,10 +128,10 @@ export class CheckoutComponent implements OnInit {
         phoneCode: `+${phCode}`,
         country: this.country,
       },
-      planId: this.plan._id,
+      planId: this.selectedPlan._id,
       currencyCode: this.currencyCode,
       amount: this.planTotal,
-      duration: this.months,
+      duration: this.selectedPlan.duration,
     };
     console.log('payload::', payload);
     this.authService.checkout(payload).subscribe((resp) => {

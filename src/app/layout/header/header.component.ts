@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     });
 
     this.router.events.subscribe(() => {
-      this.islogin = this.router.url === '/login';
+      this.islogin = this.authService.tokenValue ? true : false;
     });
 
     this.router.events.subscribe(() => {
