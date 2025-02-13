@@ -17,14 +17,16 @@
     </div>
   </div>
   <div class="row row-gap-5 mt-3 d-flex justify-content-center align-items-center">
-    <!-- <div class="col-12 plan-title"></div> -->
+    
     <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
-      <div class="plan-card">
+      <div class="plan-card text-center">
+        <div class="col-12 plan-title text-decoration-underline">Monthly Plan</div>
         <div>
-          <span class="plan-price">₹599</span>/month
+          <span class="plan-price">₹750</span>/month
           <small class="plan-gst">+ GST</small>
+          <div class="plan-gst">&nbsp;</div>
         </div>
-        <div class="plan-details">
+        <div class="plan-details" style="display: none;">
           <h4>Details</h4>
           <div class="plan-duration-wrapper">
             <ul>
@@ -37,12 +39,110 @@
             </ul>
           </div>
         </div>
-        <div class="d-flex flex-column text-center">
-          "Renew your plan anytime, as many times as you need."
+        
+        <div class="d-flex text-center mt-4">
+          <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
+          <button class="btn btn-primary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
         </div>
-        <button class="btn btn-primary continue-button w-50 m-auto" (click)="subscribe()"> Subscribe </button>
+        <div class="d-flex flex-column text-center mb-4">
+          "Renew monthly"
+        </div>
       </div>
     </div>
+    <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
+      <div class="plan-card text-center">
+        <div class="col-12 plan-title text-decoration-underline">Referral Plan</div>
+        <div>
+          <span class="plan-price">₹4500</span>/month
+          <div class="plan-gst">(6 Months)</div>
+        </div>
+        <div class="plan-details" style="display: none;">
+          <h4>Details</h4>
+          <div class="plan-duration-wrapper">
+            <ul>
+              <li *ngFor="let item of plans; let i = index">
+                @let s = item.duration > 1?'s':'';
+                <input name="plan" type="radio" [id]="item.code" (click)="choosePlan(i)" />
+                <label [htmlFor]="item.code"><span>{{item.duration}}</span> {{item.period | titlecase}}{{s}}
+                  Plan</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="d-flex text-center mt-4">
+          <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
+          <button class="btn btn-primary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
+        </div>
+        <div class="d-flex flex-column text-center mb-4">
+          "Renew your plan after 6 months"
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
+      <div class="plan-card text-center">
+        <div class="col-12 plan-title text-decoration-underline">Licensed plan</div>
+        <div>
+          <span class="plan-price">₹25000</span>/month
+          <div class="plan-gst">(5 Years, 3 Users)</div>
+        </div>
+        <div class="plan-details" style="display: none;">
+          <h4>Details</h4>
+          <div class="plan-duration-wrapper">
+            <ul>
+              <li *ngFor="let item of plans; let i = index">
+                @let s = item.duration > 1?'s':'';
+                <input name="plan" type="radio" [id]="item.code" (click)="choosePlan(i)" />
+                <label [htmlFor]="item.code"><span>{{item.duration}}</span> {{item.period | titlecase}}{{s}}
+                  Plan</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="d-flex text-center mt-4">
+          <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
+          <button class="btn btn-primary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
+        </div>
+        <div class="d-flex flex-column text-center mb-4">
+          "Renew your plan after the licensed period, If you wish"
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-xxl-3 col-xl-4 col-lg-5">
+      <div class="plan-card text-center">
+        <div class="col-12 plan-title text-decoration-underline">School Student Plan</div>
+        <div>
+          <span class="plan-price">₹300</span>
+          <div class="plan-gst">(6 Months)</div>
+        </div>
+        <div class="plan-details" style="display: none;">
+          <h4>Details</h4>
+          <div class="plan-duration-wrapper">
+            <ul>
+              <li *ngFor="let item of plans; let i = index">
+                @let s = item.duration > 1?'s':'';
+                <input name="plan" type="radio" [id]="item.code" (click)="choosePlan(i)" />
+                <label [htmlFor]="item.code"><span>{{item.duration}}</span> {{item.period | titlecase}}{{s}}
+                  Plan</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="d-flex text-center mt-4">
+          <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
+          <button class="btn btn-primary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
+        </div>
+        <div class="d-flex flex-column text-center mb-4">
+          "Renew monthly"
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="row row-gap-5 mt-5 d-flex justify-content-center align-items-center">
     <div class="col-12 col-xxl-9 col-xl-8 col-lg-7 align-self-baseline" *ngIf="showSummary">
       <div class="order-wrapper">
         <h2>Order Summary</h2>
@@ -123,3 +223,35 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade" id="planDetails" tabindex="-1" aria-labelledby="planDetailsLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Plan Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="card-body">
+          <div class="col-12 plan-title text-decoration-underline">Monthly Plan</div>
+          <div>
+            <span class="plan-price">₹750</span>/month
+            <small class="plan-gst">+ GST</small>
+            <div class="plan-gst">&nbsp;</div>
+          </div>
+          <p>
+            10-March-2025 to 10-April-2025 
+          </p>
+          <p>Your next renew date is 15-April-2025</p>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Validity: 5 Years</li>
+            <li>Number of Users: 3</li>
+            <li>Includes: All updates</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
