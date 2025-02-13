@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Form, FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Form, FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { similarityPercentage } from '../../core/utils/compare';
 
 
@@ -44,7 +44,7 @@ export class Type2Component implements OnInit {
   public audioURL!: string;
   public currentControl: FormControl | null = null;
   public currentQuestion:number = 0;
-
+  public currentDash: any;
 
   public exercise:Exercise = {
     _id: '12345',
@@ -55,7 +55,7 @@ export class Type2Component implements OnInit {
         q_id: 123456,
         title: 'Exercise 1.1',
         ex_no: 1.1,
-        tamil: 'எங்களுடையா Company Cominatore ல் இருக்கிறது',
+        tamil: 'எங்க Company Cominatore ல் இருக்கிறது',
         english: 'Our Company is in Coimbatore',
         hindi:'{{}} Company coimbatore {{}} {{}}',
         answers: ['Hamara','Company','coimbatore','mein','hai']
@@ -71,7 +71,7 @@ export class Type2Component implements OnInit {
       },
     ]
   };
-  currentDash: any;
+
   
   
   ngOnInit(): void {
@@ -96,11 +96,11 @@ export class Type2Component implements OnInit {
     const hindiArr = hindi.split(' ');
     hindiArr.forEach((part:string,i:number)=>{
       if(part === '{{}}'){
-        formArray.push(this.fb.control(''));
+        formArray.push(this.fb.control('', Validators.required));
       }else{
-        formArray.push(this.fb.control(answers[i]));
+        formArray.push(this.fb.control({ value: answers[i], disabled: true }));
       }
-    })
+    });
     return formArray as FormArray;
   }
 
@@ -129,7 +129,8 @@ export class Type2Component implements OnInit {
         answers: this.generateAnswers(item.answers),
         blanks: this.generateBlanks(item.answers,item.hindi),
         correct:this.generateAns(item.hindi),
-        show:false
+        show:false,
+        numOfAttempts:0
       });
       questions.push(question);
     });
@@ -153,6 +154,10 @@ export class Type2Component implements OnInit {
     return this.questions.at(i).get('answers') as FormArray<FormControl>;
   }
 
+  public getAnswers(i:number):FormArray<FormControl>{
+    return this.questions.at(i).get('blanks') as FormArray<FormControl>;
+  }
+
   public getControl(i:number,j:number):FormControl{
     const blanks =  this.questions.at(i).get('blanks') as FormArray;
     return blanks.at(j) as FormControl;
@@ -171,11 +176,28 @@ export class Type2Component implements OnInit {
     }
   }
 
-  public toggleAns(i:number){
-    const q = this.questions.at(i)
+  public toggleAns(i: number): void {
+    const q = this.questions.at(i);
     const show = q.get('show')?.value;
     q.get('show')?.setValue(!show);
-  }
+    
+    const answers = this.getBlanks(i).value;
+    const blanks = q.get('blanks') as FormArray;
+
+    blanks.controls.map((ctrl,index:number)=>{
+      ctrl.setValue(answers[index]);
+      ctrl.disable();
+    })
+
+    const correct = this.questions.at(i).get('correct') as FormArray;
+    correct.controls.map((ctrl)=>{
+      this.ngZone.run(() => {
+        ctrl.setValue(true);
+      });
+    });
+    
+
+}
 
   public retry(i:number):void{
     const q = this.questions.at(i);
@@ -193,30 +215,41 @@ export class Type2Component implements OnInit {
         correct.controls.at(j)?.setValue(false);
       }
     });
+
+    blanks.controls.map((ctrl,index:number)=>{
+      ctrl.enable();
+    })
+    this.stopRecognition();
   }
 
-  public check(i:number,j:number){
-    const input = this.getControl(i,j).value;
-    const answers:string[] = this.questions.at(i).get('answers')?.value;
-    const ans:string = answers.at(j) || '';
-    const levenshtein:number = similarityPercentage(input,ans,'levenshtein');
-    const result:boolean = levenshtein > 60;
-    const q = this.questions.at(i).get('correct') as FormArray;
-    q.controls.at(j)?.setValue(result);
-    console.log(q.value);
-  }
-
-  public verify(){
+  public verify() {
     let i = this.currentQuestion;
     let j = this.currentDash;
     const input = this.currentControl?.value;
-    const answers:string[] = this.questions.at(i).get('answers')?.value;
-    const ans:string = answers.at(j) || '';
-    const levenshtein:number = similarityPercentage(input,ans,'levenshtein');
-    const result:boolean = levenshtein > 60;
+    const answers: string[] = this.questions.at(i).get('answers')?.value;
+    const ans: string = answers.at(j) || '';
+    const levenshtein: number = similarityPercentage(input, ans, 'levenshtein');
+    const result: boolean = levenshtein >= 50;
+
+    const hindi: string = this.questions.at(this.currentQuestion).get('hindi')?.value || '';
+    const blankIndices = hindi.split(' ').map((part, index) => part === '{{}}' ? index : -1).filter(index => index !== -1);
     const q = this.questions.at(i).get('correct') as FormArray;
-    q.controls.at(j)?.setValue(result); 
-    console.log(q);
+    q.controls.at(j)?.setValue(result);
+
+    if (result) {
+      this.currentControl?.setValue(answers[j]);
+      console.log("Blank Indices :", blankIndices);
+      console.log("Current Index :", this.currentDash);
+
+      const nextIndex = blankIndices[blankIndices.indexOf(this.currentDash) + 1];
+      if (nextIndex !== undefined) {
+        this.currentDash = nextIndex;
+        this.currentControl = this.getControl(i, this.currentDash);
+        this.transcription = '';
+      }
+    }
+
+    console.log(this.questions.value);
   }
 
 
@@ -269,7 +302,7 @@ export class Type2Component implements OnInit {
     if (this.recognition) {
         this.recognition.start();
     }
-}
+  }
 
   public stopRecognition(): void {
     if (this.recognition) {
@@ -284,13 +317,13 @@ export class Type2Component implements OnInit {
     }
   }
 
-  constructor(private fb:FormBuilder){
+  constructor(private fb:FormBuilder,private ngZone:NgZone){
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (SpeechRecognition) {
       this.recognition = new SpeechRecognition();
       this.recognition.lang = 'en-US';
       this.recognition.interimResults = true; // Enable interim results for real-time feedback
-      this.recognition.continuous = false;
+      this.recognition.continuous = true;
 
       this.recognition.onerror = (error: any) => {
         this.currentControl?.setValue('Try in Hindi');
@@ -304,13 +337,13 @@ export class Type2Component implements OnInit {
       this.recognition.onresult = (event: any) => {
         const latestResultIndex = event.results.length - 1;
         const latestTranscript = event.results[latestResultIndex][0].transcript;
-
         this.transcription = latestTranscript;
-
-        if (this.currentControl) {
-          this.currentControl.setValue(latestTranscript);
-          this.verify(); // Check the input in real-time
-        }
+        this.ngZone.run(() => {
+          if (this.currentControl) {
+            this.currentControl.setValue(this.transcription);
+            this.verify();
+          }
+        });
       };
     } else {
       console.error('SpeechRecognition is not supported in this browser.');

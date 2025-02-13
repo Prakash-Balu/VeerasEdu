@@ -137,6 +137,14 @@ body {
     background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
 
+.ans_correct {
+    padding-right: calc(1.5em + .75rem);
+    background-image: url('../../../assets/images/check-mark.png');
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
 .text-success {
     --bs-text-opacity: 1;
     color: #4CAF50 !important;

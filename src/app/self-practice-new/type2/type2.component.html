@@ -9,29 +9,27 @@
                     <div *ngIf="i === pageIndex" class="question ml-sm-5 pl-sm-5 pt-2 border border-white rounded-3 px-3 py-3 mb-4">
                         <div class="py-2 h5"><b>{{i+1}}. {{q.get('english')?.value}}</b></div>
                         <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 ms-4" id="options">
-                            <div class="row g-3" [formGroup]="getQuestionForm(i)">
-                                <div class="col-auto">
+                            <div class="row g-3 flex-wrap flex-lg-nowrap flex-md-nowrap " [formGroup]="getQuestionForm(i)">
+                                <div class="col-auto flex-grow-1 flex-shrink-1">
                                     <label for="">{{i+1}}.</label>
                                 </div>
                                 @let tamil = q.get('tamil')?.value;
                                 @let tamilparts = tamil?.split(' ');
-                                <div *ngFor="let blank of getBlanks(i).controls;let j = index;" class="col-auto">
+                                <div *ngFor="let blank of getBlanks(i).controls;let j = index;" class="col-auto flex-grow-1 flex-shrink-1">
                                     <label>{{tamilparts.at(j)}}</label>
-                                    <input type="text" (focus)="startRecognition(i,j)" [formControl]="getControl(i,j)" [ngClass]="{'ans_wrong': getControl(i,j).value && !getIsCorrect(i,j)}" class="form-control-plaintext border-0 border-bottom-1" id="control-{{i}}-{{j}}">
+                                    <input type="text" (focus)="startRecognition(i,j)" placeholder="Try in Hindi ..." [formControl]="getControl(i,j)" [ngClass]="{'ans_wrong': getControl(i,j).value && !getIsCorrect(i,j),'ans_correct':getIsCorrect(i,j)}" class="form-control-plaintext border-0 border-bottom-1" id="control-{{i}}-{{j}}">
                                 </div>
-                                <!-- <div class="col-auto">
-                                    <button type="button"  class="btn btn-secondary btn-sm me-lg-2">Check</button>
-                                    <button type="button" (click)="toggleAns(i)" class="btn btn-success btn-sm">Answer</button>
-                                </div> -->
+                            </div>
+                            <div class="mt-lg-4">
                                 <p class="fs-5 text-capitalize text-success" *ngIf="q.get('show')?.value">
                                     @let answer = q.get('answers')?.value;
                                     @let ans = answer?.join(' ');
                                     <u>{{ans}}</u>
                                 </p>
                             </div>
-                            <div class="text-end">
+                            <div class="text-end mt-4">
                                 <button type="button" (click)="retry(i)" class="btn btn-secondary me-lg-2">Retry</button>
-                                <button type="button" (click)="toggleAns(i)" class="btn btn-success btn-sm">Answer</button>
+                                <button type="button" *ngIf="getAnswers(i).valid" (click)="toggleAns(i)" class="btn btn-success btn-sm">Answer</button>
                                 <button type="button" *ngIf="isAllCorrect()" (click)="nextPage()" class="btn btn-primary">Next</button>
                             </div>
                         </div>
