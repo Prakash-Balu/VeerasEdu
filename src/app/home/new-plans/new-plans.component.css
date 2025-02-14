@@ -1,3 +1,7 @@
+:host {
+  font-family: 'Roboto', sans-serif;
+}
+
 .plan-title {
   font-size: 32px;
   color: var(--tg-text-darkblue);
@@ -134,6 +138,16 @@
 
 .plan_renew {
   font-size: 15px;
+  padding: 15px 10px;
+}
+
+.demo-button {
+  border: 1px solid grey;
+}
+
+.plan_renew p {
+  margin-top: 10px;
+  margin-bottom: -26px;
 }
 
 .order-wrapper {

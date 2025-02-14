@@ -22,9 +22,9 @@
       <div class="plan-card text-center">
         <div class="col-12 plan-title text-decoration-underline">Monthly Plan</div>
         <div>
-          <span class="plan-price">₹750</span>/month
-          <small class="plan-gst">+ GST</small>
-          <div class="plan-gst">&nbsp;</div>
+          <span class="plan-price">₹750</span>
+          <!-- <small class="plan-gst">+ GST</small>
+          <div class="plan-gst">&nbsp;</div> -->
         </div>
         <div class="plan-details" style="display: none;">
           <h4>Details</h4>
@@ -40,7 +40,7 @@
           </div>
         </div>
         
-        <div class="d-flex text-center mt-4">
+        <div class="d-flex text-center mt-5">
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
           <button class="btn btn-secondary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
         </div>
@@ -53,7 +53,7 @@
       <div class="plan-card text-center">
         <div class="col-12 plan-title text-decoration-underline">Referral Plan</div>
         <div>
-          <span class="plan-price">₹4500</span>/month
+          <span class="plan-price">₹4500</span>
           <div class="plan-gst">(6 Months)</div>
         </div>
         <div class="plan-details" style="display: none;">
@@ -83,7 +83,7 @@
       <div class="plan-card text-center">
         <div class="col-12 plan-title text-decoration-underline">Licensed plan</div>
         <div>
-          <span class="plan-price">₹25000</span>/month
+          <span class="plan-price">₹25000</span>
           <div class="plan-gst">(5 Years, 3 Users)</div>
         </div>
         <div class="plan-details" style="display: none;">
@@ -114,7 +114,7 @@
         <div class="col-12 plan-title text-decoration-underline">School Student Plan</div>
         <div>
           <span class="plan-price">₹300</span>
-          <div class="plan-gst">(6 Months)</div>
+          <div class="plan-gst">(per month)</div>
         </div>
         <div class="plan-details" style="display: none;">
           <h4>Details</h4>
@@ -134,8 +134,9 @@
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
           <button class="btn btn-secondary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
         </div>
-        <div class="d-flex flex-column text-center plan_renew mb-4">
-          "Renew monthly"
+        <div class="d-flex flex-column text-center plan_renew mb-0">
+          <button class="btn demo-button w-auto m-auto"> Demo </button>
+          <p>"Renew monthly"</p>
         </div>
       </div>
     </div>
