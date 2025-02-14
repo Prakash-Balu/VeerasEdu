@@ -259,3 +259,36 @@
     font-size: 11px;
   }
 }
+
+.modal-content {
+  border-radius: 15px;
+  background-color: #e9ecff;
+}
+.modal-header {
+  border-bottom: none;
+}
+.modal-body {
+  text-align: center;
+}
+.modal-body h1 {
+  font-weight: bold;
+}
+.modal-body table {
+  width: 100%;
+}
+.modal-body table td {
+  padding: 5px;
+}
+.modal-footer {
+  border-top: none;
+  justify-content: center;
+}
+.btn-primary {
+  border-radius: 25px;
+  padding: 10px 30px;
+}
+
+.btn-details {
+  background-color: #e3e3e3;
+  color: #000;
+}

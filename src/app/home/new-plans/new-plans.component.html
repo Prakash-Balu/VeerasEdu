@@ -42,7 +42,7 @@
         
         <div class="d-flex text-center mt-5">
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
-          <button class="btn btn-secondary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
+          <button class="btn btn-details continue-button w-auto m-auto" (click)="openModal('monthly')" > View Details </button> <!-- data-bs-toggle="modal" data-bs-target="#planPopup" -->
         </div>
         <div class="d-flex flex-column text-center plan_renew mb-4">
           "Renew monthly"
@@ -72,7 +72,7 @@
         
         <div class="d-flex text-center mt-4">
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
-          <button class="btn btn-secondary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
+          <button class="btn btn-details continue-button w-auto m-auto" (click)="openModal('referral')"> View Details </button><!--  data-bs-toggle="modal" data-bs-target="#planPopup" -->
         </div>
         <div class="d-flex flex-column text-center plan_renew mb-4">
           "Renew your plan after 6 months"
@@ -102,7 +102,7 @@
         
         <div class="d-flex text-center mt-4">
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
-          <button class="btn btn-secondary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
+          <button class="btn btn-details continue-button w-auto m-auto" (click)="openModal('licensed')"> View Details </button><!--  data-bs-toggle="modal" data-bs-target="#planPopup" -->
         </div>
         <div class="d-flex flex-column text-center plan_renew mb-0">
           "Renew your plan after the licensed period, If you wish"
@@ -132,7 +132,7 @@
         
         <div class="d-flex text-center mt-4">
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe()"> Subscribe </button>
-          <button class="btn btn-secondary continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planDetails"> View Details </button>
+          <button class="btn btn-details continue-button w-auto m-auto"  data-bs-toggle="modal" data-bs-target="#planPopup"> View Details </button>
         </div>
         <div class="d-flex flex-column text-center plan_renew mb-0">
           <button class="btn demo-button w-auto m-auto"> Demo </button>
@@ -225,7 +225,7 @@
   </div>
 </section>
 
-<div class="modal fade" id="planDetails" tabindex="-1" aria-labelledby="planDetailsLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="planDetails" tabindex="-1" aria-labelledby="planDetailsLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -254,5 +254,62 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
+ <!-- Modal -->
+ <!-- <div class="modal fade" id="planPopup" tabindex="-1" aria-labelledby="planPopupLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h1>₹749</h1>
+              <hr>
+              <table class="table table-borderless">
+                  <tbody>
+                      <tr>
+                          <td><strong>Pack validity</strong></td>
+                          <td>72 Days</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Total data</strong></td>
+                          <td>164 GB</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Data at high speed*</strong></td>
+                          <td>2 GB/Day +20 GB</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Voice</strong></td>
+                          <td>Unlimited</td>
+                      </tr>
+                      <tr>
+                          <td><strong>SMS</strong></td>
+                          <td>100 SMS/Day</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div> -->
+
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="planDetailsModal" tabindex="-1" aria-labelledby="planDetailsLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="planDetailsLabel">Plan Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" [innerHTML]="planDetails">
+        <!-- Plan details content will be injected here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
