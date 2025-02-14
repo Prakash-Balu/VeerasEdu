@@ -132,6 +132,10 @@
   color: var(--tg-common-color-dark);
 }
 
+.plan_renew {
+  font-size: 15px;
+}
+
 .order-wrapper {
   display: flex;
   flex-direction: column;
@@ -212,7 +216,7 @@
 }
 
 .continue-button {
-  border-radius: 80px;
+  border-radius: 20px;
 }
 
 .plan_table
