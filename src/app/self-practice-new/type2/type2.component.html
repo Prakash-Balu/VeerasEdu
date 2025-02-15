@@ -15,9 +15,11 @@
                                 </div>
                                 @let tamil = q.get('tamil')?.value;
                                 @let tamilparts = tamil?.split(' ');
+                                @let notBlanks = getNotBlanks(i);
                                 <div *ngFor="let blank of getBlanks(i).controls;let j = index;" class="col-auto flex-grow-1 flex-shrink-1">
                                     <label>{{tamilparts.at(j)}}</label>
-                                    <input type="text" (focus)="startRecognition(i,j)" placeholder="Try in Hindi ..." [formControl]="getControl(i,j)" [ngClass]="{'ans_wrong': getControl(i,j).value && !getIsCorrect(i,j),'ans_correct':getIsCorrect(i,j)}" class="form-control-plaintext border-0 border-bottom-1" id="control-{{i}}-{{j}}">
+                                    <input #inputElem  *ngIf="notBlanks.includes(j)" type="text" placeholder="Try in Hindi ..." [formControl]="getControl(i,j)" class="form-control-plaintext border-0 border-bottom-1" [disabled]="true" >
+                                    <input  #inputElem *ngIf="!notBlanks.includes(j)" type="text" (focus)="startRecognition(i,j)" [placeholder]="getPlaceHolder(i,j) ? 'Try in Hindi..':''" [formControl]="getControl(i,j)" [ngClass]="{'ans_wrong': getControl(i,j).value && !getIsCorrect(i,j),'ans_correct':getIsCorrect(i,j)}" class="form-control-plaintext border-0 border-bottom-1" id="control-{{i}}-{{j}}" >
                                 </div>
                             </div>
                             <div class="mt-lg-4">
