@@ -12,7 +12,7 @@ const routes: Routes = [
     path: '',
     component: SelfPracticeNewComponent,
     children: [
-        { path: '', redirectTo: 'type-1', pathMatch: 'full' },
+        { path: '', redirectTo: 'type-2', pathMatch: 'full' },
         { path: 'type-1', component: Type1Component },
         { path: 'type-2', component: Type2Component },
         {path:'speech',component:SpeechComponent}
