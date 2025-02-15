@@ -60,7 +60,7 @@ export class NewPlansComponent implements OnInit {
       <p>✅ Includes: All updates</p>
     `,
     "licensed": `
-      <p>✔ Validity: 5 years</p>
+      <p>✔ Validity: 3 years</p>
       <p>✔ Number of users: 2</p>
       <p>✅ Includes: All updates</p>
     `
