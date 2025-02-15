@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService, SelectedPlan } from '../../core/services/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -21,6 +21,7 @@ export class NewPlansComponent implements OnInit {
   selectedPlan!: SelectedPlan;
   plans: SelectedPlan[] = [];
   planSelect: string = '';
+  @ViewChild('subscribeSection') subscribeSection!: ElementRef;
 
   constructor(
     private router: Router,
@@ -94,6 +95,10 @@ export class NewPlansComponent implements OnInit {
   subscribe(index: number) {
     this.showSummary = true;
     this.choosePlan(index);
+    // const element = document.getElementById("subscribeSection");
+    if (this.subscribeSection) {
+      this.subscribeSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: "start" });
+    }
   }
 
   onContinueClick() {
