@@ -48,13 +48,11 @@ export class NewPlansComponent implements OnInit {
 
   planDetailsData: { [key: string]: string } = {
     "monthly": `
-      <h5>Plan Details</h5>
       <p>10-March-2025 to 10-April-2025</p>
       <p>Your next renewal date is <strong>15-April-2025</strong></p>
       <p>✅ Includes: All updates</p>
     `,
     "referral": `
-      <h5>Benefits of a Referral</h5>
       <p>✔ Refer a friend & get 6 months of subscription free.</p>
       <p>✔ Validity will add-on to your account.</p>
       <p>✔ Refer your friend after joining.</p>
@@ -62,10 +60,21 @@ export class NewPlansComponent implements OnInit {
       <p>✅ Includes: All updates</p>
     `,
     "licensed": `
-      <h5>Plan Details</h5>
       <p>✔ Validity: 5 years</p>
       <p>✔ Number of users: 3</p>
       <p>✅ Includes: All updates</p>
+    `
+  };
+
+  popUpPlanHeadingData: { [key: string]: string } = {
+    "monthly": `
+      Plan Details
+    `,
+    "referral": `
+      Benefits of a Referral
+    `,
+    "licensed": `
+      Plan Details
     `
   };
 
@@ -73,14 +82,18 @@ export class NewPlansComponent implements OnInit {
     return this.planDetailsData[this.planType] || 'Details not available.';
   }
 
+  get popUpPlanHeading(): string {
+    return this.popUpPlanHeadingData[this.planType] || 'Details not available.';
+  }
+
   choosePlan(index: number): void {
     this.selectedPlan = this.plans[index];
     this.commonService.setSelectedPlan(this.selectedPlan);
   }
 
-  subscribe() {
+  subscribe(index: number) {
     this.showSummary = true;
-    this.choosePlan(0);
+    this.choosePlan(index);
   }
 
   onContinueClick() {

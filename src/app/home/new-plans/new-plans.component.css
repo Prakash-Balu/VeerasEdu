@@ -285,10 +285,11 @@
 }
 .btn-primary {
   border-radius: 25px;
-  padding: 10px 30px;
+  padding: 10px 15px;
 }
 
 .btn-details {
   background-color: #e3e3e3;
   color: #000;
+  padding: 10px 15px;
 }
