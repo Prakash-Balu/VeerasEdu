@@ -178,9 +178,9 @@
                 <div>Total</div>
               </td>
               <td>
-                <div class="select-plan">
+                <div class="select-plan total-container">
                   @let total = amount + gstAmt;
-                  <span>{{selectedPlan.currencySymbol}} {{total | number:'1.2-2' }}</span>
+                  <span class="total_amount">{{selectedPlan.currencySymbol}} {{total | number:'1.2-2' }}</span>
                 </div>
               </td>
             </tr>
@@ -190,7 +190,7 @@
           <div class="bg-secondary-subtle col-8 m-auto p-2 text-dark">
             <p [ngStyle]="{ 
               fontSize:selectedPlan.code === plans[0].code ? '16px' : ''
-            }">You have selected {{selectedPlan.duration}} {{selectedPlan.period}} plan
+            }">You have selected {{selectedPlan.duration}} {{selectedPlan.period}}{{selectedPlan.duration > 1 ? 's' : ''}} plan
               <span *ngIf="selectedPlan.hasValidity">
                 @let totalDuration = +selectedPlan.duration + +(selectedPlan.validityDuration ?? 0);
                 + {{selectedPlan.validityDuration}} {{selectedPlan.validityPeriod}} free = {{totalDuration}} months of
