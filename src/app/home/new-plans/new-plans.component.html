@@ -152,20 +152,12 @@
             <tr>
               <td>
                 <div class="select-plan">
-                  @let s = selectedPlan.duration > 1?'s':'';
-                  <span> ({{selectedPlan.currencySymbol}}{{selectedPlan.planFee}} × {{selectedPlan.duration}}
-                    {{selectedPlan.period}}{{s}} ) </span> <br>
-                  <span *ngIf="selectedPlan.hasValidity else noplan" class="text-primary">
-                    +{{selectedPlan.validityDuration}} {{selectedPlan.validityPeriod}}{{s}} validity free
-                  </span>
-                  <ng-template #noplan>
-                    <div class="m-1"></div>
-                  </ng-template>
+                  Total amount paid
                 </div>
               </td>
               <td>
                 <div class="select-plan">
-                  @let amount = selectedPlan.planFee * selectedPlan.duration;
+                  @let amount = selectedPlan.planFee * selectedPlan.duration * (selectedPlan.period == 'year' ? 12: 1);
                   <span>{{selectedPlan.currencySymbol}} {{amount | number:'1.2-2' }}</span>
                 </div>
               </td>
