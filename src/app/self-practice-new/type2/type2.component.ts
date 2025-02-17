@@ -112,6 +112,12 @@ export class Type2Component implements OnInit {
     return formArray as FormArray;
   }
 
+  public readTryInHindi(): void {
+    const utterance = new SpeechSynthesisUtterance("Try in Hindi");
+    utterance.lang = 'en-US';
+    speechSynthesis.speak(utterance);
+  }
+
   public generateQuestions(): FormArray<FormGroup> {
     const questions = this.fb.array<FormGroup>([]);
     this.exercise.questions.forEach((item: ExerciseQuestion) => {
@@ -245,7 +251,7 @@ export class Type2Component implements OnInit {
     const input = this.currentControl?.value;
     const answers: string[] = this.questions.at(i).get('answers')?.value;
     const ans: string = answers.at(j) || '';
-    const percenatge: number = similarityPercentage(input, ans, 'soundex');
+    const percenatge: number = similarityPercentage(input, ans, 'levenshtein');
     const result: boolean = percenatge >= 50;
 
     const hindi: string = this.questions.at(this.currentQuestion).get('hindi')?.value || '';
@@ -317,6 +323,7 @@ export class Type2Component implements OnInit {
       }
     }
     if (this.recognition) {
+      this.readTryInHindi();
       this.recognition.start();
     }
   }
