@@ -78,6 +78,11 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
   background-size: cover;
 }
 
+.banner_tamil_text {
+  font-family: 'Avvaiyar';
+  font-size: 22px;
+}
+
 /* Banner CSS End */
 
 .banner {

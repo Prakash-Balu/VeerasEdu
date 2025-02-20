@@ -129,3 +129,11 @@ body {
   src: local("YouTube Sans Light"),
     url("./assets/fonts/YouTubeSansLight.otf") format("otf");
 }
+
+@font-face {
+  font-family: "Avvaiyar";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Avvaiyar"),
+    url("./assets/fonts/VANAVIL-Avvaiyar Regular.otf") format("otf");
+}
