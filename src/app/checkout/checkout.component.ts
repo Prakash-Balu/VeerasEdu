@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material-module';
 import { AuthService } from '../core/services/auth.service';
 import codes from 'country-calling-code';
+import { SelectedPlanNew } from '../core/models/selectedplannew';
 
 @Component({
   selector: 'app-checkout',
@@ -24,6 +25,7 @@ export class CheckoutComponent implements OnInit {
   public plan: any;
   public regForm!: FormGroup;
   public planCost: any;
+  public feeValue: any;
   public tax: any;
   public planTotal: any;
   public isIndia: boolean = true;
@@ -33,7 +35,8 @@ export class CheckoutComponent implements OnInit {
   public currencyCode: any;
   public country: any;
 
-  public selectedPlan!:SelectedPlan;
+  // public selectedPlan!:SelectedPlan;
+  public selectedPlanNew!:SelectedPlanNew;
 
   constructor(
     private commonService: CommonService,
@@ -65,16 +68,18 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedPlan = this.commonService.getSelectedPlan();
-    if(!this.selectedPlan){
+    // this.selectedPlan = this.commonService.getSelectedPlan();
+    this.selectedPlanNew = this.commonService.getSelectedPlanNew();
+    if(!this.selectedPlanNew){
       this.router.navigateByUrl('home');
     }
-    this.months = (this.selectedPlan?.duration ?? 0);
-    this.planCost = this.selectedPlan.duration * this.selectedPlan.planFee;
-    this.tax = this.planCost * (this.selectedPlan.gstPercent / 100);
-    this.processingFee = this.selectedPlan.processingFee;
-    this.planTotal = this.processingFee + this.tax + this.planCost;
-    console.log(this.selectedPlan);
+    this.months = (this.selectedPlanNew?.duration ?? 0);
+    // this.planCost = this.selectedPlanNew.duration * this.selectedPlanNew[];
+    this.feeValue = parseFloat((this.selectedPlanNew[this.selectedPlanNew.code + '_fee'] ?? '0').toString())
+    this.planCost = this.feeValue ;
+    this.tax = this.planCost * (this.selectedPlanNew.gstPercent / 100);
+    this.planTotal = this.tax + this.planCost;
+    console.log(this.selectedPlanNew);
     this.commonService.getLocation().subscribe((resp) => {
       if (resp) {
         this.currencyCode = resp?.data?.countryCurrency?.code;
@@ -128,10 +133,10 @@ export class CheckoutComponent implements OnInit {
         phoneCode: `+${phCode}`,
         country: this.country,
       },
-      planId: this.selectedPlan._id,
+      planId: this.selectedPlanNew._id,
       currencyCode: this.currencyCode,
       amount: this.planTotal,
-      duration: this.selectedPlan.duration,
+      duration: this.selectedPlanNew.duration,
     };
     console.log('payload::', payload);
     this.authService.checkout(payload).subscribe((resp) => {

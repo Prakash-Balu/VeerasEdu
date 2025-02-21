@@ -52,25 +52,25 @@ export class HomeComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private authSerive: AuthService
   ) {
-    console.log(authSerive.token);
+    // console.log(authSerive.token);
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit(): void {
-    if (this.isBrowser) {
-      this.renderer.addClass(
-        this.el.nativeElement.querySelector(".banner__content .title"),
-        "active"
-      );
-      setTimeout(() => {
-        this.renderer.removeClass(
-          this.el.nativeElement.querySelector(".banner__content .title"),
-          "active"
-        );
-      }, 3000);
+    // if (this.isBrowser) {
+    //   this.renderer.addClass(
+    //     this.el.nativeElement.querySelector(".banner__content .title"), // I dont know class is not present
+    //     "active"
+    //   );
+    //   setTimeout(() => {
+    //     this.renderer.removeClass(
+    //       this.el.nativeElement.querySelector(".banner__content .title"),
+    //       "active"
+    //     );
+    //   }, 3000);
 
-      window.addEventListener("scroll", this.onScroll.bind(this));
-    }
+    //   window.addEventListener("scroll", this.onScroll.bind(this));
+    // }
   }
 
   onScroll(): void {

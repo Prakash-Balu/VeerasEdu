@@ -18,14 +18,14 @@
   </div>
   <div class="row row-gap-5 mt-3 d-flex justify-content-center align-items-center p-1">
     
-    <div class="col-12 col-xxl-3 col-xl-3 col-lg-5">
+    <!--<div class="col-12 col-xxl-3 col-xl-3 col-lg-5">
       <div class="plan-card text-center">
         <div class="col-12 plan-title text-decoration-underline">Monthly Plan</div>
         <div>
           <span class="plan-price">₹750</span>
           <!-- <small class="plan-gst">+ GST</small>
           <div class="plan-gst">&nbsp;</div> -->
-        </div>
+        <!--</div>
         <div class="plan-details" style="display: none;">
           <h4>Details</h4>
           <div class="plan-duration-wrapper">
@@ -43,7 +43,7 @@
         <div class="d-flex text-center mt-5">
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe(0)"> Subscribe </button>
           <button class="btn btn-details continue-button w-auto m-auto" (click)="openModal('monthly')" > View Details </button> <!-- data-bs-toggle="modal" data-bs-target="#planPopup" -->
-        </div>
+        <!--</div>
         <div class="d-flex flex-column text-center plan_renew mb-4">
           "Renew monthly"
         </div>
@@ -73,7 +73,7 @@
         <div class="d-flex text-center mt-4">
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe(1)"> Subscribe </button>
           <button class="btn btn-details continue-button w-auto m-auto" (click)="openModal('referral')"> View Details </button><!--  data-bs-toggle="modal" data-bs-target="#planPopup" -->
-        </div>
+       <!--</div>
         <div class="d-flex flex-column text-center plan_renew mb-4">
           "Renew your plan after 6 months"
         </div>
@@ -103,7 +103,7 @@
         <div class="d-flex text-center mt-4">
           <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribe(2)"> Subscribe </button>
           <button class="btn btn-details continue-button w-auto m-auto" (click)="openModal('licensed')"> View Details </button><!--  data-bs-toggle="modal" data-bs-target="#planPopup" -->
-        </div>
+       <!-- </div>
         <div class="d-flex flex-column text-center plan_renew mb-0">
           "Renew your plan after the licensed period, If you wish"
         </div>
@@ -136,10 +136,32 @@
         </div>
         <div class="d-flex flex-column text-center plan_renew mb-5">
           <!-- <button class="btn demo-button w-auto m-auto"> Demo </button> -->
-          <p>"Renew monthly"</p>
+          <!--<p>"Renew monthly"</p>
         </div>
       </div>
-    </div>
+    </div> -->
+
+    @for(location of locationPlanPrice; track location) {
+      <!-- @for(plan of location.plans; i = index) { -->
+        <div class="col-12 col-xxl-3 col-xl-3 col-lg-5" *ngFor="let plan of location.plans; let i = index">
+          <div class="plan-card text-center">
+            <div class="col-12 plan-title text-decoration-underline">{{plan.name}}</div>
+            <div>
+              <span class="plan-price">{{location.currencySymbol}}{{location.price[0]?.[plan?.feeFieldName]}}</span> <span style="display: none;">/ month </span>
+              <div class="plan-gst">({{plan.duration}} {{plan.period}}{{plan.duration > 1 ? 's' : ''}})</div>
+            </div>
+            
+            <div class="d-flex text-center mt-5">
+              <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribeNew(i)" [innerHTML]="plan?.subBtnText"></button>
+              <button class="btn btn-details continue-button w-auto m-auto" [innerHTML]="plan?.viewDtlBtnText" (click)="openModal(plan)"></button>
+            </div>
+            <div class="d-flex flex-column text-center plan_renew mb-5">
+              <p>"{{plan.note}}"</p>
+            </div>
+          </div>
+        </div>
+      <!-- } -->
+    }
     
   </div>
 
@@ -157,19 +179,19 @@
               </td>
               <td>
                 <div class="select-plan">
-                  @let amount = selectedPlan.planFee * selectedPlan.duration * (selectedPlan.period == 'year' ? 12: 1);
-                  <span>{{selectedPlan.currencySymbol}} {{amount | number:'1.2-2' }}</span>
+                  @let amount = feeValue;
+                  <span>{{selectedPlanNew.currencySymbol}} {{amount | number:'1.2-2' }}</span>
                 </div>
               </td>
             </tr>
             <tr>
               <td>
-                <div>GST {{selectedPlan.gstPercent}}%</div>
+                <div>IGST {{selectedPlanNew.gstPercent}}%</div>
               </td>
               <td>
                 <div class="select-plan">
-                  @let gstAmt = (amount * (selectedPlan.gstPercent / 100));
-                  <span>{{selectedPlan.currencySymbol}} {{gstAmt | number:'1.2-2'}}</span>
+                  @let gstAmt = (amount * (selectedPlanNew.gstPercent / 100));
+                  <span>{{selectedPlanNew.currencySymbol}} {{gstAmt | number:'1.2-2'}}</span>
                 </div>
               </td>
             </tr>
@@ -180,7 +202,7 @@
               <td>
                 <div class="select-plan total-container">
                   @let total = amount + gstAmt;
-                  <span class="total_amount">{{selectedPlan.currencySymbol}} {{total | number:'1.2-2' }}</span>
+                  <span class="total_amount">{{selectedPlanNew.currencySymbol}} {{total | number:'1.2-2' }}</span>
                 </div>
               </td>
             </tr>
@@ -189,11 +211,11 @@
         <div class="row">
           <div class="bg-secondary-subtle col-8 m-auto p-2 text-dark">
             <p [ngStyle]="{ 
-              fontSize:selectedPlan.code === plans[0].code ? '16px' : ''
-            }">You have selected {{selectedPlan.duration}} {{selectedPlan.period}}{{selectedPlan.duration > 1 ? 's' : ''}} plan
-              <span *ngIf="selectedPlan.hasValidity">
-                @let totalDuration = +selectedPlan.duration + +(selectedPlan.validityDuration ?? 0);
-                + {{selectedPlan.validityDuration}} {{selectedPlan.validityPeriod}} free = {{totalDuration}} months of
+              fontSize:selectedPlanNew.code === plansNew[0].code ? '16px' : ''
+            }">You have selected {{selectedPlanNew.duration}} {{selectedPlanNew.period}}{{selectedPlanNew.duration > 1 ? 's' : ''}} plan
+              <span *ngIf="selectedPlanNew.hasValidity">
+                @let totalDuration = +selectedPlanNew.duration + +(selectedPlanNew.validityDuration ?? 0);
+                + {{selectedPlanNew.validityDuration}} {{selectedPlanNew.validityPeriod}} free = {{totalDuration}} months of
                 validity
               </span>
             </p>
@@ -279,14 +301,15 @@
 
 
 <!-- Bootstrap Modal -->
-<div class="modal fade" id="planDetailsModal" tabindex="-1" aria-labelledby="planDetailsLabel" aria-hidden="true">
+<div class="modal fade" id="planDetailsModal" tabindex="-1" aria-labelledby="planDetailsLabel" aria-hidden="true" *ngIf="planDetails">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="planDetailsLabel" [innerHTML]="popUpPlanHeading"></h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" [innerHTML]="planDetails">
+      <div class="modal-body">
+        <p [innerHTML]="planDetails"></p>
         <!-- Plan details content will be injected here -->
       </div>
       <div class="modal-footer">

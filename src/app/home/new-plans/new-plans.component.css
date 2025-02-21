@@ -127,9 +127,9 @@
   font-weight: var(--tg-fw-semi-bold);
 }
 
-.plan-card > div:nth-child(3) {
+/* .plan-card > div:nth-child(3) {
   padding: 0 25px;
-}
+} */
 
 .plan-card > div:nth-child(3) p {
   font-size: 11px;
