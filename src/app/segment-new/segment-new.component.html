@@ -1,11 +1,11 @@
 <div class="container-fluid p-0 m-0">
-  <div class="top-banner" style="display: none;">
+  <div class="top-banner">
     <div class="row gy-3">
       <div class="col-6 order-1 col-md-2 order-md-1">
-        <div class="arrow-left cursor-pointer" routerLink="/dashboard">
+        <!-- <div class="arrow-left cursor-pointer" routerLink="/dashboard">
           <fa-icon [icon]="faArrowLeft" class="cursor-pointer"></fa-icon>
         </div>
-        <div class="fw-bold d-none d-md-block cursor-pointer">back</div>
+        <div class="fw-bold d-none d-md-block cursor-pointer">back</div> -->
       </div>
 
       <div
@@ -32,7 +32,7 @@
   </div>
 
   <div class="row-wrapper position-relative">
-    <aside
+    <!-- <aside
       class="sidebar shadow"
       [ngClass]="isSidebarVisible ? 'open' : 'close'"
     >
@@ -59,7 +59,9 @@
         </div>
         <div class="fw-bold d-none d-md-block cursor-pointer">back</div>
       </div>
-    </aside>
+    </aside> -->
+
+    <app-sidebar></app-sidebar>
 
     <div class="video-container">
       <div

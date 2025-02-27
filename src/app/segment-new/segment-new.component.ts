@@ -15,7 +15,7 @@ import {
 import { SegmentService } from '../core/services/segments.service';
 import { VideoPlayerComponent } from '../components/video-player/video-player.component';
 import { MaterialModule } from '../material-module';
-
+import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -27,6 +27,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     RouterLink,
     VideoPlayerComponent,
     MaterialModule,
+    SidebarComponent,
   ],
   templateUrl: './segment-new.component.html',
   styleUrls: ['./segment-new.component.css'],
