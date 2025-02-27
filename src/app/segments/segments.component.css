@@ -16,7 +16,7 @@
 .top-banner {
   width: 100%;
   background-color: #80808029;
-  padding: 19px 100px 7px 100px;
+  padding: 10px 100px 7px 100px;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -43,6 +43,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
+  background-color: #f6f7f9;
 }
 .sidebar-toggle {
   background-color: transparent;

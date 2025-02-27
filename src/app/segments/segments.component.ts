@@ -17,6 +17,7 @@ import { VideoPlayerComponent } from '../components/video-player/video-player.co
 import { MaterialModule } from '../material-module';
 
 import { DomSanitizer } from '@angular/platform-browser';
+import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 
 @Component({
   selector: 'ments',
@@ -27,6 +28,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     RouterLink,
     VideoPlayerComponent,
     MaterialModule,
+    SidebarComponent,
   ],
   templateUrl: './segments.component.html',
   styleUrls: ['./segments.component.css'],
