@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, NgScrollbarModule],
+  imports: [CommonModule, NgScrollbarModule, ScrollingModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
@@ -17,6 +18,13 @@ export class SidebarComponent {
   activeSegmentId: string | null = null;
   activeSubMenuId: string | null = null;
   activeSubSubMenuId: string | null = null;
+  // @ViewChild(CdkScrollable) scrollable!: CdkScrollable;
+
+  // ngAfterViewInit() {
+  //   this.scrollable.elementScrolled().subscribe(() => {
+  //     console.log("User is scrolling the sidebar!");
+  //   });
+  // }
 
   ngOnInit() {
     this.segmentlist = [
@@ -398,7 +406,7 @@ export class SidebarComponent {
         expanded: false,
         subMenu: [
           {
-            _id: '6735c99727a6da66983a3115',
+            _id: '6735c99727a6da66983a3118',
             name: 'CLASS ROOM',
             description: 'CLASS ROOM',
             video_url:
@@ -420,7 +428,7 @@ export class SidebarComponent {
             updatedAt: '2024-11-14T09:57:43.692Z',
           },
           {
-            _id: '6735c99727a6da66983a3117',
+            _id: '6735c99727a6da66983a3119',
             name: 'PRACTICE WITH MASTER',
             description: 'PRACTICE WITH MASTER',
             video_url:
@@ -445,7 +453,7 @@ export class SidebarComponent {
         expanded: false,
         subMenu: [
           {
-            _id: '6735c99727a6da66983a3115',
+            _id: '6735c99727a6da66983a3120',
             name: 'CLASS ROOM',
             description: 'CLASS ROOM',
             video_url:
@@ -456,7 +464,7 @@ export class SidebarComponent {
             updatedAt: '2024-11-14T09:57:43.692Z',
           },
           {
-            _id: '6735c99727a6da66983a3116',
+            _id: '6735c99727a6da66983a3121',
             name: 'SELF PRACTICE',
             description: 'SELF PRACTICE',
             video_url:
@@ -467,7 +475,7 @@ export class SidebarComponent {
             updatedAt: '2024-11-14T09:57:43.692Z',
           },
           {
-            _id: '6735c99727a6da66983a3117',
+            _id: '6735c99727a6da66983a3122',
             name: 'PRACTICE WITH MASTER',
             description: 'PRACTICE WITH MASTER',
             video_url:
@@ -492,7 +500,7 @@ export class SidebarComponent {
         expanded: false,
         subMenu: [
           {
-            _id: '6735c99727a6da66983a3115',
+            _id: '6735c99727a6da66983a3123',
             name: 'CLASS ROOM',
             description: 'CLASS ROOM',
             video_url:
@@ -503,7 +511,7 @@ export class SidebarComponent {
             updatedAt: '2024-11-14T09:57:43.692Z',
           },
           {
-            _id: '6735c99727a6da66983a3116',
+            _id: '6735c99727a6da66983a3124',
             name: 'SELF PRACTICE',
             description: 'SELF PRACTICE',
             video_url:
@@ -514,7 +522,7 @@ export class SidebarComponent {
             updatedAt: '2024-11-14T09:57:43.692Z',
           },
           {
-            _id: '6735c99727a6da66983a3117',
+            _id: '6735c99727a6da66983a3125',
             name: 'PRACTICE WITH MASTER',
             description: 'PRACTICE WITH MASTER',
             video_url:

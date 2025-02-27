@@ -6,12 +6,25 @@
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Prevents unwanted horizontal scroll */
   }
   
   .sidebar div[scrollViewport] {
     flex-grow: 1; /* Takes full available space */
-    overflow-y: auto; /* Allows scrolling */
+    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: calc(100vh - 168px); /* Adjusts height dynamically */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #ccc transparent;
   }
+
+  /* Custom scrollbar for Webkit (Chrome, Edge, Safari) */
+.sidebar div[scrollViewport]::-webkit-scrollbar {
+    width: 8px;
+}
+.sidebar div[scrollViewport]::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
 
   .sidebar-header {
     display: flex;
