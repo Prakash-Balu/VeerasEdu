@@ -109,3 +109,17 @@
   top: 8px;
   font-weight: 600;
 }
+
+.qa_container:hover {
+  cursor: pointer;
+}
+
+.qa-content {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.alert-img {
+  width: 37px;
+  transform: rotate(-23deg);
+}

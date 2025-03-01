@@ -1,0 +1,64 @@
+.voice-message {
+    display: flex;
+    align-items: center;
+    background-color: #dcf8c6;
+    padding: 10px;
+    border-radius: 12px;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .message {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .audio-controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .audio-controls button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  
+  .waveform {
+    flex: 1;
+    height: 20px;
+    background: repeating-linear-gradient(
+      to right,
+      #34af23,
+      #34af23 2px,
+      transparent 2px,
+      transparent 4px
+    );
+    border-radius: 5px;
+  }
+  
+  .time {
+    font-size: 14px;
+    color: gray;
+    margin-left: 8px;
+  }
+  
+  .time-stamp {
+    font-size: 12px;
+    color: gray;
+    position: absolute;
+    bottom: 2px;
+    right: 10px;
+  }
+  

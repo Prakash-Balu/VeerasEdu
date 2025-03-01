@@ -534,6 +534,100 @@ export class SidebarComponent {
           },
         ],
       },
+      {
+        _id: '6735ca2327a6da66983a30b6',
+        name: 'SEGMENT-11',
+        description: 'SEGMENT-11',
+        video_url:
+          'https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963',
+        pageName: 'classroom',
+        routeUrl: 'class-room',
+        createdAt: '2024-11-14T10:00:03.847Z',
+        updatedAt: '2024-11-14T10:00:03.847Z',
+        expanded: false,
+        subMenu: [
+          {
+            _id: '6735c99727a6da66983a3126',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
+            video_url:
+              'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            pageName: 'classroom',
+            routeUrl: 'class-room',
+            createdAt: '2024-11-14T09:57:43.692Z',
+            updatedAt: '2024-11-14T09:57:43.692Z',
+          },
+          {
+            _id: '6735c99727a6da66983a3127',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
+            video_url:
+              'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            pageName: 'classroom',
+            routeUrl: 'class-room',
+            createdAt: '2024-11-14T09:57:43.692Z',
+            updatedAt: '2024-11-14T09:57:43.692Z',
+          },
+          {
+            _id: '6735c99727a6da66983a3128',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
+            video_url:
+              'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            pageName: 'classroom',
+            routeUrl: 'class-room',
+            createdAt: '2024-11-14T09:57:43.692Z',
+            updatedAt: '2024-11-14T09:57:43.692Z',
+          },
+        ],
+      },
+      {
+        _id: '6735ca2327a6da66983a30b7',
+        name: 'SEGMENT-12',
+        description: 'SEGMENT-12',
+        video_url:
+          'https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963',
+        pageName: 'classroom',
+        routeUrl: 'class-room',
+        createdAt: '2024-11-14T10:00:03.847Z',
+        updatedAt: '2024-11-14T10:00:03.847Z',
+        expanded: false,
+        subMenu: [
+          {
+            _id: '6735c99727a6da66983a3129',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
+            video_url:
+              'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            pageName: 'classroom',
+            routeUrl: 'class-room',
+            createdAt: '2024-11-14T09:57:43.692Z',
+            updatedAt: '2024-11-14T09:57:43.692Z',
+          },
+          {
+            _id: '6735c99727a6da66983a3130',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
+            video_url:
+              'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            pageName: 'classroom',
+            routeUrl: 'class-room',
+            createdAt: '2024-11-14T09:57:43.692Z',
+            updatedAt: '2024-11-14T09:57:43.692Z',
+          },
+          {
+            _id: '6735c99727a6da66983a3131',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
+            video_url:
+              'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            pageName: 'classroom',
+            routeUrl: 'class-room',
+            createdAt: '2024-11-14T09:57:43.692Z',
+            updatedAt: '2024-11-14T09:57:43.692Z',
+          },
+        ],
+      },
     ];
 
     this.activeSegmentId = "6735c99727a6da66983a3096";
