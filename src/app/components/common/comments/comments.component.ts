@@ -21,8 +21,6 @@ import { environment } from '../../../../environments/environment';
 import moment from 'moment';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
-import { VoiceMessageComponent } from '../../../voice-message/voice-message.component';
 
 @Component({
   selector: 'app-comments',
@@ -33,8 +31,6 @@ import { VoiceMessageComponent } from '../../../voice-message/voice-message.comp
     MatCardModule,
     MatTabsModule,
     MatPaginatorModule,
-    MatIconModule,
-    VoiceMessageComponent
   ],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.css',
@@ -80,7 +76,6 @@ export class CommentsComponent
 
   timer: string = '00:00';
   private timerInterval!: any;
-  postTextFocussed = false;
 
   ngOnInit(): void {
     this.userDetails = this.authService.userMeApi();
@@ -110,8 +105,6 @@ export class CommentsComponent
         this.viewComments();
       }
     }
-
-
   }
 
   ngAfterViewInit() {

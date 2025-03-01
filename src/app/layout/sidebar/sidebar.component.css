@@ -1,7 +1,7 @@
 .sidebar {
     width: 290px;
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 62px;
     bottom: 0;
     background-color: #fff;
     display: flex;
@@ -12,7 +12,7 @@
   .sidebar div[scrollViewport] {
     flex-grow: 1; /* Takes full available space */
     overflow-y: auto; /* Enables vertical scrolling */
-    /*max-height: calc(100vh - 168px); /* Adjusts height dynamically */
+    max-height: calc(100vh - 168px); /* Adjusts height dynamically */
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: #ccc transparent;
   }

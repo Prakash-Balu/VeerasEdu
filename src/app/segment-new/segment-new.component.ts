@@ -27,7 +27,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     RouterLink,
     VideoPlayerComponent,
     MaterialModule,
-    SidebarComponent
+    SidebarComponent,
   ],
   templateUrl: './segment-new.component.html',
   styleUrls: ['./segment-new.component.css'],

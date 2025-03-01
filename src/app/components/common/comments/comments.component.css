@@ -206,13 +206,12 @@
   color: #fff !important;
 }
 
-.submit_btn {
+.comment__button_section .submit_btn {
   background: #ffffff !important;
-  color: #3f8b5f !important;
-  border: 2px solid #3f8b5f;
+  color: #000 !important;
+  border: 2px solid #5a4b26;
   font: 16px / 22px proxima-nova, sans-serif;
-  padding: 4px 14px;
-  margin-left: 10px;
+  padding: 4px 8px;
   width: max-content;
 }
 .comment__button_section .submit_btn:hover {
@@ -247,7 +246,7 @@
 .comment__initial {
   padding: 15px;
   background-color: #fafafa;
-  border: 2px solid #3f8b5f;
+  border: 1px solid #e1e8ed;
   margin-bottom: 15px;
   border-radius: 10px;
   box-shadow: 3px 10px 15px rgb(0 0 0 / 15%);
@@ -270,10 +269,10 @@
   justify-content: center;
 }
 .comment__audio_btn {
-  /* font-size: 22px; */
-  width: 35px;
-  min-width: 35px;
-  height: 35px;
+  font-size: 22px;
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,7 +290,7 @@
 .screen-comment {
   /* width: 700px; */
   max-width: 100%;
-  padding: 0 70px;
+  padding: 0 130px;
 }
 .comment__info_left,
 .comment__info_right {
@@ -516,46 +515,4 @@ i {
 
 .bi-x-circle-fill {
   color: #dc3545;
-}
-
-
-.audio_mic {
-  color: #3f8b5f;
-}
-
-@keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.4; }
-  100% { opacity: 1; }
-}
-
-.blinking-mic {
-  /* font-size: 1.2rem; */
-  width: 35px;
-  min-width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #3f8b5f;
-  color: #fff;
-  border-radius: 50%;
-  cursor: pointer;
-  animation: blink 1s infinite;
-}
-
-.resize-none {
-  resize: none;
-}
-
-.post_container {
-  border-radius: 2rem;
-  border: 2px solid #e3e3e3;
-}
-
-.post_container.border_color {
-  border: 2px solid #3f8b5f;
-  transition-duration: .2s; 
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
 }
