@@ -21,6 +21,7 @@ import { environment } from '../../../../environments/environment';
 import moment from 'moment';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-comments',
@@ -31,6 +32,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatCardModule,
     MatTabsModule,
     MatPaginatorModule,
+    MatIconModule,
   ],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.css',
@@ -76,6 +78,7 @@ export class CommentsComponent
 
   timer: string = '00:00';
   private timerInterval!: any;
+  postTextFocussed = false;
 
   ngOnInit(): void {
     this.userDetails = this.authService.userMeApi();
