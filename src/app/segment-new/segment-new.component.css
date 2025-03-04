@@ -196,6 +196,8 @@
   font-weight: 600;
   margin-top: 37px;
   color: #0000008f;
+  position: relative;
+  margin-left: 120px;
 }
 
 .seg-body {

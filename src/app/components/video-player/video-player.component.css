@@ -1,8 +1,20 @@
 .video-play-container{
+    position: relative;
     padding-top: 25px;
-    margin: 0 auto;
+    margin: 0 auto 30px 120px;
 }
 
 .video-play-container iframe {
     border-radius: 20px;
 }
+@media screen and (min-width: 1400px) {
+    .video-play-container {
+        width: 1350px;
+        margin: 0 auto 30px 230px;
+    }
+
+    .video-play-container iframe {
+        width: 1350px;
+        height: 800px;
+    }
+  }
