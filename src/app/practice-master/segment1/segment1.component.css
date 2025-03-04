@@ -1,0 +1,110 @@
+.segment_1_content {
+  flex-direction: row;
+}
+.segment_1 {
+  padding-top: 100px;
+  background-color: var(--tg-common-color-gray-3);
+}
+
+.card {
+  background-color: var(--tg-common-color-gray-5);
+  border-radius: 10px;
+}
+.overlay_icon {
+  position: absolute;
+  left: 115px;
+  top: 100px;
+  z-index: 11;
+  background-color: transparent;
+}
+.card-header {
+  position: relative;
+  border: 5px solid var(--tg-common-color-gray-5);
+  background-color: var(--tg-common-color-gray-4);
+  border-radius: 10px;
+}
+.card-header h3 {
+  font-size: 16px;
+  padding: 5px 10px;
+  align-items: center;
+  background-color: var(--tg-common-color-gray-5);
+  border-radius: 5px;
+  max-width: 80px;
+  margin: auto;
+}
+
+.card-header p {
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  align-items: center;
+  color: var(--tg-common-color-white);
+}
+
+.card-header .voice_ass {
+  background-color: var(--tg-common-color-gray-5);
+  padding: 5px 10px;
+  border: 1px solid var(--tg-common-color-gray-5);
+  border-radius: 30px;
+  color: var(--tg-common-color-white);
+  font-size: 12px;
+  text-align: center;
+  align-items: center;
+}
+.card-header .voice_ass span {
+  margin-left: 5px;
+}
+.card-body h3 {
+  font-size: 16px;
+  align-items: center;
+  background-color: var(--tg-common-color-gray-5);
+  border-radius: 5px;
+  max-width: 80px;
+  margin: auto;
+}
+.card-body p {
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  align-items: center;
+  color: var(--tg-common-color-white);
+}
+
+.card-body .voice_ass {
+  background-color: var(--tg-common-color-gray-5);
+  border: 1px solid var(--tg-common-color-gray-5);
+  padding: 5px 10px;
+  border-radius: 30px;
+  color: var(--tg-common-color-white);
+  font-size: 12px;
+  text-align: center;
+  align-items: center;
+}
+.card-body img {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.card-body {
+  border: 5px solid var(--tg-common-color-gray-5);
+  background-color: var(--tg-common-color-gray-4);
+  border-radius: 10px;
+}
+.icon1 {
+  border: 1px solid var(--tg-common-color-gray-5);
+  padding: 5px;
+  border-radius: 50px;
+}
+.segment_1_icon {
+  border: 1px solid var(--tg-common-color-gray-5);
+  background-color: var(--tg-common-color-gray-4);
+  border-radius: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: auto;
+  max-width: 300px;
+  padding: 10px;
+  margin-top: 30px;
+}
