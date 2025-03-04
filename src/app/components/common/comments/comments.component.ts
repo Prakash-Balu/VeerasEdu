@@ -81,32 +81,254 @@ export class CommentsComponent
   postTextFocussed = false;
 
   ngOnInit(): void {
-    this.userDetails = this.authService.userMeApi();
-    console.log(this.userDetails);
-    this.userId = this.userDetails._id;
-    this.userType = this.userDetails.role;
+    if (this.authService.tokenValue) {
+      this.userDetails = this.authService.userMeApi();
+      console.log(this.userDetails);
+      this.userId = this.userDetails._id;
+      this.userType = this.userDetails.role;
 
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      // this.segmentId = params.get("id");
-      this.segmentId = this.segment._id;
-      // this.segmentId = 1;
+      this.route.paramMap.subscribe((params: ParamMap) => {
+        // this.segmentId = params.get("id");
+        this.segmentId = this.segment._id;
+        // this.segmentId = 1;
 
-      if (!!this.segmentId) {
-        console.log(this.segmentId);
-        this.viewComments();
+        if (!!this.segmentId) {
+          console.log(this.segmentId);
+          this.viewComments();
+        }
+      });
+    } else {
+      this.demoComments();
+    }
+  }
+
+  demoComments() {
+    let respData = [
+      {
+        _id: '67488ba532e4a52d936dafe4',
+        userId: '6650c5ce74c3379810be1f50',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 1,
+        text: 'Hi this is test from changing the field',
+        audioPath: '',
+        createdAt: '2024-11-28T15:26:29.998Z',
+        updatedAt: '2024-11-28T15:26:29.998Z',
+        userName: 'Prakash',
+        role: 'USER',
+        reply: [],
+      },
+      {
+        _id: '674d3de520c1c5b4a5131055',
+        userId: '6650c5ce74c3379810be1f50',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: 'Hi this is test notification',
+        audioPath: '',
+        createdAt: '2024-12-02T04:56:05.753Z',
+        updatedAt: '2024-12-02T04:56:05.753Z',
+        userName: 'Prakash',
+        role: 'USER',
+        reply: [],
+      },
+      {
+        _id: '6776ef8fa2bdee2c299604f0',
+        userId: '6650c5ce74c3379810be1f50',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 3,
+        text: 'This is audio chat app',
+        audioPath:
+          'https://veerasapi-production.up.railway.app/audios/6650c5ce74c3379810be1f50/hindi_edu_1735847821392.wav',
+        createdAt: '2025-01-02T19:57:03.182Z',
+        updatedAt: '2025-01-02T19:57:03.182Z',
+        userName: 'Prakash',
+        role: 'USER',
+        reply: [],
+      },
+      {
+        _id: '677a767c3c83591a2174d20f',
+        userId: '66f2a756e0c0d600cf07a44b',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: '',
+        audioPath:
+          'http://localhost:3000/audios/66f2a756e0c0d600cf07a44b/hindi_edu_1736078972696.wav',
+        createdAt: '2025-01-05T12:09:32.838Z',
+        updatedAt: '2025-01-05T12:09:32.838Z',
+        userName: 'prasanna flipflop',
+        role: 'ADMIN',
+        reply: [],
+      },
+      {
+        _id: '677a99f7622f426fe91613eb',
+        userId: '66f2a756e0c0d600cf07a44b',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: '',
+        audioPath: '',
+        createdAt: '2025-01-05T14:40:55.834Z',
+        updatedAt: '2025-01-05T14:40:55.834Z',
+        userName: 'prasanna flipflop',
+        role: 'ADMIN',
+        reply: [],
+      },
+      {
+        _id: '677a9c14622f426fe916146e',
+        userId: '66f2a756e0c0d600cf07a44b',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: '',
+        audioPath: '',
+        createdAt: '2025-01-05T14:49:56.329Z',
+        updatedAt: '2025-01-05T14:49:56.329Z',
+        userName: 'prasanna flipflop',
+        role: 'ADMIN',
+        reply: [],
+      },
+      {
+        _id: '677a9cd9622f426fe9161492',
+        userId: '66f2a756e0c0d600cf07a44b',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: '',
+        audioPath: '',
+        createdAt: '2025-01-05T14:53:13.385Z',
+        updatedAt: '2025-01-05T14:53:13.385Z',
+        userName: 'prasanna flipflop',
+        role: 'ADMIN',
+        reply: [],
+      },
+      {
+        _id: '677aab190ce76a0256d62e07',
+        userId: '6650c5ce74c3379810be1f50',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: '',
+        audioPath:
+          'http://localhost:3000/audios/6650c5ce74c3379810be1f50/hindi_edu_1736092441693.wav',
+        createdAt: '2025-01-05T15:54:01.769Z',
+        updatedAt: '2025-01-05T15:54:01.769Z',
+        userName: 'Prakash',
+        role: 'USER',
+        reply: [],
+      },
+      {
+        _id: '677aabc93c83591a2174d266',
+        userId: '66f2a756e0c0d600cf07a44b',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: '',
+        audioPath: '',
+        createdAt: '2025-01-05T15:56:57.508Z',
+        updatedAt: '2025-01-05T15:56:57.508Z',
+        userName: 'prasanna flipflop',
+        role: 'ADMIN',
+        reply: [],
+      },
+      {
+        _id: '677aabd93c83591a2174d27b',
+        userId: '66f2a756e0c0d600cf07a44b',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: '',
+        audioPath:
+          'http://localhost:3000/audios/66f2a756e0c0d600cf07a44b/hindi_edu_1736092633451.wav',
+        createdAt: '2025-01-05T15:57:13.523Z',
+        updatedAt: '2025-01-05T15:57:13.523Z',
+        userName: 'prasanna flipflop',
+        role: 'ADMIN',
+        reply: [],
+      },
+      {
+        _id: '677aad113c83591a2174d291',
+        userId: '66f2a756e0c0d600cf07a44b',
+        segmentId: '6735c99727a6da66983a3096',
+        seqNo: 2,
+        text: '',
+        audioPath:
+          'http://localhost:3000/audios/66f2a756e0c0d600cf07a44b/hindi_edu_1736092945917.wav',
+        createdAt: '2025-01-05T16:02:25.983Z',
+        updatedAt: '2025-01-05T16:02:25.983Z',
+        userName: 'prasanna flipflop',
+        role: 'ADMIN',
+        reply: [],
+      },
+    ];
+
+    respData.forEach((value: any, index: any) => {
+      this.dataResp1.push(value);
+    });
+
+    this.dataResp1 = this.getSortData(this.dataResp1);
+
+    this.dataResp1.forEach((element, key) => {
+      var fullName = element.userName;
+      var userType = 'Learner';
+      var usrAvatar = this.getUserAvatarName(fullName);
+      if (element.role == 'ADMIN' || element.role == 'SUPERADMIN') {
+        userType = 'ADMIN';
       }
+      var replyData: any[] = [];
+      var hiddenReplyData: any[] = [];
+      if (element.reply && element.reply.length > 0) {
+        element.reply.forEach((element1: any, key1: any) => {
+          var fullName1 = element1.userName;
+          var userType1 = 'Learner';
+          var usrAvatar1 = this.getUserAvatarName(fullName1);
+          if (element1.role == 'ADMIN' || element1.role == 'SUPERADMIN') {
+            userType1 = 'ADMIN';
+          }
+
+          var obj1 = {
+            fullName: fullName1,
+            userType: userType1,
+            usrAvatar: usrAvatar1,
+            replyId: element1._id,
+            userId: element1.user_id,
+            seqNo: element1.seqNo,
+            description: element1.text,
+            dateAgoTxt: moment(element1.createdAt).fromNow(),
+            audioPath: element1.audioPath === '' ? null : element1.audioPath,
+          };
+
+          if (replyData.length < 2) {
+            replyData.push(obj1);
+          } else {
+            hiddenReplyData.push(obj1);
+          }
+        });
+      }
+
+      var obj = {
+        fullName: fullName,
+        userType: userType,
+        usrAvatar: usrAvatar,
+        commentId: element._id,
+        userId: element.user_id,
+        seqNo: element.seqNo,
+        description: element.text || '',
+        dateAgoTxt: moment(element.createdAt).fromNow(),
+        audioPath: element.audioPath === '' ? null : element.audioPath,
+        reply: replyData,
+        hiddenReply: hiddenReplyData,
+      };
+
+      this.comments.push(obj);
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['segment']) {
-      this.segmentId = this.segment._id;
-      console.log('this.segmentId', this.segmentId);
-      this.resetCommentInputs();
-      if (!!this.segmentId) {
-        console.log(this.segment);
-        this.viewComments();
+    if (this.authService.tokenValue) {
+      if (changes['segment']) {
+        this.segmentId = this.segment._id;
+        console.log('this.segmentId', this.segmentId);
+        this.resetCommentInputs();
+        if (!!this.segmentId) {
+          console.log(this.segment);
+          this.viewComments();
+        }
       }
+    } else {
+      this.demoComments();
     }
   }
 
@@ -541,5 +763,11 @@ export class CommentsComponent
       console.error('Failed to submit reply:', error);
       alert('An error occurred while submitting your reply. Please try again.');
     }
+  }
+
+  isPlaying = false;
+
+  togglePlay() {
+    this.isPlaying = !this.isPlaying;
   }
 }

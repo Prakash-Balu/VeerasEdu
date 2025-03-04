@@ -80,6 +80,15 @@
         Your browser does not support the audio element.
       </audio>
     </div>
+    
+
+    <!-- <div class="audio-message" [class.playing]="isPlaying" (click)="togglePlay()" *ngIf="!url">
+      <div class="play-button">▶</div>
+      <div class="waveform">
+        <span *ngFor="let bar of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" class="bar" [style.animationDelay]="(bar * -0.1) + 's'"></span>
+      </div>
+    </div> -->
+
     <button class="btn p-0" (click)="enableAudioChat('NEW')" tooltip="Speak">
       <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }"
         >mic_none</mat-icon
@@ -364,12 +373,12 @@
     </div>
     <div
       class="comment__hidden_response"
-      *ngIf="comment.hiddenReply.length > 0"
+      *ngIf="comment?.hiddenReply?.length > 0"
     >
       <span
         class="otherreply_btn"
         (click)="moreReply($event)"
-        [textContent]="comment.hiddenReply.length + ' other replie(s)'"
+        [textContent]="comment?.hiddenReply?.length + ' other replie(s)'"
       ></span>
     </div>
     <div

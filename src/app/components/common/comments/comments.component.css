@@ -175,10 +175,12 @@
 }
 
 .comment__reply_btn {
-  color: #5a5a5a;
+  /* color: #5a5a5a; */
+  color: #3f8b5f;
   margin-left: 5px;
   cursor: pointer;
-  border: 1px solid #525252;
+  /* border: 1px solid #525252; */
+  border: 1px solid #3f8b5f;
   font-size: 12px;
 }
 
@@ -567,3 +569,68 @@ i {
   padding: 4px 8px;
   width: max-content;
 }
+
+.audio-container audio{
+  background: none !important;
+  border-radius: 30px !important;
+  border: 4px solid #3f8b5f;
+  padding: 3px !important;
+}
+
+
+@media screen and (min-width: 1400px) {
+  .post_container {
+    width: 1200px;
+    margin-left: 80px;
+  }
+
+  .comment__initial_input {
+    max-width: 1200px;
+  }
+}
+
+
+/* .audio-message {
+  display: flex;
+  align-items: center;
+  background: #2d2d3d;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  width: fit-content;
+  transition: background 0.3s;
+}
+
+.audio-message.playing {
+  background: #5a5af1;
+}
+
+.play-button {
+  font-size: 20px;
+  color: white;
+  margin-right: 10px;
+}
+
+.waveform {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 20px;
+}
+
+.bar {
+  width: 4px;
+  background: white;
+  border-radius: 2px;
+  animation: none;
+}
+
+.audio-message.playing .bar {
+  animation: wave-animation 1s infinite ease-in-out alternate;
+}
+
+@keyframes wave-animation {
+  0% { height: 4px; }
+  50% { height: 20px; }
+  100% { height: 4px; }
+} */
