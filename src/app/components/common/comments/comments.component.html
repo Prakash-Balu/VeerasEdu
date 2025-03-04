@@ -364,12 +364,12 @@
     </div>
     <div
       class="comment__hidden_response"
-      *ngIf="comment.hiddenReply.length > 0"
+      *ngIf="comment?.hiddenReply?.length > 0"
     >
       <span
         class="otherreply_btn"
         (click)="moreReply($event)"
-        [textContent]="comment.hiddenReply.length + ' other replie(s)'"
+        [textContent]="comment?.hiddenReply?.length + ' other replie(s)'"
       ></span>
     </div>
     <div

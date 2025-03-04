@@ -175,10 +175,12 @@
 }
 
 .comment__reply_btn {
-  color: #5a5a5a;
+  /* color: #5a5a5a; */
+  color: #3f8b5f;
   margin-left: 5px;
   cursor: pointer;
-  border: 1px solid #525252;
+  /* border: 1px solid #525252; */
+  border: 1px solid #3f8b5f;
   font-size: 12px;
 }
 
@@ -566,4 +568,10 @@ i {
   font: 16px / 22px proxima-nova, sans-serif;
   padding: 4px 8px;
   width: max-content;
+}
+
+.audio-container audio{
+  background-color: #3f8b5f !important;
+  border-radius: 30px !important;
+  padding: 3px !important;
 }

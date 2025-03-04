@@ -17,7 +17,6 @@ import { VideoPlayerComponent } from '../components/video-player/video-player.co
 import { MaterialModule } from '../material-module';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'ments',
@@ -29,8 +28,6 @@ import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
     VideoPlayerComponent,
     MaterialModule,
     SidebarComponent,
-    CdkScrollable,
-    ScrollingModule
   ],
   templateUrl: './segment-new.component.html',
   styleUrls: ['./segment-new.component.css'],
