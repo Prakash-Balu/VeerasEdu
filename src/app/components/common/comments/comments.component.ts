@@ -764,4 +764,10 @@ export class CommentsComponent
       alert('An error occurred while submitting your reply. Please try again.');
     }
   }
+
+  isPlaying = false;
+
+  togglePlay() {
+    this.isPlaying = !this.isPlaying;
+  }
 }
