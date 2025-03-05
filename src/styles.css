@@ -46,11 +46,13 @@ body {
   --tg-body-line-height: 1.75;
   --tg-heading-line-height: 1.2;
   --tg-text-blue: #0058ff;
+  --tg-text-dblue: #0d6efd;
   --tg-text-green: #0a3622;
   --tg-common-color-primary: #5a4b26;
   --tg-common-color-secondary: #ae9975;
   --tg-common-color-blue: #2494e4;
   --tg-common-color-indigo: #9b51e0;
+  --tg-common-color-icon: #6338f6;
   --tg-common-color-indigo1: #9b51e0/0.5;
   --tg-common-color-purple: #8121fb;
   --tg-common-color-pink: #d63384;
