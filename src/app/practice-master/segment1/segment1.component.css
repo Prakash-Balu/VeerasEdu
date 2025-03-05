@@ -4,8 +4,8 @@
 .segment_1_content {
   flex-direction: row;
 }
-.container{
-  padding-top: 30px;
+.container {
+  padding-top: 20px;
 }
 .card {
   border-radius: 10px;
@@ -24,8 +24,8 @@
 .img_learner_bg {
   background-color: #e3dbfd;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
