@@ -5,14 +5,18 @@
         <div class="container">
           <div class="card d-flex segment_1_content">
             <div class="card-body">
-              <div class="d-flex justify-content-center m-auto segment_1_img">
+              <div
+                class="d-flex justify-content-center m-auto segment_1_img"
+                *ngFor="let item of apiVideoId"
+              >
                 <iframe
                   title="/assets/images/voice_call_admin.png"
                   alt=""
                   width="400px"
                   height="200px"
-                  src="../../../assets/videos/demo.mp4"
+                  autoplay="false"
                 >
+                  {{ item.videoUrl }}
                 </iframe>
                 <span>Veera's</span>
               </div>
@@ -100,4 +104,3 @@
     </div>
   </div>
 </div>
-
