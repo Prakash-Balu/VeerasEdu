@@ -32,7 +32,7 @@ export class PraticeWithMasterService {
 
   getPraticeWithMasterById(id: string) {
     return this.http
-      .get(`${this.url}${API_URL.PRATICEWITH_MASTER_LIST}${id}`, {
+      .get(`${this.url}${API_URL.PRATICEWITH_MASTER_GET_ID}${id}`, {
         headers: this.getHeaders(),
       })
       .pipe(catchError(this.handleError));

@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment';
   styleUrl: './practice-master.component.css',
 })
 export class PracticeMasterComponent implements OnInit {
-  apiCard: ApiList[] = [];
+  public praticeWithMasterList: ApiList[] = [];
 
   http = inject(HttpClient);
 
@@ -59,7 +59,7 @@ export class PracticeMasterComponent implements OnInit {
       .getPraticeWithMasterList()
       .subscribe((resp: any) => {
         if (resp) {
-          this.apiCard = resp?.data;
+          this.praticeWithMasterList = resp?.data;
         }
       });
   }
