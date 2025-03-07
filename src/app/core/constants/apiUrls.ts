@@ -3,6 +3,7 @@ export const API_URL = {
   GET_PLAN_DETAILS: "/plan/getPlanDetails",
   GET_PLAN_DETAILS_NEW: "/price/getLocationPrice",
   USER_ME: "/user/@me",
+  SEGMENT_API_VIDEO:"/practicewithmasterCustomer/getPractice",
   GET_ATTENDANCE: "/user/attendance",
   RECORD_SESSION: "/user/record-sesion",
   GET_LOCATION: "/payment/location",

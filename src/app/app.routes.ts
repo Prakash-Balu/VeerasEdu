@@ -57,7 +57,7 @@ export const routes: Routes = [
         data: { showFooter: false, isMobile: false },
       },
       {
-        path: 'segment1',
+        path: 'practice-master/:name/:_id',
         // canActivate: [AuthGuard],
         loadComponent: () =>
           import('./practice-master/segment1/segment1.component').then(

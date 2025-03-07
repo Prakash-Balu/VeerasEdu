@@ -1,5 +1,5 @@
 export interface ApiList {
-  id: string;
+  _id: string;
   name: string;
   description: string;
 }
@@ -22,7 +22,7 @@ export interface ApiCardId {
       answer: string;
       isDeleted: boolean;
       id: string;
-      watched: true;
+      watched: boolean;
     }
   ];
 }
