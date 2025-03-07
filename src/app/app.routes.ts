@@ -49,7 +49,7 @@ export const routes: Routes = [
       },
       {
         path: 'practice-master',
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         loadComponent: () =>
           import('./practice-master/practice-master.component').then(
             (m) => m.PracticeMasterComponent
