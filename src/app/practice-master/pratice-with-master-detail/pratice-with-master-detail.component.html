@@ -5,19 +5,19 @@
         <div class="container">
           <div class="card d-flex segment_1_content">
             <div class="card-body">
-              <div
-                class="d-flex justify-content-center m-auto segment_1_img"
-                
-              >
+              <div class="d-flex justify-content-center m-auto segment_1_img">
                 <iframe
                   poster="/assets/images/voice_call_admin.png"
-                  width="400px"
-                  height="200px"
-                  controls
-                  [src]="videoUrl"
-
+                  width="400"
+                  height="200"
+                  [src]="sanitizedVideoUrl"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen
+                  (load)="onVideoLoad()"
                 ></iframe>
-                <span>Veera</span>
+
+                <span>Master</span>
               </div>
               <div class="d-flex justify-content-center m-auto pt-3">
                 <div class="btn btn-bordered segment_1_button">Listen</div>

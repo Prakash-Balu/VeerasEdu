@@ -12,5 +12,5 @@ export const API_URL = {
   GET_SEGMENTS:"/segments/getSegments",
   VIEW_NOTIFICATIONS: "/comments/view-notification",
   PRATICEWITH_MASTER_LIST: "/practicewithmasterCustomer/listPractices",
-  PRATICEWITH_MASTER_GET_ID: "/practicewithmasterCustomer/getPratice/",
+  PRATICEWITH_MASTER_GET_ID: "/practicewithmasterCustomer/getPractice/",
 };

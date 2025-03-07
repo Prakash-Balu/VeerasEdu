@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { ApiList } from '../modal/interface/card';
 import { inject } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { PraticeWithMasterService } from '../core/services/pratice-with-master.service';
 @Component({
   selector: 'app-practice-master',
   standalone: true,
@@ -17,42 +18,19 @@ export class PracticeMasterComponent implements OnInit {
 
   http = inject(HttpClient);
 
-  constructor(private router: Router) {}
-  // getVideoApi() {
-  //   this.authService.apiVideoSegment().subscribe((resp) => {
-  //     if (resp) {
-  //       this.router.navigate(['/practice-master']);
-  //     }
-  //   });
-  // }
-  getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    return new HttpHeaders({
-      Accept: '*/*',
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    });
-  }
+  constructor(
+    private router: Router,
+    private praticeWithMasterService: PraticeWithMasterService
+  ) {}
 
   ngOnInit(): void {
-    this.storeApiValue();
-    // this.getVideoApi();
+    console.log("initia")
+    this.getPraticeWithMaster();
   }
-  storeApiValue() {
-    this.http
-      .get(environment.baseURL + '/practicewithmasterCustomer/listPractices', {
-        headers: this.getHeaders(),
-      })
-      .subscribe((res: any) => {
-        console.log('card', res);
 
-        this.apiCard = res.data;
-      });
-  }
   getApi(name: string, _id: any) {
     this.router.navigateByUrl(`practice-master/${name}/${_id}`);
   }
-  // card: any[] = [];
 
   getPraticeWithMaster() {
     this.praticeWithMasterService
