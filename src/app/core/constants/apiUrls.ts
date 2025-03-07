@@ -10,5 +10,6 @@ export const API_URL = {
   CHECK_OUT: "/payment/create",
   add_comments: "/comments/addComment",
   GET_SEGMENTS:"/segments/getSegments",
-  VIEW_NOTIFICATIONS: "/comments/view-notification"
+  VIEW_NOTIFICATIONS: "/comments/view-notification",
+  PRATICEWITH_MASTER_LIST: "/practicewithmasterCustomer/listPractices",
 };

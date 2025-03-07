@@ -794,3 +794,15 @@ video {
   bottom: 1em;
   left: calc(100% - 61%);
 }
+
+
+@media screen and (min-width: 1400px) {
+  .sec2 {
+    margin-left: 220px;
+    font-size: 26px;
+  }
+
+  .video-container {
+    margin-left: 105px;
+  }
+}
