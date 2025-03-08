@@ -79,6 +79,7 @@ export class CommentsComponent
   timer: string = '00:00';
   private timerInterval!: any;
   postTextFocussed = false;
+  tooltipTitle: String = 'Speak';
 
   ngOnInit(): void {
     if (this.authService.tokenValue) {
@@ -411,6 +412,7 @@ export class CommentsComponent
     this.url = null;
     this.startTimer();
     this.recording = true;
+    this.tooltipTitle = 'Stop the recording';
 
     this.mediaRecorder.ondataavailable = (event) => {
       if (event.data.size > 0) {
@@ -425,6 +427,7 @@ export class CommentsComponent
       this.mediaRecorder.stop();
       this.recording = false;
       this.stopTimer();
+      this.tooltipTitle = 'Speak';
     }
   }
 

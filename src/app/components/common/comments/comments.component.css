@@ -53,7 +53,7 @@
   box-shadow: 3px 10px 15px rgb(0 0 0 / 15%) !important;
 }
 .comment__container {
-  background-color: #f3f3f3;
+  background-color: #fff;
   border: 1px solid #c3c3c3;
   /* margin-bottom: 16px; */
   border-radius: 7px;
@@ -260,6 +260,7 @@
   gap: 20px;
   max-width: 800px;
   width: 100%;
+  height: 50px;
 }
 .comment__button_section .btn {
   padding: 5px 20px;
@@ -520,6 +521,7 @@ i {
 }
 
 .post_container {
+  background-color: #fff;
   max-width: 100%;
   width: 800px;
   border-radius: 2rem;
@@ -529,9 +531,15 @@ i {
 
 .post_container.border_color {
   border: 2px solid #3f8b5f;
-  transition-duration: .2s; 
+  transition-duration: 0.2s;
   transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.comment__initial_input textarea {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 1.125rem;
+
 }
 
 .resize-none {
@@ -542,10 +550,21 @@ i {
   color: #3f8b5f;
 }
 
+.post_btn_container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 @keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.4; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .blinking-mic {
@@ -563,21 +582,27 @@ i {
 }
 
 .post_btn {
-  background: #ffffff !important;
-  color: #3f8b5f !important;
-  border: 2px solid #3f8b5f;
-  font: 16px / 22px proxima-nova, sans-serif;
+  background: #c6e9d5 !important;
+  color: #000 !important;
+  border: 12px solid #c6e9d5;
+  border-radius: 40px;
+  font: 19px / 22px proxima-nova, sans-serif;
   padding: 4px 8px;
   width: max-content;
 }
 
-.audio-container audio{
+.post_btn:hover {
+  background: #3f8b5f !important;
+  color: #fff !important;
+  border-color: #3f8b5f;
+}
+
+.audio-container audio {
   background: none !important;
   border-radius: 30px !important;
   border: 4px solid #3f8b5f;
   padding: 3px !important;
 }
-
 
 @media screen and (min-width: 1400px) {
   .post_container {
@@ -614,8 +639,7 @@ i {
   }
 }
 
-
-/* .audio-message {
+.audio-message {
   display: flex;
   align-items: center;
   background: #2d2d3d;
@@ -658,4 +682,4 @@ i {
   0% { height: 4px; }
   50% { height: 20px; }
   100% { height: 4px; }
-} */
+}

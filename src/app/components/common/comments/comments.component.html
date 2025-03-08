@@ -59,7 +59,7 @@
 </div> -->
 
 <div
-  class="post_container p-5 mt-5 mb-5"
+  class="post_container p-4 mt-5 mb-5"
   [ngClass]="{ border_color: postTextFocussed }"
 >
   <!-- align-items-center shadow-sm bg-white mt-5 mb-5 post_container-->
@@ -71,6 +71,7 @@
       (focus)="postTextFocussed = true"
       (blur)="postTextFocussed = false"
       [(ngModel)]="commentsText"
+      maxlength="200"
       *ngIf="!url"
     ></textarea>
     <div class="audio-player" *ngIf="url">
@@ -89,7 +90,10 @@
       </div>
     </div> -->
 
-    <button class="btn p-0" (click)="enableAudioChat('NEW')" tooltip="Speak">
+    
+  </div>
+  <div class="post_btn_container">
+    <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top" [attr.title]="tooltipTitle" title="Tooltip on top">
       <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }"
         >mic_none</mat-icon
       >
