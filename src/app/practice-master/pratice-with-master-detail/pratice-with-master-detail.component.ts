@@ -35,9 +35,9 @@ export class PraticeWithMasterDetailComponent implements OnInit {
   private localAudioTrack: ILocalAudioTrack | null = null;
 
   appId: string = '104c5f7630a84c9e9e7a0a6ead997eb1';
-  channelName: string = 'Test2';
+  channelName: string = 'New';
   token: any =
-    '007eJxTYPifz7ZVkzdmWnz1PdVH+8/oZd54pcGjrLvxsz7TqhjTxxsUGAwNTJJN08zNjA0SLUySLVMtU80TDRLNUhNTLC3NU5MMc3dcSm8IZGTozq5nYmSAQBCflSEktbjEiIEBAFFTH6k=';
+    '007eJxTYLibbXhr8ZfW8M6ome/X6lUkBUZ0uM62iJi50uTqasXEb94KDIYGJsmmaeZmxgaJFibJlqmWqeaJBolmqYkplpbmqUmGly/cTm8IZGTY81SHmZEBAkF8Zga/1HIGBgCTrSEE';
   uid: string = Math.floor(Math.random() * 10000).toString();
 
   transcriptionResult: string = '';
@@ -61,7 +61,7 @@ export class PraticeWithMasterDetailComponent implements OnInit {
     });
 
     window.addEventListener('message', this.handleVideoEvent.bind(this));
-    this.highlightMatchingText()
+    this.highlightMatchingText();
     this.joinChannel();
   }
 
@@ -98,10 +98,14 @@ export class PraticeWithMasterDetailComponent implements OnInit {
     const predefinedWords = this.answer.split(' ');
     const transcribedWords = this.transcriptionResult.split(' ');
 
-    let highlighted = "";
+    let highlighted = '';
 
     predefinedWords.forEach((word, index) => {
-      console.log(transcribedWords[index] === word, transcribedWords[index] , word)
+      console.log(
+        transcribedWords[index] === word,
+        transcribedWords[index],
+        word
+      );
       if (transcribedWords[index] === word) {
         highlighted += `<span class="highlight">${word}</span> `;
       } else {
