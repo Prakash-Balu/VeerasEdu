@@ -176,3 +176,9 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}

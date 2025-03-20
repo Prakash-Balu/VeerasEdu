@@ -6,7 +6,7 @@
           <div class="card d-flex segment_1_content">
             <div class="card-body">
               <div class="d-flex justify-content-center m-auto segment_1_img">
-                <iframe
+                <!-- <iframe
                   poster="/assets/images/voice_call_admin.png"
                   width="400"
                   height="200"
@@ -15,10 +15,24 @@
                   allow="autoplay; encrypted-media"
                   allowfullscreen
                   (load)="onVideoLoad()"
-                ></iframe>
+                ></iframe> -->
+                <div *ngIf="videoUrl">
+                  <video
+                    #videoPlayer
+                    width="400"
+                    height="200"
+                    controls
+                    allow="autoplay"
+                    (ended)="onVideoEnded()"
+                  >
+                    <source [src]="videoUrl" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
 
                 <span>Master</span>
               </div>
+              @if(!mainVideo){
               <div class="d-flex justify-content-center m-auto pt-3">
                 <div class="btn btn-bordered segment_1_button">Listen</div>
               </div>
@@ -34,6 +48,7 @@
                   kya tumane khaaya
                 </p>
               </div>
+              }
             </div>
           </div>
         </div>
@@ -57,7 +72,7 @@
                 <div class="btn btn-bordered segment_1_button">Let's talk</div>
               </div>
               <div class="segment_1_voice m-auto mt-5">
-                <p>
+                <p [innerHTML]="highlightedText">
                   <span
                     ><img
                       src="/assets/images/mic.png"
@@ -65,7 +80,6 @@
                       width="18px"
                       height="18px"
                   /></span>
-                  kya tumane khaaya
                 </p>
               </div>
             </div>
@@ -91,7 +105,7 @@
           <div class="btn icon1">
             <i class="ti ti-microphone"></i>
           </div>
-          <span>Start</span>
+          <span onclick="joinChannel()">Start</span>
         </div>
         <div class="segment_1_icon_overlay">
           <div class="btn icon1">

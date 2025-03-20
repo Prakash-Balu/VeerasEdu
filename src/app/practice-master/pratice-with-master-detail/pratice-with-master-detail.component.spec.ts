@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PraticeWithMasterDetailComponent } from './pratice-with-master-detail.component';
 
-import { Segment1Component } from './segment1.component';
 
-describe('Segment1Component', () => {
-  let component: Segment1Component;
-  let fixture: ComponentFixture<Segment1Component>;
+describe('PraticeWithMasterDetailComponent', () => {
+  let component: PraticeWithMasterDetailComponent;
+  let fixture: ComponentFixture<PraticeWithMasterDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Segment1Component]
+      imports: [PraticeWithMasterDetailComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Segment1Component);
+    fixture = TestBed.createComponent(PraticeWithMasterDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
