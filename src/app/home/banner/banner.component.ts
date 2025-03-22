@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-banner',
@@ -8,46 +7,19 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.css'
 })
-export class BannerComponent implements AfterViewInit  {
+export class BannerComponent implements AfterViewInit {
 
-  sanitizedVideoUrl!: SafeResourceUrl;
-  videoUrl = "assets/videos/SLIDE 02_3.mp4"
   // Reference to the video element
   @ViewChild('slider_video', { static: false }) videoElement!: ElementRef;
 
-  constructor(private sanitizer: DomSanitizer) {
-    this.sanitizedVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.videoUrl);
-  }
-
-  ngAfterViewInit() {
-    this.setupVisibilityChangeListener();
-  }
-
-  // Set up visibility change listener to detect when the page becomes visible/inactive
-  setupVisibilityChangeListener() {
-    document.addEventListener('visibilitychange', this.handleVisibilityChange.bind(this));
-  }
-
-  handleVisibilityChange() {
+  ngAfterViewInit(): void {
+    // const video = document.querySelector('video') as HTMLVideoElement;
     const video: HTMLVideoElement = this.videoElement.nativeElement;
-
-    // Check if the document is visible (in focus)
-    if (document.visibilityState === 'visible') {
-      // Try to play the video when the page is active
+    if (video) {
+      video.muted = true;  // Ensure the video is muted
       video.play().catch((error) => {
-        console.error('Error playing video:', error);
+        console.error("Autoplay failed: ", error);
       });
-    } else {
-      // Pause the video when the page is not visible
-      video.pause();
     }
   }
-
-  playVideo() {
-    const video: HTMLVideoElement = this.videoElement.nativeElement;
-    video.play().catch((error) => {
-      console.error('Error playing video:', error);
-    });
-  }
-
 }

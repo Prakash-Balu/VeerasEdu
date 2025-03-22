@@ -226,7 +226,10 @@
 
         </iframe> -->
 
-        <video #slider_video width=80% height="550px" class="slider_video" [src]="sanitizedVideoUrl" autoplay loop></video>
+        <video #slider_video autoplay muted loop class="slider_video" width=80% height="550px">
+          <source src="assets/videos/SLIDE 02_3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <!-- <div class="col-lg-6">
