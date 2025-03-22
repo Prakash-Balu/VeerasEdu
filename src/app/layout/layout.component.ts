@@ -34,7 +34,7 @@ export class LayoutComponent {
     // Simulate a loading delay (e.g., API calls, data fetching)
     setTimeout(() => {
       this.isLoading = false;
-    }, 6000); // 6-second delay
+    }, 6500); // 6.5-second delay
   }
 
 }
