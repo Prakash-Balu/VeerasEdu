@@ -423,6 +423,39 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
   }
 }
 
+.slider_video {
+  border-radius: 1rem;
+}
+
+@media only screen and (min-width: 1900px) {
+  .slider_video {
+    width: 100%;
+    height: 700px;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .carousel-title-box h1 {
+    font-size: 32px;
+  }
+
+  .slider_video {
+    width: 100%;
+    height: 600px;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1250px) {
+  .carousel-title-box h1{
+    font-size: 24px;
+  }
+
+  .slider_video {
+    width: 100%;
+    height: 500px;
+  }
+}
+
 
 @media screen and (max-width: 991px) {
   .hindi {
@@ -432,9 +465,14 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
   .carousel-control-prev {
     top: -50%;
   }
+
+  .slider_video {
+    width: 100%;
+    height: 370px;
+  }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .main-img {
     max-width: 300px;
   }
@@ -444,6 +482,11 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
   }
   .banner {
     padding-top: 50px;
+  }
+
+  .slider_video {
+    width: 100%;
+    height: 370px;
   }
 }
 
@@ -480,16 +523,17 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
   .methodology {
     right: 0;
   }
-}
 
-@media only screen and (min-width: 1400px) {
-  .carousel-title-box h1 {
-    font-size: 32px;
+  .slider_video {
+    height: 250px;
+    width: 100%;
   }
 }
 
-@media only screen and (min-width: 1000px) and (max-width: 1250px) {
-  .carousel-title-box h1{
-    font-size: 24px;
+
+@media screen and (max-width: 480px) {
+  .slider_video {
+    height: 185px;
+    width: 100%;
   }
 }
