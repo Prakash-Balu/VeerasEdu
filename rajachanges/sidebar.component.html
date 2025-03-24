@@ -5,12 +5,12 @@
   externalViewport
   appearance="compact"
 > -->
-<div class="sidebar" cdkScrollable>
-  <div scrollViewport>
+<div class="sidebar pt-3 p-3" cdkScrollable>
+  <div>
     <div class="sidebar-header">
-      <h5 class="text-uppercase fw-bold">INDEX</h5>
+      <h5 class="text-uppercase fw-bold pt-2 pb-2">INDEX</h5>
     </div>
-    <ul class="menu-list list-group">
+    <ul class="menu-list list-group mt-2 mb-3">
       @for (segment of segmentlist; track segment) {
       <li [class.menu-item]="segment._id">
         <a

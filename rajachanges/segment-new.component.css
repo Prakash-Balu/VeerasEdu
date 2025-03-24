@@ -806,3 +806,26 @@ video {
     margin-left: 105px;
   }
 }
+
+.page-header {
+  position: relative;
+  z-index: 99;
+  background-color: #cbcfe9;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 10px 17px 6px;
+}
+
+.body_title{
+  color: #400bd5;
+  font-size: 1.8rem;
+  padding: 8px 16px;
+  vertical-align: middle;
+}
+
+.classroom_content{
+  background: #e5e7f4;
+  overflow: auto;
+    height: 100%;
+}

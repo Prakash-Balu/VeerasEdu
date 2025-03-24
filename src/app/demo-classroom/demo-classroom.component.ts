@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faArrowCircleLeft,
@@ -13,28 +13,28 @@ import {
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 import { SegmentService } from '../core/services/segments.service';
-import { VideoPlayerComponent } from '../components/video-player/video-player.component';
+import { NewVideoPlayerComponent } from './new-video-player/new-video-player.component';
 import { MaterialModule } from '../material-module';
-import { SidebarComponent } from '../layout/sidebar/sidebar.component';
+import { NewSidebarComponent } from './new-sidebar/new-sidebar.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
-  selector: 'ments',
+  selector: 'app-demo-classroom',
   standalone: true,
   imports: [
     FontAwesomeModule,
     CommonModule,
-    VideoPlayerComponent,
+    NewVideoPlayerComponent,
     MaterialModule,
-    SidebarComponent,
+    NewSidebarComponent,
     CdkScrollable,
     ScrollingModule,
-],
-  templateUrl: './segment-new.component.html',
-  styleUrls: ['./segment-new.component.css'],
+  ],
+  templateUrl: './demo-classroom.component.html',
+  styleUrl: './demo-classroom.component.css'
 })
-export class SegmentNewComponent {
+export class DemoClassroomComponent {
   faArrowCircleLeft = faArrowCircleLeft;
   faCircleArrowLeft = faCircleArrowLeft;
   faArrowLeft = faArrowLeft;

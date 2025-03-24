@@ -1,108 +1,149 @@
-<!-- <div class="screen-comment mt-5 mb-5">
-  <div class="comment__initial">
-    <p class="comment_reply_head">
-      Post your doubts here related to the above class
-    </p>
-    <div class="comment__initial_input">
-      <div class="audio-recorder" *ngIf="isEnableAudio">
-        <div class="timer-container" *ngIf="recording && isEnableAudio">
-          <span class="timer">{{ timer }}</span>
-          <div class="wave-container">
-            <div class="wave wave1"></div>
-            <div class="wave wave2"></div>
-            <div class="wave wave3"></div>
-            <div class="wave wave4"></div>
+<div class="post-container">
+  <div class="container">
+    <div class="comment-section col-md-10 p-0">
+      <div class="card">
+        <div class="card-body">
+          <form action="social-feed">
+            <div class="mb-3 text-start">
+              <label class="form-label fs-16">Post your doubts here related to the above class</label>
+              <div class="position-relative">
+                <textarea class="form-control post-textarea" rows="3"
+                (focus)="postTextFocussed = true"
+                (blur)="postTextFocussed = false"
+                [(ngModel)]="commentsText"
+                maxlength="200"
+                *ngIf="!url"
+                  placeholder="Ask your doubts by writing comments or Record audio and post it."></textarea>
+                <span class="avatar avatar-lg avatar-rounded text-area-avatar">
+                  <img src="assets/images/logo_icon.png" alt="Img">
+                </span>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+
+              <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-primary d-inline-flex align-items-center ms-2 btn_primary" (click)="addComment()"><i
+                    class="ti ti-circle-plus fs-16 me-2"></i>Post Comment</button>
+
+              </div>
+              <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top" [attr.title]="tooltipTitle" title="Tooltip on top">
+                <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }"
+                  >mic_none</mat-icon
+                >
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="mb-4" style="display: none;">
+        <div class="d-flex gap-3">
+          <img alt="" src="assets/images/logo_icon.png" class="user-avatar">
+          <div class="flex-grow-1">
+            <div class="search">
+              <div class="input-bar">
+
+                <textarea type="search"
+                  placeholder="Ask your doubts by writing comments or Record audio and post it." name="search"
+                  id="search-text" autocomplete="off"></textarea>
+
+                <button id="dictate" title="Dictate" class="audio_mic">
+                  <i class="fa fa-microphone audio_mic"></i>
+
+                  <span class="a11y-hidden">Dictate new search</span>
+                </button>
+              </div>
+            </div>
+            <div class="mt-3 text-end">
+              <button class="btn btn-comment btn_primary" >Post Comment</button>
+              <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top" [attr.title]="tooltipTitle" title="Tooltip on top">
+                <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }"
+                  >mic_none</mat-icon
+                >
+              </button>
+            </div>
           </div>
-          <span>Listening...</span>
-          <i class="fa-solid fa-stop" (click)="stopRecording()"></i>
-        </div>
-        <div class="audio-player" *ngIf="url && !isEnableReplyAudio">
-          <i class="fa-solid fa-trash-can" (click)="deleteRecording('NEW')"></i>
-          <audio #audioPlayer controls class="w-100">
-            <source [src]="url" type="audio/webm" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-        <div
-          *ngIf="errorMessage && isEnableAudio"
-          class="error-message fw-bold text-danger"
-        >
-          {{ errorMessage }}
         </div>
       </div>
-      <textarea
-        *ngIf="!isEnableAudio"
-        class="form-control reply_comment_text"
-        placeholder="Leave a comment here"
-        [(ngModel)]="commentsText"
-      ></textarea>
-      <div class="comment_recorder">
-        <span class="comment__audio_btn" (click)="enableAudioChat('NEW')">
-          <i
-            class="fa-solid"
-            [ngClass]="isEnableAudio ? 'fa-microphone-slash' : 'fa-microphone'"
-          ></i>
-        </span>
-      </div>
+
     </div>
-
-    <div class="comment__button_section">
-      <button class="btn submit_btn" type="button" (click)="addComment()">
-        Post
-      </button>
-      <span class="post_btn_txt"
-        >(Ask your doubts by writing comments or Record audio and post
-        it.)</span
-      >
-    </div>
-  </div>
-</div> -->
-
-<div
-  class="post_container p-4 mt-5 mb-5"
-  [ngClass]="{ border_color: postTextFocussed }"
->
-  <!-- align-items-center shadow-sm bg-white mt-5 mb-5 post_container-->
-  <div class="comment__initial_input">
-    <textarea
-      class="post_text form-control border-0 bg-transparent shadow-none resize-none"
-      placeholder="Ask your doubts by writing comments or Record audio and post it."
-      rows="3"
-      (focus)="postTextFocussed = true"
-      (blur)="postTextFocussed = false"
-      [(ngModel)]="commentsText"
-      maxlength="200"
-      *ngIf="!url"
-    ></textarea>
-    <div class="audio-player" *ngIf="url">
-      <i class="fa-solid fa-trash-can" (click)="deleteRecording('NEW')"></i>
-      <audio #audioPlayer controls class="w-100">
-        <source [src]="url" type="audio/webm" />
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-    
-
-    <!-- <div class="audio-message" [class.playing]="isPlaying" (click)="togglePlay()" *ngIf="!url">
-      <div class="play-button">▶</div>
-      <div class="waveform">
-        <span *ngFor="let bar of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" class="bar" [style.animationDelay]="(bar * -0.1) + 's'"></span>
-      </div>
-    </div> -->
-
-    
-  </div>
-  <div class="post_btn_container">
-    <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top" [attr.title]="tooltipTitle" title="Tooltip on top">
-      <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }"
-        >mic_none</mat-icon
-      >
-    </button>
-    <button class="btn post_btn px-3" (click)="addComment()">Post</button>
   </div>
 </div>
 
-<mat-card>
+<div class="post-container">
+  <div class="container">
+    <div class="comment-section col-md-10 p-0">
+      <div class="comment-filter row">
+        <div class="col-md-8">
+          <h6 class="pt-3 ps-2 fw-bold text-start">{{comments.length}} Comments</h6>
+        </div>
+        <div class="col-md-4">
+          <div class="align-items-end me-3">
+
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">Sort by</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected value="1">Newest first</option>
+                <option value="2">Oldest first</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="comments-list" *ngFor="let comment of comments">
+
+        <div class="comment-box">
+          <div class="d-flex gap-3 comment-box-post">
+            <span class="user_avatar">P</span>
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between ">
+                <h6 class="mb-0">{{comment.fullName}} <span class="badge badge-learner mx-2">{{comment.userType}}</span></h6>
+
+                <div class="comment-actions">
+                  <div class="comment-time">2 hours ago</div>
+                  <a href="#"><i class="fa fa-reply"></i> Reply</a>
+                </div>
+              </div>
+              <audio controls controlslist="noplaybackrate nodownload"
+                style="background-color: #5a4b26;border-radius: 30px;padding: 5px;">
+                <source src="" type="audio/wav" />
+                Your browser does not support the audio element.
+              </audio>
+
+            </div>
+          </div>
+
+          <!-- Reply Section -->
+          <div class="reply-section mt-3">
+            <div class="comment-box-reply">
+              <div class="d-flex gap-3">
+                <img alt="" src="assets/images/logo_icon.png" class="user-avatar">
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h6 class="mb-0">Veera's Support Team<span class="badge badge-admin mx-2">Admin</span></h6>
+                    <span class="comment-time">{{comment.dateAgoTxt}}</span>
+                  </div>
+
+                  <p class="mb-2 text-start">{{comment.description}} </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+  
+</div>
+
+
+<mat-card style="display: none;">
   <mat-tab-group>
     <mat-tab>
       <ng-template mat-tab-label>

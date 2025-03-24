@@ -1,0 +1,14 @@
+.video-play-container{
+    position: relative;
+}
+
+.video-play-container iframe {
+    border-radius: 20px;
+}
+
+@media screen and (max-height: 800px) {
+    .video-play-container iframe {
+        height: 400px;
+    }
+}
+

@@ -1,0 +1,19 @@
+<div class="video-play-container" style="text-align: center;">
+    <div class="vimeo-video">
+      <div #vimeoPlayer></div>
+      <iframe
+        *ngIf="videoObj?.video_url"
+        [src]="sanitizedVideoUrl"
+        frameborder="0"
+        width=80%
+        height="400px"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+        title="Video Player"
+      ></iframe>
+    </div>
+  
+    <div>
+      <app-new-comments [segment]="videoObj"></app-new-comments>
+    </div>
+  </div>
+  
