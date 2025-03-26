@@ -15,10 +15,12 @@ export class LayoutComponent {
   isHideFooter: boolean = true;
   showHeader = false;
   isLoading: boolean = true;
+  isPreloader: boolean = false;
 
   constructor(private router : Router) {
     this.router.events.subscribe(()=>{
       this.isHideFooter = this.router.url === "/login"
+      this.isPreloader = this.router.url === "/home" // Preloader enable
       // if(this.router.url.includes('checkout')){
       //   this.showHeader = false;
       // }else{
