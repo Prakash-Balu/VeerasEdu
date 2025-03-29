@@ -810,22 +810,22 @@
   .page-header {
     position: relative;
     z-index: 99;
-    background-color: #cbcfe9;
+    background-color: #e5e5e5;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    padding: 10px 17px 6px;
+    padding: 11px 17px 3px;
   }
   
   .body_title{
-    color: #400bd5;
-    font-size: 1.8rem;
-    padding: 8px 16px;
+    color: #322817;
+    font-size: 1.5rem;
+    padding: 2px 5px;
     vertical-align: middle;
   }
   
   .classroom_content{
-    background: #e5e7f4;
+    background: #fff;
     overflow: auto;
-      height: 100%;
+    height: 100%;
   }

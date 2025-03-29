@@ -1066,12 +1066,11 @@
   }
   
   .comment-box {
-  background: white;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  transition: transform 0.2s;
-  border: 1px solid #e9ecef;
-  box-shadow: 0 2px 15px #0000001a;
+    background: #fafafa;
+    margin-bottom: 1em;
+    border: 2px solid #ddd;
+    transition: transform 0.2s;
+
   }
   
   .comment-box:hover {
@@ -1080,7 +1079,8 @@
   }
   
   .comment-box-post{
-  padding: 20px;
+    padding: 20px;
+    
   }
   
   .user-avatar {
@@ -1134,11 +1134,13 @@
   .comment-time {
   color: #adb5bd;
   font-size: 0.85rem;
+  font-weight: 400;
   }
   
   .reply-section {
-  background: #f4f4f4;
+  background: #fff;
   padding: 20px;
+  border-top: 1px solid #ddd;
   }
   
   
@@ -1305,46 +1307,124 @@
   }
   
   .badge-learner {
-  background: rgba(27, 132, 255, 0.1);
-  color: #1B84FF;
+    background: transparent;
+    color: #322817;
+    border: 1px solid #268ae4;
   }
   
   .badge-admin {
-  background: rgba(3, 201, 90, 0.1);
-  color: #03C95A;
+    background: #322817;
+    color: #ffffff;
   }
   
   .user_avatar{
-    background: #322817;
-    padding: 3px;
+    background: transparent;
+    padding: 6px 7px;
     border-radius: 50%;
     font-weight: 700;
-    width: 30px;
-    height: 30px;
     text-align: center;
     margin-right: 5px;
     display: block;
-    color: #fff;
+    color: #322817;
+    font-size: 12px;
+    border: 1px solid #a6a6a6;
   }
   
   .comment-box h6{
-  color: #2f099e;
+  color: #268ae8;
   font-weight: 800;
   }
   
   .btn_primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #2f099e;
-  --bs-btn-border-color: #2f099e;
+  --bs-btn-bg: #2b231c;
+  --bs-btn-border-color: #2b231c;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #2f099e;
-  --bs-btn-hover-border-color: #2f099e;
+  --bs-btn-hover-bg: #2b231c;
+  --bs-btn-hover-border-color: #2b231c;
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #2f099e;
-  --bs-btn-active-border-color: #2f099e;
+  --bs-btn-active-bg: #2b231c;
+  --bs-btn-active-border-color: #2b231c;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #2f099e;
-  --bs-btn-disabled-border-color: #2f099e;
+  --bs-btn-disabled-bg: #2b231c;
+  --bs-btn-disabled-border-color: #2b231c;
+  }
+
+  .post-comment span, .post-comment textarea{
+    height: 50px;
+    resize: none;
+  }
+
+  .post-comment img{
+    width: 35px;
+  }
+
+  .btn_audio{
+    border: 1px solid #dee2e6;
+  }
+
+  .post-comment textarea{
+    transition: 0.4s;
+    resize: none;
+  }
+
+  .post-comment textarea:focus, .post-comment textarea:focus + .post-comment span{
+    height: 100px;
+  }
+
+  .comment-tabs{
+    background-color: #fef3ed;
+    padding: 3px 0px;
+    border-radius: 3px;
+  }
+
+  .comment-item{
+    background: #fff;
+    padding: 2em 5em;
+    margin: 0;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 10px #ebebeb;
+  }
+
+  .comment-list-tab ul{
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px;
+    padding: 0 5em;
+  }
+
+  .comment-list-tab ul li{
+    text-align: center;
+    margin-right: 2em;
+    position: relative;
+    transition: all 0.5s;
+  }
+
+  .comment-list-tab ul li a{
+    padding: 10px 0px;
+    display: inline-block;
+    color: #555;
+    transition: all 0.5s;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .tab-active{
+    border-bottom: 3px solid #f25810;
+  }
+
+  .tab-active a{
+    color: #f25810;
+    font-weight: 600;
+  }
+
+  .comment-list-tab li:hover a, .comment-list-tab li.tab-active a {
+    color: #f25810;
+  }
+
+  .video-wrapper{
+    font-family: ZohoPuvi !important;
   }
