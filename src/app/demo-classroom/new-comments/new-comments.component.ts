@@ -772,4 +772,14 @@ export class NewCommentsComponent implements OnInit, AfterViewInit, OnChanges, O
     togglePlay() {
       this.isPlaying = !this.isPlaying;
     }
+    replyPostBox = true;
+    replyByAdmin = false;
+    showReplyBox() {
+      this.replyPostBox = !this.replyPostBox; 
+      this.replyByAdmin = !this.replyByAdmin
+    }
+
+    showMoreReply() {
+      
+    }
 }

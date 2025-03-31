@@ -1,3 +1,4 @@
+
 <div class="post-container">
   <div class="container">
     <div class="comment-section col-md-10 p-0">
@@ -111,7 +112,7 @@
               <div class="flex-grow-1">
                 <div class="d-flex justify-content-between ">
                   <h6 class="mb-0">Tamizharasan 
-                    <span class="badge badge-learner mx-2">Learner</span>
+                    <span class="badge badge-learner mx-2">LEARNER</span>
                     <span class="comment-time text-start">2 hours ago</span>
                   </h6>
                   
@@ -138,7 +139,7 @@
                 <div class="d-flex justify-content-between ">
                   <h6 class="mb-0">
                     Raja Raman 
-                    <span class="badge badge-learner mx-2">Learner</span>
+                    <span class="badge badge-learner mx-2">LEARNER</span>
                     <span class="comment-time text-start">2 hours ago</span>
                   </h6>
 
@@ -155,13 +156,13 @@
 
             <!-- Reply Section -->
             <div class="reply-section mt-3">
-              <div class="comment-box-reply">
+              <div class="comment-box-reply ms-4">
                 <div class="d-flex gap-3">
                   <img alt="" src="assets/images/logo_icon.png" class="user-avatar">
                   <div class="flex-grow-1">
                     <div class="d-flex justify-content-between align-items-start mb-2">
                       <h6 class="mb-0">
-                        Veera's Support Team<span class="badge badge-admin mx-2">Admin</span>
+                        Veera's<span class="badge badge-admin mx-2">MASTER</span>
                         <span class="comment-time text-start">2 hours ago</span>
                       </h6>
                     </div>
@@ -180,6 +181,120 @@
 
           </div>
         </div>
+
+        <!-- Admin Reply section  --> 
+        <div class="comments-list">
+          <div class="comment-box">
+            <div class="d-flex gap-3 comment-box-post">
+              <span class="user_avatar">RR</span>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between ">
+                  <h6 class="mb-0">
+                    Raja Raman 
+                    <span class="badge badge-learner mx-2">LEARNER</span>
+                    <span class="comment-time text-start">2 hours ago</span>
+                  </h6>
+
+                  <div class="comment-actions">
+                    <button type="button" (click)="showReplyBox()" class="btn btn-outline-success">Reply</button>
+                  </div>
+                </div>
+                <p class="mb-2 text-start">Hey. When adding an anchor link to text, is it possible to get the same slide
+                  down effect as you get when you add anchor link to button? On text it jumps directly to the area of
+                  the page, instead of the slide effect.</p>
+                   
+              </div>
+            </div>
+
+            <!-- Reply Section -->
+            <div class="reply-section mt-3 pb-3" *ngIf="replyByAdmin">
+              <div class="comment-box-reply ms-4">
+                <div class="reply-admin">
+                  <div class="position-relative">
+                    <textarea class="form-control post-textarea" rows="3" (focus)="postTextFocussed = true"
+                      (blur)="postTextFocussed = false" [(ngModel)]="commentsText" maxlength="200" *ngIf="!url"
+                      placeholder=""></textarea>
+                    <span class="avatar avatar-lg avatar-rounded text-area-avatar">
+                      <img src="assets/images/logo_icon.png" alt="Img">
+                    </span>
+                  </div>
+                
+                <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3 mt-3">
+    
+                  <div class="d-flex align-items-center">
+                    <button type="submit" class="btn btn-primary d-inline-flex align-items-center ms-2 btn_primary"
+                      (click)="addComment()"><i class="ti ti-send fs-16 me-2"></i>Post</button>
+    
+                  </div>
+                  <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top"
+                    [attr.title]="tooltipTitle" title="Tooltip on top">
+                    <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon>
+                  </button>
+                </div>  
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Admin Reply section  --> 
+
+        <!-- Reply More section  --> 
+        <div class="comments-list">
+          <div class="comment-box">
+            <div class="d-flex gap-3 comment-box-post">
+              <span class="user_avatar">RR</span>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between ">
+                  <h6 class="mb-0">
+                    Raja Raman 
+                    <span class="badge badge-learner mx-2">LEARNER</span>
+                    <span class="comment-time text-start">2 hours ago</span>
+                  </h6>
+
+                  <div class="comment-actions">
+                    <button type="button" class="btn btn-outline-success">Reply</button>
+                  </div>
+                </div>
+                <p class="mb-2 text-start">Hey. When adding an anchor link to text, is it possible to get the same slide
+                  down effect as you get when you add anchor link to button? On text it jumps directly to the area of
+                  the page, instead of the slide effect.</p>
+                   
+              </div>
+            </div>
+
+            <!-- Reply Section -->
+            <div class="reply-section mt-3">
+              <div class="reply-more-box">
+                <h6 class="more-reply" (click)="showMoreReply">2 more replies</h6>
+              </div>
+              
+              <div class="comment-box-reply ms-4">
+                <div class="d-flex gap-3">
+                  <img alt="" src="assets/images/logo_icon.png" class="user-avatar">
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h6 class="mb-0">
+                        Veera's<span class="badge badge-admin mx-2">MASTER</span>
+                        <span class="comment-time text-start">2 hours ago</span>
+                      </h6>
+                    </div>
+
+                    <p class="mb-2 text-start">Hi
+
+                      Please check if you have any blank layouts assigned to the content area. This can be checked by
+                      going to WordPress admin panel dashboard → Avada → Layouts
+
+                      If you require further assistance or have any further questions, please create a support ticket
+                      using the link below and our support team will gladly assist you</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Reply More section  --> 
 
       </div>
 
