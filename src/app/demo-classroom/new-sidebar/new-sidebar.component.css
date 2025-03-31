@@ -3,7 +3,8 @@
     position: relative;
     top: 0;
     bottom: 0;
-    background-color: #f9f9f9;
+    background-color: #13161f;
+    color: #fff;
     display: flex;
     flex-direction: column;
     overflow: auto; /* Prevents unwanted horizontal scroll */
@@ -33,7 +34,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: inherit;
-    color: #000;
+    color: #fff;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -69,8 +70,8 @@
   
   .menu-item a.active,
   .nav-item.active {
-    background: #e4f1fc !important;
-    color: #268ae4 !important;
+    background: none !important;
+    color: #FFF !important;
   }
   
   .menu-item.active ul > li.nav-item {
@@ -100,9 +101,9 @@
   .dropdownMenuCollapse li .subMenu {
     position: relative;
     border-radius: 8px;
-    background: #f8f9fa;
+    /* background: #f8f9fa; */
     padding: 7px 8px;
-    color: #687387;
+    color: #fff;
     font-size: 14px;
     text-overflow: ellipsis;
     /* overflow: hidden; */
@@ -124,8 +125,8 @@
   
   .dropdownMenuCollapse li .subMenu:hover,
   .dropdownMenuCollapse li .subMenu.active {
-    background: #c6e9d5 !important;
-    color: #000 !important;
+    background: none !important;
+    color: #fff !important;
   }
   
   .dropdownMenuCollapse li .subMenu.active::before {
@@ -152,9 +153,9 @@
   .dpdownSubSubMenuCollapse li .subSubMenu {
     position: relative;
     border-radius: 8px;
-    background: #f8f9fa;
+    /* background: #f8f9fa; */
     padding: 7px 8px;
-    color: #687387;
+    color: #fff;
     font-size: 14px;
     text-overflow: ellipsis;
     /* overflow: hidden; */
@@ -174,9 +175,19 @@
   
   }
   
-  .dpdownSubSubMenuCollapse li .subSubMenu:hover,
-  .dpdownSubSubMenuCollapse li .subSubMenu.active {
-    background: #c6e9d5 !important;
-    color: #000 !important;
+  .dpdownSubSubMenuCollapse li .subSubMenu:hover {
+    background: none !important;
+    color: #fff !important;
   }
+
+  /* .dpdownSubSubMenuCollapse li .subSubMenu.active {
+    color: green;
+  } */
   
+  .dpdownSubSubMenuCollapse li .subSubMenu.active::before {
+    content: '•';
+    font-size: 30px;
+    margin-left: 15px;
+    color: green;
+  }
+      

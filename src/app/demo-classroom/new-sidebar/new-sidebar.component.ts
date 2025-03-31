@@ -54,8 +54,8 @@ export class NewSidebarComponent {
             subSubMenu: [
               {
                 _id: '6735c99727a6da66983a3098',
-                name: '1.1 PRONOUN',
-                description: '1.1 PRONOUN',
+                name: '1.1 Pronoun',
+                description: '1.1 Pronoun',
                 video_url:
                   'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
                 pageName: 'classroom',
@@ -65,8 +65,8 @@ export class NewSidebarComponent {
               },
               {
                 _id: '6735c99727a6da66983a3099',
-                name: '1.2 PRONOUN',
-                description: '1.2 PRONOUN',
+                name: '1.2 Supportive Verbs',
+                description: '1.2 Supportive Verbs',
                 video_url:
                   'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
                 pageName: 'classroom',
@@ -76,8 +76,8 @@ export class NewSidebarComponent {
               },
               {
                 _id: '6735c99727a6da66983a3100',
-                name: '1.3 PRONOUN',
-                description: '1.3 PRONOUN',
+                name: '1.3 Example Sentence',
+                description: '1.3 Example Sentence',
                 video_url:
                   'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
                 pageName: 'classroom',
@@ -97,6 +97,30 @@ export class NewSidebarComponent {
             routeUrl: 'class-room',
             createdAt: '2024-11-14T09:57:43.692Z',
             updatedAt: '2024-11-14T09:57:43.692Z',
+            subSubMenu: [
+              {
+                _id: '6735c99727a6da66983a3201',
+                name: '1.1 Pronoun',
+                description: '1.1 Pronoun',
+                video_url:
+                  'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+                pageName: 'classroom',
+                routeUrl: 'class-room',
+                createdAt: '2024-11-14T09:57:43.692Z',
+                updatedAt: '2024-11-14T09:57:43.692Z',
+              },
+              {
+                _id: '6735c99727a6da66983a3202',
+                name: '1.2 Supportive Verbs',
+                description: '1.2 Supportive Verbs',
+                video_url:
+                  'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+                pageName: 'classroom',
+                routeUrl: 'class-room',
+                createdAt: '2024-11-14T09:57:43.692Z',
+                updatedAt: '2024-11-14T09:57:43.692Z',
+              },
+            ],
           },
           {
             _id: '6735c99727a6da66983a3102',
@@ -108,6 +132,65 @@ export class NewSidebarComponent {
             routeUrl: 'class-room',
             createdAt: '2024-11-14T09:57:43.692Z',
             updatedAt: '2024-11-14T09:57:43.692Z',
+            subSubMenu: [
+              {
+                _id: '6735c99727a6da66983a3301',
+                name: '1.1 Pronoun',
+                description: '1.1 Pronoun',
+                video_url:
+                  'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+                pageName: 'classroom',
+                routeUrl: 'class-room',
+                createdAt: '2024-11-14T09:57:43.692Z',
+                updatedAt: '2024-11-14T09:57:43.692Z',
+              },
+              {
+                _id: '6735c99727a6da66983a3302',
+                name: '1.2 Supportive Verbs',
+                description: '1.2 Supportive Verbs',
+                video_url:
+                  'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+                pageName: 'classroom',
+                routeUrl: 'class-room',
+                createdAt: '2024-11-14T09:57:43.692Z',
+                updatedAt: '2024-11-14T09:57:43.692Z',
+              },
+            ],
+          },
+          {
+            _id: '6735c99727a6da66983a3125',
+            name: 'SPEAKING ROOM',
+            description: 'SPEAKING ROOM',
+            video_url:
+              'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            pageName: 'classroom',
+            routeUrl: 'class-room',
+            createdAt: '2024-11-14T09:57:43.692Z',
+            updatedAt: '2024-11-14T09:57:43.692Z',
+            subSubMenu: [
+              {
+                _id: '6735c99727a6da66983a3401',
+                name: 'Practice - 1.1',
+                description: 'Practice - 1.1',
+                video_url:
+                  'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+                pageName: 'classroom',
+                routeUrl: 'class-room',
+                createdAt: '2024-11-14T09:57:43.692Z',
+                updatedAt: '2024-11-14T09:57:43.692Z',
+              },
+              {
+                _id: '6735c99727a6da66983a3402',
+                name: 'Practice - 1.2',
+                description: 'Practice - 1.2',
+                video_url:
+                  'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+                pageName: 'classroom',
+                routeUrl: 'class-room',
+                createdAt: '2024-11-14T09:57:43.692Z',
+                updatedAt: '2024-11-14T09:57:43.692Z',
+              },
+            ],
           },
         ],
       },
@@ -574,5 +657,30 @@ export class NewSidebarComponent {
   setActiveSubSubMenu(subSubMenuId: string, event: Event) {
     event.stopPropagation(); // Prevent parent click event
     this.activeSubSubMenuId = subSubMenuId;
+  }
+
+  getMenuStyle(menuName:any) {
+    let colorCode = '#3f8b5f';
+
+    switch(menuName) {
+      case 'CLASS ROOM':
+        colorCode = '#3f8b5f';
+        break;
+      case 'SELF PRACTICE':
+        colorCode = '#f8f6bd';
+        break;
+      case 'PRACTICE WITH MASTER':
+        colorCode = '#4c8baa';
+        break;
+      case 'SPEAKING ROOM':
+        colorCode = '#7a68ad';
+        break;
+    }
+
+    return {
+      'color': colorCode,
+      'font-size': '20px'
+    };
+    
   }
 }

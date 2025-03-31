@@ -19,7 +19,7 @@
             [ngClass]="{ active: activeSegmentId === segment._id }"
             (click)="toggleSubmenu(segment, $event)"
           >
-            <span><img src="assets/images/animated-videos.svg"/>&nbsp;&nbsp; {{ segment.name }}</span>
+            <span> {{ segment.name }}</span>
             @if(segment.subMenu) {
             <i
               class="fa-solid"
@@ -45,7 +45,11 @@
                 [ngClass]="{ active: activeSubMenuId === subMenu._id }"
                 (click)="toggleSubSubmenu(subMenu, $event)"
               >
-                <span><i class="bi bi-gear"></i> {{ subMenu.name }}</span>
+                <span>                
+                  <i class="fa-brands fa-youtube" [ngStyle]="getMenuStyle(subMenu.name)"></i>
+                  <img style="display: none;" src="assets/images/animated-videos.svg" [ngStyle]="getMenuStyle(subMenu.name)"/>
+                  &nbsp;&nbsp; {{ subMenu.name }}
+                </span>
                 @if(subMenu.subSubMenu) {
                 <i
                   class="fa-solid"
