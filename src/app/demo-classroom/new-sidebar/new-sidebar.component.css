@@ -3,7 +3,7 @@
     position: relative;
     top: 0;
     bottom: 0;
-    background-color: #13161f;
+    background-color: #2c2929;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -188,6 +188,6 @@
     content: '•';
     font-size: 30px;
     margin-left: 15px;
-    color: green;
+    color: var(--before-color, #3f8b5f);
   }
       

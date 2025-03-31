@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 
@@ -50,7 +50,7 @@ export class NewSidebarComponent {
             routeUrl: 'class-room',
             createdAt: '2024-11-14T09:57:43.692Z',
             updatedAt: '2024-11-14T09:57:43.692Z',
-            expanded: false,
+            expanded: true,
             subSubMenu: [
               {
                 _id: '6735c99727a6da66983a3098',
@@ -620,6 +620,8 @@ export class NewSidebarComponent {
     ];
 
     this.activeSegmentId = "6735c99727a6da66983a3096";
+    this.activeSubMenuId = "6735c99727a6da66983a3097";
+    this.activeSubSubMenuId = "6735c99727a6da66983a3098";
   }
 
   setActive(item: string) {
@@ -654,14 +656,24 @@ export class NewSidebarComponent {
     this.activeSubSubMenuId = null; // Reset sub-submenus
   }
   
-  setActiveSubSubMenu(subSubMenuId: string, event: Event) {
+  setActiveSubSubMenu(subSubMenuId: string, event: Event, menuName:any) {
     event.stopPropagation(); // Prevent parent click event
     this.activeSubSubMenuId = subSubMenuId;
+
+    // Check if the pseudo-element is active
+    setTimeout(() => { // Ensures DOM updates are complete
+      let element1 = event.target as HTMLElement;
+      let computedStyle = window.getComputedStyle(element1, '::before');
+      let color = computedStyle.getPropertyValue('color');
+      color = this.getColorCode(menuName);
+      console.log('Pseudo-element background color:', color);
+
+      element1.style.setProperty('--before-color', color);
+    }, 0);
   }
 
-  getMenuStyle(menuName:any) {
+  getColorCode(menuName: any) {
     let colorCode = '#3f8b5f';
-
     switch(menuName) {
       case 'CLASS ROOM':
         colorCode = '#3f8b5f';
@@ -677,6 +689,12 @@ export class NewSidebarComponent {
         break;
     }
 
+    return colorCode;
+  }
+
+  getMenuStyle(menuName:any) {
+    let colorCode = this.getColorCode(menuName);
+    
     return {
       'color': colorCode,
       'font-size': '20px'

@@ -72,7 +72,7 @@
                   <a
                     class="subSubMenu nav-link d-flex justify-content-between"
                     [ngClass]="{ active: activeSubSubMenuId === subSubMenu._id }"
-                    (click)="setActiveSubSubMenu(subSubMenu._id, $event)"
+                    (click)="setActiveSubSubMenu(subSubMenu._id, $event, subMenu.name)"
                     >{{ subSubMenu.name }}</a
                   >
                 </li>

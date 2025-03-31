@@ -828,4 +828,11 @@
     background: #fff;
     overflow: auto;
     height: 100%;
+    width: 79%;
   }
+
+  .sidebar-nav {
+    width: 21%;
+  }
+
+
