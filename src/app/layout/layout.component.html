@@ -1,5 +1,9 @@
+
+<app-preloader *ngIf="isLoading && isPreloader"></app-preloader> <!--[ngStyle]="{'display': isLoading ? 'block' : 'none'}" -->
 <app-header></app-header>
 <main>
   <router-outlet></router-outlet>
 </main>
+
+
 

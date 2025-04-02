@@ -79,6 +79,15 @@ export const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'new-classroom' },
       },
       {
+        path: 'demo-classroom',
+        // canActivate: [AuthGuard],
+        loadComponent: () =>
+          import('./demo-classroom/demo-classroom.component').then(
+            (m) => m.DemoClassroomComponent
+          ),
+        data: { showFooter: false, isMobile: false, page: 'Demo-classroom' },
+      },
+      {
         path: 'classrooms',
         canActivate: [AuthGuard],
         loadComponent: () =>

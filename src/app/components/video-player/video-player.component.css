@@ -8,11 +8,6 @@
     border-radius: 20px;
 }
 
-/* @media screen and (max-height: 768px) {
-    .video-play-container iframe {
-        height: 400px;
-    }
-} */
 @media screen and (max-height: 800px) {
     .video-play-container iframe {
         height: 400px;
@@ -29,4 +24,4 @@
         width: 1350px;
         /* height: 800px; */
     }
-  }
+}

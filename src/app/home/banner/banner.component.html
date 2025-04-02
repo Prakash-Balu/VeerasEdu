@@ -1,5 +1,5 @@
 <!-- Banner Start -->
-<section class="py-3 py-lg-5 py-xl-8 bg_slider">
+<section class="py-3 py-lg-5 py-xl-8 bg_slider" style="display: none;">
   <div class="container overflow-hidden">
     <div class="row gy-5 gy-lg-0 align-items-lg-center justify-content-lg-between">
 	<div class="bg_shape_5 position-absolute z-1"></div>
@@ -26,12 +26,18 @@
   </div>
 </section>
 <!-- Banner End -->
+<section>
+  <div class="vh_slider">
+    <img class="img-fluid" src="assets/images/VH - Slider.jpg" />
+  </div>
+</section>
+
 <section >
 	
   <div class="container">
   
     <div class="row banner-row">
-      <div
+      <!-- <div
         class="col-lg-6 p-lg-0 d-flex align-items-center justify-content-center">
         <div
           id="carouselExampleAutoplaying"
@@ -45,7 +51,7 @@
                 </div>
                 <div class="carousel-title-box">
                   <h1> <!--style="font-size: 27px;margin:0 20px;text-align: left;"-->
-                    Namaste! <br> Welcome to our 
+            <!--        Namaste! <br> Welcome to our 
                     <span class="main-title"
                       > Hindi Online School
                       <div class="highlighter">
@@ -78,7 +84,7 @@
                 </div>
                 <div class="carousel-title-box">
                   <h1> <!--style="font-size: 27px;margin:0 20px;text-align: left;"-->
-                    नमस्ते ! <br> हमारे हिंदी   
+               <!--     नमस्ते ! <br> हमारे हिंदी   
                     <span class="main-title"
                       > ऑनलाइन स्कूल 
                       <div class="highlighter">
@@ -210,9 +216,29 @@
           <i class="fa-solid fa-chevron-right"></i>
           <span class="visually-hidden">Next</span>
         </button>
+      </div> -->
+
+      <div class="p-5 d-flex justify-content-center slider_container">
+        <!-- <iframe
+        class="slider_video"
+      [src]="sanitizedVideoUrl"
+      frameborder="0"
+      width=80%
+      height="550px"
+      allowfullscreen
+      allow="autoplay; fullscreen; encrypted-media"
+      title="Slider Video"
+      >
+
+        </iframe> -->
+
+        <video #slider_video autoplay muted loop class="slider_video" width=80% height="550px">
+          <source src="assets/videos/SLIDE 02_3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
-      <div class="col-lg-6">
+      <!-- <div class="col-lg-6">
         <div class="banner_images">
           <video autoplay muted loop poster="../../../assets/images/veera-method.jpeg" width="600" height="500">
 	  <source src="../../../assets/videos/welcome.mp4" type="video/mp4">
@@ -222,7 +248,7 @@
           <img src="assets/images/banner/hindi.png" alt="shape" class="hindi" />
           <img src="assets/images/banner/english_1.png" alt="" class="english" /> -->
 
-          <div class="experience" style="display:none">
+          <!-- <div class="experience" style="display:none">
             <div class="icon">
               <i class="fa-solid fa-people-group"></i>
             </div>
@@ -241,7 +267,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

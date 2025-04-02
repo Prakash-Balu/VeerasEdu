@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faArrowCircleLeft,
@@ -18,7 +18,6 @@ import { MaterialModule } from '../material-module';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
-import { SidenewComponent } from "../layout/sidenew/sidenew.component";
 
 @Component({
   selector: 'ments',
@@ -26,14 +25,11 @@ import { SidenewComponent } from "../layout/sidenew/sidenew.component";
   imports: [
     FontAwesomeModule,
     CommonModule,
-    RouterLink,
     VideoPlayerComponent,
     MaterialModule,
     SidebarComponent,
-    SidenewComponent,
     CdkScrollable,
     ScrollingModule,
-    SidenewComponent
 ],
   templateUrl: './segment-new.component.html',
   styleUrls: ['./segment-new.component.css'],

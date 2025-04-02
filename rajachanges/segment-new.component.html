@@ -1,0 +1,160 @@
+<div class="container-fluid p-0 m-0" cdkScrollable>
+  <div class="row-wrapper row pt-0">
+    <div class="col-12 col-md-2 d-flex sidebar-nav p-0 mb-3">
+      <app-sidebar class="col-12"></app-sidebar>
+    </div>
+
+    <div class="col-12 col-md-10 p-0 classroom_content" scrollable>
+      <div class="col-12 col-md-12 d-flex justify-content-start page-header">
+        <h3 class="fw-bold body_title"><span>{{ page }}</span><span> > </span> <span>{{ selectedSegment?.name }}</span>
+        </h3>
+      </div>
+      <div class="col-12 col-md-12 mt-4">
+        <div class="video-wrapper pe-4 ps-3 text-center justify-content-center">
+          <div class="col-12 col-md-12">
+            <app-video-player [videoObj]="videoObj"></app-video-player>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<mat-sidenav-container class="notification-container">
+  <mat-sidenav #sidenav mode="over" position="end">
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon style="color: #fff; vertical-align: sub">notifications</mat-icon>Notifications</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab style="min-width: 50% !important">
+            <ng-template mat-tab-label class="mat-tab-label-content">
+              <div class="mat-tab-label" style="display: block; color: #000; font-weight: 900">
+                Asked Question
+                <div class="mat-tab-label-count">{{ asked.length }}</div>
+              </div>
+            </ng-template>
+            <ul class="notification-list">
+              @if(asked.length > 0){ @for (ask of asked; track ask?._id) {
+              <li class="list-user-avatar">
+                <!-- <div class="top-cross-ribbon ribbon-pending">
+                    {{ ask.status }}
+                  </div> -->
+                <div style="display: flex">
+                  <div class="flex-shrink-0 me-3">
+                    <div class="avatar">
+                      <span class="avatar-initial rounded-circle bg-label-danger">{{ ask?.shortName }}</span>
+                    </div>
+                  </div>
+
+                  <div class="flex-grow-1" *ngIf="ask.comments.audioPath">
+                    <audio controls controlslist="noplaybackrate nodownload" style="width: 84%; height: 86%">
+                      <source [src]="sanitize(ask.comments.audioPath)" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+
+                  <div class="flex-grow-1" *ngIf="ask.comments.audioPath === ''">
+                    <small class="mb-1 d-block text-body notification-list-question"><a
+                        ng-reflect-router-link="/admin/segments" href="/admin/segments">
+                        {{ ask?.comments?.text }}</a></small>
+                  </div>
+                </div>
+                <mat-card-actions>
+                  <div class="notification-list-footer">
+                    <span style="font-size: 10px">Asked on {{ ask?.ago }}</span>
+                    <span class="notification-list-footer-label">{{
+                      ask?.segments?.name
+                      }}</span>
+                  </div>
+                </mat-card-actions>
+              </li>
+              }} @if(asked.length === 0){
+              <p style="text-align: center">No Records Found!</p>
+              }
+            </ul>
+          </mat-tab>
+          <mat-tab style="min-width: 50% !important">
+            <ng-template mat-tab-label class="mat-tab-label-content text-success">
+              <div class="mat-tab-label" style="
+                  display: block;
+                  color: #699834 !important;
+                  font-weight: 900;
+                ">
+                Answered
+                <div class="mat-tab-label-count text-success">
+                  {{ answered?.length }}
+                </div>
+              </div>
+            </ng-template>
+            <ul class="notification-list">
+              @if(answered.length > 0){ @for (answer of answered; track
+              answer?._id) {
+              <li class="list-user-avatar">
+                <div class="top-cross-ribbon ribbon-success">Solved</div>
+                <div style="display: flex">
+                  <div class="flex-shrink-0 me-3">
+                    <div class="avatar">
+                      <span class="avatar-initial rounded-circle bg-label-danger">{{ answer?.shortName }}</span>
+                    </div>
+                  </div>
+                  <div class="flex-grow-1" *ngIf="answer.comments.audioPath">
+                    <audio controls controlslist="noplaybackrate nodownload" style="width: 84%; height: 86%">
+                      <source [src]="sanitize(answer.comments.audioPath)" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+
+                  <div class="flex-grow-1" *ngIf="answer.comments.audioPath === ''">
+                    <small class="mb-1 d-block text-body notification-list-question"><a
+                        ng-reflect-router-link="/admin/segments" href="/admin/segments">
+                        {{ answer?.comments?.text }}</a></small>
+                  </div>
+                </div>
+                <mat-card-actions>
+                  <div class="notification-list-footer">
+                    <span style="font-size: 10px">asked on {{ answer?.ago }}
+                    </span>
+                    <span class="notification-list-footer-label">{{
+                      answer?.segments?.name
+                      }}</span>
+                  </div>
+                </mat-card-actions>
+
+                <div class="notifcation-answer-list">
+                  <div style="display: flex">
+                    <div class="flex-shrink-0 me-3">
+                      <div class="avatar">
+                        <img src="assets/images/logo_icon.png" alt="Logo" width="30" height="30" />
+                      </div>
+                      <small class="mb-1 text-body">Answered by Veeras</small>
+                    </div>
+                    <div class="flex-grow-1">
+                      <small class="text-muted notification-list-timezone">{{
+                        answer?.replyAgo
+                        }}</small>
+                    </div>
+                  </div>
+                  <p class="notification-list-desc">
+                    {{ answer?.replies?.text }}
+                  </p>
+                  <div class="notification-ans-review">
+                    This answer has helpful
+                    <mat-icon class="like ms-2" style="color: #4caf50; vertical-align: sub">thumb_up</mat-icon>
+                    <mat-icon class="dislike ms-2" style="color: #fe0000; vertical-align: sub">thumb_down</mat-icon>
+                  </div>
+                </div>
+              </li>
+              }} @if(answered.length === 0){
+              <p style="text-align: center">No Records Found!</p>
+              }
+            </ul>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav>
+</mat-sidenav-container>
