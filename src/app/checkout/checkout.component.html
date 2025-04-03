@@ -194,7 +194,7 @@
                 <div class="select-plan">
                   @let s = selectedPlanNew.duration > 1?'s':'';
                   <span>
-                    {{selectedPlanNew['name']}} 
+                    Total amount({{feeValue}} X {{ (selectedPlanNew.period ==='year' ? selectedPlanNew.duration * 12 : selectedPlanNew.duration )}})
                   </span>
                 </div>
               </td>

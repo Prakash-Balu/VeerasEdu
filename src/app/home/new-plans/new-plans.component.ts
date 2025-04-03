@@ -28,6 +28,9 @@ export class NewPlansComponent implements OnInit {
   feeValue!: number;
   locationPlanPrice: any = [];
   @ViewChild('subscribeSection') subscribeSection!: ElementRef;
+  // startDate: Date;
+  // endDate: Date;
+  // nextRenewalDate: Date;
 
   constructor(
     private router: Router,
@@ -36,6 +39,17 @@ export class NewPlansComponent implements OnInit {
     private planTransformPipe: PlanTransformPipe,
     private planTransformnewPipe: PlanTransformnewPipe
   ) {
+
+
+    // this.startDate = new Date(); // 10-March-2025 (Month is 0-based)
+    // console.log(this.startDate);
+    // this.endDate = new Date(this.startDate);
+    // this.endDate.setMonth(this.endDate.getMonth() + 1); // Adds 1 month to the start date
+
+    // this.nextRenewalDate = new Date(this.endDate);
+    // console.log(this.endDate);
+    // console.log(this.nextRenewalDate);
+    // this.nextRenewalDate.setDate(this.nextRenewalDate.getDate() + 5); // Adds 5 days
     this.getPlans();
   }
 
@@ -149,8 +163,14 @@ export class NewPlansComponent implements OnInit {
         console.log(this.locationPlanPrice);
         this.locationPlanPrice.forEach((location:any) => {
           location.plans.forEach((plan:any) => {
-            this.pushplanDetails(plan);
-            this.pushPopUpHeading(plan);
+            // this.pushplanDetails(plan);
+            // this.pushPopUpHeading(plan);
+
+            console.log(plan);
+
+            // var duration  = plan.duration;
+            // var additionalDays = plan.period === 'month' ? 5 : 1;
+            // this.nextRenewalDate.setDate(this.nextRenewalDate.getDate() + additionalDays); // Additional days
           });
         });
 

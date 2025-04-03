@@ -77,6 +77,16 @@ export class PlanTransformnewPipe implements PipeTransform {
       // For example, if feeFieldName is 'monthly_fee', then set that key with value from correspondingPrice.
       const feeValue = correspondingPrice[plan?.feeFieldName] as string | number;
 
+      const startDate = new Date(); // 10-March-2025 (Month is 0-based)
+      console.log("start", startDate);
+      const endDate = new Date(startDate);
+      plan.period ==='month' ? endDate.setMonth(endDate.getMonth() + 1) : endDate.setFullYear(endDate.getFullYear() + 1); // Adds period of renewal to the start date
+      console.log("end", endDate);
+      const nextRenewalDate = new Date(endDate);
+      
+      console.log("renewal", nextRenewalDate);
+      nextRenewalDate.setDate(nextRenewalDate.getDate() + (plan.period ==='month' ? 5 : 1)); // Add Renewal days
+
       // Build the resulting transformed object.
       return {
         _id: plan._id,
@@ -90,7 +100,10 @@ export class PlanTransformnewPipe implements PipeTransform {
         hasValidity: plan.hasValidity,
         gstPercent: correspondingPrice.gstPercent,
         validityDuration: plan.validityDuration,
-        validityPeriod: plan.validityPeriod
+        validityPeriod: plan.validityPeriod,
+        validFrom: startDate.toString(),
+        vaildTo: endDate.toString(),
+        renewal: nextRenewalDate.toString()
       };
     });
   }

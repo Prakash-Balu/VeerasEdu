@@ -143,20 +143,24 @@
 
     @for(location of locationPlanPrice; track location) {
       <!-- @for(plan of location.plans; i = index) { -->
-        <div class="col-12 col-xxl-3 col-xl-3 col-lg-5" *ngFor="let plan of location.plans; let i = index">
+        <div class="col-12 col-xxl-4 col-xl-4 col-lg-6" *ngFor="let plan of location.plans; let i = index">
           <div class="plan-card text-center">
             <div class="col-12 plan-title text-decoration-underline">{{plan.name}}</div>
             <div>
               <span class="plan-price">{{location.currencySymbol}}{{location.price[0]?.[plan?.feeFieldName]}}</span> <span style="display: none;">/ month </span>
-              <div class="plan-gst">({{plan.duration}} {{plan.period}}{{plan.duration > 1 ? 's' : ''}})</div>
+              <!-- <div class="plan-gst">({{plan.duration}} {{plan.period}}{{plan.duration > 1 ? 's' : ''}})</div> -->
+              <div class="d-flex flex-column text-center plan_renew">
+                <p>"{{plan.note}}"</p>
+              </div>
             </div>
             
-            <div class="d-flex text-center mt-5">
-              <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribeNew(i)" [innerHTML]="plan?.subBtnText"></button>
-              <button class="btn btn-details continue-button w-auto m-auto" [innerHTML]="plan?.viewDtlBtnText" (click)="openModal(plan)"></button>
+            <div class="d-flex text-center mt-3">
+              <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribeNew(i)">Subscribe</button>
+              <!-- <button class="btn btn-details continue-button w-auto m-auto" [innerHTML]="plan?.viewDtlBtnText" (click)="openModal(plan)"></button> -->
             </div>
-            <div class="d-flex flex-column text-center plan_renew mb-5">
-              <p>"{{plan.note}}"</p>
+            <div class="d-flex flex-column text-center plan_renew mb-1">
+              <p class="fw-bold">{{ plansNew[i].validFrom | date: 'dd-MMMM-yyyy' }} to {{ plansNew[i].vaildTo | date: 'dd-MMMM-yyyy' }}</p>
+              <p class="fw-bold">Your next renewal date is {{ plansNew[i].renewal | date: 'dd-MMMM-yyyy' }}</p>
             </div>
           </div>
         </div>
@@ -179,7 +183,7 @@
               </td>
               <td>
                 <div class="select-plan">
-                  @let amount = feeValue;
+                  @let amount = feeValue * (selectedPlanNew.period ==='year' ? selectedPlanNew.duration * 12 : selectedPlanNew.duration );
                   <span>{{selectedPlanNew.currencySymbol}} {{amount | number:'1.2-2' }}</span>
                 </div>
               </td>

@@ -9,6 +9,9 @@ export interface SelectedPlanNew {
     hasValidity:boolean;
     validityDuration:number;
     validityPeriod:string;
+    validFrom: string;
+    vaildTo: string;
+    renewal: string;
     gstPercent:number;
     [key: string]:  string | boolean | number;
   }

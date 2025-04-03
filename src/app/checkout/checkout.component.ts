@@ -76,7 +76,7 @@ export class CheckoutComponent implements OnInit {
     this.months = (this.selectedPlanNew?.duration ?? 0);
     // this.planCost = this.selectedPlanNew.duration * this.selectedPlanNew[];
     this.feeValue = parseFloat((this.selectedPlanNew[this.selectedPlanNew.code + '_fee'] ?? '0').toString())
-    this.planCost = this.feeValue ;
+    this.planCost = this.feeValue * (this.selectedPlanNew.period ==='year' ? this.selectedPlanNew.duration * 12 : this.selectedPlanNew.duration );
     this.tax = this.planCost * (this.selectedPlanNew.gstPercent / 100);
     this.planTotal = this.tax + this.planCost;
     console.log(this.selectedPlanNew);
