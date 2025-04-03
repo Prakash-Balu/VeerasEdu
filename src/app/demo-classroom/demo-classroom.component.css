@@ -10,7 +10,7 @@
   }
   .row-wrapper {
     display: flex;
-    height: calc(100% - 70px);
+    height: calc(100% - 0px);
   }
   
   .classroom-content {
@@ -828,11 +828,11 @@
     background: #fff;
     overflow: auto;
     height: 100%;
-    width: 79%;
+    /* width: 79%; */
   }
 
-  .sidebar-nav {
+  /* .sidebar-nav {
     width: 21%;
-  }
+  } */
 
 

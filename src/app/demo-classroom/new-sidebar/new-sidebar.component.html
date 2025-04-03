@@ -5,7 +5,7 @@
   externalViewport
   appearance="compact"
 > -->
-<div class="sidebar pt-3 p-3" cdkScrollable>
+<div class="sidebar p-3" cdkScrollable>
     <div>
       <div class="sidebar-header">
         <h5 class="text-uppercase fw-bold pt-2 pb-2">INDEX</h5>
@@ -14,7 +14,7 @@
         @for (segment of segmentlist; track segment) {
         <li [class.menu-item]="segment._id">
           <a
-            class="nav-link d-flex justify-content-between"
+            class="nav-link d-flex justify-content-center align-items-center"
             data-bs-toggle="collapse"
             [ngClass]="{ active: activeSegmentId === segment._id }"
             (click)="toggleSubmenu(segment, $event)"
@@ -40,7 +40,7 @@
             @for(subMenu of segment.subMenu; track subMenu) {
             <li class="nav-item">
               <a
-                class="subMenu nav-link d-flex justify-content-between"
+                class="subMenu nav-link d-flex justify-content-start align-items-center"
                 data-bs-toggle="collapse"
                 [ngClass]="{ active: activeSubMenuId === subMenu._id }"
                 (click)="toggleSubSubmenu(subMenu, $event)"

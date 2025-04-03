@@ -1,13 +1,20 @@
 <div class="container-fluid p-0 m-0" cdkScrollable>
-    <div class="row-wrapper row pt-0">
+    <div class="row-wrapper row pt-0 position-relative">
       <div class="col-12 col-md-2 d-flex sidebar-nav p-0 mb-3">
         <app-new-sidebar class="col-12"></app-new-sidebar>
       </div>
   
-      <div class="col-12 col-md-9 p-0 classroom_content" scrollable>
-        <div class="col-12 col-md-12 d-flex justify-content-start page-header">
+      <div class="col-12 col-md-10 p-0 classroom_content" cdkScrollable>
+        <!-- <div class="col-12 col-md-12 d-flex justify-content-start page-header">
           <h3 class="fw-bold body_title"><span>{{ page }}</span><span> > </span> <span>{{ selectedSegment?.name }}</span>
           </h3>
+        </div> -->
+
+        <div class="sec2 col-12 col-md-9 d-flex justify-content-center">
+          <span>
+            <span>{{ page }}</span> >
+            <span>{{ selectedSegment?.name }}</span>
+          </span>
         </div>
         <div class="col-12 col-md-12 mt-4">
           <div class="video-wrapper pe-4 ps-3 text-center justify-content-center">

@@ -1,69 +1,33 @@
 
 <div class="post-container">
   <div class="container">
-    <div class="comment-section col-md-10 p-0">
 
-      <div class="card">
-        <div class="card-body">
+    <div class="input-container">
+      <div class="input-group" [class.input-focused]="postTextFocussed">
+        <!-- <input
+          type="textarea"
+          class="form-control bg-white border-0 p-3"
+          placeholder="Ask your doubts by text or voice and post it"
+          maxlength="200"
+          rows="3"
+          (focus)="postTextFocussed = true"
+          (blur)="postTextFocussed = false"
+          [(ngModel)]="commentsText"
+        /> -->
 
-          <form action="social-feed">
-            <div class="mb-3 text-start">
-              <label class="form-label fs-16">Post your doubts here related to the above class</label>
+        <textarea class="form-control bg-white border-0 resize-none" rows="3" (focus)="postTextFocussed = true"
+                      (blur)="postTextFocussed = false" [(ngModel)]="commentsText" maxlength="200" *ngIf="!url"
+                      placeholder="Ask your doubts by text or voice and post it"></textarea>
+        
+        <span class="input-group-text bg-white border-0">
+          <!-- <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon> -->
+          <img src="assets/images/mic_icon.png" alt="Img" class="img-fluid" />
+        </span>
 
-
-
-              <div class="position-relative">
-                <textarea class="form-control post-textarea" rows="3" (focus)="postTextFocussed = true"
-                  (blur)="postTextFocussed = false" [(ngModel)]="commentsText" maxlength="200" *ngIf="!url"
-                  placeholder="Ask your doubts by writing comments or Record audio and post it."></textarea>
-                <span class="avatar avatar-lg avatar-rounded text-area-avatar">
-                  <img src="assets/images/logo_icon.png" alt="Img">
-                </span>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">
-
-              <div class="d-flex align-items-center">
-                <button type="submit" class="btn btn-primary d-inline-flex align-items-center ms-2 btn_primary"
-                  (click)="addComment()"><i class="ti ti-circle-plus fs-16 me-2"></i>Post Comment</button>
-
-              </div>
-              <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top"
-                [attr.title]="tooltipTitle" title="Tooltip on top">
-                <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon>
-              </button>
-            </div>
-          </form>
-        </div>
+        <span class="input-group-text bg-white border-0">
+          <button class="btn post_btn px-3">Post</button>
+        </span>
       </div>
-      <div class="mb-4" style="display: none;">
-        <div class="d-flex gap-3">
-          <img alt="" src="assets/images/logo_icon.png" class="user-avatar">
-          <div class="flex-grow-1">
-            <div class="search">
-              <div class="input-bar">
-
-                <textarea type="search" placeholder="Ask your doubts by writing comments or Record audio and post it."
-                  name="search" id="search-text" autocomplete="off"></textarea>
-
-                <button id="dictate" title="Dictate" class="audio_mic">
-                  <i class="fa fa-microphone audio_mic"></i>
-
-                  <span class="a11y-hidden">Dictate new search</span>
-                </button>
-              </div>
-            </div>
-            <div class="mt-3 text-end">
-              <button class="btn btn-comment btn_primary">Post Comment</button>
-              <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top"
-                [attr.title]="tooltipTitle" title="Tooltip on top">
-                <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

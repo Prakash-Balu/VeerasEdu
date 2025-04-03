@@ -1,6 +1,6 @@
 .sidebar {
     width: auto;
-    position: relative;
+    position: absolute;
     top: 0;
     bottom: 0;
     background-color: #2c2929;
@@ -8,8 +8,14 @@
     display: flex;
     flex-direction: column;
     overflow: auto; /* Prevents unwanted horizontal scroll */
-    height: 700px;
+    /* height: 500px; */
     margin-bottom: 1em;
+
+    
+    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: calc(100vh - 57px); /* Adjusts height dynamically */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #ccc transparent;
   }
   
   .sidebar div[scrollViewport] {
@@ -73,6 +79,10 @@
     background: none !important;
     color: #FFF !important;
   }
+
+  .nav-link > i {
+    margin-left: 10px;
+  }
   
   .menu-item.active ul > li.nav-item {
     background: none;
@@ -90,15 +100,19 @@
     border-radius: 0px 0px 0px 14px;
   
   }
+
+  .dropdownMenuCollapse > li {
+    margin-left: -30px;
+  }
   
-  .dropdownMenuCollapse li:first-child {
+  /* .dropdownMenuCollapse li:first-child {
     margin: 10px 5px 5px;
   }
   .dropdownMenuCollapse li {
     margin: 5px;
-  }
+  } */
   
-  .dropdownMenuCollapse li .subMenu {
+  .dropdownMenuCollapse > li .subMenu {
     position: relative;
     border-radius: 8px;
     /* background: #f8f9fa; */
@@ -150,6 +164,10 @@
     border-radius: 0px 0px 0px 14px;
   }
   
+  .dpdownSubSubMenuCollapse > li {
+    margin-left: 25px;
+  }
+  
   .dpdownSubSubMenuCollapse li .subSubMenu {
     position: relative;
     border-radius: 8px;
@@ -187,7 +205,7 @@
   .dpdownSubSubMenuCollapse li .subSubMenu.active::before {
     content: '•';
     font-size: 30px;
-    margin-left: 15px;
+    margin-left: 24px;
     color: var(--before-color, #3f8b5f);
   }
       
