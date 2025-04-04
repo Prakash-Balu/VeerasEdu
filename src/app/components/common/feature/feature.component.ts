@@ -13,7 +13,7 @@ import Player from '@vimeo/player';
 export class FeatureComponent implements AfterViewInit {
 
   public classroom: string = '';
-  public videoIds: number[] = [1019160112,1019160112,1019160112];
+  public videoIds: number[] = [1019160112,1019160112,1019160112,1019160112];
   @ViewChildren('vimeoPlayerContainer') vimeoPlayerContainers!: QueryList<ElementRef>;
   public isPlayerLoaded: boolean[] = [];
   public players:any[] = [];
@@ -42,6 +42,12 @@ export class FeatureComponent implements AfterViewInit {
         content:'Practice with Co-learners along with the Master on our great platform',
         thumbnail:'assets/images/cardsimg/thumb2.jpeg',
         link:'/practice-with-the-master'
+      },
+      {
+        title:'Practice With Master',
+        content:'Practice  with the Master on our great platform',
+        thumbnail:'assets/images/cardsimg/thumb2.jpeg',
+        link:'/practice-master'
       },
     ];
   }

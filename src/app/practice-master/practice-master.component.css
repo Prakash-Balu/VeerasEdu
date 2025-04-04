@@ -1,0 +1,48 @@
+.card {
+  width: 100%;
+  max-width: 200px;
+  margin: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.card-header {
+  background-color: white;
+  border-bottom: none;
+  font-weight: 600;
+}
+.card-body {
+  font-size: 14px;
+  padding: 0px;
+  padding-bottom: 5px;
+}
+.sub-title {
+  position: relative;
+}
+.bottom-line {
+  position: absolute;
+  color: var(--tg-common-color-yellow);
+  left: 25%;
+  bottom: -25px;
+  width: 50%;
+}
+.card-title {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.practice_master .row {
+  flex-direction: row;
+}
+
+a {
+  color: var(--tg-common-color-black) !important;
+  text-decoration: none !important;
+}
+.practice_master {
+  background: linear-gradient(
+    var(--tg-common-color-white),
+    var(--tg-common-color-indigo)
+  );
+}

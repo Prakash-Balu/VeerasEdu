@@ -48,6 +48,25 @@ export const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'practice' },
       },
       {
+        path: 'practice-master',
+        canActivate: [AuthGuard],
+        loadComponent: () =>
+          import('./practice-master/practice-master.component').then(
+            (m) => m.PracticeMasterComponent
+          ),
+        data: { showFooter: false, isMobile: false },
+      },
+      {
+        path: 'practice-master/:name/:_id',
+        canActivate: [AuthGuard],
+        loadComponent: () =>
+          import(
+            './practice-master/pratice-with-master-detail/pratice-with-master-detail.component'
+          ).then((m) => m.PraticeWithMasterDetailComponent),
+        data: { showFooter: false, isMobile: false },
+      },
+
+      {
         path: 'self-practice',
         canActivate: [AuthGuard],
         loadComponent: () =>
@@ -57,8 +76,11 @@ export const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'self' },
       },
       {
-        path:'self-practice-new',
-        loadChildren:()=>import('./self-practice-new/self-practice-routing.module').then((m)=>m.SelfPracticeRoutingModule)
+        path: 'self-practice-new',
+        loadComponent: () =>
+          import('./self-practice-new/self-practice-routing.module').then(
+            (m) => m.SelfPracticeRoutingModule
+          ),
       },
       {
         path: 'class-room',
@@ -128,7 +150,6 @@ export const routes: Routes = [
           ),
         data: { showFooter: false, showHeader: false, isMobile: false },
       },
-
     ],
   },
 ];

@@ -12,6 +12,8 @@ import { API_URL } from '../constants/apiUrls';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  apiVideoId: any[] = [];
+
   private tokenSubject: BehaviorSubject<string | null>;
   token$!: Observable<string | null>;
 
@@ -108,13 +110,27 @@ export class AuthService {
         catchError(this.handleError)
       );
   }
-
+  apiVideoSegment(_id: string) {
+    return this.http
+      .get<any>(`${environment.baseURL}${API_URL.SEGMENT_API_VIDEO}/${_id}`, {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError(this.handleError)
+      );
+  }
   userAttendance(payload: any) {
     const { start, end } = payload;
     return this.http
-      .get<any>(`${environment.baseURL}${API_URL.GET_ATTENDANCE}?start=${start}&end=${end}`, {
-        headers: this.getHeaders(),
-      })
+      .get<any>(
+        `${environment.baseURL}${API_URL.GET_ATTENDANCE}?start=${start}&end=${end}`,
+        {
+          headers: this.getHeaders(),
+        }
+      )
       .pipe(
         map((response) => {
           return response;
@@ -173,6 +189,6 @@ export class AuthService {
   clearLocalStorage() {
     localStorage.clear();
     this.tokenSubject.next(null);
-    this.userObj.next(null)
+    this.userObj.next(null);
   }
 }
