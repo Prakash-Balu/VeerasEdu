@@ -59,6 +59,8 @@ export class SegmentsComponent {
   currentUrl: string = '';
   activeSegmentId: string | null = null;
   page!: string;
+  selectedSubject: any = {};
+  selectedCategory: any = {};
 
   constructor(
     public segmentservice: SegmentService,
@@ -145,5 +147,20 @@ export class SegmentsComponent {
     } else {
       console.error('Segment not found');
     }
+  }
+
+
+  getSelectedSubject(selectedSubject: any) {
+    console.log('Selected Subject:', selectedSubject);
+    this.selectedSubject = selectedSubject;
+    this.actRoute.snapshot.data['selectedSub'] = selectedSubject;
+
+  }
+
+  getSelectedCategory(selectedCategory: any) {
+    console.log('Selected Category:', selectedCategory);
+    this.selectedSubject = selectedCategory;  
+
+    this.page = selectedCategory.label;
   }
 }

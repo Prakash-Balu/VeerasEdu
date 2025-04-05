@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -24,7 +24,9 @@ export class SidebarnewComponent implements OnInit {
   activeSubMenuId: string ='';
   activeSubSubMenuId: string ='';
   colorCode: string = '#f8f6bd'; // Default color code
-
+  @Output () selectedCategory = new EventEmitter<any>();
+  @Output () selectedSubject = new EventEmitter<any>();
+ 
   constructor(
      public segmentservice: SegmentService,
      private router: Router,
@@ -346,9 +348,11 @@ export class SidebarnewComponent implements OnInit {
     event.stopPropagation(); // Prevent parent click event
     this.activeSubMenuId = subMenuId;
     this.activeSubSubMenuId = ''; // Reset sub-submenus
+    
+    // this.selectedClassroom.emit(foundSegment.category[0].subjects[0]);
   }
   
-  setActiveSubSubMenu(subSubMenuId: string, event: Event, subMenu:any) {
+  setActiveSubSubMenu(subSubMenuId: string, event: Event, subMenu:any, subSubMenu:any) {
     event.stopPropagation(); // Prevent parent click event
     this.activeSubSubMenuId = subSubMenuId;
 
@@ -362,8 +366,12 @@ export class SidebarnewComponent implements OnInit {
 
       element1.style.setProperty('--before-color', this.colorCode);
     }, 0);
-    this.router.navigate([`/segments/${subMenu.value}`]);
-    
+    console.log('subSubMenu::', subSubMenu);
+    console.log('subMenu::', subMenu);
+    this.selectedCategory.emit(subMenu);
+    this.selectedSubject.emit(subSubMenu);
+    this.router.navigate([`/segments/${subMenu.value}`], {
+      state: { data: subSubMenu }});
   }
 
   getColorCode(menuName: any) {
@@ -430,6 +438,8 @@ export class SidebarnewComponent implements OnInit {
 
     if (foundSegment) {
       this.selectedSegment = foundSegment;
+      this.selectedCategory.emit(foundSegment.category[2]);
+      this.selectedSubject.emit(foundSegment.category[2].subjects[0]);
       console.log('foundedone::', this.selectedSegment);
     } else {
       console.error('Segment not found');
