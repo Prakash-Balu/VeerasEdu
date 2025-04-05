@@ -21,9 +21,11 @@ export class FeatureComponent implements AfterViewInit {
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {
     const currentUrl = this.router.url;
-    this.classroom = currentUrl.includes('home') ? 'segments/classroom' : 'class-room';
+    // this.classroom = currentUrl.includes('home') ? 'segments/classroom' : 'class-room';
     this.isPlayerLoaded = Array(this.videoIds.length).fill(false); // Initialize player load states
 
+
+    this.classroom = 'segments/practicewithmaster'; //Link
     this.cards = [
       {
         title:'Class Room',

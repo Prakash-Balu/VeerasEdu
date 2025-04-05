@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { SegmentService } from '../../core/services/segments.service';
 import { CommonService } from '../../core/services/common.service';
@@ -9,7 +8,7 @@ import { CommonService } from '../../core/services/common.service';
 @Component({
   selector: 'app-sidebarnew',
   standalone: true,
-  imports: [CommonModule, NgScrollbarModule, ScrollingModule],
+  imports: [CommonModule, ScrollingModule],
   templateUrl: './sidebarnew.component.html',
   styleUrl: './sidebarnew.component.css'
 })

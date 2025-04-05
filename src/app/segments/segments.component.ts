@@ -18,11 +18,11 @@ import {
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 import { SegmentService } from '../core/services/segments.service';
-// import { VideoPlayerComponent } from '../components/video-player/video-player.component';
 import { MaterialModule } from '../material-module';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { SidebarnewComponent } from '../layout/sidebarnew/sidebarnew.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-segments',
@@ -31,9 +31,9 @@ import { SidebarnewComponent } from '../layout/sidebarnew/sidebarnew.component';
     FontAwesomeModule,
     CommonModule,
     RouterOutlet,
-    // VideoPlayerComponent,
     MaterialModule,
     SidebarnewComponent,
+    ScrollingModule,
   ],
   templateUrl: './segments.component.html',
   styleUrls: ['./segments.component.css'],
