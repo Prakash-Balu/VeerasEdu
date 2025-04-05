@@ -5,13 +5,16 @@
     </div>
 
     <div class="col-12 col-md-10 p-0 classroom_content" cdkScrollable>
-      <div class="sec2 col-12 col-md-9 d-flex justify-content-center">
-        <span>
-          <span>{{ page }}</span> >
-          <span>{{ selectedSegment?.title }}</span>
-        </span>
+      <div class="container">
+        <div class="sec2 col-12 col-md-9 d-flex justify-content-center">
+          <span>
+            <span>{{ page }}</span> >
+            <span>{{ selectedSegment?.title }}</span>
+          </span>
+        </div>
+        <router-outlet></router-outlet>
       </div>
-      <router-outlet></router-outlet>
+      
     </div>
   </div>
 </div>
