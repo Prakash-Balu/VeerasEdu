@@ -1,14 +1,12 @@
 <div class="container p-0 m-0">
   <div class="row-wrapper row">
-    <div class="col-9 col-md-8 offset-md-1">
-      <div class="col-12 col-md-12 mt-4">
-        <div class="video-wrapper pe-4 ps-3 text-center justify-content-center">
-          <div class="col-12 col-md-12">
-            <app-video-player [videoObj]="videoObj"></app-video-player>
-          </div>
-          <div class="col-12 col-md-12">
-            
-          </div>
+    <div class="col-12 col-md-12 mt-4">
+      <div class="video-wrapper pe-4 ps-3 text-center justify-content-center">
+        <div class="col-12 col-md-12">
+          <app-video-player [videoObj]="videoObj"></app-video-player>
+        </div>
+        <div class="col-12 col-md-12">
+          <app-comments [classroomObj]="videoObj"></app-comments>
         </div>
       </div>
     </div>

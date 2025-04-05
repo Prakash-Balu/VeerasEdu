@@ -153,7 +153,7 @@ export class SegmentsComponent {
   getSelectedSubject(selectedSubject: any) {
     console.log('Selected Subject:', selectedSubject);
     this.selectedSubject = selectedSubject;
-    this.actRoute.snapshot.data['selectedSub'] = selectedSubject;
+    // this.actRoute.snapshot.data['selectedSub'] = selectedSubject;
 
   }
 

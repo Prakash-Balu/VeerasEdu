@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class VideoPlayerComponent {
   @ViewChild('vimeoPlayer') vimeoPlayerElement!: ElementRef;
-  @Input() videoObj: { video_url?: string, _id?: string } = {};
+  @Input() videoObj: { videoUrl?: string, _id?: string } = {};
   sanitizedVideoUrl!: SafeResourceUrl;
 
   constructor(private sanitizer: DomSanitizer) {}
@@ -27,8 +27,8 @@ export class VideoPlayerComponent {
   }
 
   private updateSanitizedVideoUrl() {
-    if (this.videoObj.video_url) {
-      const videoUrl = this.videoObj.video_url.replace(/&amp;/g, '&');
+    if (this.videoObj.videoUrl) {
+      const videoUrl = this.videoObj.videoUrl.replace(/&amp;/g, '&');
       this.sanitizedVideoUrl =
         this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);
     }
