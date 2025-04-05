@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { SegmentService } from '../../core/services/segments.service';
@@ -26,6 +27,7 @@ export class SidebarnewComponent implements OnInit {
 
   constructor(
      public segmentservice: SegmentService,
+     private router: Router,
   ) { }
 
   ngOnInit() {
@@ -346,7 +348,7 @@ export class SidebarnewComponent implements OnInit {
     this.activeSubSubMenuId = ''; // Reset sub-submenus
   }
   
-  setActiveSubSubMenu(subSubMenuId: string, event: Event, menuName:any) {
+  setActiveSubSubMenu(subSubMenuId: string, event: Event, subMenu:any) {
     event.stopPropagation(); // Prevent parent click event
     this.activeSubSubMenuId = subSubMenuId;
 
@@ -360,6 +362,8 @@ export class SidebarnewComponent implements OnInit {
 
       element1.style.setProperty('--before-color', this.colorCode);
     }, 0);
+    this.router.navigate([`/segments/${subMenu.value}`]);
+    
   }
 
   getColorCode(menuName: any) {

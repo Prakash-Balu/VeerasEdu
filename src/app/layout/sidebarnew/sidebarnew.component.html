@@ -73,7 +73,7 @@
                     class="subSubMenu nav-link d-flex justify-content-between"
                     [ngClass]="{ active: activeSubSubMenuId === subSubMenu._id }"
                     [ngStyle]="{'--before-color': colorCode}"
-                    (click)="setActiveSubSubMenu(subSubMenu._id, $event, subMenu.name)"
+                    (click)="setActiveSubSubMenu(subSubMenu._id, $event, subMenu)"
                     >{{ subSubMenu.name }}</a
                   >
                 </li>
