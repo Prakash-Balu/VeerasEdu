@@ -10,7 +10,26 @@
 }
 .row-wrapper {
   display: flex;
-  height: calc(100% - 70px);
+  height: calc(100% - 0px);
+}
+
+.classroom-content {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    bottom: 0;
+    background-color: #f4f5ff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevents unwanted horizontal scroll */
+}
+
+.classroom-content div[scrollViewport] {
+  flex-grow: 1; /* Takes full available space */
+  overflow-y: auto; /* Enables vertical scrolling */
+  max-height: calc(100vh - 65px); /* Adjusts height dynamically */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #9b8b8b transparent;
 }
 
 .top-banner {
@@ -23,9 +42,9 @@
 }
 
 .sidebar {
-  width: 200px;
+  width: 256px;
   position: fixed;
-  top: 168px;
+  top: 83px;
   bottom: 0;
   background-color: white;
   overflow-y: auto;
@@ -37,13 +56,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100% - 100px);
+  height: calc(100% - 0px);
   padding: 0 15px 30px 0;
   margin-left: 200px;
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
-  background-color: #f6f7f9;
 }
 .sidebar-toggle {
   background-color: transparent;
@@ -60,11 +78,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
   background-color: inherit;
-  color: #000;
+  color: #564c39;
   font-weight: bold;
-  padding: 28px 20px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,11 +100,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 0 10px;
   border-radius: 6px;
+  transition: background-color 0.3s;
+  margin: 0 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #382b1c;
+  padding: 8px;
 }
 
 .menu-item.active {
@@ -120,7 +140,7 @@
   margin-right: 8px;
 }
 .menu-item:first-child {
-  background-color: #619155;
+  background-color: #bfb59a;
 }
 .menu-item span {
   font-weight: 500;
@@ -176,6 +196,8 @@
   font-weight: 600;
   margin-top: 37px;
   color: #0000008f;
+  position: relative;
+  margin-left: 120px;
 }
 
 .seg-body {
@@ -502,7 +524,6 @@ video {
   }
 }
 
-
 /* Notification Styles */
 .dropdown-menu .dropdown-item:hover {
   cursor: pointer;
@@ -526,7 +547,12 @@ video {
   left: 0;
   width: 100%;
   height: 100%; /* Ensures it covers the full viewport */
-  background: rgba(0, 0, 0, 0.5); /* Optional: Customize the backdrop color and opacity */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Optional: Customize the backdrop color and opacity */
   z-index: 1020; /* Optional: Ensure it's on the top */
 }
 
@@ -746,4 +772,67 @@ video {
   transition: all 0.2s ease-in-out;
   transform: scale(1.2);
 }
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #bbb091;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #bbb091;
+  border: 2px solid #555555;
+}
+
+.btn_back {
+  display: inline-block;
+  position: absolute;
+  bottom: 1em;
+  left: calc(100% - 61%);
+}
+
+
+@media screen and (min-width: 1400px) {
+  .sec2 {
+    margin-left: 220px;
+    font-size: 26px;
+  }
+
+  .video-container {
+    margin-left: 105px;
+  }
+}
+
+.page-header {
+  position: relative;
+  z-index: 99;
+  background-color: #e5e5e5;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 11px 17px 3px;
+}
+
+.body_title{
+  color: #322817;
+  font-size: 1.5rem;
+  padding: 2px 5px;
+  vertical-align: middle;
+}
+
+.classroom_content{
+  background: #fff;
+  overflow: auto;
+  height: 100%;
+  /* width: 79%; */
+}
+
+/* .sidebar-nav {
+  width: 21%;
+} */
+
 

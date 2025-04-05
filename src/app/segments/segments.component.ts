@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+  RouterOutlet,
+} from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faArrowCircleLeft,
@@ -13,22 +18,22 @@ import {
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 import { SegmentService } from '../core/services/segments.service';
-import { VideoPlayerComponent } from '../components/video-player/video-player.component';
+// import { VideoPlayerComponent } from '../components/video-player/video-player.component';
 import { MaterialModule } from '../material-module';
 
 import { DomSanitizer } from '@angular/platform-browser';
-import { SidebarComponent } from '../layout/sidebar/sidebar.component';
+import { SidebarnewComponent } from '../layout/sidebarnew/sidebarnew.component';
 
 @Component({
-  selector: 'ments',
+  selector: 'app-segments',
   standalone: true,
   imports: [
     FontAwesomeModule,
     CommonModule,
-    RouterLink,
-    VideoPlayerComponent,
+    RouterOutlet,
+    // VideoPlayerComponent,
     MaterialModule,
-    SidebarComponent,
+    SidebarnewComponent,
   ],
   templateUrl: './segments.component.html',
   styleUrls: ['./segments.component.css'],
@@ -70,13 +75,16 @@ export class SegmentsComponent {
   ngOnInit() {
     document.documentElement.style.overflowY = 'hidden';
     this.currentUrl = this.route.url;
-    const routeData = this.actRoute.snapshot.data;
-    this.page =
-      routeData['page'].charAt(0).toUpperCase() +
-      routeData['page'].slice(1).toLowerCase();
 
-    this.fetchSegments();
-    this.viewNotification();
+    this.actRoute.children.forEach((childRoute) => {
+      childRoute.data.subscribe((data) => {
+        console.log('Child Route Data:', data);
+        this.page = data['page'];
+      });
+    });
+
+    // this.fetchSegments();
+    // this.viewNotification();
   }
   ngOnDestroy() {
     document.documentElement.style.overflowY = 'auto';

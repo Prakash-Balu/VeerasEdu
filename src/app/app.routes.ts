@@ -38,15 +38,15 @@ export const routes: Routes = [
           ),
         data: { showFooter: false, isMobile: false },
       },
-      {
-        path: 'practice-with-the-master',
-        // canActivate: [AuthGuard],
-        loadComponent: () =>
-          import('./practice-with-master/practice-with-master.component').then(
-            (m) => m.PracticeWithMasterComponent
-          ),
-        data: { showFooter: false, isMobile: false, page: 'practice' },
-      },
+      // {
+      //   path: 'practice-with-the-master',
+      //   // canActivate: [AuthGuard],
+      //   loadComponent: () =>
+      //     import('./practice-with-master/practice-with-master.component').then(
+      //       (m) => m.PracticeWithMasterComponent
+      //     ),
+      //   data: { showFooter: false, isMobile: false, page: 'practice' },
+      // },
       {
         path: 'practice-master',
         canActivate: [AuthGuard],
@@ -83,13 +83,9 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'class-room',
-        canActivate: [AuthGuard],
-        loadComponent: () =>
-          import('./segments/segments.component').then(
-            (m) => m.SegmentsComponent
-          ),
-        data: { showFooter: false, isMobile: false, page: 'classroom' },
+        path: 'segments',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./segments/segments.module').then((m) => m.SegmentsModule),
       },
       {
         path: 'new-classroom',

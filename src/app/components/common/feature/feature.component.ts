@@ -21,7 +21,7 @@ export class FeatureComponent implements AfterViewInit {
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {
     const currentUrl = this.router.url;
-    this.classroom = currentUrl.includes('home') ? 'demo-classroom' : 'class-room';
+    this.classroom = currentUrl.includes('home') ? 'segments/classroom' : 'class-room';
     this.isPlayerLoaded = Array(this.videoIds.length).fill(false); // Initialize player load states
 
     this.cards = [
@@ -41,13 +41,13 @@ export class FeatureComponent implements AfterViewInit {
         title:'Speaking Room',
         content:'Practice with Co-learners along with the Master on our great platform',
         thumbnail:'assets/images/cardsimg/thumb2.jpeg',
-        link:'/practice-with-the-master'
+        link:'/speakingroom'
       },
       {
         title:'Practice With Master',
         content:'Practice  with the Master on our great platform',
         thumbnail:'assets/images/cardsimg/thumb2.jpeg',
-        link:'/practice-master'
+        link:'segments/practicewithmaster'
       },
     ];
   }

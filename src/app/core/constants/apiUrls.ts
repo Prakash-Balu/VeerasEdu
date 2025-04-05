@@ -9,7 +9,7 @@ export const API_URL = {
   GET_LOCATION: "/payment/location",
   CHECK_OUT: "/payment/create",
   add_comments: "/comments/addComment",
-  GET_SEGMENTS:"/segments/getSegments",
+  GET_SEGMENTS:"/segments_new/listSegments",
   VIEW_NOTIFICATIONS: "/comments/view-notification",
   PRATICEWITH_MASTER_LIST: "/practicewithmasterCustomer/listPractices",
   PRATICEWITH_MASTER_GET_ID: "/practicewithmasterCustomer/getPractice/",
