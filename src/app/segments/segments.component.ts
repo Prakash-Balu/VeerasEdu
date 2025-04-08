@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+  RouterOutlet,
+} from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faArrowCircleLeft,
@@ -13,22 +18,22 @@ import {
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 import { SegmentService } from '../core/services/segments.service';
-import { VideoPlayerComponent } from '../components/video-player/video-player.component';
 import { MaterialModule } from '../material-module';
 
 import { DomSanitizer } from '@angular/platform-browser';
-import { SidebarComponent } from '../layout/sidebar/sidebar.component';
+import { SidebarnewComponent } from '../layout/sidebarnew/sidebarnew.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
-  selector: 'ments',
+  selector: 'app-segments',
   standalone: true,
   imports: [
     FontAwesomeModule,
     CommonModule,
-    RouterLink,
-    VideoPlayerComponent,
+    RouterOutlet,
     MaterialModule,
-    SidebarComponent,
+    SidebarnewComponent,
+    ScrollingModule,
   ],
   templateUrl: './segments.component.html',
   styleUrls: ['./segments.component.css'],
@@ -54,6 +59,8 @@ export class SegmentsComponent {
   currentUrl: string = '';
   activeSegmentId: string | null = null;
   page!: string;
+  selectedSubject: any = {};
+  selectedCategory: any = {};
 
   constructor(
     public segmentservice: SegmentService,
@@ -70,13 +77,16 @@ export class SegmentsComponent {
   ngOnInit() {
     document.documentElement.style.overflowY = 'hidden';
     this.currentUrl = this.route.url;
-    const routeData = this.actRoute.snapshot.data;
-    this.page =
-      routeData['page'].charAt(0).toUpperCase() +
-      routeData['page'].slice(1).toLowerCase();
 
-    this.fetchSegments();
-    this.viewNotification();
+    this.actRoute.children.forEach((childRoute) => {
+      childRoute.data.subscribe((data) => {
+        console.log('Child Route Data:', data);
+        this.page = data['page'];
+      });
+    });
+
+    // this.fetchSegments();
+    // this.viewNotification();
   }
   ngOnDestroy() {
     document.documentElement.style.overflowY = 'auto';
@@ -137,5 +147,20 @@ export class SegmentsComponent {
     } else {
       console.error('Segment not found');
     }
+  }
+
+
+  getSelectedSubject(selectedSubject: any) {
+    console.log('Selected Subject:', selectedSubject);
+    this.selectedSubject = selectedSubject;
+    // this.actRoute.snapshot.data['selectedSub'] = selectedSubject;
+
+  }
+
+  getSelectedCategory(selectedCategory: any) {
+    console.log('Selected Category:', selectedCategory);
+    this.selectedSubject = selectedCategory;  
+
+    this.page = selectedCategory.label;
   }
 }

@@ -28,6 +28,9 @@ export class CommonService {
   public selectedPlan!: SelectedPlan;
   public selectedPlanNew!: SelectedPlanNew;
   plan$!: Observable<any>;
+  // Category Subject variables
+  private subjectSource = new BehaviorSubject<any>(null);
+  selectedSubject$ = this.subjectSource.asObservable();
 
   constructor(private http: HttpClient) {
     this.planSubject = new BehaviorSubject<any>(localStorage.getItem('plan'));
@@ -94,5 +97,9 @@ export class CommonService {
         }),
         catchError(this.handleError)
       );
+  }
+
+  setSubject(subject: any) {
+    this.subjectSource.next(subject);
   }
 }

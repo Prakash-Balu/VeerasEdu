@@ -19,7 +19,7 @@
 
 /* Custom scrollbar for Webkit (Chrome, Edge, Safari) */
 .sidebar div[scrollViewport]::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 .sidebar div[scrollViewport]::-webkit-scrollbar-thumb {
   background-color: #ccc;
@@ -90,6 +90,12 @@
   margin: 5px;
 }
 
+/* Target only the last item to remove extra border length */
+.dropdownMenuCollapse li:last-child {
+  margin-bottom: -10px;
+  position: relative;
+}
+
 .dropdownMenuCollapse li .subMenu {
   position: relative;
   border-radius: 8px;
@@ -127,6 +133,13 @@
   border-bottom: 2px solid #3f8b5f;
   border-left: 2px solid #3f8b5f;
   z-index: 10;
+  height: calc(100% - 0px);
+  top: -10px;
+}
+
+.dropdownMenuCollapse::before {
+  content: ""; /* Unicode for caret-down icon (FontAwesome) */
+  border-left: 2px solid #3f8b5f;
 }
 
 /* .dropdownMenuCollapse li > .subMenu.active:nth-child(1)::before {
@@ -176,6 +189,15 @@
 .dpdownSubSubMenuCollapse li .subSubMenu.active {
   background: #c6e9d5 !important;
   color: #000 !important;
+}
+
+.dpdownSubSubMenuCollapse li .subSubMenu.active::before {
+  /* margin-top: -18px; */
+  border-bottom: 2px solid #3f8b5f;
+  border-left: 2px solid #3f8b5f;
+  z-index: 10;
+  height: calc(100% - 0px);
+  top: -10px;
 }
 
 @media screen and (min-width: 1400px) {
