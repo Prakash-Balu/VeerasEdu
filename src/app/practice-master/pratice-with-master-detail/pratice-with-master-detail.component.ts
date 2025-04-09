@@ -35,9 +35,9 @@ export class PraticeWithMasterDetailComponent implements OnInit {
   private localAudioTrack: ILocalAudioTrack | null = null;
 
   appId: string = '104c5f7630a84c9e9e7a0a6ead997eb1';
-  channelName: string = 'New';
+  channelName: string = 'New Channael';
   token: any =
-    '007eJxTYLibbXhr8ZfW8M6ome/X6lUkBUZ0uM62iJi50uTqasXEb94KDIYGJsmmaeZmxgaJFibJlqmWqeaJBolmqYkplpbmqUmGly/cTm8IZGTY81SHmZEBAkF8Zga/1HIGBgCTrSEE';
+    '007eJxTYCh/b+qruvL6O5FnPB+yfpdFmzEU5xSmnIlW1b6jpXBjb4gCg6GBSbJpmrmZsUGihUmyZaplqnmiQaJZamKKpaV5apKh0v+v6Q2BjAwJds9YGRkgEMTnYfBLLVdwzkjMy0tMzWFgAABM0iJv';
   uid: string = Math.floor(Math.random() * 10000).toString();
 
   transcriptionResult: string = '';

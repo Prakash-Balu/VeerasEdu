@@ -75,6 +75,18 @@ export class CommonService {
       );
   }
 
+
+  generateAgoraToken() {
+    return this.http
+      .get<any>(`${environment.baseURL}${API_URL.GENERATE_AGORA_TOKEN}`)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
   getLocation() {
     return this.http
       .get<any>(`${environment.baseURL}${API_URL.GET_LOCATION}`)

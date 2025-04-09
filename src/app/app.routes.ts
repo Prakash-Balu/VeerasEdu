@@ -58,7 +58,7 @@ export const routes: Routes = [
       },
       {
         path: 'practice-master/:name/:_id',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadComponent: () =>
           import(
             './practice-master/pratice-with-master-detail/pratice-with-master-detail.component'
@@ -80,6 +80,13 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./self-practice-new/self-practice-routing.module').then(
             (m) => m.SelfPracticeRoutingModule
+          ),
+      },
+      {
+        path: 'self-practice-v2',
+        loadComponent: () =>
+          import('./self-practice-v2/self-practice-v2.component').then(
+            (m) => m.SelfPracticeV2Component
           ),
       },
       {

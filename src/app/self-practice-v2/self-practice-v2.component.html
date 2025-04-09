@@ -1,0 +1,11 @@
+<p>
+  <ng-container *ngFor="let part of sentenceParts; let i = index">
+    {{ part }}
+    <ng-container *ngIf="i < blanks.length">
+      <span class="blank-box">
+        {{ blanks[i] || "____" }}
+        <button (click)="startSpeech(i)">🎤</button>
+      </span>
+    </ng-container>
+  </ng-container>
+</p>
