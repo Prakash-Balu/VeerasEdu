@@ -1,0 +1,14 @@
+<div class="video-play-container" style="text-align: center ;">
+  <div class="vimeo-video">
+    <div #vimeoPlayer></div>
+    <iframe
+      *ngIf="videoObj?.video_url"
+      [src]="'/assets/images/audio-icon.svg'"
+      frameborder="0"
+      width="80%"
+      height="400px"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+      title="Video Player"
+    ></iframe>
+  </div>
+</div>
