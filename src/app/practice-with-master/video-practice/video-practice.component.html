@@ -3,9 +3,9 @@
     <div #vimeoPlayer></div>
     <iframe
       *ngIf="videoObj?.video_url"
-      [src]="'/assets/images/audio-icon.svg'"
+      [src]="sanitizedVideoUrl"
       frameborder="0"
-      width="80%"
+      width="100%"
       height="400px"
       allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
       title="Video Player"

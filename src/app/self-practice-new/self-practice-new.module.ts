@@ -16,7 +16,8 @@ import { Type2Component } from './type2/type2.component';
   imports: [
     CommonModule,
     RouterModule,
-    SelfPracticeRoutingModule
+    SelfPracticeRoutingModule,
+    
   ]
 })
 export class SelfPracticeNewModule { }

@@ -37,6 +37,7 @@ export class VideoPracticeComponent {
 
   private updateSanitizedVideoUrl() {
     if (this.videoObj.video_url) {
+      console.log(this.videoObj.video_url)
       const videoUrl = this.videoObj.video_url.replace(/&amp;/g, '&');
       this.sanitizedVideoUrl =
         this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);
