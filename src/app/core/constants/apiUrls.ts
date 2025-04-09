@@ -13,4 +13,5 @@ export const API_URL = {
   VIEW_NOTIFICATIONS: "/comments/view-notification",
   PRATICEWITH_MASTER_LIST: "/practicewithmasterCustomer/listPractices",
   PRATICEWITH_MASTER_GET_ID: "/practicewithmasterCustomer/getPractice/",
+  GENERATE_AGORA_TOKEN: "/agora/generate-token"
 };
