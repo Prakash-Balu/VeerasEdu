@@ -1,7 +1,13 @@
-import { CommonModule } from "@angular/common";
-import { Component, ElementRef, ViewChild,NgZone, OnInit  } from "@angular/core";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { similarityPercentage } from "../core/utils/compare";
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  NgZone,
+  OnInit,
+} from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { similarityPercentage } from '../core/utils/compare';
 
 import {
   faArrowCircleLeft,
@@ -11,19 +17,30 @@ import {
   faMicrophone,
   faTimes,
   faBars,
-} from "@fortawesome/free-solid-svg-icons";
-import Player from "@vimeo/player";
-
+} from '@fortawesome/free-solid-svg-icons';
+import Player from '@vimeo/player';
+import { VideoPracticeComponent } from './video-practice/video-practice.component';
+import { NewVideoPlayerComponent } from '../demo-classroom/new-video-player/new-video-player.component';
+import { MaterialModule } from '../material-module';
+import { VideoPlayerComponent } from '../classroom/video-player/video-player.component';
 
 @Component({
-  selector: "app-practice-with-master",
+  selector: 'app-practice-with-master',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule],
-  templateUrl: "./practice-with-master.component.html",
-  styleUrls: ["./practice-with-master.component.css","../../assets/scss/main.scss"],
+  imports: [
+    FontAwesomeModule,
+    CommonModule,
+    VideoPracticeComponent,
+    VideoPlayerComponent,
+    MaterialModule,
+  ],
+  templateUrl: './practice-with-master.component.html',
+  styleUrls: [
+    './practice-with-master.component.css',
+    '../../assets/scss/main.scss',
+  ],
 })
 export class PracticeWithMasterComponent implements OnInit {
-
   faArrowCircleLeft = faArrowCircleLeft;
   faCircleArrowLeft = faCircleArrowLeft;
   faArrowLeft = faArrowLeft;
@@ -32,35 +49,36 @@ export class PracticeWithMasterComponent implements OnInit {
   faTimes = faTimes;
   faBars = faBars;
   isSidebarVisible: boolean = false;
-  @ViewChild("vimeoPlayer") vimeoPlayerElement!: ElementRef;
+  @ViewChild('vimeoPlayer') vimeoPlayerElement!: ElementRef;
   player!: Player;
   videoId: number = 1019160112;
+  videoObj: any = {};
 
   segmentlist = [
-    "INDEX",
-    "SEGMENT 1- 10",
-    "SEGMENT 1",
-    "SEGMENT 2",
-    "SEGMENT 3",
-    "SEGMENT 4",
-    "SEGMENT 5",
-    "SEGMENT 6",
-    "SEGMENT 7",
-    "SEGMENT 8",
-    "SEGMENT 9",
-    "SEGMENT 10",
-    "SEGMENT 11- 20",
-    "SEGMENT 11",
-    "SEGMENT 12",
-    "SEGMENT 13",
-    "SEGMENT 14",
-    "SEGMENT 15",
+    'INDEX',
+    'SEGMENT 1- 10',
+    'SEGMENT 1',
+    'SEGMENT 2',
+    'SEGMENT 3',
+    'SEGMENT 4',
+    'SEGMENT 5',
+    'SEGMENT 6',
+    'SEGMENT 7',
+    'SEGMENT 8',
+    'SEGMENT 9',
+    'SEGMENT 10',
+    'SEGMENT 11- 20',
+    'SEGMENT 11',
+    'SEGMENT 12',
+    'SEGMENT 13',
+    'SEGMENT 14',
+    'SEGMENT 15',
   ];
 
   audioBlob: Blob | null = null;
   audioURL: string | null = null;
   private recognition: any;
-  
+
   isListen = false;
   isRecording = false;
 
@@ -68,36 +86,37 @@ export class PracticeWithMasterComponent implements OnInit {
   audioChunks: Blob[] = [];
   transcription: string = '';
 
-  currentTurn:string = 'veera';
-  isVisible:boolean = false;
-  questionIndex:number = 0;
+  currentTurn: string = 'veera';
+  isVisible: boolean = false;
+  questionIndex: number = 0;
 
-  public questions:any[] = [
+  public questions: any[] = [
     {
-      question:"kya tumane khaaya",
-      answer:"haan, main abhee kha raha hoon",
-      input:"",
-      result:"",
+      question: 'kya tumane khaaya',
+      answer: 'haan, main abhee kha raha hoon',
+      input: '',
+      result: '',
     },
     {
-      question:"bhaarat ka pita kaun hai",
-      answer:"bhaarat ke raashtrapita mahaatma gaandhee hain",
-      input:"",
-      result:"",
+      question: 'bhaarat ka pita kaun hai',
+      answer: 'bhaarat ke raashtrapita mahaatma gaandhee hain',
+      input: '',
+      result: '',
     },
     {
-      question:"aapaka kya naam hai",
-      answer:"mera naam anavar hai",
-      input:"",
-      result:"",
+      question: 'aapaka kya naam hai',
+      answer: 'mera naam anavar hai',
+      input: '',
+      result: '',
     },
   ];
 
-  public currQuestion:any;
+  public currQuestion: any;
 
   constructor(private ngZone: NgZone) {
-
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognition =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition;
     if (SpeechRecognition) {
       this.recognition = new SpeechRecognition();
       this.recognition.lang = 'en-US';
@@ -105,8 +124,9 @@ export class PracticeWithMasterComponent implements OnInit {
       this.recognition.continuous = true;
 
       this.recognition.onresult = (event: any) => {
-        const transcriptArray = Array.from(event.results)
-          .map((result: any) => result[0].transcript);
+        const transcriptArray = Array.from(event.results).map(
+          (result: any) => result[0].transcript
+        );
         console.log(transcriptArray);
         this.ngZone.run(() => {
           this.transcription = transcriptArray.join(' ');
@@ -135,25 +155,24 @@ export class PracticeWithMasterComponent implements OnInit {
   }
 
   getSegmentClass(segment: string) {
-    if (segment === "INDEX") {
-      return "index-heading";
-    } else if (segment.includes("SEGMENT") && segment.includes("-")) {
-      return "segment-parent";
+    if (segment === 'INDEX') {
+      return 'index-heading';
+    } else if (segment.includes('SEGMENT') && segment.includes('-')) {
+      return 'segment-parent';
     } else {
-      return "segment-child";
+      return 'segment-child';
     }
   }
 
-  changeTurn(user:string){
+  changeTurn(user: string) {
     this.currentTurn = user;
   }
 
-  showAnswer(){
+  showAnswer() {
     this.isVisible = !this.isVisible;
   }
 
-  hearAgain(){
-    
+  hearAgain() {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(this.currQuestion.question);
     utterance.onend = () => {
@@ -173,8 +192,7 @@ export class PracticeWithMasterComponent implements OnInit {
     speechSynthesis.speak(utterance);
   }
 
-  retry(){
-    
+  retry() {
     if (this.mediaRecorder) {
       this.isRecording = false;
       this.mediaRecorder.stop();
@@ -186,22 +204,26 @@ export class PracticeWithMasterComponent implements OnInit {
       console.log('SpeechRecognition stopped.');
     }
 
-    this.transcription = "";
+    this.transcription = '';
     this.audioBlob = null;
     this.audioURL = null;
     this.audioChunks = [];
   }
 
-  checkAnswer(){
-    const levenshtein:number = similarityPercentage(this.transcription,this.currQuestion.answer,'levenshtein');
+  checkAnswer() {
+    const levenshtein: number = similarityPercentage(
+      this.transcription,
+      this.currQuestion.answer,
+      'levenshtein'
+    );
     const question = this.questions[this.questionIndex];
     question['input'] = this.transcription;
     this.currQuestion['input'] = this.transcription;
-    if(levenshtein >= 60){
+    if (levenshtein >= 60) {
       question['result'] = true;
       this.currQuestion['result'] = true;
-      this.stopRecording()
-    }else{
+      this.stopRecording();
+    } else {
       question['result'] = false;
       this.currQuestion['result'] = false;
     }
@@ -211,7 +233,8 @@ export class PracticeWithMasterComponent implements OnInit {
     this.isRecording = true;
     this.changeTurn('you');
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ audio: true })
+      navigator.mediaDevices
+        .getUserMedia({ audio: true })
         .then((stream) => {
           this.isRecording = true;
 
@@ -260,8 +283,12 @@ export class PracticeWithMasterComponent implements OnInit {
     // this.changeTurn('veera');
   }
 
-  next(){
-    if(this.questionIndex >= 0 && this.questionIndex < this.questions.length-1 && this.questions[this.questionIndex]['result'] === true){
+  next() {
+    if (
+      this.questionIndex >= 0 &&
+      this.questionIndex < this.questions.length - 1 &&
+      this.questions[this.questionIndex]['result'] === true
+    ) {
       this.questionIndex++;
       this.currQuestion = this.questions[this.questionIndex];
       this.isVisible = false;
@@ -269,11 +296,10 @@ export class PracticeWithMasterComponent implements OnInit {
     }
   }
 
-  prev(){
-    if(this.questionIndex <= this.questions.length){
+  prev() {
+    if (this.questionIndex <= this.questions.length) {
       this.questionIndex--;
       this.currQuestion = this.questions[this.questionIndex];
     }
   }
-
 }
