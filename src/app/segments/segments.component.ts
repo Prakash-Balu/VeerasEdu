@@ -13,7 +13,7 @@ import { MaterialModule } from '../material-module';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SidebarnewComponent } from '../layout/sidebarnew/sidebarnew.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { NewSidebarComponent } from '../layout/new-sidebar/new-sidebar.component';
+import { NewSidebarComponent } from '../demo-classroom/new-sidebar/new-sidebar.component';
 import { BreadcrumbsComponent } from '../components/breadcrumbs/breadcrumbs.component';
 import { breadCrumbItems } from '../shared/models/models';
 
