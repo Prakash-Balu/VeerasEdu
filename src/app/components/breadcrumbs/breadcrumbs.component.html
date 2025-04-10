@@ -1,0 +1,18 @@
+
+
+<div class="my-auto mb-2">
+  <h2 class="mb-1 fs-5">{{title}}</h2>
+  <nav>
+    <ol class="breadcrumb mb-0 fs-6">
+      <li class="breadcrumb-item">
+        <a [href]="routes.home" ><i class="ti ti-smart-home"></i></a> <!-- Change once completed home to dashboard-->
+      </li>
+      @for ( item of breadcrumbItems; track $index) {
+        <ng-container>
+            <li class="breadcrumb-item" [ngClass]="{'active': item.active === true}">{{ item.label }}
+            </li>
+        </ng-container>
+        }
+    </ol>
+  </nav>
+</div>

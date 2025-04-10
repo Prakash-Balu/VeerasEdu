@@ -7,22 +7,15 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faArrowCircleLeft,
-  faCircleArrowLeft,
-  faBell,
-  faArrowLeft,
-  faMicrophone,
-  faTimes,
-  faBars,
-  faVideo,
-} from '@fortawesome/free-solid-svg-icons';
 import { SegmentService } from '../core/services/segments.service';
 import { MaterialModule } from '../material-module';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { SidebarnewComponent } from '../layout/sidebarnew/sidebarnew.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { NewSidebarComponent } from '../layout/new-sidebar/new-sidebar.component';
+import { BreadcrumbsComponent } from '../components/breadcrumbs/breadcrumbs.component';
+import { breadCrumbItems } from '../shared/models/models';
 
 @Component({
   selector: 'app-segments',
@@ -32,22 +25,15 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     CommonModule,
     RouterOutlet,
     MaterialModule,
+    BreadcrumbsComponent,
     SidebarnewComponent,
+    NewSidebarComponent,
     ScrollingModule,
   ],
   templateUrl: './segments.component.html',
   styleUrls: ['./segments.component.css'],
 })
 export class SegmentsComponent {
-  faArrowCircleLeft = faArrowCircleLeft;
-  faCircleArrowLeft = faCircleArrowLeft;
-  faArrowLeft = faArrowLeft;
-  faMicrophone = faMicrophone;
-  faBell = faBell;
-  faTimes = faTimes;
-  faBars = faBars;
-  faVideo = faVideo;
-
   isSidebarVisible: boolean = true;
   videoObj: any = {};
   segmentlist: any[] = [];
@@ -61,6 +47,7 @@ export class SegmentsComponent {
   page!: string;
   selectedSubject: any = {};
   selectedCategory: any = {};
+  breadCrumbItems: breadCrumbItems[] = [];
 
   constructor(
     public segmentservice: SegmentService,
@@ -68,7 +55,13 @@ export class SegmentsComponent {
     private actRoute: ActivatedRoute,
 
     private domSanitizer: DomSanitizer
-  ) {}
+  ) {
+
+    this.breadCrumbItems = [
+      { label: 'Segment-1' },
+      { label: '1.1 Pronoun', active: true },
+    ];
+  }
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
@@ -149,18 +142,30 @@ export class SegmentsComponent {
     }
   }
 
+  getSelectedSegment(selectedSegment: any) {
+    console.log('Selected Segment:', selectedSegment);
+    this.selectedSegment = selectedSegment;
 
-  getSelectedSubject(selectedSubject: any) {
-    console.log('Selected Subject:', selectedSubject);
-    this.selectedSubject = selectedSubject;
-    // this.actRoute.snapshot.data['selectedSub'] = selectedSubject;
-
+    
   }
+  
 
   getSelectedCategory(selectedCategory: any) {
     console.log('Selected Category:', selectedCategory);
     this.selectedSubject = selectedCategory;  
 
     this.page = selectedCategory.label;
+  }
+
+  getSelectedSubject(selectedSubject: any) {
+    console.log('Selected Subject:', selectedSubject);
+    this.selectedSubject = selectedSubject;
+    // this.actRoute.snapshot.data['selectedSub'] = selectedSubject;
+
+    this.breadCrumbItems = [
+      { label: this.selectedSegment.title },
+      { label: this.selectedSubject.name, active: true },
+    ];
+
   }
 }

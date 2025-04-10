@@ -1,9 +1,33 @@
 
 <div class="post-container">
     <div class="container">
+      <div class="input-container mb-3">
+        <div class="col-md-12">
+          <!-- shadow-none-->
+          <ngx-editor class="input-group " 
+          [editor]="editor"
+          [ngClass]="{'input-focused': postTextFocussed}"
+          [ngModel]="commentsText"
+          (focusIn)="postTextFocussed = true"
+          (focusOut)="postTextFocussed = false"
+          [disabled]="false"
+          [placeholder]="'Type here...'">
+          <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [ngClass]="{'d-block': postTextFocussed, 'd-none': !postTextFocussed }"> </ngx-editor-menu>
+        </ngx-editor>
+        <div class="d-flex justify-content-end post_btns">
+          <span class="input-group-text bg-transparent border-0">
+            <!-- <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon> -->
+            <img src="assets/images/mic_icon.png" alt="Img" class="img-fluid" />
+          </span>
   
-      <div class="input-container">
-        <div class="input-group" [class.input-focused]="postTextFocussed">
+          <span class="input-group-text bg-transparent border-0">
+            <button class="btn post_btn px-3">Post</button>
+          </span>
+        </div>
+        
+        </div>
+        
+        <div class="input-group" [class.input-focused]="postTextFocussed" style="display: none;">
           <!-- <input
             type="textarea"
             class="form-control bg-white border-0 p-3"
@@ -17,8 +41,11 @@
   
           <textarea class="form-control bg-white border-0 resize-none" rows="3" (focus)="postTextFocussed = true"
                         (blur)="postTextFocussed = false" [(ngModel)]="commentsText" maxlength="200" *ngIf="!url"
-                        placeholder="Ask your doubts by text or voice and post it"></textarea>
-          
+                        placeholder="Ask your doubts by text or voice and post it">
+                        
+                      </textarea>
+                      <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [ngClass]="{'d-block': postTextFocussed, 'd-none': !postTextFocussed }"> </ngx-editor-menu>
+                      
           <span class="input-group-text bg-white border-0">
             <!-- <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon> -->
             <img src="assets/images/mic_icon.png" alt="Img" class="img-fluid" />
@@ -230,7 +257,7 @@
               <!-- Reply Section -->
               <div class="reply-section mt-3">
                 <div class="reply-more-box">
-                  <h6 class="more-reply" (click)="showMoreReply">2 more replies</h6>
+                  <h6 class="more-reply" (click)="showMoreReply()">2 more replies</h6>
                 </div>
                 
                 <div class="comment-box-reply ms-4">

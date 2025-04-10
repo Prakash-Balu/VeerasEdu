@@ -11,7 +11,7 @@ export const API_URL = {
   add_comments: "/comments/addComment",
   GET_SEGMENTS:"/segments_new_customer/listSegments",
   VIEW_NOTIFICATIONS: "/comments/view-notification",
-  PRATICEWITH_MASTER_LIST: "/practicewithmasterCustomer/listPractices",
-  PRATICEWITH_MASTER_GET_ID: "/practicewithmasterCustomer/getPractice/",
+  PRATICEWITH_MASTER_LIST: "/practicewithmaster-customer/listPractices",
+  PRATICEWITH_MASTER_GET_ID: "/practicewithmaster-customer/getPractice/",
   GENERATE_AGORA_TOKEN: "/agora/generate-token"
 };

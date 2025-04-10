@@ -19,14 +19,16 @@ export class SidebarnewComponent implements OnInit {
   isReportsOpen = false;
   segmentlist: any[] = [];
   segmentId: string = '';
-  selectedSegment: any;
+  // selectedSegment: any;
   activeSegmentId: string ='';
   activeSubMenuId: string ='';
   activeSubSubMenuId: string ='';
   colorCode: string = '#f8f6bd'; // Default color code
+  @Output () selectedSegment = new EventEmitter<any>();
   @Output () selectedCategory = new EventEmitter<any>();
   @Output () selectedSubject = new EventEmitter<any>();
- 
+  darkMode: boolean = false;
+  
   constructor(
      public segmentservice: SegmentService,
      private router: Router,
@@ -35,13 +37,13 @@ export class SidebarnewComponent implements OnInit {
     this.segmentlist = [
       {
         "_id": "67ebcbefed786b75cfcd7112",
-        "title": "Segment 1",
+        "title": "SEGMENT-1",
         "category": [
           {
             "_id": "67ebc9bdffdb1b6f21ac9f2c",
             "value": "classroom",
             "label": "Class Room",
-            "colorCode": "#e5f9ee",
+            "colorCode": "#47c747",
             "createdAt": "2025-04-01T11:10:53.983Z",
             "updatedAt": "2025-04-01T11:10:53.983Z"
           }
@@ -52,13 +54,13 @@ export class SidebarnewComponent implements OnInit {
       },
       {
         "_id": "67ebcbf8ed786b75cfcd7118",
-        "title": "Segment 2",
+        "title": "SEGMENT-2",
         "category": [
           {
             "_id": "67ebc9bdffdb1b6f21ac9f2c",
             "value": "classroom",
             "label": "Class Room",
-            "colorCode": "#e5f9ee",
+            "colorCode": "#47c747",
             "createdAt": "2025-04-01T11:10:53.983Z",
             "updatedAt": "2025-04-01T11:10:53.983Z"
           },
@@ -66,7 +68,7 @@ export class SidebarnewComponent implements OnInit {
             "_id": "67ebc9beffdb1b6f21ac9f2f",
             "value": "selfpractice",
             "label": "Self-Practice",
-            "colorCode": "#c1dbe8",
+            "colorCode": "#f8f6bd",
             "createdAt": "2025-04-01T11:10:54.079Z",
             "updatedAt": "2025-04-01T11:10:54.079Z"
           }
@@ -77,18 +79,57 @@ export class SidebarnewComponent implements OnInit {
       },
       {
         "_id": "67ebcc02ed786b75cfcd711e",
-        "title": "Segment 3",
+        "title": "SEGMENT-3",
         "category": [
           {
             "_id": "67ebc9bdffdb1b6f21ac9f2c",
             "value": "classroom",
             "label": "Class Room",
-            "colorCode": "#e5f9ee",
+            "colorCode": "#47c747",
             "createdAt": "2025-04-01T11:10:53.983Z",
             "updatedAt": "2025-04-01T11:10:53.983Z",
             "subjects": [
               {
                 "_id": "67ecebfc04072134f7122efe",
+                "name": "1.1 Pronoun",
+                "segmentId": "67ebc9bdffdb1b6f21ac9f2c",
+                "videoUrl": "https://player.vimeo.com/video/1024349340",
+                "status": "active",
+                "createdAt": "2025-04-02T07:49:16.529Z",
+                "updatedAt": "2025-04-02T07:49:16.529Z"
+              },
+              {
+                "_id": "67ed3763da9499d3ed44c2he",
+                "name": "1.2 Supportive verbs",
+                "segmentId": "67ebc9bdffdb1b6f21ac9f2c",
+                "description": "demo2",
+                "videoUrl": "https://player.vimeo.com/video/1024349340",
+                "status": "active",
+                "createdAt": "2025-04-02T13:10:59.562Z",
+                "updatedAt": "2025-04-02T13:10:59.562Z"
+              },
+              {
+                "_id": "67ed3763da9499d3ed44c2oe",
+                "name": "1.3 Example Sentences",
+                "segmentId": "67ebc9bdffdb1b6f21ac9f2c",
+                "description": "demo2",
+                "videoUrl": "https://player.vimeo.com/video/1024349340",
+                "status": "active",
+                "createdAt": "2025-04-02T13:10:59.562Z",
+                "updatedAt": "2025-04-02T13:10:59.562Z"
+              }
+            ]
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f2f",
+            "value": "selfpractice",
+            "label": "Self-Practice",
+            "colorCode": "#f8f6bd", //#c1dbe8
+            "createdAt": "2025-04-01T11:10:54.079Z",
+            "updatedAt": "2025-04-01T11:10:54.079Z",
+            "subjects": [
+              {
+                "_id": "67ecebfc04072134f7122fge",
                 "name": "1.1 Pronoun",
                 "segmentId": "67ebc9bdffdb1b6f21ac9f2c",
                 "videoUrl": "https://player.vimeo.com/video/1024349340",
@@ -109,18 +150,10 @@ export class SidebarnewComponent implements OnInit {
             ]
           },
           {
-            "_id": "67ebc9beffdb1b6f21ac9f2f",
-            "value": "selfpractice",
-            "label": "Self-Practice",
-            "colorCode": "#c1dbe8",
-            "createdAt": "2025-04-01T11:10:54.079Z",
-            "updatedAt": "2025-04-01T11:10:54.079Z"
-          },
-          {
             "_id": "67ebc9beffdb1b6f21ac9f32",
             "value": "practicewithmaster",
-            "label": "Practice With the Master",
-            "colorCode": "#f8f6bd",
+            "label": "Practice With Master",
+            "colorCode": "#c1dbe8",
             "createdAt": "2025-04-01T11:10:54.173Z",
             "updatedAt": "2025-04-01T11:10:54.173Z",
             "subjects": [
@@ -162,6 +195,53 @@ export class SidebarnewComponent implements OnInit {
                 "updatedAt": "2025-04-02T13:10:59.562Z"
               }
             ]
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9g22",
+            "value": "speakingroom",
+            "label": "Speaking Room",
+            "colorCode": "#f1ecff",
+            "createdAt": "2025-04-01T11:10:54.173Z",
+            "updatedAt": "2025-04-01T11:10:54.173Z",
+            "subjects": [
+              {
+                "_id": "67ecebfc04072134f7122fd1",
+                "name": "1.1 Hahaan",
+                "segmentId": "67ebcc02ed786b75cfcd711e",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test",
+                    "answer": "Test",
+                    "isDeleted": false,
+                    "_id": null
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T07:49:16.529Z",
+                "updatedAt": "2025-04-02T07:49:16.529Z"
+              },
+              {
+                "_id": "67ed3763da9499d3ed44c26b",
+                "name": "demo2",
+                "segmentId": "67ebcc02ed786b75cfcd711e",
+                "description": "demo2",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "what is your country?",
+                    "answer": "India",
+                    "isDeleted": false,
+                    "_id": "67ed3763da9499d3ed44c26c"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T13:10:59.562Z",
+                "updatedAt": "2025-04-02T13:10:59.562Z"
+              }
+            ]
           }
         ],
         "status": "active",
@@ -170,13 +250,13 @@ export class SidebarnewComponent implements OnInit {
       },
       {
         "_id": "67ebcc0bed786b75cfcd7124",
-        "title": "Segment 4",
+        "title": "SEGMENT-4",
         "category": [
           {
             "_id": "67ebc9bdffdb1b6f21ac9f2c",
             "value": "classroom",
             "label": "Class Room",
-            "colorCode": "#e5f9ee",
+            "colorCode": "#47c747",
             "createdAt": "2025-04-01T11:10:53.983Z",
             "updatedAt": "2025-04-01T11:10:53.983Z"
           },
@@ -184,15 +264,15 @@ export class SidebarnewComponent implements OnInit {
             "_id": "67ebc9beffdb1b6f21ac9f2f",
             "value": "selfpractice",
             "label": "Self-Practice",
-            "colorCode": "#c1dbe8",
+            "colorCode": "#f8f6bd",
             "createdAt": "2025-04-01T11:10:54.079Z",
             "updatedAt": "2025-04-01T11:10:54.079Z"
           },
           {
             "_id": "67ebc9beffdb1b6f21ac9f43",
             "value": "practicewithmaster",
-            "label": "Practice With the Master",
-            "colorCode": "#f8f6bd",
+            "label": "Practice With Master",
+            "colorCode": "#c1dbe8",
             "createdAt": "2025-04-01T11:10:54.173Z",
             "updatedAt": "2025-04-01T11:10:54.173Z",
             "subjects": [
@@ -314,13 +394,13 @@ export class SidebarnewComponent implements OnInit {
       },
       {
         "_id": "67ebcc0bed786b75cfcd7134",
-        "title": "Segment 5",
+        "title": "SEGMENT-5",
         "category": [
           {
             "_id": "67ebc9bdffdb1b6f21ac9f3c",
             "value": "classroom",
             "label": "Class Room",
-            "colorCode": "#e5f9ee",
+            "colorCode": "#47c747",
             "createdAt": "2025-04-01T11:10:53.983Z",
             "updatedAt": "2025-04-01T11:10:53.983Z"
           },
@@ -328,15 +408,15 @@ export class SidebarnewComponent implements OnInit {
             "_id": "67ebc9beffdb1b6f21ac9f3f",
             "value": "selfpractice",
             "label": "Self-Practice",
-            "colorCode": "#c1dbe8",
+            "colorCode": "#f8f6bd",
             "createdAt": "2025-04-01T11:10:54.079Z",
             "updatedAt": "2025-04-01T11:10:54.079Z"
           },
           {
             "_id": "67ebc9beffdb1b6f21ac9f53",
             "value": "practicewithmaster",
-            "label": "Practice With the Master",
-            "colorCode": "#f8f6bd",
+            "label": "Practice With Master",
+            "colorCode": "#c1dbe8",
             "createdAt": "2025-04-01T11:10:54.173Z",
             "updatedAt": "2025-04-01T11:10:54.173Z",
             "subjects": [
@@ -458,29 +538,29 @@ export class SidebarnewComponent implements OnInit {
       },
       {
         "_id": "67ebcc0bed786b75cfcd7144",
-        "title": "Segment 6",
+        "title": "SEGMENT-6",
         "category": [
           {
             "_id": "67ebc9bdffdb1b6f21ac9f5c",
             "value": "classroom",
             "label": "Class Room",
-            "colorCode": "#e5f9ee",
+            "colorCode": "#47c747",
             "createdAt": "2025-04-01T11:10:53.983Z",
             "updatedAt": "2025-04-01T11:10:53.983Z"
           },
           {
-            "_id": "67ebc9beffdb1b6f21ac9f3f",
+            "_id": "67ebc9beffdb1b6f21ac9f5f",
             "value": "selfpractice",
             "label": "Self-Practice",
-            "colorCode": "#c1dbe8",
+            "colorCode": "#f8f6bd",
             "createdAt": "2025-04-01T11:10:54.079Z",
             "updatedAt": "2025-04-01T11:10:54.079Z"
           },
           {
             "_id": "67ebc9beffdb1b6f21ac9f63",
             "value": "practicewithmaster",
-            "label": "Practice With the Master",
-            "colorCode": "#f8f6bd",
+            "label": "Practice With Master",
+            "colorCode": "#c1dbe8",
             "createdAt": "2025-04-01T11:10:54.173Z",
             "updatedAt": "2025-04-01T11:10:54.173Z",
             "subjects": [
@@ -599,6 +679,582 @@ export class SidebarnewComponent implements OnInit {
         "status": "active",
         "createdAt": "2025-04-01T11:20:43.810Z",
         "updatedAt": "2025-04-01T11:20:43.810Z"
+      },
+      {
+        "_id": "67ebcc0bed786b75cfcd7164",
+        "title": "SEGMENT-7",
+        "category": [
+          {
+            "_id": "67ebc9bdffdb1b6f21ac9f6c",
+            "value": "classroom",
+            "label": "Class Room",
+            "colorCode": "#47c747",
+            "createdAt": "2025-04-01T11:10:53.983Z",
+            "updatedAt": "2025-04-01T11:10:53.983Z"
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f7f",
+            "value": "selfpractice",
+            "label": "Self-Practice",
+            "colorCode": "#f8f6bd",
+            "createdAt": "2025-04-01T11:10:54.079Z",
+            "updatedAt": "2025-04-01T11:10:54.079Z"
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f73",
+            "value": "practicewithmaster",
+            "label": "Practice With Master",
+            "colorCode": "#c1dbe8",
+            "createdAt": "2025-04-01T11:10:54.173Z",
+            "updatedAt": "2025-04-01T11:10:54.173Z",
+            "subjects": [
+              {
+                "_id": "67ec01a9f9ca16aa3577dcjf",
+                "name": "1.1 Pronoun",
+                "segmentId": "67ebcc0bed786b75cfcd7164",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "Whats Your Name ?",
+                    "answer": "Hi",
+                    "isDeleted": false,
+                    "_id": "67ec01a9f9ca16aa3577dce0"
+                  },
+                  {
+                    "shortUrl": "https://vimeo.com/2",
+                    "question": "Whats Your Age ?",
+                    "answer": "22",
+                    "isDeleted": false,
+                    "_id": "67ec01a9f9ca16aa3577dce1"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-01T15:09:29.945Z",
+                "updatedAt": "2025-04-01T15:09:29.945Z"
+              },
+              {
+                "_id": "67eccaef106167972fb11171",
+                "name": "1.2 Surface",
+                "segmentId": "67ebcc0bed786b75cfcd7164",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test",
+                    "answer": "Test",
+                    "isDeleted": false,
+                    "_id": "67eccaef106167972fb11172"
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test 2",
+                    "answer": "Test 2",
+                    "isDeleted": false,
+                    "_id": "67eccaef106167972fb11173"
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test 3",
+                    "answer": "Test 3",
+                    "isDeleted": false,
+                    "_id": "67ecdf386d68804f41434c74"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T05:28:15.945Z",
+                "updatedAt": "2025-04-02T06:54:48.359Z"
+              },
+              {
+                "_id": "67ed36fd04072134f7122fh0",
+                "name": "1.3 Pratice",
+                "segmentId": "67ebcc0bed786b75cfcd7164",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Whatasdlkfjsldfjldsafjdsalfjdsalfjdsa;fldsajfldsajf;ldsafdsalfjdsalfjdsaf",
+                    "answer": "fdsalfkjsadflsaj;fdsajf;asjdf",
+                    "isDeleted": false,
+                    "_id": null
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "alskfjaosfasjflasj",
+                    "answer": "asdlfjasdofisadjflj",
+                    "isDeleted": false,
+                    "_id": null
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T13:09:17.535Z",
+                "updatedAt": "2025-04-02T13:10:42.029Z"
+              },
+              {
+                "_id": "67ee3882c4cefbdf640018kd",
+                "name": "trail",
+                "segmentId": "67ebcc0bed786b75cfcd7164",
+                "description": "trail",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "string",
+                    "answer": "string",
+                    "isDeleted": false,
+                    "_id": "67ee3882c4cefbdf640018ke"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-03T07:28:02.657Z",
+                "updatedAt": "2025-04-03T07:28:02.657Z"
+              }
+            ]
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f85",
+            "value": "speakingroom",
+            "label": "Speaking Room",
+            "colorCode": "#f1ecff",
+            "createdAt": "2025-04-01T11:10:54.267Z",
+            "updatedAt": "2025-04-01T11:10:54.267Z"
+          }
+        ],
+        "status": "active",
+        "createdAt": "2025-04-01T11:20:43.810Z",
+        "updatedAt": "2025-04-01T11:20:43.810Z"
+      },
+      {
+        "_id": "67ebcc0bed786b75cfcd7174",
+        "title": "SEGMENT-8",
+        "category": [
+          {
+            "_id": "67ebc9bdffdb1b6f21ac9f7c",
+            "value": "classroom",
+            "label": "Class Room",
+            "colorCode": "#47c747",
+            "createdAt": "2025-04-01T11:10:53.983Z",
+            "updatedAt": "2025-04-01T11:10:53.983Z"
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f8f",
+            "value": "selfpractice",
+            "label": "Self-Practice",
+            "colorCode": "#f8f6bd",
+            "createdAt": "2025-04-01T11:10:54.079Z",
+            "updatedAt": "2025-04-01T11:10:54.079Z"
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f83",
+            "value": "practicewithmaster",
+            "label": "Practice With Master",
+            "colorCode": "#c1dbe8",
+            "createdAt": "2025-04-01T11:10:54.173Z",
+            "updatedAt": "2025-04-01T11:10:54.173Z",
+            "subjects": [
+              {
+                "_id": "67ec01a9f9ca16aa3577dckf",
+                "name": "1.1 Pronoun",
+                "segmentId": "67ebcc0bed786b75cfcd7174",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "Whats Your Name ?",
+                    "answer": "Hi",
+                    "isDeleted": false,
+                    "_id": "67ec01a9f9ca16aa3577dcf0"
+                  },
+                  {
+                    "shortUrl": "https://vimeo.com/2",
+                    "question": "Whats Your Age ?",
+                    "answer": "22",
+                    "isDeleted": false,
+                    "_id": "67ec01a9f9ca16aa3577dcf1"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-01T15:09:29.945Z",
+                "updatedAt": "2025-04-01T15:09:29.945Z"
+              },
+              {
+                "_id": "67eccaef106167972fb11181",
+                "name": "1.2 Surface",
+                "segmentId": "67ebcc0bed786b75cfcd7174",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test",
+                    "answer": "Test",
+                    "isDeleted": false,
+                    "_id": "67eccaef106167972fb11182"
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test 2",
+                    "answer": "Test 2",
+                    "isDeleted": false,
+                    "_id": "67eccaef106167972fb11183"
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test 3",
+                    "answer": "Test 3",
+                    "isDeleted": false,
+                    "_id": "67ecdf386d68804f41434c84"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T05:28:15.945Z",
+                "updatedAt": "2025-04-02T06:54:48.359Z"
+              },
+              {
+                "_id": "67ed36fd04072134f7122fi0",
+                "name": "1.3 Pratice",
+                "segmentId": "67ebcc0bed786b75cfcd7174",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Whatasdlkfjsldfjldsafjdsalfjdsalfjdsa;fldsajfldsajf;ldsafdsalfjdsalfjdsaf",
+                    "answer": "fdsalfkjsadflsaj;fdsajf;asjdf",
+                    "isDeleted": false,
+                    "_id": null
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "alskfjaosfasjflasj",
+                    "answer": "asdlfjasdofisadjflj",
+                    "isDeleted": false,
+                    "_id": null
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T13:09:17.535Z",
+                "updatedAt": "2025-04-02T13:10:42.029Z"
+              },
+              {
+                "_id": "67ee3882c4cefbdf640018ld",
+                "name": "trail",
+                "segmentId": "67ebcc0bed786b75cfcd7174",
+                "description": "trail",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "string",
+                    "answer": "string",
+                    "isDeleted": false,
+                    "_id": "67ee3882c4cefbdf640018le"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-03T07:28:02.657Z",
+                "updatedAt": "2025-04-03T07:28:02.657Z"
+              }
+            ]
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f95",
+            "value": "speakingroom",
+            "label": "Speaking Room",
+            "colorCode": "#f1ecff",
+            "createdAt": "2025-04-01T11:10:54.267Z",
+            "updatedAt": "2025-04-01T11:10:54.267Z"
+          }
+        ],
+        "status": "active",
+        "createdAt": "2025-04-01T11:20:43.810Z",
+        "updatedAt": "2025-04-01T11:20:43.810Z"
+      },
+      {
+        "_id": "67ebcc0bed786b75cfcd7184",
+        "title": "SEGMENT-9",
+        "category": [
+          {
+            "_id": "67ebc9bdffdb1b6f21ac9f8c",
+            "value": "classroom",
+            "label": "Class Room",
+            "colorCode": "#47c747",
+            "createdAt": "2025-04-01T11:10:53.983Z",
+            "updatedAt": "2025-04-01T11:10:53.983Z"
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f9f",
+            "value": "selfpractice",
+            "label": "Self-Practice",
+            "colorCode": "#f8f6bd",
+            "createdAt": "2025-04-01T11:10:54.079Z",
+            "updatedAt": "2025-04-01T11:10:54.079Z"
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9f93",
+            "value": "practicewithmaster",
+            "label": "Practice With Master",
+            "colorCode": "#c1dbe8",
+            "createdAt": "2025-04-01T11:10:54.173Z",
+            "updatedAt": "2025-04-01T11:10:54.173Z",
+            "subjects": [
+              {
+                "_id": "67ec01a9f9ca16aa3577dclf",
+                "name": "1.1 Pronoun",
+                "segmentId": "67ebcc0bed786b75cfcd7184",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "Whats Your Name ?",
+                    "answer": "Hi",
+                    "isDeleted": false,
+                    "_id": "67ec01a9f9ca16aa3577dcg0"
+                  },
+                  {
+                    "shortUrl": "https://vimeo.com/2",
+                    "question": "Whats Your Age ?",
+                    "answer": "22",
+                    "isDeleted": false,
+                    "_id": "67ec01a9f9ca16aa3577dcg1"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-01T15:09:29.945Z",
+                "updatedAt": "2025-04-01T15:09:29.945Z"
+              },
+              {
+                "_id": "67eccaef106167972fb11191",
+                "name": "1.2 Surface",
+                "segmentId": "67ebcc0bed786b75cfcd7184",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test",
+                    "answer": "Test",
+                    "isDeleted": false,
+                    "_id": "67eccaef106167972fb11192"
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test 2",
+                    "answer": "Test 2",
+                    "isDeleted": false,
+                    "_id": "67eccaef106167972fb11193"
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test 3",
+                    "answer": "Test 3",
+                    "isDeleted": false,
+                    "_id": "67ecdf386d68804f41434c94"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T05:28:15.945Z",
+                "updatedAt": "2025-04-02T06:54:48.359Z"
+              },
+              {
+                "_id": "67ed36fd04072134f7122fj0",
+                "name": "1.3 Pratice",
+                "segmentId": "67ebcc0bed786b75cfcd7184",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Whatasdlkfjsldfjldsafjdsalfjdsalfjdsa;fldsajfldsajf;ldsafdsalfjdsalfjdsaf",
+                    "answer": "fdsalfkjsadflsaj;fdsajf;asjdf",
+                    "isDeleted": false,
+                    "_id": null
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "alskfjaosfasjflasj",
+                    "answer": "asdlfjasdofisadjflj",
+                    "isDeleted": false,
+                    "_id": null
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T13:09:17.535Z",
+                "updatedAt": "2025-04-02T13:10:42.029Z"
+              },
+              {
+                "_id": "67ee3882c4cefbdf640018md",
+                "name": "trail",
+                "segmentId": "67ebcc0bed786b75cfcd7184",
+                "description": "trail",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "string",
+                    "answer": "string",
+                    "isDeleted": false,
+                    "_id": "67ee3882c4cefbdf640018le"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-03T07:28:02.657Z",
+                "updatedAt": "2025-04-03T07:28:02.657Z"
+              }
+            ]
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9g05",
+            "value": "speakingroom",
+            "label": "Speaking Room",
+            "colorCode": "#f1ecff",
+            "createdAt": "2025-04-01T11:10:54.267Z",
+            "updatedAt": "2025-04-01T11:10:54.267Z"
+          }
+        ],
+        "status": "active",
+        "createdAt": "2025-04-01T11:20:43.810Z",
+        "updatedAt": "2025-04-01T11:20:43.810Z"
+      },
+      {
+        "_id": "67ebcc0bed786b75cfcd7194",
+        "title": "SEGMENT-10",
+        "category": [
+          {
+            "_id": "67ebc9bdffdb1b6f21ac9f9c",
+            "value": "classroom",
+            "label": "Class Room",
+            "colorCode": "#47c747",
+            "createdAt": "2025-04-01T11:10:53.983Z",
+            "updatedAt": "2025-04-01T11:10:53.983Z"
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9g0f",
+            "value": "selfpractice",
+            "label": "Self-Practice",
+            "colorCode": "#f8f6bd",
+            "createdAt": "2025-04-01T11:10:54.079Z",
+            "updatedAt": "2025-04-01T11:10:54.079Z"
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9g03",
+            "value": "practicewithmaster",
+            "label": "Practice With Master",
+            "colorCode": "#c1dbe8",
+            "createdAt": "2025-04-01T11:10:54.173Z",
+            "updatedAt": "2025-04-01T11:10:54.173Z",
+            "subjects": [
+              {
+                "_id": "67ec01a9f9ca16aa3577dcmf",
+                "name": "1.1 Pronoun",
+                "segmentId": "67ebcc0bed786b75cfcd7194",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "Whats Your Name ?",
+                    "answer": "Hi",
+                    "isDeleted": false,
+                    "_id": "67ec01a9f9ca16aa3577dch0"
+                  },
+                  {
+                    "shortUrl": "https://vimeo.com/2",
+                    "question": "Whats Your Age ?",
+                    "answer": "22",
+                    "isDeleted": false,
+                    "_id": "67ec01a9f9ca16aa3577dch1"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-01T15:09:29.945Z",
+                "updatedAt": "2025-04-01T15:09:29.945Z"
+              },
+              {
+                "_id": "67eccaef106167972fb11201",
+                "name": "1.2 Surface",
+                "segmentId": "67ebcc0bed786b75cfcd7194",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test",
+                    "answer": "Test",
+                    "isDeleted": false,
+                    "_id": "67eccaef106167972fb11202"
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test 2",
+                    "answer": "Test 2",
+                    "isDeleted": false,
+                    "_id": "67eccaef106167972fb11203"
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "Test 3",
+                    "answer": "Test 3",
+                    "isDeleted": false,
+                    "_id": "67ecdf386d68804f41434d04"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T05:28:15.945Z",
+                "updatedAt": "2025-04-02T06:54:48.359Z"
+              },
+              {
+                "_id": "67ed36fd04072134f7122fk0",
+                "name": "1.3 Pratice",
+                "segmentId": "67ebcc0bed786b75cfcd7194",
+                "videoUrl": "https://",
+                "shorts": [
+                  {
+                    "shortUrl": "https://",
+                    "question": "Whatasdlkfjsldfjldsafjdsalfjdsalfjdsa;fldsajfldsajf;ldsafdsalfjdsalfjdsaf",
+                    "answer": "fdsalfkjsadflsaj;fdsajf;asjdf",
+                    "isDeleted": false,
+                    "_id": null
+                  },
+                  {
+                    "shortUrl": "https://",
+                    "question": "alskfjaosfasjflasj",
+                    "answer": "asdlfjasdofisadjflj",
+                    "isDeleted": false,
+                    "_id": null
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-02T13:09:17.535Z",
+                "updatedAt": "2025-04-02T13:10:42.029Z"
+              },
+              {
+                "_id": "67ee3882c4cefbdf640018nd",
+                "name": "trail",
+                "segmentId": "67ebcc0bed786b75cfcd7194",
+                "description": "trail",
+                "videoUrl": "https://vimeo.com",
+                "shorts": [
+                  {
+                    "shortUrl": "https://vimeo.com",
+                    "question": "string",
+                    "answer": "string",
+                    "isDeleted": false,
+                    "_id": "67ee3882c4cefbdf640018me"
+                  }
+                ],
+                "status": "active",
+                "createdAt": "2025-04-03T07:28:02.657Z",
+                "updatedAt": "2025-04-03T07:28:02.657Z"
+              }
+            ]
+          },
+          {
+            "_id": "67ebc9beffdb1b6f21ac9g15",
+            "value": "speakingroom",
+            "label": "Speaking Room",
+            "colorCode": "#f1ecff",
+            "createdAt": "2025-04-01T11:10:54.267Z",
+            "updatedAt": "2025-04-01T11:10:54.267Z"
+          }
+        ],
+        "status": "active",
+        "createdAt": "2025-04-01T11:20:43.810Z",
+        "updatedAt": "2025-04-01T11:20:43.810Z"
       }
     ];
 
@@ -670,10 +1326,10 @@ export class SidebarnewComponent implements OnInit {
   }
 
   getColorCode(menuName: any) {
-    let colorCode = '#3f8b5f';
+    let colorCode = '#47c747';
     switch(menuName) {
       case 'Class Room':
-        colorCode = '#3f8b5f';
+        colorCode = '#47c747';
         break;
       case 'Self-Practice':
         colorCode = '#f8f6bd';
@@ -732,7 +1388,8 @@ export class SidebarnewComponent implements OnInit {
     );
 
     if (foundSegment) {
-      this.selectedSegment = foundSegment;
+      // this.selectedSegment = foundSegment;
+      this.selectedSegment.emit(foundSegment);
       this.selectedCategory.emit(foundSegment.category[2]);
       this.selectedSubject.emit(foundSegment.category[2].subjects[0]);
       console.log('foundedone::', this.selectedSegment);
