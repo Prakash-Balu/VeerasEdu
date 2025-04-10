@@ -17,3 +17,9 @@
   height: auto;
   max-width: 800px; /* You can adjust the max width */
 }
+
+.right-content-area-supported{
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}

@@ -18,6 +18,11 @@ const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'Self-Practice' },
       },
       {
+        path: 'selfpracticenew',
+        loadComponent: () => import('../selfv2/selfv2.component').then((m) => m.Selfv2Component),
+        data: { showFooter: false, isMobile: false, page: 'Self-Practice-New' },
+      },
+      {
         path: 'practicewithmaster',
         loadComponent: () => import('../practice-with-master/practice-with-master.component').then((m) => m.PracticeWithMasterComponent),
         data: { showFooter: false, isMobile: false, page: 'Practice With Master' },

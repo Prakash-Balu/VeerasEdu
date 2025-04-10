@@ -10,6 +10,7 @@ import AgoraRTC, {
   IRemoteAudioTrack,
 } from 'agora-rtc-sdk-ng';
 import { PraticeWithMasterService } from '../core/services/pratice-with-master.service';
+import Player from '@vimeo/player';
 
 @Component({
   selector: 'app-practice-with-master',
@@ -28,6 +29,51 @@ import { PraticeWithMasterService } from '../core/services/pratice-with-master.s
 })
 export class PracticeWithMasterComponent implements OnInit {
   @ViewChild('vimeoPlayer') vimeoPlayerElement!: ElementRef;
+  player!: Player;
+  videoId: number = 1019160112;
+  videoObj: any = {
+    "_id": "6735c99727a6da66983a3096",
+    "name": "SEGMENT-1",
+    "description": "SEGMENT-1",
+    "video_url": "https://player.vimeo.com/video/1073867761?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+    "pageName": "classroom",
+    "routeUrl": "class-room",
+    "createdAt": "2024-11-14T09:57:43.692Z",
+    "updatedAt": "2024-11-14T09:57:43.692Z",
+    "__v": 0
+  };
+
+  segmentlist = [
+    'INDEX',
+    'SEGMENT 1- 10',
+    'SEGMENT 1',
+    'SEGMENT 2',
+    'SEGMENT 3',
+    'SEGMENT 4',
+    'SEGMENT 5',
+    'SEGMENT 6',
+    'SEGMENT 7',
+    'SEGMENT 8',
+    'SEGMENT 9',
+    'SEGMENT 10',
+    'SEGMENT 11- 20',
+    'SEGMENT 11',
+    'SEGMENT 12',
+    'SEGMENT 13',
+    'SEGMENT 14',
+    'SEGMENT 15',
+  ];
+
+  audioBlob: Blob | null = null;
+  audioURL: string | null = null;
+  private recognition: any;
+
+  isListen = false;
+  isRecording = false;
+
+  mediaRecorder: MediaRecorder | null = null;
+  audioChunks: Blob[] = [];
+  transcription: string = '';
 
   public mainVideo: boolean = false;
 
@@ -48,7 +94,6 @@ export class PracticeWithMasterComponent implements OnInit {
   public answer: string = '';
   public highlightedText: string = '';
 
-  public videoObj: any = {};
 
   constructor(private praticeWithMasterService: PraticeWithMasterService) {
     this.client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });

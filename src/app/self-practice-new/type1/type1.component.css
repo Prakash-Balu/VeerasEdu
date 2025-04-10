@@ -1,0 +1,7 @@
+.type1-container{
+    position: relative;
+}
+.type1-container{
+    content: '';
+    background: url('/assets/images/board.jpeg');
+}

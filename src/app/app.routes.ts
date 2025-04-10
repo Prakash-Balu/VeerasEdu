@@ -77,7 +77,7 @@ export const routes: Routes = [
       },
       {
         path: 'self-practice-new',
-        loadComponent: () =>
+        loadChildren: () =>
           import('./self-practice-new/self-practice-routing.module').then(
             (m) => m.SelfPracticeRoutingModule
           ),

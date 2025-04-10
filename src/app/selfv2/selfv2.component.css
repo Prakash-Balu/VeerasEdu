@@ -1,0 +1,36 @@
+.type1-container,
+.type2-container,
+.type3-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url("/assets/images/board.jpeg");
+  background-size: contain;
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+}
+.type1-content label {
+  color: white;
+}
+.dash-border {
+  border: none;
+  border-bottom: 1px solid yellow;
+  background-color: transparent;
+  color: white;
+}
+
+.dash-border:focus-visible {
+  outline: none;
+}
+
+.mic-btn {
+  background-color: transparent;
+  padding: 0;
+}
+.header{
+  text-align: center;
+}
