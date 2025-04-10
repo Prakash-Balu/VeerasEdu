@@ -1,211 +1,222 @@
-.sidebar {
-    width: 19%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    background-color: #2c2929;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    overflow: auto; /* Prevents unwanted horizontal scroll */
-    /* height: 500px; */
-    margin-bottom: 1em;
+.sidebar.light-mode {
+  width: 19%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #2c2929;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* Prevents unwanted horizontal scroll */
+  /* height: 500px; */
+  margin-bottom: 1em;
 
+  
+  overflow-y: auto; /* Enables vertical scrolling */
+  max-height: calc(100vh - 57px); /* Adjusts height dynamically */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ccc transparent;
+}
+
+/* ========== Sidebar Container ========== */
+.sidebar.dark-mode {
+background-color: #f8f9fa;
+min-height: 100vh;
+max-height: 100vh;
+overflow-y: auto;
+border-right: 1px solid #ddd;
+font-family: "Roboto", sans-serif;
+padding: 1rem;
+}
+
+.sidebar div[scrollViewport] {
+  flex-grow: 1; /* Takes full available space */
+  overflow-y: auto; /* Enables vertical scrolling */
+  max-height: calc(100vh - 80px); /* Adjusts height dynamically */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ccc transparent;
+}
+
+/* Custom scrollbar for Webkit (Chrome, Edge, Safari) */
+.sidebar div[scrollViewport]::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar div[scrollViewport]::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: inherit;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font: 400 14px / 20px Figtree, Roboto, Noto Sans Hebrew, Noto Kufi Arabic, Noto Sans JP, sans-serif;
+}
+
+.menu-item a {
+  display: inline;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0 4px;
+  border-radius: 6px;
+  
+}
+
+.menu-list a{
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.menu-item a.active,
+.nav-item.active {
+  background: none !important;
+  color: #FFF !important;
+}
+
+.nav-link > i {
+  margin-left: 10px;
+}
+
+.menu-item.active ul > li.nav-item {
+  background: none;
+}
+
+/* .menu-item .dropdownMenuCollapse {
+    overflow: hidden;
+} */
+
+.dropdownMenuCollapse {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 5px;
+  padding-left: 10px;
+  border-radius: 0px 0px 0px 14px;
+
+}
+
+.dropdownMenuCollapse > li {
+  margin-left: -30px;
+}
+
+/* .dropdownMenuCollapse li:first-child {
+  margin: 10px 5px 5px;
+}
+.dropdownMenuCollapse li {
+  margin: 5px;
+} */
+
+.dropdownMenuCollapse > li .subMenu {
+  position: relative;
+  border-radius: 8px;
+  /* background: #f8f9fa; */
+  padding: 7px 20px;
+  color: #fff;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  /* overflow: hidden; */
+  white-space: nowrap;
+  max-width: 100%;
+  transition: all 0.3sease-in-out;
+}
+
+.dropdownMenuCollapse li .subMenu::before {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: 8px;
+  width: 28px;
+  height: 22px;
+  border-radius: 0px 0px 0px 10px;
+
+}
+
+.dropdownMenuCollapse li .subMenu:hover,
+.dropdownMenuCollapse li .subMenu.active {
+  background: none !important;
+  color: #fff !important;
+}
+
+.dropdownMenuCollapse li .subMenu.active::before {
+
+  z-index: 10;
+}
+
+/* .dropdownMenuCollapse li > .subMenu.active:nth-child(1)::before {
+    height: 32px;
+}
+
+.dropdownMenuCollapse li > .subMenu.active:nth-child(2)::before {
+    height: 64px;
+} */
+
+.dpdownSubSubMenuCollapse {
+  position: relative;
+  margin-left: 4px;
+  margin-top: 5px;
+  padding-left: 5px;
+  border-radius: 0px 0px 0px 14px;
+}
+
+.dpdownSubSubMenuCollapse > li {
+  margin-left: 25px;
+}
+
+.dpdownSubSubMenuCollapse li .subSubMenu {
+  position: relative;
+  border-radius: 8px;
+  /* background: #f8f9fa; */
+  padding: 7px 20px;
+  color: #fff;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  /* overflow: hidden; */
+  white-space: nowrap;
+  max-width: 100%;
+  transition: all 0.3sease-in-out;
+}
+
+.dpdownSubSubMenuCollapse li .subSubMenu::before {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: 8px;
+  width: 28px;
+  height: 22px;
+  border-radius: 0px 0px 0px 10px;
+
+}
+
+.dpdownSubSubMenuCollapse li .subSubMenu:hover {
+  background: none !important;
+  color: #fff !important;
+}
+
+/* .dpdownSubSubMenuCollapse li .subSubMenu.active {
+  color: green;
+} */
+
+.dpdownSubSubMenuCollapse li .subSubMenu.active::before {
+  content: '•';
+  font-size: 30px;
+  margin-left: 30px;
+  color: var(--before-color, #3f8b5f);
+}
     
-    overflow-y: auto; /* Enables vertical scrolling */
-    max-height: calc(100vh - 57px); /* Adjusts height dynamically */
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #ccc transparent;
-  }
-  
-  .sidebar div[scrollViewport] {
-    flex-grow: 1; /* Takes full available space */
-    overflow-y: auto; /* Enables vertical scrolling */
-    max-height: calc(100vh - 80px); /* Adjusts height dynamically */
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #ccc transparent;
-  }
-  
-  /* Custom scrollbar for Webkit (Chrome, Edge, Safari) */
-  .sidebar div[scrollViewport]::-webkit-scrollbar {
-    width: 8px;
-  }
-  .sidebar div[scrollViewport]::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 4px;
-  }
-  
-  .sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: inherit;
-    color: #fff;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font: 400 14px / 20px Figtree, Roboto, Noto Sans Hebrew, Noto Kufi Arabic, Noto Sans JP, sans-serif;
-  }
-  
-  .menu-item a {
-    display: inline;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin: 0 4px;
-    border-radius: 6px;
-    
-  }
-  
-  .menu-list a{
-    font-size: 17px;
-    font-weight: 500;
-  }
-  
-  .menu-item a.active,
-  .nav-item.active {
-    background: none !important;
-    color: #FFF !important;
-  }
-
-  .nav-link > i {
-    margin-left: 10px;
-  }
-  
-  .menu-item.active ul > li.nav-item {
-    background: none;
-  }
-  
-  /* .menu-item .dropdownMenuCollapse {
-      overflow: hidden;
-  } */
-  
-  .dropdownMenuCollapse {
-    position: relative;
-    margin-left: 10px;
-    margin-top: 5px;
-    padding-left: 10px;
-    border-radius: 0px 0px 0px 14px;
-  
-  }
-
-  .dropdownMenuCollapse > li {
-    margin-left: -30px;
-  }
-  
-  /* .dropdownMenuCollapse li:first-child {
-    margin: 10px 5px 5px;
-  }
-  .dropdownMenuCollapse li {
-    margin: 5px;
-  } */
-  
-  .dropdownMenuCollapse > li .subMenu {
-    position: relative;
-    border-radius: 8px;
-    /* background: #f8f9fa; */
-    padding: 7px 8px;
-    color: #fff;
-    font-size: 14px;
-    text-overflow: ellipsis;
-    /* overflow: hidden; */
-    white-space: nowrap;
-    max-width: 100%;
-    transition: all 0.3sease-in-out;
-  }
-  
-  .dropdownMenuCollapse li .subMenu::before {
-    content: "";
-    position: absolute;
-    left: -27px;
-    top: 8px;
-    width: 28px;
-    height: 22px;
-    border-radius: 0px 0px 0px 10px;
-  
-  }
-  
-  .dropdownMenuCollapse li .subMenu:hover,
-  .dropdownMenuCollapse li .subMenu.active {
-    background: none !important;
-    color: #fff !important;
-  }
-  
-  .dropdownMenuCollapse li .subMenu.active::before {
-  
-    z-index: 10;
-  }
-  
-  /* .dropdownMenuCollapse li > .subMenu.active:nth-child(1)::before {
-      height: 32px;
-  }
-  
-  .dropdownMenuCollapse li > .subMenu.active:nth-child(2)::before {
-      height: 64px;
-  } */
-  
-  .dpdownSubSubMenuCollapse {
-    position: relative;
-    margin-left: 4px;
-    margin-top: 5px;
-    padding-left: 5px;
-    border-radius: 0px 0px 0px 14px;
-  }
-  
-  .dpdownSubSubMenuCollapse > li {
-    margin-left: 25px;
-  }
-  
-  .dpdownSubSubMenuCollapse li .subSubMenu {
-    position: relative;
-    border-radius: 8px;
-    /* background: #f8f9fa; */
-    padding: 7px 8px;
-    color: #fff;
-    font-size: 14px;
-    text-overflow: ellipsis;
-    /* overflow: hidden; */
-    white-space: nowrap;
-    max-width: 100%;
-    transition: all 0.3sease-in-out;
-  }
-  
-  .dpdownSubSubMenuCollapse li .subSubMenu::before {
-    content: "";
-    position: absolute;
-    left: -27px;
-    top: 8px;
-    width: 28px;
-    height: 22px;
-    border-radius: 0px 0px 0px 10px;
-  
-  }
-  
-  .dpdownSubSubMenuCollapse li .subSubMenu:hover {
-    background: none !important;
-    color: #fff !important;
-  }
-
-  /* .dpdownSubSubMenuCollapse li .subSubMenu.active {
-    color: green;
-  } */
-  
-  .dpdownSubSubMenuCollapse li .subSubMenu.active::before {
-    content: '•';
-    font-size: 30px;
-    margin-left: 24px;
-    color: var(--before-color, #3f8b5f);
-  }
-      
