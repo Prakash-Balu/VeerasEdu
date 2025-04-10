@@ -204,3 +204,10 @@
     margin-right: 10px;
   }
 }
+
+
+.demo_button {
+  background-color: transparent ;
+  border: 2px solid #277ae4;
+  color: #277ae4;
+}
