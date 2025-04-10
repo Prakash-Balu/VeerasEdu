@@ -1,28 +1,15 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  ViewChild,
-  NgZone,
-  OnInit,
-} from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { similarityPercentage } from '../core/utils/compare';
-
-import {
-  faArrowCircleLeft,
-  faCircleArrowLeft,
-  faBell,
-  faArrowLeft,
-  faMicrophone,
-  faTimes,
-  faBars,
-} from '@fortawesome/free-solid-svg-icons';
-import Player from '@vimeo/player';
 import { VideoPracticeComponent } from './video-practice/video-practice.component';
-import { NewVideoPlayerComponent } from '../demo-classroom/new-video-player/new-video-player.component';
 import { MaterialModule } from '../material-module';
-import { VideoPlayerComponent } from '../classroom/video-player/video-player.component';
+import AgoraRTC, {
+  IAgoraRTCClient,
+  IAgoraRTCRemoteUser,
+  ILocalAudioTrack,
+  IRemoteAudioTrack,
+} from 'agora-rtc-sdk-ng';
+import { PraticeWithMasterService } from '../core/services/pratice-with-master.service';
 
 @Component({
   selector: 'app-practice-with-master',
@@ -31,7 +18,6 @@ import { VideoPlayerComponent } from '../classroom/video-player/video-player.com
     FontAwesomeModule,
     CommonModule,
     VideoPracticeComponent,
-    VideoPlayerComponent,
     MaterialModule,
   ],
   templateUrl: './practice-with-master.component.html',
@@ -41,265 +27,186 @@ import { VideoPlayerComponent } from '../classroom/video-player/video-player.com
   ],
 })
 export class PracticeWithMasterComponent implements OnInit {
-  faArrowCircleLeft = faArrowCircleLeft;
-  faCircleArrowLeft = faCircleArrowLeft;
-  faArrowLeft = faArrowLeft;
-  faMicrophone = faMicrophone;
-  faBell = faBell;
-  faTimes = faTimes;
-  faBars = faBars;
-  isSidebarVisible: boolean = false;
   @ViewChild('vimeoPlayer') vimeoPlayerElement!: ElementRef;
-  player!: Player;
-  videoId: number = 1019160112;
-  videoObj: any = {};
 
-  segmentlist = [
-    'INDEX',
-    'SEGMENT 1- 10',
-    'SEGMENT 1',
-    'SEGMENT 2',
-    'SEGMENT 3',
-    'SEGMENT 4',
-    'SEGMENT 5',
-    'SEGMENT 6',
-    'SEGMENT 7',
-    'SEGMENT 8',
-    'SEGMENT 9',
-    'SEGMENT 10',
-    'SEGMENT 11- 20',
-    'SEGMENT 11',
-    'SEGMENT 12',
-    'SEGMENT 13',
-    'SEGMENT 14',
-    'SEGMENT 15',
-  ];
+  public mainVideo: boolean = false;
 
-  audioBlob: Blob | null = null;
-  audioURL: string | null = null;
-  private recognition: any;
+  public currentIndex: number = 0;
+  public currentData: any;
 
-  isListen = false;
-  isRecording = false;
+  private client: IAgoraRTCClient;
+  private localAudioTrack: ILocalAudioTrack | null = null;
 
-  mediaRecorder: MediaRecorder | null = null;
-  audioChunks: Blob[] = [];
-  transcription: string = '';
+  public appId: string = '104c5f7630a84c9e9e7a0a6ead997eb1';
+  public channelName: string = 'New One';
+  public token: any =
+    '007eJxTYJhz82ZC39zeb8F8zztczf/HKD04ExcyO/Gj4HSTm1cTXOwVGAwNTJJN08zNjA0SLUySLVMtU80TDRLNUhNTLC3NU5MMmzy+pzcEMjJs2/+WiZEBAkF8dga/1HIF/7xUBgYASvsivg==';
+  public uid: string = Math.floor(Math.random() * 10000).toString();
 
-  currentTurn: string = 'veera';
-  isVisible: boolean = false;
-  questionIndex: number = 0;
+  public praticeWithMasterDetail: any;
+  public transcriptionResult: string = '';
+  public answer: string = '';
+  public highlightedText: string = '';
 
-  public questions: any[] = [
-    {
-      question: 'kya tumane khaaya',
-      answer: 'haan, main abhee kha raha hoon',
-      input: '',
-      result: '',
-    },
-    {
-      question: 'bhaarat ka pita kaun hai',
-      answer: 'bhaarat ke raashtrapita mahaatma gaandhee hain',
-      input: '',
-      result: '',
-    },
-    {
-      question: 'aapaka kya naam hai',
-      answer: 'mera naam anavar hai',
-      input: '',
-      result: '',
-    },
-  ];
+  public videoObj: any = {};
 
-  public currQuestion: any;
+  constructor(private praticeWithMasterService: PraticeWithMasterService) {
+    this.client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
+  }
+  ngOnInit(): void {
+    window.addEventListener('message', this.handleVideoEvent.bind(this));
+    this.getPraticeWithMasterDetails('67ec01a9f9ca16aa3577dcaf');
+  }
 
-  constructor(private ngZone: NgZone) {
+  getPraticeWithMasterDetails(id: string) {
+    this.praticeWithMasterService
+      .getPraticeWithMasterById(id)
+      .subscribe((resp: any) => {
+        if (resp) {
+          this.praticeWithMasterDetail = resp.data;
+          const isPreWatched = this.praticeWithMasterDetail.shorts.find(
+            (e: any) => e.watched === true
+          );
+          if (isPreWatched) {
+            for (const [
+              index,
+              ele,
+            ] of this.praticeWithMasterDetail.shorts.entries()) {
+              console.log(`Index: ${index}, Video URL: ${ele}`);
+              if (!ele.watched) {
+                this.currentIndex = index;
+                // this.videoUrl = ele.shortUrl;
+                return;
+              }
+            }
+          } else {
+            this.mainVideo = true;
+            // this.videoUrl = environment.baseURL + resp.data.videoUrl;
+            // this.sanitizedVideoUrl =
+            //   this.sanitizer.bypassSecurityTrustResourceUrl(
+            //     `${this.videoUrl}?enablejsapi=1`
+            //   );
+          }
+        }
+      });
+  }
+
+  highlightMatchingText() {
+    const predefinedWords = this.answer.split(' ');
+    const transcribedWords = this.transcriptionResult.split(' ');
+
+    let highlighted = '';
+
+    predefinedWords.forEach((word, index) => {
+      if (transcribedWords[index] === word) {
+        highlighted += `<span class="highlight">${word}</span> `;
+      } else {
+        highlighted += `${word} `;
+      }
+    });
+
+    this.highlightedText = highlighted.trim(); // Remove trailing space
+  }
+
+  async joinChannel() {
+    try {
+      await this.client.join(
+        this.appId,
+        this.channelName,
+        this.token,
+        this.uid
+      );
+      console.log('Audio track publishe wwd');
+
+      this.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+      await this.client.publish([this.localAudioTrack]);
+      console.log('Audio track published');
+
+      this.initializeSpeechRecognition();
+      this.subscribeToRemoteAudio();
+    } catch (error) {
+      console.error('Failed to join channel:', error);
+    }
+  }
+
+  initializeSpeechRecognition() {
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      this.recognition = new SpeechRecognition();
-      this.recognition.lang = 'en-US';
-      this.recognition.interimResults = true;
-      this.recognition.continuous = true;
-
-      this.recognition.onresult = (event: any) => {
-        const transcriptArray = Array.from(event.results).map(
-          (result: any) => result[0].transcript
-        );
-        console.log(transcriptArray);
-        this.ngZone.run(() => {
-          this.transcription = transcriptArray.join(' ');
-          this.checkAnswer();
-        });
-      };
-
-      this.recognition.onerror = (error: any) => {
-        console.error('SpeechRecognition error:', error);
-      };
-
-      this.recognition.onend = () => {
-        console.log('SpeechRecognition stopped.');
-      };
-    } else {
-      console.error('SpeechRecognition is not supported in this browser.');
+    if (!SpeechRecognition) {
+      alert('Your browser does not support Speech Recognition');
+      return;
     }
-  }
 
-  ngOnInit(): void {
-    this.currQuestion = this.questions.at(this.questionIndex);
-  }
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
 
-  toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
-
-  getSegmentClass(segment: string) {
-    if (segment === 'INDEX') {
-      return 'index-heading';
-    } else if (segment.includes('SEGMENT') && segment.includes('-')) {
-      return 'segment-parent';
-    } else {
-      return 'segment-child';
-    }
-  }
-
-  changeTurn(user: string) {
-    this.currentTurn = user;
-  }
-
-  showAnswer() {
-    this.isVisible = !this.isVisible;
-  }
-
-  hearAgain() {
-    const speechSynthesis = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(this.currQuestion.question);
-    utterance.onend = () => {
-      this.ngZone.run(() => {
-        this.isListen = false;
-        this.changeTurn('you');
-        console.log('Speech has finished.');
-      });
+    recognition.onresult = (event: any) => {
+      const lastResult = event.results[event.results.length - 1];
+      console.log('lastResult::', lastResult);
+      this.highlightMatchingText();
+      if (lastResult.isFinal) {
+        this.transcriptionResult += ' ' + lastResult[0].transcript;
+        this.transcriptionResult = this.transcriptionResult.trim();
+      }
     };
-    utterance.onstart = () => {
-      this.ngZone.run(() => {
-        this.isListen = true;
-        this.changeTurn('veera');
-        console.log('Speech has finished.');
-      });
+
+    recognition.onerror = (event: any) => {
+      console.error('Speech Recognition Error:', event.error);
     };
-    speechSynthesis.speak(utterance);
+
+    recognition.onend = () => {
+      console.log('Speech recognition ended, restarting...');
+      recognition.start(); // Restart on end to maintain real-time transcription
+    };
+
+    recognition.start();
   }
 
-  retry() {
-    if (this.mediaRecorder) {
-      this.isRecording = false;
-      this.mediaRecorder.stop();
-      console.log('Recording stopped.');
-    }
+  subscribeToRemoteAudio() {
+    this.client.on(
+      'user-published',
+      async (user: IAgoraRTCRemoteUser, mediaType: 'audio' | 'video') => {
+        await this.client.subscribe(user, mediaType);
+        console.log('Subscribed to remote user:', user.uid);
 
-    if (this.recognition) {
-      this.recognition.stop();
-      console.log('SpeechRecognition stopped.');
-    }
-
-    this.transcription = '';
-    this.audioBlob = null;
-    this.audioURL = null;
-    this.audioChunks = [];
-  }
-
-  checkAnswer() {
-    const levenshtein: number = similarityPercentage(
-      this.transcription,
-      this.currQuestion.answer,
-      'levenshtein'
+        if (mediaType === 'audio') {
+          const remoteAudioTrack = user.audioTrack as IRemoteAudioTrack;
+          remoteAudioTrack.play();
+        }
+      }
     );
-    const question = this.questions[this.questionIndex];
-    question['input'] = this.transcription;
-    this.currQuestion['input'] = this.transcription;
-    if (levenshtein >= 60) {
-      question['result'] = true;
-      this.currQuestion['result'] = true;
-      this.stopRecording();
-    } else {
-      question['result'] = false;
-      this.currQuestion['result'] = false;
+  }
+
+  gettingCurrentDate() {
+    this.currentData = this.praticeWithMasterDetail.shorts[this.currentIndex];
+  }
+
+  handleVideoEvent(event: MessageEvent): void {
+    console.log(event);
+    if (event.data === 'videoEnded') {
+      console.log('Video playback finished at:', new Date().toISOString());
     }
   }
 
-  startRecording() {
-    this.isRecording = true;
-    this.changeTurn('you');
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices
-        .getUserMedia({ audio: true })
-        .then((stream) => {
-          this.isRecording = true;
-
-          // Initialize MediaRecorder
-          const mediaRecorder = new MediaRecorder(stream);
-          mediaRecorder.ondataavailable = (event) => {
-            this.audioChunks.push(event.data);
-          };
-
-          mediaRecorder.onstop = () => {
-            this.audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
-            this.audioURL = URL.createObjectURL(this.audioBlob);
-            this.audioChunks = [];
-            console.log('Audio recorded successfully.');
-          };
-
-          mediaRecorder.start();
-          this.mediaRecorder = mediaRecorder;
-
-          console.log('Recording started.');
-
-          if (this.recognition) {
-            this.recognition.start();
-          }
-        })
-        .catch((error) => {
-          console.error('Error accessing microphone:', error);
-        });
-    } else {
-      console.error('getUserMedia is not supported in this browser.');
+  onVideoEnded(): void {
+    if (this.mainVideo === true) {
+      this.currentIndex = 0;
+      this.gettingCurrentDate();
+      return;
     }
+    // Add any additional logic for when the video ends, e.g., API call or analytics
   }
 
-  stopRecording() {
-    if (this.mediaRecorder) {
-      this.isRecording = false;
-      this.mediaRecorder.stop();
-      console.log('Recording stopped.');
-    }
-
-    if (this.recognition) {
-      this.recognition.stop();
-      // console.log('SpeechRecognition stopped.');
-    }
-    this.checkAnswer();
-    // this.changeTurn('veera');
+  moveNext() {
+    this.currentIndex = this.currentIndex + 1;
+    this.gettingCurrentDate();
   }
 
-  next() {
-    if (
-      this.questionIndex >= 0 &&
-      this.questionIndex < this.questions.length - 1 &&
-      this.questions[this.questionIndex]['result'] === true
-    ) {
-      this.questionIndex++;
-      this.currQuestion = this.questions[this.questionIndex];
-      this.isVisible = false;
-      this.retry();
-    }
-  }
-
-  prev() {
-    if (this.questionIndex <= this.questions.length) {
-      this.questionIndex--;
-      this.currQuestion = this.questions[this.questionIndex];
-    }
+  movePrev() {
+    this.currentIndex = this.currentIndex - 1;
+    this.gettingCurrentDate();
   }
 }

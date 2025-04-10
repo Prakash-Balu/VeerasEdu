@@ -60,8 +60,8 @@ export class SelfPracticeV2Component {
       this.token = resp?.token;
       this.channelName = resp?.channelName;
       this.token =
-        '007eJxTYFjr++32s7pLBc+5Ty/fsHtTs4eY+6REifw3r2eXcZYcYuNWYDA0MEk2TTM3MzZItDBJtky1TDVPNEg0S01MsbQ0T00y/CfyLb0hkJFhWloNAyMUgvgsDB6Z5SkMDADiliEl';
-      this.channelName = 'Hiwd';
+        '007eJxTYJhz82ZC39zeb8F8zztczf/HKD04ExcyO/Gj4HSTm1cTXOwVGAwNTJJN08zNjA0SLUySLVMtU80TDRLNUhNTLC3NU5MMmzy+pzcEMjJs2/+WiZEBAkF8dga/1HIF/7xUBgYASvsivg==';
+      this.channelName = 'New One';
       this.joinChannel();
     });
   }
@@ -152,7 +152,7 @@ export class SelfPracticeV2Component {
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = 'en-US';
-    if (index || index == 0  ) {
+    if (index || index == 0) {
       recognition.start();
     }
     recognition.onresult = (event: any) => {
