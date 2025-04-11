@@ -55,7 +55,7 @@ export class SelfPracticeV2Component {
 
   ngOnInit() {
     this.generateAgoraToken();
-    this.getSelfPracticeData('67f3db3f42598ba5945b2702');
+    this.getSelfPracticeData('67f3cf93b2e37bf52c1d8272');
   }
 
   generateAgoraToken() {
