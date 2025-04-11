@@ -31,38 +31,7 @@ export class PracticeWithMasterComponent implements OnInit {
   @ViewChild('vimeoPlayer') vimeoPlayerElement!: ElementRef;
   player!: Player;
   videoId: number = 1019160112;
-  videoObj: any = {
-    "_id": "6735c99727a6da66983a3096",
-    "name": "SEGMENT-1",
-    "description": "SEGMENT-1",
-    "video_url": "https://player.vimeo.com/video/1073867761?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-    "pageName": "classroom",
-    "routeUrl": "class-room",
-    "createdAt": "2024-11-14T09:57:43.692Z",
-    "updatedAt": "2024-11-14T09:57:43.692Z",
-    "__v": 0
-  };
-
-  segmentlist = [
-    'INDEX',
-    'SEGMENT 1- 10',
-    'SEGMENT 1',
-    'SEGMENT 2',
-    'SEGMENT 3',
-    'SEGMENT 4',
-    'SEGMENT 5',
-    'SEGMENT 6',
-    'SEGMENT 7',
-    'SEGMENT 8',
-    'SEGMENT 9',
-    'SEGMENT 10',
-    'SEGMENT 11- 20',
-    'SEGMENT 11',
-    'SEGMENT 12',
-    'SEGMENT 13',
-    'SEGMENT 14',
-    'SEGMENT 15',
-  ];
+  videoObj: any;
 
   audioBlob: Blob | null = null;
   audioURL: string | null = null;
@@ -84,23 +53,29 @@ export class PracticeWithMasterComponent implements OnInit {
   private localAudioTrack: ILocalAudioTrack | null = null;
 
   public appId: string = '104c5f7630a84c9e9e7a0a6ead997eb1';
-  public channelName: string = 'New One';
+  public channelName: string = 'NewTw';
   public token: any =
-    '007eJxTYJhz82ZC39zeb8F8zztczf/HKD04ExcyO/Gj4HSTm1cTXOwVGAwNTJJN08zNjA0SLUySLVMtU80TDRLNUhNTLC3NU5MMmzy+pzcEMjJs2/+WiZEBAkF8dga/1HIF/7xUBgYASvsivg==';
+    '007eJxTYPjYxO7PZPGy6GglwwztO6GmyttXGsSt2dmzeNetv401k9oVGAwNTJJN08zNjA0SLUySLVMtU80TDRLNUhNTLC3NU5MMdy7/kd4QyMhwTKCdiZEBAkF8Vga/1PKQcgYGAJUTIQs=';
   public uid: string = Math.floor(Math.random() * 10000).toString();
 
   public praticeWithMasterDetail: any;
   public transcriptionResult: string = '';
   public answer: string = '';
   public highlightedText: string = '';
-
+  public question: string = '';
 
   constructor(private praticeWithMasterService: PraticeWithMasterService) {
     this.client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
   }
   ngOnInit(): void {
-    window.addEventListener('message', this.handleVideoEvent.bind(this));
     this.getPraticeWithMasterDetails('67ec01a9f9ca16aa3577dcaf');
+    // AgoraRTC.getDevices().then((devices) => {
+    //   devices.forEach((device) => {
+    //     console.log(
+    //       `${device.kind}: ${device.label} - ${device.deviceId} - groupId: ${device.groupId}`
+    //     );
+    //   });
+    // });
   }
 
   getPraticeWithMasterDetails(id: string) {
@@ -111,6 +86,10 @@ export class PracticeWithMasterComponent implements OnInit {
           this.praticeWithMasterDetail = resp.data;
           const isPreWatched = this.praticeWithMasterDetail.shorts.find(
             (e: any) => e.watched === true
+          );
+          console.log(
+            'this.practiceWithMasterDetals:',
+            this.praticeWithMasterDetail
           );
           if (isPreWatched) {
             for (const [
@@ -126,11 +105,10 @@ export class PracticeWithMasterComponent implements OnInit {
             }
           } else {
             this.mainVideo = true;
-            // this.videoUrl = environment.baseURL + resp.data.videoUrl;
-            // this.sanitizedVideoUrl =
-            //   this.sanitizer.bypassSecurityTrustResourceUrl(
-            //     `${this.videoUrl}?enablejsapi=1`
-            //   );
+            this.videoObj = {
+              ...this.praticeWithMasterDetail,
+              video_url: this.praticeWithMasterDetail.videoUrl,
+            };
           }
         }
       });
@@ -225,33 +203,47 @@ export class PracticeWithMasterComponent implements OnInit {
     );
   }
 
-  gettingCurrentDate() {
+  gettingCurrentData() {
     this.currentData = this.praticeWithMasterDetail.shorts[this.currentIndex];
+    this.videoObj = {
+      ...this.currentData,
+      video_url: this.currentData.shortUrl,
+    };
   }
 
-  handleVideoEvent(event: MessageEvent): void {
-    console.log(event);
-    if (event.data === 'videoEnded') {
-      console.log('Video playback finished at:', new Date().toISOString());
-    }
+  gettingFirstQuestionData() {
+    this.currentData = this.praticeWithMasterDetail.shorts[this.currentIndex];
+    this.videoObj = {
+      ...this.currentData,
+      video_url: this.currentData.shortUrl,
+    };
   }
 
-  onVideoEnded(): void {
+  videoEndEvent(event: any) {
     if (this.mainVideo === true) {
       this.currentIndex = 0;
-      this.gettingCurrentDate();
-      return;
+      this.gettingFirstQuestionData();
+      this.mainVideo = false;
+    } else {
+      this.currentIndex += 1;
     }
-    // Add any additional logic for when the video ends, e.g., API call or analytics
+  }
+
+  questionVideoStart(event: any) {
+    this.question = event;
+  }
+
+  answerEmited(event: any) {
+    this.answer = event;
   }
 
   moveNext() {
     this.currentIndex = this.currentIndex + 1;
-    this.gettingCurrentDate();
+    this.gettingCurrentData();
   }
 
   movePrev() {
     this.currentIndex = this.currentIndex - 1;
-    this.gettingCurrentDate();
+    this.gettingCurrentData();
   }
 }

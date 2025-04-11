@@ -1,8 +1,8 @@
-<div class="video-play-container" style="text-align: center ;">
-  <div class="vimeo-video">
-    <div #vimeoPlayer></div>
+<div class="video-play-container" style="text-align: center">
+  <div class="vimeo-video" *ngIf="sanitizedVideoUrl">
     <iframe
-      *ngIf="videoObj?.video_url"
+      #vimeoIframe
+      id="vimeo-player"
       [src]="sanitizedVideoUrl"
       frameborder="0"
       width="100%"

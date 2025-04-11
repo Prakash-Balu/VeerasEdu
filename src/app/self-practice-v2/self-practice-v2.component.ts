@@ -178,17 +178,5 @@ export class SelfPracticeV2Component {
     recognition.onend = () => {
       console.log('Speech recognition ended, restarting...');
     };
-
-    // recognition.start();
-    // this.recognition.start();
-
-    // this.recognition.onresult = (event: any) => {
-    //   const speechText = event.results[0][0].transcript.trim();
-    //   this.blanks[index] = speechText;
-    // };
-
-    // this.recognition.onerror = (event: any) => {
-    //   console.error('Speech recognition error:', event.error);
-    // };
   }
 }
