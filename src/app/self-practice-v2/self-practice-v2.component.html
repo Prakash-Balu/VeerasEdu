@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
   <ng-container *ngFor="let part of sentenceParts; let i = index">
     {{ part }}
     <ng-container *ngIf="i < blanks.length">
@@ -8,4 +8,38 @@
       </span>
     </ng-container>
   </ng-container>
-</p>
+</p> -->
+
+<div class="type1-container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-6">
+      <div class="header p-4">
+        <h4 class="text-warning p-2">Be Form-Pronoun</h4>
+      </div>
+
+      <div class="type1-content" *ngIf="!isType2">
+        <div *ngFor="let practice of practicesData; let i = index">
+          <div>
+            <div class="row p-2">
+              <div class="col-3">
+                <label for="">{{ practice.questionInTamil }}</label>
+              </div>
+              <div class="col-3">
+                <label for="">{{ practice.questionInEnglish }}</label>
+              </div>
+              <div class="col-6">
+                <button class="btn mic-btn" (click)="startSpeech(i)">🎤</button>
+                <input
+                  type="text"
+                  placeholder="Try in Hindi"
+                  class="dash-border"
+                  value="{{ practice?.transAnswer }}"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

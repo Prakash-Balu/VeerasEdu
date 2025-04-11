@@ -45,4 +45,8 @@ export class Selfv2Component {
     { key: 'Quest1', quest: 'I am here', tamil: 'நான் இங்கே இருக்கிறேன்' },
     { key: 'Quest1', quest: 'I am here', tamil: 'நான் இங்கே இருக்கிறேன்' },
   ];
+
+  constructor() {}
+  
+  ngOnInit() {}
 }
