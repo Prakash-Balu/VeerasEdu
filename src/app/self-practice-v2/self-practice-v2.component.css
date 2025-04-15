@@ -33,6 +33,20 @@
   outline: none;
 }
 
+.dash-borde-type2 {
+  border: none;
+  width: 100px;
+  border-bottom: 1px solid yellow;
+  background-color: transparent;
+  color: white;
+}
+
+.dash-border-type2:focus-visible {
+  outline: none;
+}
+
+
+
 .mic-btn {
   background-color: transparent;
   padding: 0;

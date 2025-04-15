@@ -28,22 +28,15 @@ export class SelfPracticeV2Component {
   private appId: string = '104c5f7630a84c9e9e7a0a6ead997eb1';
   // private channelName: string = '';
   // private token: string = '';
-  public channelName: string = 'NewTw';
+  public channelName: string = 'Gest';
   public token: any =
-    '007eJxTYPjYxO7PZPGy6GglwwztO6GmyttXGsSt2dmzeNetv401k9oVGAwNTJJN08zNjA0SLUySLVMtU80TDRLNUhNTLC3NU5MMdy7/kd4QyMhwTKCdiZEBAkF8Vga/1PKQcgYGAJUTIQs=';
+    '007eJxTYDiq8zAkyVFr6s+e9y+8TWuWuce9VpxW9l5Q4VRebtmEolwFBkMDk2TTNHMzY4NEC5Nky1TLVPNEg0Sz1MQUS0vz1CTDWI5/6Q2BjAy+b2qYGBkYGViAGMRnApPMYJIFSrqnFpcwMAAAvd8iaQ==';
 
   public transcriptionResult: any;
   public isType2: any;
   public selfPracticeData: any;
   public practicesData: any;
 
-  public label: any[] = [
-    { key: 'நான்', label: 'நான்' },
-    { key: 'நாங்கள்', label: 'நாங்கள்' },
-    { key: 'நீ', label: 'நீ' },
-    { key: 'நான்', label: 'நான்' },
-    { key: 'நீங்களே', label: 'நீங்களே' },
-  ];
   constructor(
     private commonService: CommonService,
     private selfPracticeService: SelfPracticeService
@@ -74,6 +67,24 @@ export class SelfPracticeV2Component {
       this.isType2 = resp?.data?.displayType === 'type2' ? true : false;
       this.selfPracticeData = resp?.data;
       this.practicesData = resp?.data?.practices;
+      this.practicesData.map((e: any) => {
+        const output = e.answer.replace(/\$.*?\$/g, '__');
+        const outputAnswer = e.answer
+          .match(/\$(.*?)\$/g)
+          ?.map((str: any) => str.replace(/\$/g, ''));
+
+        this.sentenceParts = output.split('__');
+        this.blanks = Array(this.sentenceParts.length - 1).fill('');
+        e.preview = e.answer;
+        e.answer = output;
+        e.blanks = this.blanks;
+        e.blanksAnswer = outputAnswer;
+        e.sentenceParts = this.sentenceParts;
+        this.sentenceParts = [];
+        this.blanks = [];
+        return e;
+      });
+      console.log(this.practicesData);
     });
   }
 
@@ -148,6 +159,19 @@ export class SelfPracticeV2Component {
     );
   }
 
+  speakDeafult(index: number) {
+    console.log(index, 'indexLSLDFLSD');
+    const text = 'Try in Hindi';
+    const utterance = new SpeechSynthesisUtterance(text);
+    console.log(utterance);
+    utterance.lang = 'en-IN'; // or 'hi-IN' for Hindi accent
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    window.speechSynthesis.speak(utterance);
+    this.startSpeech(index);
+  }
+  
+
   startSpeech(index: number) {
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
@@ -173,15 +197,20 @@ export class SelfPracticeV2Component {
           this.transcriptionResult = lastResult[0].transcript;
         }
         this.transcriptionResult = this.transcriptionResult.trim();
-        this.practicesData[index]['transAnswer'] = this.transcriptionResult;
-        if (this.practicesData[index]['answer'] === this.transcriptionResult) {
-          this.practicesData[index]['isRight'] = true;
+        if (this.isType2) {
         } else {
-          this.practicesData[index]['isRight'] = false;
-          if (this.practicesData[index]['isRetry']) {
-            this.practicesData[index]['isRetry'] += 1;
+          this.practicesData[index]['transAnswer'] = this.transcriptionResult;
+          if (
+            this.practicesData[index]['answer'] === this.transcriptionResult
+          ) {
+            this.practicesData[index]['isRight'] = true;
           } else {
-            this.practicesData[index]['isRetry'] = 1;
+            this.practicesData[index]['isRight'] = false;
+            if (this.practicesData[index]['isRetry']) {
+              this.practicesData[index]['isRetry'] += 1;
+            } else {
+              this.practicesData[index]['isRetry'] = 1;
+            }
           }
         }
         this.transcriptionResult = '';

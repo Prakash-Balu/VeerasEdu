@@ -4,7 +4,7 @@
     <ng-container *ngIf="i < blanks.length">
       <span class="blank-box">
         {{ blanks[i] || "____" }}
-        <button (click)="startSpeech(i)">🎤</button>
+        <button (click)="speakDeafult(i)">🎤</button>
       </span>
     </ng-container>
   </ng-container>
@@ -14,7 +14,7 @@
   <div class="row d-flex justify-content-center">
     <div class="col-6">
       <div class="header p-4">
-        <h4 class="text-warning p-2">Be Form-Pronoun</h4>
+        <h4 class="text-warning p-2">{{ selfPracticeData?.subject || "" }}</h4>
       </div>
 
       <div class="type1-content" *ngIf="!isType2">
@@ -28,7 +28,9 @@
                 <label for="">{{ practice.questionInEnglish }}</label>
               </div>
               <div class="col-6">
-                <button class="btn mic-btn" (click)="startSpeech(i)">🎤</button>
+                <button class="btn mic-btn" (click)="speakDeafult(i)">
+                  🎤
+                </button>
                 <input
                   type="text"
                   placeholder="Try in Hindi"
@@ -52,13 +54,24 @@
                 <label for="">{{ practice.questionInTamil }}</label>
               </div>
               <div class="col-12 p-2">
-                <button class="btn mic-btn" (click)="startSpeech(i)">🎤</button>
-                <input
-                  type="text"
-                  placeholder="Try in Hindi"
-                  value="{{ practice?.transAnswer }}"
-                  class="dash-border"
-                />
+                <ng-container *ngFor="let part of practice?.sentenceParts; let i = index">
+                  {{ part }}
+                  <ng-container *ngIf="i < practice?.blanks.length">
+                    <button class="btn mic-btn" (click)="speakDeafult(i)">
+                      🎤
+                    </button>
+                    <input
+                      type="text"
+                      placeholder="Try in Hindi"
+                      value="{{ blanks[i] }}"
+                      class="dash-borde-type2"
+                    />
+                    <!-- <span class="blank-box">
+                      <button (click)="speakDeafult(i)">🎤</button>
+                    </span> -->
+                  </ng-container>
+                </ng-container>
+              
               </div>
               <div class="col-12">
                 <div class="d-flex justify-content-center">
