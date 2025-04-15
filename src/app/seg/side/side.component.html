@@ -1,0 +1,31 @@
+<div class="sidebar bg-dark text-white vh-100 p-3">
+    <h6 class="fw-bold text-uppercase">Index</h6>
+  
+    <!-- Segments -->
+    <div *ngFor="let segment of segments" class="mb-2">
+      <div class="d-flex justify-content-between align-items-center cursor-pointer" (click)="toggle(segment)">
+        <span>{{ segment.name }}</span>
+        <i class="fa-solid" [ngClass]="segment.expanded ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
+      </div>
+  
+      <div *ngIf="segment.expanded" class="ms-3 mt-2">
+        <!-- Class Room -->
+        <div *ngIf="segment.classRoom" class="mb-2">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill text-success me-2"></i>
+            <span class="fw-bold">Class Room</span>
+          </div>
+          <ul class="list-unstyled ps-4 mt-1">
+            <li *ngFor="let topic of segment.classRoom.topics" class="text-white small mb-1">
+              <i class="bi bi-dot text-success"></i> {{ topic }}
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Other sections -->
+        <div *ngFor="let section of segment.otherSections" class="mb-1">
+          <i [class]="section.icon + ' me-2'"></i>{{ section.name }}
+        </div>
+      </div>
+    </div>
+  </div>

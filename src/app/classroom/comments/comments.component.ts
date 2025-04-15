@@ -90,11 +90,67 @@ export class CommentsComponent {
   }
 
   toolbar: Toolbar = [
-    ['bold', 'italic', 'format_clear'],
-    ['underline', 'strike'],
+    ['bold', 'italic', 'underline'],
+    ['text_color'],
+    [
+      {
+        link: {
+          showOpenInNewTab: true, // 👈 open links in new tab by default
+        }
+      }
+    ],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
     // [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
     // ['image'],
+    
   ];
+
+
+    // Method to set the link on selected text
+  setLink() {
+    const linkUrl = 'https://example.com'; // Link URL
+    const linkTarget = '_blank'; // Optional: Open link in a new tab
+
+    const { commands, view } = this.editor;
+
+    // Focus the editor
+    commands.focus();
+
+    const state = view.state;
+    const tr = state.tr;
+
+    // Use the schema to create the link mark
+    const linkMark = view.state.schema.marks['link'].create({
+      href: linkUrl,
+      target: linkTarget,
+    });
+
+    const { from, to } = state.selection;
+
+    // Add the link mark to the selected text
+    tr.addMark(from, to, linkMark);
+    
+    // Dispatch the transaction to apply the link
+    view.dispatch(tr);
+  }
+  // insertLink() {
+  //   const url = prompt('Enter URL:'); // You can use a modal for a better UX
+
+  //   if (url) {
+  //     this.editor.commands
+  //       .focus()
+  //       .insertLink('link',{ href: url, target: '_blank' })
+  //       .update();
+  //   }
+  // }
+
+  // toolbar: Toolbar = [
+  //   ['bold', 'italic', 'underline'],
+  //   ['font_size'],
+  //   ['textColor', 'highlight'],
+  //   ['link'],
+  //   ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify'],
+  // ];
   
   demoComments() {
     let respData = [
@@ -335,6 +391,7 @@ export class CommentsComponent {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
+    this.editor.destroy();
   }
   
   sanitize(url: string) {

@@ -87,4 +87,13 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
+
+  elem = document.documentElement;
+  fullscreen() {
+    if (!document.fullscreenElement) {
+      this.elem.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
 }

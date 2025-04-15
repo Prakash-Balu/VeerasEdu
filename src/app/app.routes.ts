@@ -94,6 +94,12 @@ export const routes: Routes = [
         // canActivate: [AuthGuard],
         loadChildren: () => import('./segments/segments.module').then((m) => m.SegmentsModule),
       },
+
+      {
+        path: 'seg',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./seg/seg.module').then((m) => m.SegModule),
+      },
       {
         path: 'new-classroom',
         // canActivate: [AuthGuard],

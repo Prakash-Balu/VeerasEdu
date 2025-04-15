@@ -1,0 +1,94 @@
+<!-- <ng-scrollbar
+  class="sidebar"
+  #scrollbarRef="ngScrollbar"
+  #scrollbar
+  externalViewport
+  appearance="compact"
+> -->
+<div class="sidebar pt-3 p-3" cdkScrollable>
+    <div>
+      <div class="sidebar-header">
+        <h6 class="text-uppercase fw-bold pt-2 pb-2">INDEX</h6>
+      </div>
+      <ul class="menu-list list-group mt-2 mb-3">
+        @for (segment of segmentlist; track segment) {
+        <li [class.menu-item]="segment._id">
+          <a
+            class="nav-link d-flex justify-content-between"
+            data-bs-toggle="collapse"
+            [ngClass]="{ active: activeSegmentId === segment._id }"
+            (click)="toggleSubmenu(segment, $event)"
+          >
+            <span> <i class="fa-brands fa-youtube"></i> {{ segment.name }}</span>
+            @if(segment.subMenu) {
+            <i
+              class="fa-solid"
+              [ngClass]="{
+                'fa-caret-down': !segment.expanded,
+                'fa-caret-up': segment.expanded
+              }"
+            ></i>
+            }
+          </a>
+  
+          @if(segment.subMenu) {
+          <ul
+            id="settingsMenu"
+            class="dropdownMenuCollapse collapse nav flex-column"
+            [class.show]="segment.expanded"
+          >
+            @for(subMenu of segment.subMenu; track subMenu) {
+            <li class="nav-item">
+              <a
+                class="subMenu d-flex justify-content-between"
+                data-bs-toggle="collapse"
+                [ngClass]="{ active: activeSubMenuId === subMenu._id }"
+                (click)="toggleSubSubmenu(subMenu, $event)"
+              >
+                <span>                
+                  <!-- <span class="subMenu subMenu-green"> -->
+                    <i class="fa-regular fa-square"></i>
+                    <img style="display: none;" src="assets/images/animated-videos.svg" [ngStyle]="getMenuStyle(subMenu.name)"/>
+                    &nbsp;&nbsp; {{ subMenu.name }}
+                  <!-- </span> -->
+                </span>
+                @if(subMenu.subSubMenu) {
+                <i
+                  class="fa-solid"
+                  [ngClass]="{
+                    'fa-caret-down': !subMenu.expanded,
+                    'fa-caret-up': subMenu.expanded
+                  }"
+                ></i>
+                }
+              </a>
+  
+              @if(subMenu.subSubMenu) {
+              <ul
+                id="reportsMenu"
+                class="dpdownSubSubMenuCollapse collapse nav flex-column ms-3"
+                [class.show]="subMenu.expanded"
+              >
+                @for(subSubMenu of subMenu.subSubMenu; track subSubMenu) {
+                <li class="nav-item">
+                  <a
+                    class="subSubMenu d-flex justify-content-between"
+                    [ngClass]="{ active: activeSubSubMenuId === subSubMenu._id }"
+                    (click)="setActiveSubSubMenu(subSubMenu._id, $event, subMenu.name)"
+                    >{{ subSubMenu.name }}</a
+                  >
+                </li>
+                }
+              </ul>
+              }
+            </li>
+            }
+          </ul>
+          }
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+  <!-- </ng-scrollbar> -->
+  

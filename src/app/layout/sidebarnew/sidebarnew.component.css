@@ -85,6 +85,10 @@ padding: 1rem;
   font-weight: 500;
 }
 
+.menu-list a i{
+  font-size: 15px;
+}
+
 .menu-item a.active,
 .nav-item.active {
   background: none !important;

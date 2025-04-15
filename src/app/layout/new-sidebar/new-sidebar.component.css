@@ -1,0 +1,166 @@
+/* ========== Sidebar Container ========== */
+.sidebar {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+  font-family: "Roboto", sans-serif;
+  padding: 1rem;
+}
+
+/* ========== Scrollbar Styling ========== */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #bcbcbc;
+  border-radius: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: #a1a1a1;
+}
+
+/* ========== Menu Structure ========== */
+.menu-item {
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+
+/* ========== Parent Menu Links ========== */
+.menu-item .nav-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  background-color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu-item .nav-link.active {
+  background-color: #e8e9ea;
+  font-weight: bold;
+}
+
+/* ========== Submenu Wrappers ========== */
+.dropdownMenuCollapse,
+.dpdownSubSubMenuCollapse {
+  padding-left: 10px;
+  margin-top: 5px;
+}
+
+/* ========== Submenu & Sub-submenu Links ========== */
+.subMenu,
+.subSubMenu {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  font-size: 13px;
+  font-weight: 430;
+  color: #6b7280;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 5px;
+}
+
+.subMenu:hover,
+.subSubMenu:hover {
+  color: #f16529;
+}
+
+/* ========== Active Submenus ========== */
+.subMenu.active,
+.subSubMenu.active {
+  font-weight: bold;
+  border-left: 3px solid currentColor;
+  background-color: inherit;
+}
+
+/* ========== Submenu Background Themes ========== */
+.dropdownMenuCollapse > li:nth-child(1) > .subMenu {
+  background-color: #d6f5d6; /* Green Group */
+}
+.dropdownMenuCollapse > li:nth-child(2) > .subMenu {
+  background-color: #fff3cd; /* Yellow Group */
+}
+.dropdownMenuCollapse > li:nth-child(3) > .subMenu {
+  background-color: #d6eaff; /* Blue Group */
+}
+.dropdownMenuCollapse > li:nth-child(4) > .subMenu {
+  background-color: #f5d6f5; /* Pink Group */
+}
+
+/* ========== Active Border Colors by Group ========== */
+.dropdownMenuCollapse > li:nth-child(1) .subMenu.active,
+.dropdownMenuCollapse > li:nth-child(1) .dpdownSubSubMenuCollapse .subSubMenu.active {
+  border-left-color: #47c747;
+}
+.dropdownMenuCollapse > li:nth-child(2) .subMenu.active,
+.dropdownMenuCollapse > li:nth-child(2) .dpdownSubSubMenuCollapse .subSubMenu.active {
+  border-left-color: #f4c430;
+}
+.dropdownMenuCollapse > li:nth-child(3) .subMenu.active,
+.dropdownMenuCollapse > li:nth-child(3) .dpdownSubSubMenuCollapse .subSubMenu.active {
+  border-left-color: #3090f4;
+}
+.dropdownMenuCollapse > li:nth-child(4) .subMenu.active,
+.dropdownMenuCollapse > li:nth-child(4) .dpdownSubSubMenuCollapse .subSubMenu.active {
+  border-left-color: #d46ed4;
+}
+
+/* ========== SubSubMenu Indentation ========== */
+.dpdownSubSubMenuCollapse .subSubMenu {
+  padding-left: 20px;
+  font-size: 13px;
+}
+
+/* ========== Icons ========== */
+.menu-item i,
+.fa-caret-down,
+.fa-caret-up {
+  font-size: 16px;
+  color: #666;
+}
+.fa-caret-down,
+.fa-caret-up {
+  font-size: 12px;
+}
+
+/* ========== Badges ========== */
+.badge {
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+.badge.bg-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+/* Green Group Icon */
+.dropdownMenuCollapse > li:nth-child(1) .subMenu i {
+  color: #47c747;
+}
+
+/* Yellow Group Icon */
+.dropdownMenuCollapse > li:nth-child(2) .subMenu i {
+  color: #f4c430;
+}
+
+/* Blue Group Icon */
+.dropdownMenuCollapse > li:nth-child(3) .subMenu i {
+  color: #3090f4;
+}
+
+/* Pink Group Icon */
+.dropdownMenuCollapse > li:nth-child(4) .subMenu i {
+  color: #d46ed4;
+}
