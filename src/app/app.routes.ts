@@ -82,13 +82,13 @@ export const routes: Routes = [
             (m) => m.SelfPracticeRoutingModule
           ),
       },
-      {
-        path: 'self-practice-v2',
-        loadComponent: () =>
-          import('./self-practice-v2/self-practice-v2.component').then(
-            (m) => m.SelfPracticeV2Component
-          ),
-      },
+      // {
+      //   path: 'self-practice-v2',
+      //   loadComponent: () =>
+      //     import('./self-practice-v2/self-practice-v2.component').then(
+      //       (m) => m.SelfPracticeV2Component
+      //     ),
+      // },
       {
         path: 'segments',
         // canActivate: [AuthGuard],
