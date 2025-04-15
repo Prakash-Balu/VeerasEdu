@@ -14,7 +14,7 @@
 }
 .master,
 .learner {
-  background-color: white;
+  background-color: #443c4100;
   border: 1px solid white;
   border-radius: 5px;
   margin: 5px;

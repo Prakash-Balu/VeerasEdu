@@ -10,14 +10,22 @@
                   <app-video-practice
                     [videoObj]="videoObj"
                     src="/assets/images/voice_call_admin.png"
+                    (hasVideoEnd)="videoEndEvent($event)"
+                    (hasQuestionVideoStart)="questionVideoStart($event)"
+                    (hasAnswerEmit)="answerEmited($event)"
                   ></app-video-practice>
                 </div>
                 <div class="master-bordered p-3">
                   <span>Master</span>
                 </div>
                 <div class="master-speaking p-3">
+                  @if(!mainVideo){
+
                   <span><i>Speaking..</i></span>
+                  }
                 </div>
+
+                @if(!mainVideo && question){
                 <p class="card-text voice-bordered m-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -34,8 +42,9 @@
                       d="M12 20.75V3.25m8 11.71V9.04M4 14.96V9.04m12 8.872V6.088M8 17.912V6.088"
                     />
                   </svg>
-                  <span>tum long aaj keya karnejaa raahe hai ?</span>
+                  <span>{{ question }}</span>
                 </p>
+                }
               </div>
               <div class="learner">
                 <div class="video-wrapper">
@@ -54,8 +63,12 @@
                   <span>Learner</span>
                 </div>
                 <div class="master-speaking p-3">
+                  @if(!mainVideo && answer){
+
                   <span><i>Say it again..</i></span>
+                  }
                 </div>
+                @if(!mainVideo && answer){
                 <p class="card-text voice-bordered m-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -74,6 +87,7 @@
                   </svg>
                   mai ghar jaa raha hoon,aur aaj mai chhutti mein hoon
                 </p>
+                }
               </div>
             </div>
           </div>

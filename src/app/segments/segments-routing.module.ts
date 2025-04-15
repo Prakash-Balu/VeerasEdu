@@ -19,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'selfpracticenew',
-        loadComponent: () => import('../selfv2/selfv2.component').then((m) => m.Selfv2Component),
+        loadComponent: () => import('../self-practice-v2/self-practice-v2.component').then((m) => m.SelfPracticeV2Component),
         data: { showFooter: false, isMobile: false, page: 'Self-Practice-New' },
       },
       {
