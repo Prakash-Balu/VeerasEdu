@@ -28,9 +28,9 @@ export class SelfPracticeV2Component {
   private appId: string = '104c5f7630a84c9e9e7a0a6ead997eb1';
   // private channelName: string = '';
   // private token: string = '';
-  public channelName: string = 'Gest';
+  public channelName: string = 'Test';
   public token: any =
-    '007eJxTYDiq8zAkyVFr6s+e9y+8TWuWuce9VpxW9l5Q4VRebtmEolwFBkMDk2TTNHMzY4NEC5Nky1TLVPNEg0Sz1MQUS0vz1CTDWI5/6Q2BjAy+b2qYGBkYGViAGMRnApPMYJIFSrqnFpcwMAAAvd8iaQ==';
+    '007eJxTYLDx/iT7SvxA2MmdssFV015MWsReLG6UnLTO/cTe/4JOkQ0KDIYGJsmmaeZmxgaJFibJlqmWqeaJBolmqYkplpbmqUmGm02ZMxoCGRkyCs4yMAIhCxCD+ExgkhlMskDJkNTiEgYGAEDZIPg=';
 
   public transcriptionResult: any;
   public isType2: any;
@@ -67,23 +67,25 @@ export class SelfPracticeV2Component {
       this.isType2 = resp?.data?.displayType === 'type2' ? true : false;
       this.selfPracticeData = resp?.data;
       this.practicesData = resp?.data?.practices;
-      this.practicesData.map((e: any) => {
-        const output = e.answer.replace(/\$.*?\$/g, '__');
-        const outputAnswer = e.answer
-          .match(/\$(.*?)\$/g)
-          ?.map((str: any) => str.replace(/\$/g, ''));
+      if (this.isType2) {
+        this.practicesData.map((e: any) => {
+          const output = e.answer.replace(/\$.*?\$/g, '__');
+          const outputAnswer = e.answer
+            .match(/\$(.*?)\$/g)
+            ?.map((str: any) => str.replace(/\$/g, ''));
 
-        this.sentenceParts = output.split('__');
-        this.blanks = Array(this.sentenceParts.length - 1).fill('');
-        e.preview = e.answer;
-        e.answer = output;
-        e.blanks = this.blanks;
-        e.blanksAnswer = outputAnswer;
-        e.sentenceParts = this.sentenceParts;
-        this.sentenceParts = [];
-        this.blanks = [];
-        return e;
-      });
+          this.sentenceParts = output.split('__');
+          this.blanks = Array(this.sentenceParts.length - 1).fill('');
+          e.preview = e.answer;
+          e.answer = output;
+          e.blanks = this.blanks;
+          e.blanksAnswer = outputAnswer;
+          e.sentenceParts = this.sentenceParts;
+          this.sentenceParts = [];
+          this.blanks = [];
+          return e;
+        });
+      }
       console.log(this.practicesData);
     });
   }
@@ -159,8 +161,8 @@ export class SelfPracticeV2Component {
     );
   }
 
-  speakDeafult(index: number) {
-    console.log(index, 'indexLSLDFLSD');
+  speakDeafult(index: number, practiceIndex: any) {
+    console.log(index, 'indexLSLDFLSD', practiceIndex);
     const text = 'Try in Hindi';
     const utterance = new SpeechSynthesisUtterance(text);
     console.log(utterance);
@@ -168,11 +170,10 @@ export class SelfPracticeV2Component {
     utterance.rate = 1;
     utterance.pitch = 1;
     window.speechSynthesis.speak(utterance);
-    this.startSpeech(index);
+    this.startSpeech(index, practiceIndex);
   }
-  
 
-  startSpeech(index: number) {
+  startSpeech(index: number, practiceIndex: any) {
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition;
@@ -189,6 +190,7 @@ export class SelfPracticeV2Component {
       recognition.start();
     }
     recognition.onresult = (event: any) => {
+      console.log('recognitaion Event::', event);
       const lastResult = event.results[event.results.length - 1];
       if (lastResult.isFinal) {
         if (this.transcriptionResult !== undefined) {
@@ -197,7 +199,13 @@ export class SelfPracticeV2Component {
           this.transcriptionResult = lastResult[0].transcript;
         }
         this.transcriptionResult = this.transcriptionResult.trim();
+        console.log('Transcriptin Result::', this.transcriptionResult);
         if (this.isType2) {
+          const getCurrentData = this.practicesData.find(
+            (e: any) => String(e._id) === String(practiceIndex._id)
+          );
+          console.log('getCurrentData::', getCurrentData);
+          getCurrentData['blanks'][index] = this.transcriptionResult;
         } else {
           this.practicesData[index]['transAnswer'] = this.transcriptionResult;
           if (
@@ -224,5 +232,10 @@ export class SelfPracticeV2Component {
     recognition.onend = () => {
       console.log('Speech recognition ended, restarting...');
     };
+  }
+
+  onInputChange(value: any, index: number) {
+    console.log('value::', value);
+    this.blanks[index] = value;
   }
 }

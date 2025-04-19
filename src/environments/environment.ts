@@ -7,6 +7,6 @@ export const environment = {
   production: false,
   razorPayKeyId: 'rzp_test_UJT02PVMbPZRkF',
   // baseURL: 'https://veeras-api.onrender.com',
-  baseURL: 'http://192.168.0.24:3000',
+  baseURL: 'http://192.168.0.16:3000',
   //  baseURL: 'http://192.168.0.12:3000'
 };

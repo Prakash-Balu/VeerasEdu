@@ -28,7 +28,7 @@
                 <label for="">{{ practice.questionInEnglish }}</label>
               </div>
               <div class="col-6">
-                <button class="btn mic-btn" (click)="speakDeafult(i)">
+                <button class="btn mic-btn" (click)="speakDeafult(i, 0)">
                   🎤
                 </button>
                 <input
@@ -57,14 +57,15 @@
                 <ng-container *ngFor="let part of practice?.sentenceParts; let i = index">
                   {{ part }}
                   <ng-container *ngIf="i < practice?.blanks.length">
-                    <button class="btn mic-btn" (click)="speakDeafult(i)">
+                    <button class="btn mic-btn" (click)="speakDeafult(i, practice)">
                       🎤
                     </button>
                     <input
                       type="text"
                       placeholder="Try in Hindi"
-                      value="{{ blanks[i] }}"
+                      value="blanks[i]"
                       class="dash-borde-type2"
+                      (input)="onInputChange($event, i)"
                     />
                     <!-- <span class="blank-box">
                       <button (click)="speakDeafult(i)">🎤</button>
