@@ -151,11 +151,11 @@ export class NewPlansComponent implements OnInit {
 
   getPlans() {
     const payload = {};
-    this.commonService.getPlans(payload).subscribe((res: any) => {
-      if (res && res.data) {
-        this.plans = res.data.map((plan: any) => this.planTransformPipe.transform(plan));
-      }
-    });
+    // this.commonService.getPlans(payload).subscribe((res: any) => {
+    //   if (res && res.data) {
+    //     this.plans = res.data.map((plan: any) => this.planTransformPipe.transform(plan));
+    //   }
+    // });
 
     this.commonService.getPlanPrice(payload).subscribe((res: any) => {
       if (res && res.data) {
