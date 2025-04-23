@@ -17,14 +17,6 @@ const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'Class Room' },
       },
       {
-        path: 'selfpractice',
-        loadComponent: () =>
-          import('../self-pratice/self-pratice.component').then(
-            (m) => m.SelfPraticeComponent
-          ),
-        data: { showFooter: false, isMobile: false, page: 'Self-Practice' },
-      },
-      {
         path: 'selfpracticenew',
         loadComponent: () =>
           import('../self-practice-v2/self-practice-v2.component').then(
