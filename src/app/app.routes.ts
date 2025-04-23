@@ -38,50 +38,6 @@ export const routes: Routes = [
           ),
         data: { showFooter: false, isMobile: false },
       },
-      // {
-      //   path: 'practice-with-the-master',
-      //   // canActivate: [AuthGuard],
-      //   loadComponent: () =>
-      //     import('./practice-with-master/practice-with-master.component').then(
-      //       (m) => m.PracticeWithMasterComponent
-      //     ),
-      //   data: { showFooter: false, isMobile: false, page: 'practice' },
-      // },
-      {
-        path: 'practice-master',
-        canActivate: [AuthGuard],
-        loadComponent: () =>
-          import('./practice-master/practice-master.component').then(
-            (m) => m.PracticeMasterComponent
-          ),
-        data: { showFooter: false, isMobile: false },
-      },
-      {
-        path: 'practice-master/:name/:_id',
-        // canActivate: [AuthGuard],
-        loadComponent: () =>
-          import(
-            './practice-master/pratice-with-master-detail/pratice-with-master-detail.component'
-          ).then((m) => m.PraticeWithMasterDetailComponent),
-        data: { showFooter: false, isMobile: false },
-      },
-
-      {
-        path: 'self-practice',
-        canActivate: [AuthGuard],
-        loadComponent: () =>
-          import('./self-pratice/self-pratice.component').then(
-            (m) => m.SelfPraticeComponent
-          ),
-        data: { showFooter: false, isMobile: false, page: 'self' },
-      },
-      {
-        path: 'self-practice-new',
-        loadChildren: () =>
-          import('./self-practice-new/self-practice-routing.module').then(
-            (m) => m.SelfPracticeRoutingModule
-          ),
-      },
       {
         path: 'segments',
         // canActivate: [AuthGuard],
@@ -89,20 +45,6 @@ export const routes: Routes = [
           import('./segments/segments.module').then((m) => m.SegmentsModule),
       },
 
-      {
-        path: 'seg',
-        // canActivate: [AuthGuard],
-        loadChildren: () => import('./seg/seg.module').then((m) => m.SegModule),
-      },
-      {
-        path: 'new-classroom',
-        // canActivate: [AuthGuard],
-        loadComponent: () =>
-          import('./segment-new/segment-new.component').then(
-            (m) => m.SegmentNewComponent
-          ),
-        data: { showFooter: false, isMobile: false, page: 'new-classroom' },
-      },
       {
         path: 'demo-classroom',
         // canActivate: [AuthGuard],
