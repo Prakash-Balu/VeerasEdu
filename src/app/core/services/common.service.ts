@@ -3,21 +3,21 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { API_URL } from '../constants/apiUrls';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
-import { SelectedPlanNew } from '../models/selectedplannew';
+import { SelectedPlanNew } from '../interfaces/selectedplannew';
 
-export interface SelectedPlan{
-  _id:string,
-  code:string,
-  currencyCode:string,
-  currencySymbol:string,
-  planFee:number,
-  duration:number,
-  period:string,
-  hasValidity:boolean,
-  validityDuration?:number,
-  validityPeriod?:string,
-  gstPercent:number,
-  processingFee:number
+export interface SelectedPlan {
+  _id: string;
+  code: string;
+  currencyCode: string;
+  currencySymbol: string;
+  planFee: number;
+  duration: number;
+  period: string;
+  hasValidity: boolean;
+  validityDuration?: number;
+  validityPeriod?: string;
+  gstPercent: number;
+  processingFee: number;
 }
 
 @Injectable({
@@ -40,12 +40,11 @@ export class CommonService {
     return this.planSubject.value;
   }
 
-
   public setSelectedPlan(plan: SelectedPlan) {
     this.selectedPlan = plan;
   }
 
-  public getSelectedPlan():SelectedPlan {
+  public getSelectedPlan(): SelectedPlan {
     return this.selectedPlan;
   }
 
@@ -53,7 +52,7 @@ export class CommonService {
     this.selectedPlanNew = plan;
   }
 
-  public getSelectedPlanNew():SelectedPlanNew {
+  public getSelectedPlanNew(): SelectedPlanNew {
     return this.selectedPlanNew;
   }
 
@@ -74,7 +73,6 @@ export class CommonService {
         catchError(this.handleError)
       );
   }
-
 
   generateAgoraToken() {
     return this.http
@@ -100,7 +98,10 @@ export class CommonService {
 
   getPlanPrice(payload: any) {
     return this.http
-      .get<any>(`${environment.baseURL}${API_URL.GET_PLAN_DETAILS_NEW}`, payload)
+      .get<any>(
+        `${environment.baseURL}${API_URL.GET_PLAN_DETAILS_NEW}`,
+        payload
+      )
       .pipe(
         map((res: any) => {
           localStorage.setItem('plan', JSON.stringify(res?.data));

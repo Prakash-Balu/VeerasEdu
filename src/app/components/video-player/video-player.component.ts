@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
 export class VideoPlayerComponent implements AfterViewInit, OnChanges {
   @ViewChild('vimeoPlayer') vimeoPlayerElement!: ElementRef;
 
-  @Input() videoObj: { video_url?: string, _id?: string } = {};
+  @Input() videoObj: { video_url?: string; _id?: string } = {};
   sanitizedVideoUrl!: SafeResourceUrl;
 
   constructor(private sanitizer: DomSanitizer) {}

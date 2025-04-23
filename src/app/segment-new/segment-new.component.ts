@@ -30,7 +30,7 @@ import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
     SidebarComponent,
     CdkScrollable,
     ScrollingModule,
-],
+  ],
   templateUrl: './segment-new.component.html',
   styleUrls: ['./segment-new.component.css'],
 })
@@ -48,61 +48,66 @@ export class SegmentNewComponent {
   videoObj: any = {};
   segmentlist: any[] = [
     {
-        "_id": "6735c99727a6da66983a3096",
-        "name": "SEGMENT-1",
-        "description": "SEGMENT-1",
-        "video_url": "https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-        "pageName": "classroom",
-        "routeUrl": "class-room",
-        "createdAt": "2024-11-14T09:57:43.692Z",
-        "updatedAt": "2024-11-14T09:57:43.692Z",
-        "__v": 0
+      _id: '6735c99727a6da66983a3096',
+      name: 'SEGMENT-1',
+      description: 'SEGMENT-1',
+      video_url:
+        'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+      pageName: 'classroom',
+      routeUrl: 'class-room',
+      createdAt: '2024-11-14T09:57:43.692Z',
+      updatedAt: '2024-11-14T09:57:43.692Z',
+      __v: 0,
     },
     {
-        "_id": "6735c9b927a6da66983a309b",
-        "name": "SEGMENT-2",
-        "description": "SEGMENT-2",
-        "video_url": "https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963",
-        "pageName": "classroom",
-        "routeUrl": "class-room",
-        "createdAt": "2024-11-14T09:58:17.169Z",
-        "updatedAt": "2024-11-14T09:58:17.169Z",
-        "__v": 0
+      _id: '6735c9b927a6da66983a309b',
+      name: 'SEGMENT-2',
+      description: 'SEGMENT-2',
+      video_url:
+        'https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963',
+      pageName: 'classroom',
+      routeUrl: 'class-room',
+      createdAt: '2024-11-14T09:58:17.169Z',
+      updatedAt: '2024-11-14T09:58:17.169Z',
+      __v: 0,
     },
     {
-        "_id": "6735ca0127a6da66983a30a6",
-        "name": "SEGMENT-3",
-        "description": "SEGMENT-3",
-        "video_url": "https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963",
-        "pageName": "classroom",
-        "routeUrl": "class-room",
-        "createdAt": "2024-11-14T09:59:29.908Z",
-        "updatedAt": "2024-11-14T09:59:29.908Z",
-        "__v": 0
+      _id: '6735ca0127a6da66983a30a6',
+      name: 'SEGMENT-3',
+      description: 'SEGMENT-3',
+      video_url:
+        'https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963',
+      pageName: 'classroom',
+      routeUrl: 'class-room',
+      createdAt: '2024-11-14T09:59:29.908Z',
+      updatedAt: '2024-11-14T09:59:29.908Z',
+      __v: 0,
     },
     {
-        "_id": "6735ca1327a6da66983a30ab",
-        "name": "SEGMENT-4",
-        "description": "SEGMENT-4",
-        "video_url": "https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963",
-        "pageName": "classroom",
-        "routeUrl": "class-room",
-        "createdAt": "2024-11-14T09:59:47.940Z",
-        "updatedAt": "2024-11-14T09:59:47.940Z",
-        "__v": 0
+      _id: '6735ca1327a6da66983a30ab',
+      name: 'SEGMENT-4',
+      description: 'SEGMENT-4',
+      video_url:
+        'https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963',
+      pageName: 'classroom',
+      routeUrl: 'class-room',
+      createdAt: '2024-11-14T09:59:47.940Z',
+      updatedAt: '2024-11-14T09:59:47.940Z',
+      __v: 0,
     },
     {
-        "_id": "6735ca2327a6da66983a30b0",
-        "name": "SEGMENT-5",
-        "description": "SEGMENT-5",
-        "video_url": "https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963",
-        "pageName": "classroom",
-        "routeUrl": "class-room",
-        "createdAt": "2024-11-14T10:00:03.847Z",
-        "updatedAt": "2024-11-14T10:00:03.847Z",
-        "__v": 0
-    }
-];
+      _id: '6735ca2327a6da66983a30b0',
+      name: 'SEGMENT-5',
+      description: 'SEGMENT-5',
+      video_url:
+        'https://player.vimeo.com/video/1019160112?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;transparent=0&amp;app_id=122963',
+      pageName: 'classroom',
+      routeUrl: 'class-room',
+      createdAt: '2024-11-14T10:00:03.847Z',
+      updatedAt: '2024-11-14T10:00:03.847Z',
+      __v: 0,
+    },
+  ];
   notifications: any[] = [];
   asked: any[] = [];
   answered: any[] = [];

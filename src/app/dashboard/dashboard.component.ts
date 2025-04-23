@@ -9,9 +9,9 @@ import {
   faGraduationCap,
   faBook,
 } from '@fortawesome/free-solid-svg-icons';
-import { FeatureComponent } from "../components/common/feature/feature.component";
 import { SafeHtml } from '@angular/platform-browser';
 import { UtilsService } from '../core/services/utils.service';
+import { FeatureComponent } from '../components/common/feature/feature.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,10 +28,10 @@ export class DashboardComponent implements OnInit {
   faAddressCard = faAddressCard;
   faGraduationCap = faGraduationCap;
   faBook = faBook;
-  dashVeera!:SafeHtml;
-  underlineIcon!:SafeHtml;
+  dashVeera!: SafeHtml;
+  underlineIcon!: SafeHtml;
 
-  constructor( private utilsService: UtilsService){}
+  constructor(private utilsService: UtilsService) {}
 
   ngOnInit(): void {
     this.dashVeera = this.utilsService.dashVeera();

@@ -6,7 +6,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../core/services/auth.service';
 import { PusherService } from '../core/services/pusher.service';
 import { Router } from '@angular/router';
-import { UserService } from '../core/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +25,6 @@ export class LoginComponent {
 
   constructor(
     public authService: AuthService,
-    public userService: UserService,
     private pusherService: PusherService,
     private router: Router // private dialog: MatDialog
   ) {}

@@ -1,12 +1,15 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonService, SelectedPlan } from '../../core/services/common.service';
+import {
+  CommonService,
+  SelectedPlan,
+} from '../../core/services/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PlanTransformPipe } from '../plan-transform.pipe';
 import { PlanTransformnewPipe } from '../plan-transformnew.pipe';
-import { SelectedPlanNew } from '../../core/models/selectedplannew';
+import { SelectedPlanNew } from '../../core/interfaces/selectedplannew';
 declare var bootstrap: any;
 
 @Component({
@@ -15,7 +18,7 @@ declare var bootstrap: any;
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './new-plans.component.html',
   styleUrl: './new-plans.component.css',
-  providers: [PlanTransformPipe, PlanTransformnewPipe]
+  providers: [PlanTransformPipe, PlanTransformnewPipe],
 })
 export class NewPlansComponent implements OnInit {
   planForm!: FormGroup;
@@ -39,8 +42,6 @@ export class NewPlansComponent implements OnInit {
     private planTransformPipe: PlanTransformPipe,
     private planTransformnewPipe: PlanTransformnewPipe
   ) {
-
-
     // this.startDate = new Date(); // 10-March-2025 (Month is 0-based)
     // console.log(this.startDate);
     // this.endDate = new Date(this.startDate);
@@ -65,7 +66,9 @@ export class NewPlansComponent implements OnInit {
   popUpPlanHeadingData: { [key: string]: string } = {};
   openModal(plan: any) {
     this.planType = plan?.code;
-    const modal = new bootstrap.Modal(document.getElementById('planDetailsModal')!);
+    const modal = new bootstrap.Modal(
+      document.getElementById('planDetailsModal')!
+    );
     modal.show();
   }
 
@@ -119,10 +122,14 @@ export class NewPlansComponent implements OnInit {
     // console.log(this.plansNew);
     this.selectedPlanNew = this.plansNew[index];
     this.commonService.setSelectedPlanNew(this.selectedPlanNew);
-    console.log(this.selectedPlanNew)
-    this.feeValue = parseFloat((this.selectedPlanNew[this.selectedPlanNew.code + '_fee'] ?? '0').toString()) ;
+    console.log(this.selectedPlanNew);
+    this.feeValue = parseFloat(
+      (
+        this.selectedPlanNew[this.selectedPlanNew.code + '_fee'] ?? '0'
+      ).toString()
+    );
     // const feeValue = parseFloat(fee.toString());
-    console.log(typeof this.feeValue)
+    console.log(typeof this.feeValue);
     // this.commonService.setSelectedPlan(this.selectedPlanNew);
   }
 
@@ -131,17 +138,25 @@ export class NewPlansComponent implements OnInit {
     this.choosePlan(index);
     // const element = document.getElementById("subscribeSection");
     if (this.subscribeSection) {
-      this.subscribeSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: "start" });
+      this.subscribeSection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start',
+      });
     }
   }
 
   subscribeNew(index: number) {
-    console.log(index)
+    console.log(index);
     this.showSummary = true;
     this.choosePlanNew(index);
     // const element = document.getElementById("subscribeSection");
     if (this.subscribeSection) {
-      this.subscribeSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: "start" });
+      this.subscribeSection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start',
+      });
     }
   }
 
@@ -161,8 +176,8 @@ export class NewPlansComponent implements OnInit {
       if (res && res.data) {
         this.locationPlanPrice = res.data;
         console.log(this.locationPlanPrice);
-        this.locationPlanPrice.forEach((location:any) => {
-          location.plans.forEach((plan:any) => {
+        this.locationPlanPrice.forEach((location: any) => {
+          location.plans.forEach((plan: any) => {
             // this.pushplanDetails(plan);
             // this.pushPopUpHeading(plan);
 
@@ -174,19 +189,21 @@ export class NewPlansComponent implements OnInit {
           });
         });
 
-        const transformRes = res.data.map((location:any) => this.planTransformnewPipe.transform(location));
+        const transformRes = res.data.map((location: any) =>
+          this.planTransformnewPipe.transform(location)
+        );
         this.plansNew = transformRes[0];
         console.log(this.plansNew);
       }
-    }); 
+    });
   }
 
-  pushplanDetails(plan:any) {
+  pushplanDetails(plan: any) {
     const textWithBr = plan.details.split('\n').join('<br>');
     this.planDetailsData[`${plan?.code}`] = textWithBr;
   }
 
-  pushPopUpHeading(plan:any) {
+  pushPopUpHeading(plan: any) {
     this.popUpPlanHeadingData[`${plan?.code}`] = plan.popUpHeading;
   }
 }

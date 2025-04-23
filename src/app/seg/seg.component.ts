@@ -13,7 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { SideComponent } from './side/side.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { BreadcrumbsComponent } from '../components/breadcrumbs/breadcrumbs.component';
-import { breadCrumbItems } from '../shared/models/models';
+import { breadCrumbItems } from '../core/interfaces/breadcrumbs';
 
 @Component({
   selector: 'app-seg',

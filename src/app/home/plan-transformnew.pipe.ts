@@ -1,8 +1,5 @@
-
-
-
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
-import { SelectedPlanNew } from '../core/models/selectedplannew';
+import { SelectedPlanNew } from '../core/interfaces/selectedplannew';
 
 interface Price {
   _id: string;
@@ -13,7 +10,7 @@ interface Price {
   // referral_fee?: string;
   // licensed_fee?: string;
   // student_fee?: string;
-  [key:string]: string | number;
+  [key: string]: string | number;
   // ... other fields if necessary
 }
 
@@ -51,7 +48,7 @@ interface Location {
 type FeeKeys = 'monthly_fee' | 'referral_fee' | 'licensed_fee' | 'student_fee';
 
 @Pipe({
-  name: 'planTransformnew'
+  name: 'planTransformnew',
 })
 @Injectable()
 export class PlanTransformnewPipe implements PipeTransform {
@@ -69,32 +66,38 @@ export class PlanTransformnewPipe implements PipeTransform {
     // console.log(priceLookup)
 
     // Map each plan into the new structure
-    return location.plans.map(plan => {
+    return location.plans.map((plan) => {
       // console.log(priceLookup[plan._id]);
-      const correspondingPrice = priceLookup[plan._id] || {} as Price;
+      const correspondingPrice = priceLookup[plan._id] || ({} as Price);
 
       // Build dynamic fee property based on feeFieldName in the plan.
       // For example, if feeFieldName is 'monthly_fee', then set that key with value from correspondingPrice.
-      const feeValue = correspondingPrice[plan?.feeFieldName] as string | number;
+      const feeValue = correspondingPrice[plan?.feeFieldName] as
+        | string
+        | number;
 
       const startDate = new Date(); // 10-March-2025 (Month is 0-based)
-      console.log("start", startDate);
+      console.log('start', startDate);
       const endDate = new Date(startDate);
-      plan.period ==='month' ? endDate.setMonth(endDate.getMonth() + 1) : endDate.setFullYear(endDate.getFullYear() + 1); // Adds period of renewal to the start date
-      console.log("end", endDate);
+      plan.period === 'month'
+        ? endDate.setMonth(endDate.getMonth() + 1)
+        : endDate.setFullYear(endDate.getFullYear() + 1); // Adds period of renewal to the start date
+      console.log('end', endDate);
       const nextRenewalDate = new Date(endDate);
-      
-      console.log("renewal", nextRenewalDate);
-      nextRenewalDate.setDate(nextRenewalDate.getDate() + (plan.period ==='month' ? 5 : 1)); // Add Renewal days
+
+      console.log('renewal', nextRenewalDate);
+      nextRenewalDate.setDate(
+        nextRenewalDate.getDate() + (plan.period === 'month' ? 5 : 1)
+      ); // Add Renewal days
 
       // Build the resulting transformed object.
       return {
         _id: plan._id,
         code: plan.code,
         name: plan.name,
-        currencyCode: location.countryCode,       // assuming countryCode is used as currency code; adjust if needed
+        currencyCode: location.countryCode, // assuming countryCode is used as currency code; adjust if needed
         currencySymbol: location.currencySymbol,
-        [plan.feeFieldName]: feeValue,              // dynamic property for fee
+        [plan.feeFieldName]: feeValue, // dynamic property for fee
         duration: plan.duration,
         period: plan.period,
         hasValidity: plan.hasValidity,
@@ -103,7 +106,7 @@ export class PlanTransformnewPipe implements PipeTransform {
         validityPeriod: plan.validityPeriod,
         validFrom: startDate.toString(),
         vaildTo: endDate.toString(),
-        renewal: nextRenewalDate.toString()
+        renewal: nextRenewalDate.toString(),
       };
     });
   }

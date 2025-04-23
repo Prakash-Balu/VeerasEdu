@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { SidebarnewComponent } from '../layout/sidebarnew/sidebarnew.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { BreadcrumbsComponent } from '../components/breadcrumbs/breadcrumbs.component';
-import { breadCrumbItems } from '../shared/models/models';
+import { breadCrumbItems } from '../core/interfaces/breadcrumbs';
 
 @Component({
   selector: 'app-segments',
@@ -54,7 +54,6 @@ export class SegmentsComponent {
 
     private domSanitizer: DomSanitizer
   ) {
-
     this.breadCrumbItems = [
       { label: 'Segment-1' },
       { label: '1.1 Pronoun', active: true },
@@ -143,14 +142,11 @@ export class SegmentsComponent {
   getSelectedSegment(selectedSegment: any) {
     console.log('Selected Segment:', selectedSegment);
     this.selectedSegment = selectedSegment;
-
-    
   }
-  
 
   getSelectedCategory(selectedCategory: any) {
     console.log('Selected Category:', selectedCategory);
-    this.selectedSubject = selectedCategory;  
+    this.selectedSubject = selectedCategory;
 
     this.page = selectedCategory.label;
   }
@@ -164,6 +160,5 @@ export class SegmentsComponent {
       { label: this.selectedSegment.title },
       { label: this.selectedSubject.name, active: true },
     ];
-
   }
 }

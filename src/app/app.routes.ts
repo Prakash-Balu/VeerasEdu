@@ -82,17 +82,11 @@ export const routes: Routes = [
             (m) => m.SelfPracticeRoutingModule
           ),
       },
-      // {
-      //   path: 'self-practice-v2',
-      //   loadComponent: () =>
-      //     import('./self-practice-v2/self-practice-v2.component').then(
-      //       (m) => m.SelfPracticeV2Component
-      //     ),
-      // },
       {
         path: 'segments',
         // canActivate: [AuthGuard],
-        loadChildren: () => import('./segments/segments.module').then((m) => m.SegmentsModule),
+        loadChildren: () =>
+          import('./segments/segments.module').then((m) => m.SegmentsModule),
       },
 
       {
@@ -128,14 +122,6 @@ export const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'classroom' },
       },
       {
-        path: 'checkout',
-        loadComponent: () =>
-          import('./checkout/checkout.component').then(
-            (m) => m.CheckoutComponent
-          ),
-        data: { showFooter: false, showHeader: false, isMobile: false },
-      },
-      {
         path: 'payment-success',
         loadComponent: () =>
           import('./payment-success/payment-success.component').then(
@@ -162,30 +148,3 @@ export const routes: Routes = [
     ],
   },
 ];
-
-// {
-//   path: "practice-with-the-master",
-//   canActivate: [AuthGuard],
-//   loadComponent: () =>
-//     import("./practice-with-master/practice-with-master.component").then(
-//       (m) => m.PracticeWithMasterComponent
-//     ),
-//   data: { showFooter: false, isMobile: false },
-// },
-// {
-//   path: "self-practice",
-//   canActivate: [AuthGuard],
-//   loadComponent: () =>
-//     import("./self-pratice/self-pratice.component").then(
-//       (m) => m.SelfPraticeComponent
-//     ),
-//   data: { showFooter: false, isMobile: false },
-// },
-// {
-//   path: "class-room",
-//   loadComponent: () =>
-//     import("./classroom/classroom.component").then(
-//       (m) => m.ClassroomComponent
-//     ),
-//   data: { showFooter: false, isMobile: false },
-// },
