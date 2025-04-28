@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MaterialModule } from '../../material-module';
+import { MaterialModule } from '../../../material-module';
 import AgoraRTC, {
   ClientRole,
   IAgoraRTCClient,
   ILocalAudioTrack,
 } from 'agora-rtc-sdk-ng';
-import { PraticeWithMasterService } from '../../shared/services/pratice-with-master.service';
+import { PraticeWithMasterService } from '../../../shared/services/pratice-with-master.service';
 import { SwarmifyPlayerComponent } from './swarmify-player/swarmify-player.component';
 import { WistiaPlayerComponent } from './wistia-player/wistia-player.component';
-import { UtilsService } from '../../shared/services/utils.service';
+import { UtilsService } from '../../../shared/services/utils.service';
+import { SegmentService } from '../../../shared/services/segments.service';
+import { ActivatedRoute } from '@angular/router';
 
 // import * as protoRoot from "../core/proto/SttMessage_es6"
 // import * as protoRoot from "../core/SttMessage"
@@ -38,7 +40,7 @@ export class PracticeWithMasterComponent implements OnInit {
   public currentData: any;
 
   // private client: any;
-  private client: IAgoraRTCClient;
+  private client: IAgoraRTCClient | any;
   private localAudioTrack: ILocalAudioTrack | null = null;
 
   public appId: string = '104c5f7630a84c9e9e7a0a6ead997eb1';
@@ -59,24 +61,70 @@ export class PracticeWithMasterComponent implements OnInit {
   private role: ClientRole = 'audience'; // or 'host', depending on your use case
   private pusherBotUid: string = 'YOUR_PUSHER_BOT_UID'; // Replace with your bot UID
 
+  public segmentSlug: any;
+  public subjectSlug: any;
+  public segmentData: any;
+  public categoryData: any;
+  public subjectData: any;
+  public topIndex: any;
+  public isEnd: boolean = false;
+  public categoryValue: string = 'practice-with-master';
+
   constructor(
     private praticeWithMasterService: PraticeWithMasterService,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private route: ActivatedRoute,
+    public segmentservice: SegmentService
   ) {
-    this.client = AgoraRTC.createClient({
-      mode: 'live',
-      codec: 'vp8',
-      role: this.role,
-    });
-    this.client.on('stream-message', this.onStreamMessage.bind(this));
+    // this.client = AgoraRTC.createClient({
+    //   mode: 'live',
+    //   codec: 'vp8',
+    //   role: this.role,
+    // });
+    // this.client.on('stream-message', this.onStreamMessage.bind(this));
   }
 
   ngOnInit(): void {
-    this.getPraticeWithMasterDetails('68076897506de912424ea49d');
-    // this.joinChannel();
     this.initialize();
+    this.route.paramMap.subscribe((params: any) => {
+      this.segmentSlug = params.get('segmentId');
+      this.subjectSlug = params.get('subjectId');
+    });
+    this.fetchSegments();
   }
 
+  fetchSegments() {
+    this.segmentservice.getSegmentList().subscribe(
+      (response: any) => {
+        if (response.meta.code === 200) {
+          console.log('fetcSeements:', response.data);
+          this.segmentData = response.data.find(
+            (e: any) => e.slug_url === this.segmentSlug
+          );
+          console.log('this.segment:', this.segmentData);
+
+          this.categoryData = this.segmentData.category.find(
+            (e: any) => e.value === this.categoryValue
+          );
+          console.log('this.cateogry:', this.categoryData);
+
+          this.subjectData = this.categoryData.subjects.find(
+            (e: any) => e.slug_url === this.subjectSlug
+          );
+
+          console.log('this.subjectData:', this.subjectData);
+          this.topIndex = this.categoryData.subjects.findIndex(
+            (e: any) => e.slug_url === this.subjectSlug
+          );
+
+          this.getPraticeWithMasterDetails(this.subjectData._id);
+        }
+      },
+      (error: any) => {
+        console.error('An error occurred:', error);
+      }
+    );
+  }
   async initialize() {
     // Initialize the client and join a channel
     // Replace 'YOUR_APP_ID' and 'YOUR_CHANNEL_NAME' with your actual values
@@ -208,7 +256,6 @@ export class PracticeWithMasterComponent implements OnInit {
     //   async (user: IAgoraRTCRemoteUser, mediaType: 'audio' | 'video') => {
     //     await this.client.subscribe(user, mediaType);
     //     console.log('Subscribed to remote user:', user.uid);
-
     //     if (mediaType === 'audio') {
     //       const remoteAudioTrack = user.audioTrack as IRemoteAudioTrack;
     //       console.log('remoteAudioTrack::', remoteAudioTrack);
@@ -216,16 +263,14 @@ export class PracticeWithMasterComponent implements OnInit {
     //     }
     //   }
     // );
-
-    this.client.on('stream-message', (uid, data) => {
-      console.log(uid, data);
-      // Replace `123456` with your bot UID
-      if (uid !== '123456') return;
-
-      // const decoded = protoRoot.Agora.SpeechToText.Text.decode(data);
-      // console.log('Decoded Transcription:', decoded);
-      // Emit decoded.text or pass to UI
-    });
+    // this.client.on('stream-message', (uid, data) => {
+    //   console.log(uid, data);
+    //   // Replace `123456` with your bot UID
+    //   if (uid !== '123456') return;
+    //   // const decoded = protoRoot.Agora.SpeechToText.Text.decode(data);
+    //   // console.log('Decoded Transcription:', decoded);
+    //   // Emit decoded.text or pass to UI
+    // });
   }
 
   compareTranscript(transcript: string) {
