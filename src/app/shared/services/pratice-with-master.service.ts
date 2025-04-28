@@ -1,26 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { API_URL } from '../constants/apiUrls';
+import { API_URL } from '../../core/constants/apiUrls';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-export interface Segment {
-  _id: string;
-  name: string;
-  description: string;
-  video_url: string;
-  iconName: string;
-  routeUrl: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
 
 @Injectable({
   providedIn: 'root',
 })
-export class SegmentService {
+export class PraticeWithMasterService {
   private url = environment.baseURL;
 
   constructor(private http: HttpClient) {}
@@ -34,17 +22,17 @@ export class SegmentService {
     });
   }
 
-  getSegmentList(): Observable<Segment[]> {
+  getPraticeWithMasterList() {
     return this.http
-      .get<Segment[]>(`${this.url}${API_URL.GET_SEGMENTS}`, {
+      .get(`${this.url}${API_URL.PRATICEWITH_MASTER_LIST}`, {
         headers: this.getHeaders(),
       })
       .pipe(catchError(this.handleError));
   }
 
-  viewNotification(): Observable<Segment[]> {
+  getPraticeWithMasterById(id: string) {
     return this.http
-      .get<Segment[]>(`${this.url}${API_URL.VIEW_NOTIFICATIONS}`, {
+      .get(`${this.url}${API_URL.PRATICEWITH_MASTER_GET_ID}${id}`, {
         headers: this.getHeaders(),
       })
       .pipe(catchError(this.handleError));
@@ -55,20 +43,5 @@ export class SegmentService {
     return throwError(
       () => new Error('Something went wrong; please try again later.')
     );
-  }
-
-  logout(): Observable<any> {
-    const token = localStorage.getItem('token');
-    const url = `${this.url}/user/web-logout`;
-    const headers = new HttpHeaders({
-      Accept: '*/*',
-      Authorization: `Bearer ${token}`,
-    });
-
-    return this.http
-      .get(url, {
-        headers: headers,
-      })
-      .pipe(catchError(this.handleError));
   }
 }

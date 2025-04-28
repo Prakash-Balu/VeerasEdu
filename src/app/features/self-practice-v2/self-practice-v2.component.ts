@@ -6,9 +6,9 @@ import AgoraRTC, {
   ILocalAudioTrack,
   IRemoteAudioTrack,
 } from 'agora-rtc-sdk-ng';
-import { CommonService } from '../../core/services/common.service';
-import { SelfPracticeService } from '../../core/services/self-practice.service';
-import { UtilsService } from '../../core/services/utils.service';
+import { CommonService } from '../../shared/services/common.service';
+import { SelfPracticeService } from '../../shared/services/self-practice.service';
+import { UtilsService } from '../../shared/services/utils.service';
 
 @Component({
   selector: 'app-self-practice-v2',
@@ -40,8 +40,7 @@ export class SelfPracticeV2Component {
   constructor(
     private commonService: CommonService,
     private selfPracticeService: SelfPracticeService,
-    private utilsService: UtilsService,
-
+    private utilsService: UtilsService
   ) {
     this.client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
   }

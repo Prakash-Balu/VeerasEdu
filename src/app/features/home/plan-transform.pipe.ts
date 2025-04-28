@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SelectedPlan } from '../../core/services/common.service';
+import { SelectedPlan } from '../../shared/services/common.service';
 
 @Pipe({
   name: 'planTransform',

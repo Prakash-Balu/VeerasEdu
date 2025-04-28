@@ -8,7 +8,7 @@ import {
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { API_URL } from '../constants/apiUrls';
+import { API_URL } from '../../core/constants/apiUrls';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

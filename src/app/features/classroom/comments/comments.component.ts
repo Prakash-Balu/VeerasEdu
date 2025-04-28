@@ -1,8 +1,8 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CommentsService } from '../../../core/services/comments.service';
-import { AuthService } from '../../../core/services/auth.service';
+import { CommentsService } from '../../../shared/services/comments.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import * as RecordRTC from 'recordrtc';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +11,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from '../../../../environments/environment';
 import moment from 'moment';
-import { SnackbarService } from '../../../core/services/snackbar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { Editor, Toolbar, NgxEditorModule } from 'ngx-editor';
@@ -543,7 +542,7 @@ export class CommentsComponent {
             this.addCommentApi();
           }
         },
-        (error) => {
+        (error: any) => {
           console.log('error::', error);
           this.recording = false;
           this.url = null;
@@ -561,7 +560,7 @@ export class CommentsComponent {
             this.audioUrl = `${this.audioBaseUrl}${audioPath}`;
           }
         },
-        (error) => {
+        (error: any) => {
           console.log('error::', error);
           this.recording = false;
           this.url = null;

@@ -3,9 +3,9 @@ import { MaterialModule } from '../../material-module';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SafeHtml } from '@angular/platform-browser';
-import { UtilsService } from '../../core/services/utils.service';
-import { AuthService } from '../../core/services/auth.service';
-import { SegmentService } from '../../core/services/segments.service';
+import { UtilsService } from '../../shared/services/utils.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { SegmentService } from '../../shared/services/segments.service';
 
 @Component({
   selector: 'app-header',
@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
     });
 
     this.router.events.subscribe(() => {
-      this.isCheckOutPage = this.router.url.includes("checkout");
+      this.isCheckOutPage = this.router.url.includes('checkout');
     });
   }
   ngOnInit(): void {

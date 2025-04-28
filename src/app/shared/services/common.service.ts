@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { API_URL } from '../constants/apiUrls';
+import { API_URL } from '../../core/constants/apiUrls';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
-import { SelectedPlanNew } from '../interfaces/selectedplannew';
+import { SelectedPlanNew } from '../../core/interfaces/selectedplannew';
 
 export interface SelectedPlan {
   _id: string;

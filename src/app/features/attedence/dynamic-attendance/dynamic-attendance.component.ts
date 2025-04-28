@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import moment from 'moment';
 
 @Component({
@@ -46,7 +46,7 @@ export class DynamicAttendanceComponent {
       start,
       end,
     };
-    this.authService.userAttendance(payload).subscribe((resp) => {
+    this.authService.userAttendance(payload).subscribe((resp: any) => {
       if (resp?.data) {
         this.attendance = resp?.data;
         this.attendance.map((e: any) => {

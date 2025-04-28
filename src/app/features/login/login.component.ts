@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { QRCodeModule } from 'angularx-qrcode';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../../core/services/auth.service';
-import { PusherService } from '../../core/services/pusher.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { PusherService } from '../../shared/services/pusher.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -67,7 +67,7 @@ export class LoginComponent {
     this.pusherService.subscribe(chanelId, 'login-event', (data: any) => {
       if (data.token) {
         this.authService.setToken(data.token);
-        this.authService.userMeApi().subscribe((resp) => {
+        this.authService.userMeApi().subscribe((resp: any) => {
           if (resp) {
             this.router.navigate(['/attendence']);
           }

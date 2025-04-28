@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
-import { UtilsService } from '../../../core/services/utils.service';
+import { UtilsService } from '../../../shared/services/utils.service';
 import Player from '@vimeo/player';
 import { CommonModule } from '@angular/common';
 @Component({

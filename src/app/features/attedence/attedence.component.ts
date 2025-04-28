@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
-import { UtilsService } from '../../core/services/utils.service';
+import { UtilsService } from '../../shared/services/utils.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DynamicAttendanceComponent } from './dynamic-attendance/dynamic-attendance.component';
 import moment from 'moment';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 @Component({
   selector: 'app-attedence',
   standalone: true,
@@ -32,7 +32,7 @@ export class attedenceComponent implements OnInit {
       start,
       end,
     };
-    this.authService.userAttendance(payload).subscribe((resp) => {
+    this.authService.userAttendance(payload).subscribe((resp: any) => {
       if (resp?.data) {
         const currentDate = moment().subtract(1, 'day').format('YYYY-MM-DD');
         this.attendance = resp?.data;

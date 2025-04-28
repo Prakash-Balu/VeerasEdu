@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {
   CommonService,
   SelectedPlan,
-} from '../../../core/services/common.service';
+} from '../../../shared/services/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';

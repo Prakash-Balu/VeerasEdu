@@ -14,7 +14,7 @@ import Player from '@vimeo/player';
 import { CommentsComponent } from './comments/comments.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CommonService } from '../../core/services/common.service';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-classroom',

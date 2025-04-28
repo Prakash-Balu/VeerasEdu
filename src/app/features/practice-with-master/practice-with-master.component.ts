@@ -7,10 +7,10 @@ import AgoraRTC, {
   IAgoraRTCClient,
   ILocalAudioTrack,
 } from 'agora-rtc-sdk-ng';
-import { PraticeWithMasterService } from '../../core/services/pratice-with-master.service';
+import { PraticeWithMasterService } from '../../shared/services/pratice-with-master.service';
 import { SwarmifyPlayerComponent } from './swarmify-player/swarmify-player.component';
 import { WistiaPlayerComponent } from './wistia-player/wistia-player.component';
-import { UtilsService } from '../../core/services/utils.service';
+import { UtilsService } from '../../shared/services/utils.service';
 
 // import * as protoRoot from "../core/proto/SttMessage_es6"
 // import * as protoRoot from "../core/SttMessage"

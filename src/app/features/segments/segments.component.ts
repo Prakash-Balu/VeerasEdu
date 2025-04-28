@@ -7,7 +7,7 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SegmentService } from '../../core/services/segments.service';
+import { SegmentService } from '../../shared/services/segments.service';
 import { MaterialModule } from '../../material-module';
 
 import { DomSanitizer } from '@angular/platform-browser';
@@ -93,7 +93,7 @@ export class SegmentsComponent {
           }
         }
       },
-      (error) => {
+      (error: any) => {
         console.error('An error occurred:', error);
       }
     );
@@ -108,7 +108,7 @@ export class SegmentsComponent {
           this.answered = response.data.answeredQuestions;
         }
       },
-      (error) => {
+      (error: any) => {
         console.error('An error occurred:', error);
       }
     );

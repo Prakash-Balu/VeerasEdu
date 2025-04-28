@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonService } from '../../../core/services/common.service';
+import { CommonService } from '../../../shared/services/common.service';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({

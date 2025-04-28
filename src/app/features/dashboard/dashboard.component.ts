@@ -10,7 +10,7 @@ import {
   faBook,
 } from '@fortawesome/free-solid-svg-icons';
 import { SafeHtml } from '@angular/platform-browser';
-import { UtilsService } from '../../core/services/utils.service';
+import { UtilsService } from '../../shared/services/utils.service';
 import { FeatureComponent } from '../../components/common/feature/feature.component';
 
 @Component({
