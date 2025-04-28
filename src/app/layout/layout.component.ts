@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { ActivationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { PreloaderComponent } from '../preloader/preloader.component';
+import { PreloaderComponent } from './preloader/preloader.component';
 
 @Component({
   selector: 'app-layout',

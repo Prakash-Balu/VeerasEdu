@@ -11,20 +11,22 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./home/home.component').then((m) => m.HomeComponent),
+          import('./features/home/home.component').then((m) => m.HomeComponent),
         data: { showHeader: true, isMobile: true },
       },
       {
         path: 'login',
         loadComponent: () =>
-          import('./login/login.component').then((m) => m.LoginComponent),
+          import('./features/login/login.component').then(
+            (m) => m.LoginComponent
+          ),
         data: { showFooter: false },
       },
       {
         path: 'attendence',
         canActivate: [AuthGuard],
         loadComponent: () =>
-          import('./attedence/attedence.component').then(
+          import('./features/attedence/attedence.component').then(
             (m) => m.attedenceComponent
           ),
         data: { showFooter: false, isMobile: false },
@@ -33,7 +35,7 @@ export const routes: Routes = [
         path: 'dashboard',
         canActivate: [AuthGuard],
         loadComponent: () =>
-          import('./dashboard/dashboard.component').then(
+          import('./features/dashboard/dashboard.component').then(
             (m) => m.DashboardComponent
           ),
         data: { showFooter: false, isMobile: false },
@@ -42,31 +44,33 @@ export const routes: Routes = [
         path: 'segments',
         // canActivate: [AuthGuard],
         loadChildren: () =>
-          import('./segments/segments.module').then((m) => m.SegmentsModule),
+          import('./features/segments/segments.module').then(
+            (m) => m.SegmentsModule
+          ),
       },
 
-      {
-        path: 'demo-classroom',
-        // canActivate: [AuthGuard],
-        loadComponent: () =>
-          import('./demo-classroom/demo-classroom.component').then(
-            (m) => m.DemoClassroomComponent
-          ),
-        data: { showFooter: false, isMobile: false, page: 'Demo-classroom' },
-      },
-      {
-        path: 'classrooms',
-        canActivate: [AuthGuard],
-        loadComponent: () =>
-          import('./segments/segments.component').then(
-            (m) => m.SegmentsComponent
-          ),
-        data: { showFooter: false, isMobile: false, page: 'classroom' },
-      },
+      // {
+      //   path: 'demo-classroom',
+      //   // canActivate: [AuthGuard],
+      //   loadComponent: () =>
+      //     import('./demo-classroom/demo-classroom.component').then(
+      //       (m) => m.DemoClassroomComponent
+      //     ),
+      //   data: { showFooter: false, isMobile: false, page: 'Demo-classroom' },
+      // },
+      // {
+      //   path: 'classrooms',
+      //   canActivate: [AuthGuard],
+      //   loadComponent: () =>
+      //     import('./segments/segments.component').then(
+      //       (m) => m.SegmentsComponent
+      //     ),
+      //   data: { showFooter: false, isMobile: false, page: 'classroom' },
+      // },
       {
         path: 'payment-success',
         loadComponent: () =>
-          import('./payment-success/payment-success.component').then(
+          import('./features/payment-success/payment-success.component').then(
             (m) => m.PaymentSuccessComponent
           ),
         data: { showFooter: false, showHeader: false, isMobile: false },
@@ -74,17 +78,25 @@ export const routes: Routes = [
       {
         path: 'payment-failure',
         loadComponent: () =>
-          import('./payment-failure/payment-failure.component').then(
+          import('./features/payment-failure/payment-failure.component').then(
             (m) => m.PaymentFailureComponent
           ),
         data: { showFooter: false, showHeader: false, isMobile: false },
       },
+      // {
+      //   path: 'speaking-room',
+      //   loadComponent: () =>
+      //     import('./speaking-room/speaking-room.component').then(
+      //       (m) => m.SpeakingRoomComponent
+      //     ),
+      //   data: { showFooter: false, showHeader: false, isMobile: false },
+      // },
       {
-        path: 'speaking-room',
+        path: 'swarmify',
         loadComponent: () =>
-          import('./speaking-room/speaking-room.component').then(
-            (m) => m.SpeakingRoomComponent
-          ),
+          import(
+            './features/practice-with-master/swarmify-player/swarmify-player.component'
+          ).then((m) => m.SwarmifyPlayerComponent),
         data: { showFooter: false, showHeader: false, isMobile: false },
       },
     ],

@@ -16,12 +16,10 @@
             "outputPath": "dist/veerasedu",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-             "src/assets",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -46,12 +44,15 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/app/core/proto/SttMessage_es6.js"
             ],
             "allowedCommonJsDependencies": [
               "qrcode",
               "pusher-js",
-              "recordrtc"
+              "recordrtc",
+              "moment",
+              "agora-rtc-sdk-ng"
             ]
           },
           "configurations": {
@@ -74,8 +75,11 @@
                   "maximumError": "5MB"
                 }
               ],
-              "outputHashing": "all",
-              "optimization": true
+              "optimization": true,
+              "sourceMap": true,
+              "outputHashing": "none",
+              "namedChunks": true,
+              "extractLicenses": false
             },
             "development": {
               "optimization": true,
@@ -103,10 +107,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
@@ -126,8 +127,6 @@
   },
   "cli": {
     "analytics": false,
-    "schematicCollections": [
-      "@ngrx/schematics"
-    ]
+    "schematicCollections": ["@ngrx/schematics"]
   }
 }

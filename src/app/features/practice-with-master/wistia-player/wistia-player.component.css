@@ -1,0 +1,6 @@
+  /* dynamic-wistia-player.component.css */
+.wistia-player-container {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
