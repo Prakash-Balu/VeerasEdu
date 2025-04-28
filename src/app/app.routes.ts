@@ -95,7 +95,7 @@ export const routes: Routes = [
         path: 'swarmify',
         loadComponent: () =>
           import(
-            './features/practice-with-master/swarmify-player/swarmify-player.component'
+            './features/segments/practice-with-master/swarmify-player/swarmify-player.component'
           ).then((m) => m.SwarmifyPlayerComponent),
         data: { showFooter: false, showHeader: false, isMobile: false },
       },

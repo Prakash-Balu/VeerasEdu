@@ -8,41 +8,29 @@ const routes: Routes = [
       import('./segments.component').then((m) => m.SegmentsComponent),
     children: [
       {
+        path: ':segmentId/practice-with-master',
+        // canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./practice-with-master/practice-with-master.module').then(
+            (m) => m.PracticeWithMasterComponentModule
+          ),
+      },
+      {
+        path: ':segmentId/self-practice',
+        // canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./self-practice-v2/self-practice-v2.module').then(
+            (m) => m.SelfPracticeModule
+          ),
+      },
+      {
         path: 'classroom',
         // canActivate: [AuthGuard],
         loadComponent: () =>
-          import('../classroom/classroom.component').then(
+          import('./classroom/classroom.component').then(
             (m) => m.ClassroomComponent
           ),
         data: { showFooter: false, isMobile: false, page: 'Class Room' },
-      },
-      {
-        path: 'selfpracticenew',
-        loadComponent: () =>
-          import('../self-practice-v2/self-practice-v2.component').then(
-            (m) => m.SelfPracticeV2Component
-          ),
-        data: { showFooter: false, isMobile: false, page: 'Self-Practice-New' },
-      },
-      {
-        path: 'practicewithmaster',
-        loadComponent: () =>
-          import('../practice-with-master/practice-with-master.component').then(
-            (m) => m.PracticeWithMasterComponent
-          ),
-        data: {
-          showFooter: false,
-          isMobile: false,
-          page: 'Practice With Master',
-        },
-      },
-      {
-        path: 'swarmify',
-        loadComponent: () =>
-          import(
-            '../practice-with-master/swarmify-player/swarmify-player.component'
-          ).then((m) => m.SwarmifyPlayerComponent),
-        data: { showFooter: false, isMobile: false, page: 'Self-Practice-New' },
       },
     ],
   },

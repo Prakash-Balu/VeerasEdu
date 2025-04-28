@@ -1,0 +1,21 @@
+.video-play-container{
+    position: relative;
+}
+
+.video-play-container iframe {
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 2400px) {
+    .video-play-container iframe {
+        width: 1088px;
+        height: 612px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .video-play-container iframe {
+        width: 720px;
+        height: 405px;
+    }
+}

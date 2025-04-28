@@ -11,7 +11,7 @@ import { SegmentService } from '../../shared/services/segments.service';
 import { MaterialModule } from '../../material-module';
 
 import { DomSanitizer } from '@angular/platform-browser';
-import { SidebarnewComponent } from '../../layout/sidebarnew/sidebarnew.component';
+import { SidebarnewComponent } from './sidebarnew/sidebarnew.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { BreadcrumbsComponent } from '../../components/breadcrumbs/breadcrumbs.component';
 import { breadCrumbItems } from '../../core/interfaces/breadcrumbs';
@@ -45,7 +45,6 @@ export class SegmentsComponent {
   page!: string;
   selectedSubject: any = {};
   selectedCategory: any = {};
-  breadCrumbItems: breadCrumbItems[] = [];
 
   constructor(
     public segmentservice: SegmentService,
@@ -53,12 +52,7 @@ export class SegmentsComponent {
     private actRoute: ActivatedRoute,
 
     private domSanitizer: DomSanitizer
-  ) {
-    this.breadCrumbItems = [
-      { label: 'Segment-1' },
-      { label: '1.1 Pronoun', active: true },
-    ];
-  }
+  ) {}
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
@@ -70,7 +64,6 @@ export class SegmentsComponent {
 
     this.actRoute.children.forEach((childRoute) => {
       childRoute.data.subscribe((data) => {
-        console.log('Child Route Data:', data);
         this.page = data['page'];
       });
     });
@@ -78,6 +71,7 @@ export class SegmentsComponent {
     // this.fetchSegments();
     // this.viewNotification();
   }
+
   ngOnDestroy() {
     document.documentElement.style.overflowY = 'auto';
   }
@@ -154,11 +148,5 @@ export class SegmentsComponent {
   getSelectedSubject(selectedSubject: any) {
     console.log('Selected Subject:', selectedSubject);
     this.selectedSubject = selectedSubject;
-    // this.actRoute.snapshot.data['selectedSub'] = selectedSubject;
-
-    this.breadCrumbItems = [
-      { label: this.selectedSegment.title },
-      { label: this.selectedSubject.name, active: true },
-    ];
   }
 }

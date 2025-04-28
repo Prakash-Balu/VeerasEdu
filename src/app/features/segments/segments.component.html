@@ -2,22 +2,11 @@
   <div class="row-wrapper row pt-0 position-relative">
     <div class="col-12 col-md-2 d-flex sidebar-nav p-0 mb-0">
       <!-- <app-new-sidebar class="col-12"></app-new-sidebar> -->
-      <app-sidebarnew class="col-12" (selectedSegment)="getSelectedSegment($event)" (selectedCategory)="getSelectedCategory($event)" (selectedSubject)="getSelectedSubject($event)"></app-sidebarnew>
+      <app-sidebarnew class="col-12"></app-sidebarnew>
     </div>
 
     <div class="col-12 col-md-10 classroom-content" cdkScrollable>
       <div class="container" scrollViewport>
-        <div class="sec2 col-12 col-md-9 d-flex justify-content-center">
-          <span>
-            <span [innerText]="page"></span> >
-            <span [innerText]="selectedSubject?.name"></span>
-          </span>
-        </div>
-        <!-- Breadcrumb -->
-        <!-- <div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-0">
-          <app-breadcrumbs [title]="page" [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
-        </div> -->
-        <!-- /Breadcrumb -->
         <router-outlet></router-outlet>
       </div>
     </div>
