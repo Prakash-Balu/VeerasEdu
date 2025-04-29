@@ -3,43 +3,96 @@
   border: 1px solid linear-gradient(gray, white);
   padding: 5px 10px;
   border-radius: 5px;
+  margin: 0 auto;
 }
+.master-bordered {
+  margin: 0 auto;
+}
+.two-box{
+  background-color: #2c2929;
+  padding: 20px;
+  width: 100%;
+  margin: auto;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box{
+  background: linear-gradient(247deg, #7a7a7a, #cfcfcf, #b3b3b3, #c1c1c1, #afafaf, #3a3838);
+  padding: 20px;
+  border-radius: 30px;
+}
+
 .voice-bordered {
-  background: linear-gradient(45deg, gray, transparent);
-  border: 1px solid linear-gradient(45deg, gray, transparent);
-  padding: 5px 10px;
-  border-radius: 5px;
-  width: 350px;
-  text-overflow: ellipsis;
+  background: linear-gradient(90deg, #f9c4c4, #00000044, #f9c4c4);
+  padding: 16px;
+    border-radius: 10px;
+    width: 100%;
+    text-overflow: ellipsis;
 }
-.master,
+.master{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+}
+.master-speaking{
+  margin: 0 auto;
+}
 .learner {
-  background-color: #443c4100;
-  border: 1px solid white;
-  border-radius: 5px;
-  margin: 5px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: end;
+  width: 100%;
+}
+.inside-learner{
+  display: flex;
+  flex-direction: column;
+  gap: 145px;
 }
 
 .card {
-  background: linear-gradient(360deg, gray, white);
+  background: #c3c2c2;
+  border-radius: 20px;
+  width: 100%;
+  min-height: 480px;
+  max-height: 480px;
+}
+
+.practice-master-action-button{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .action-button-icon {
   background: linear-gradient(45deg, gray, transparent);
   border: 1px solid gray;
   border-radius: 15px;
-  padding: 4px 8px;
+  padding: 5px;
 }
 .action-button-background {
   background: linear-gradient(90deg, gray, white);
-  border-radius: 5px;
+  border-radius: 30px;
   border: 1px solid linear-gradient(360deg, gray, white);
-  padding: 5px;
+  padding: 10px;
 }
 
-/* .video-wrapper {
-  height: 140px;
-} */
+.video-wrappers {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.practice-master-content{
+  width: 100%;
+}
 
 .background-beat {
   position: relative;
@@ -60,7 +113,7 @@
   width: 70px;
   background: gray;
   border-radius: 50%;
-  animation: pulse 4s ease-out infinite;
+  /* animation: pulse 4s ease-out infinite; */
   z-index: 0;
 }
 .pulse2 {
@@ -116,7 +169,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: box-shadow 0.3s;
+  transition: box-shadow .3s;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .mic-container.listening {
@@ -133,7 +189,7 @@
   height: 3px;
   background-color: white;
   border-radius: 50%;
-  animation: pulse 1s infinite;
+  /* animation: pulse 1s infinite; */
 }
 
 .dot:nth-child(2) {

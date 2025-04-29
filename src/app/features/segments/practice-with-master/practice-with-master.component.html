@@ -4,23 +4,19 @@
     <span [innerText]="subjectData?.subject"></span>
   </h3>
 </div>
-<div class="practice-master-container">
+<div class="practice-master-container two-box">
   <div class="row d-flex justify-content-center">
-    <div class="col-9">
+    <div class="col-9 box">
       <div class="row">
         <div class="col-6">
           <div class="card">
             <div class="card-body">
               <div class="master">
                 <div class="video-wrapper">
-                  <app-wistia-player
-                    [videoObj]="videoObj"
-                    (mainVideoEndEventEmitter)="videoEndEvent($event)"
+                  <app-wistia-player [videoObj]="videoObj" (mainVideoEndEventEmitter)="videoEndEvent($event)"
                     (questionVideoStartEventEmitter)="
                       questionVideoStart($event)
-                    "
-                    (questionVideoEndEventEmitter)="answerEmited($event)"
-                  ></app-wistia-player>
+                    " (questionVideoEndEventEmitter)="answerEmited($event)"></app-wistia-player>
                 </div>
                 <div class="master-bordered p-3">
                   <span>Master</span>
@@ -32,21 +28,10 @@
                   }
                 </div>
                 @if(!mainVideo && question){
-                <p class="card-text voice-bordered m-3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fill="green"
-                      stroke="#11ac13"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
-                      d="M12 20.75V3.25m8 11.71V9.04M4 14.96V9.04m12 8.872V6.088M8 17.912V6.088"
-                    />
+                <p class="card-text voice-bordered">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="green" stroke="#11ac13" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="1.5" d="M12 20.75V3.25m8 11.71V9.04M4 14.96V9.04m12 8.872V6.088M8 17.912V6.088" />
                   </svg>
                   <span>{{ question }}</span>
                 </p>
@@ -60,25 +45,25 @@
           <div class="card">
             <div class="card-body practice-master-content">
               <div class="learner">
-                <div class="video-wrapper">
-                  <div class="mic-container" [class.listening]="isListening">
-                    <div class="circle">
-                      <div class="dot" *ngFor="let dot of dots"></div>
-                    </div>
-                  </div>
-                  <div class="background-beat">
-                    <span class="pulse1"></span>
-                    <span class="pulse2"></span>
-                    <span class="pulse3"></span>
-                    <img
-                      src="/assets/images/user.png"
-                      alt=""
-                      class="round-image"
-                    />
+                <div class="mic-container" [class.listening]="isListening">
+                  <div class="circle">
+                    <div class="dot" *ngFor="let dot of dots"></div>
                   </div>
                 </div>
-                <div class="master-bordered p-3">
-                  <span>Learner</span>
+                <div class="inside-learner">
+                  <div class="video-wrappers">
+
+                    <div class="background-beat">
+                      <span class="pulse1"></span>
+                      <span class="pulse2"></span>
+                      <span class="pulse3"></span>
+                      <img src="/assets/images/user.png" alt="" class="round-image" />
+                    </div>
+
+                  </div>
+                  <div class="master-bordered p-3">
+                    <span>Learner</span>
+                  </div>
                 </div>
                 <div class="master-speaking p-3">
                   @if(!mainVideo && answer){
@@ -87,33 +72,20 @@
                   }
                 </div>
                 @if(!mainVideo && answer){
-                <p class="card-text voice-bordered m-3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fill="green"
-                      stroke="#11ac13"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
-                      d="M12 20.75V3.25m8 11.71V9.04M4 14.96V9.04m12 8.872V6.088M8 17.912V6.088"
-                    />
+                <p class="card-text voice-bordered">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="green" stroke="#11ac13" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="1.5" d="M12 20.75V3.25m8 11.71V9.04M4 14.96V9.04m12 8.872V6.088M8 17.912V6.088" />
                   </svg>
-                </p>
-                <div class="default-answer">
-                  <span *ngFor="let word of answerConverted; let i = index">
-                    <span
-                      [ngClass]="{ 'matched-word': matchedIndices.includes(i) }"
-                    >
-                      {{ word }}
+                  <!-- <div class="default-answer"> -->
+                    <span *ngFor="let word of answerConverted; let i = index">
+                      <span [ngClass]="{ 'matched-word': matchedIndices.includes(i) }">
+                        {{ word }}
+                      </span>
+                      &nbsp;
                     </span>
-                    &nbsp;
-                  </span>
-                </div>
+                  <!-- </div> -->
+                </p>
                 }
               </div>
             </div>
@@ -124,31 +96,16 @@
   </div>
 
   <div class="practice-master-action-button">
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex col-6 justify-content-center align-items-center padding-2">
       <div class="col-6 d-flex justify-content-evenly action-button-background">
         <div class="action-button-icon">
-          <img
-            src="/assets/images/audio-icon.svg"
-            alt=""
-            height="24px"
-            width="24px"
-          />
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#000" d="M3 3.75a.75.75 0 0 1 1.5 0v16.5a.75.75 0 0 1-1.5 0zm18 1.003c0-1.408-1.578-2.24-2.74-1.444L7.763 10.503a1.75 1.75 0 0 0-.01 2.88l10.499 7.302c1.16.807 2.749-.024 2.749-1.437z"/></svg>
         </div>
         <div class="action-button-icon">
-          <img
-            src="/assets/images/pause-icon.svg"
-            alt=""
-            height="24px"
-            width="24px"
-          />
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#000" d="M3 4.753c0-1.408 1.578-2.24 2.74-1.444l10.498 7.194a1.75 1.75 0 0 1 .01 2.88L5.749 20.685C4.59 21.492 3 20.66 3 19.248zM21 3.75a.75.75 0 0 0-1.5 0v16.5a.75.75 0 0 0 1.5 0z"/></svg>
         </div>
         <div class="action-button-icon">
-          <img
-            src="/assets/images/replay-icon.svg"
-            alt=""
-            height="24px"
-            width="24px"
-          />
+          <img src="/assets/images/replay-icon.svg" alt="" height="24px" width="24px" />
         </div>
         <!-- <div class="action-button-icon">
           <img
@@ -159,12 +116,7 @@
           />
         </div> -->
         <div class="action-button-icon">
-          <img
-            src="/assets/images/callend-icon.svg"
-            alt=""
-            height="24px"
-            width="24px"
-          />
+          <img src="/assets/images/callend-icon.svg" alt="" height="24px" width="24px" />
         </div>
       </div>
     </div>

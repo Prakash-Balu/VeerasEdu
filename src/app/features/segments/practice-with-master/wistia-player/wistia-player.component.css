@@ -1,6 +1,12 @@
   /* dynamic-wistia-player.component.css */
-.wistia-player-container {
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-}
+  .wistia-player-container {
+    width: 80%;
+    /* max-width: 800px; */
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .video-play-container {
+    margin: 0 auto;
+    overflow: hidden;
+  }
