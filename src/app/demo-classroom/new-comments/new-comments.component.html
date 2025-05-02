@@ -1,74 +1,196 @@
 
 <div class="post-container">
   <div class="container">
+    <div class="comment-section col-md-10 p-0">
 
-    <div class="input-container">
-      <div class="input-group" [class.input-focused]="postTextFocussed">
-        <!-- <input
-          type="textarea"
-          class="form-control bg-white border-0 p-3"
-          placeholder="Ask your doubts by text or voice and post it"
-          maxlength="200"
-          rows="3"
-          (focus)="postTextFocussed = true"
-          (blur)="postTextFocussed = false"
-          [(ngModel)]="commentsText"
-        /> -->
+      <!-- <div class="card">
+        <div class="card-body">
 
-        <textarea class="form-control bg-white border-0 resize-none" rows="3" (focus)="postTextFocussed = true"
-                      (blur)="postTextFocussed = false" [(ngModel)]="commentsText" maxlength="200" *ngIf="!url"
-                      placeholder="Ask your doubts by text or voice and post it"></textarea>
-        
-        <span class="input-group-text bg-white border-0">
-          <!-- <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon> -->
-          <img src="assets/images/mic_icon.png" alt="Img" class="img-fluid" />
-        </span>
+          <form action="social-feed">
+            <div class="mb-3 text-start">
+              <label class="form-label fs-16">Post your doubts here related to the above class</label>
 
-        <span class="input-group-text bg-white border-0">
-          <button class="btn post_btn px-3">Post</button>
-        </span>
+
+
+              <div class="position-relative">
+                <textarea class="form-control post-textarea" rows="3" (focus)="postTextFocussed = true"
+                  (blur)="postTextFocussed = false" [(ngModel)]="commentsText" maxlength="200" *ngIf="!url"
+                  placeholder="Ask your doubts by writing comments or Record audio and post it."></textarea>
+                <span class="avatar avatar-lg avatar-rounded text-area-avatar">
+                  <img src="assets/images/logo_icon.png" alt="Img">
+                </span>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+
+              <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-primary d-inline-flex align-items-center ms-2 btn_primary"
+                  (click)="addComment()"><i class="ti ti-circle-plus fs-16 me-2"></i>Post Comment</button>
+
+              </div>
+              <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top"
+                [attr.title]="tooltipTitle" title="Tooltip on top">
+                <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div> -->
+      <div class="mb-4" style="display: none;">
+        <div class="d-flex gap-3">
+          <img alt="" src="assets/images/logo_icon.png" class="user-avatar">
+          <div class="flex-grow-1">
+            <div class="search">
+              <div class="input-bar">
+
+                <textarea type="search" placeholder="Ask your doubts by writing comments or Record audio and post it."
+                  name="search" id="search-text" autocomplete="off"></textarea>
+
+                <button id="dictate" title="Dictate" class="audio_mic">
+                  <i class="fa fa-microphone audio_mic"></i>
+
+                  <span class="a11y-hidden">Dictate new search</span>
+                </button>
+              </div>
+            </div>
+            <div class="mt-3 text-end">
+              <button class="btn btn-comment btn_primary">Post Comment</button>
+              <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip" data-bs-placement="top"
+                [attr.title]="tooltipTitle" title="Tooltip on top">
+                <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
 
+<div class="comment-input-wrapper-new">
+  <div class="comment-input-box-new">
+    <input
+      type="text"
+      [(ngModel)]="commentsText"
+      placeholder="Ask your doubts by writing or voice record and post it"
+      class="form-control comment-input-field-new"
+    />
+    <button class="mic-btn-new" (click)="enableAudioChat('NEW')" matTooltip="Voice Record">
+      <mat-icon class="mic-icon-new">mic_none</mat-icon>
+    </button>
+    <button class="btn post-btn-new" (click)="addComment()">Post</button>
+  </div>
+</div>
+
+<div class="discussion-header-new fw-bold">
+  <h5>
+    Discussion on the segment - <span class="comment-count">150 Comments Listed</span>
+  </h5>
+</div>
+
+
 <div class="post-container">
   <div class="container">
     <div class="comment-section col-md-10 p-0">
-      <div class="comment-tabs">
-        <div class="col-md-12">
-          <div class="comment-list-tab">
-            <ul>
-              <li class="comment-list-tab-li tab-active">
-                <a href="#" tabindex="0">
-                  All Comments <span class="badge bg-secondary">4</span>
-                </a>
+      <!-- <div class="comment-tabs-new">
+        <div class="comment-list-tab-new">
+          <ul class="tab-list-new">
+            <li class="tab-item-new active-new">
+              <a href="#">All Comments <span class="badge-new">4</span></a>
+            </li>
+            <li class="tab-item-new">
+              <a href="#">Replied Comments <span class="badge-new">2</span></a>
+            </li>
+            <li class="tab-item-new">
+              <a href="#">Pending Comments <span class="badge-new">2</span></a>
+            </li>
+          </ul>
+        </div>
+      </div> -->
 
-                <br>
-              </li>
-              <li class="comment-list-tab-li">
-                <a href="#" tabindex="0">
-                  Replied Comments <span class="badge bg-secondary">2</span>
-                </a>
-
-                <br>
-              </li>
-              <li class="comment-list-tab-li">
-                <a href="#" tabindex="0">
-                  Pending Comments <span class="badge bg-secondary">2</span>
-                </a>
-
-                <br>
-              </li>
-
-            </ul>
+      <div class="comment-item-new mt-2" *ngFor="let comment of commentsList">
+        <div class="comments-list-new">
+          <div class="comment-box-new">
+            <div class="d-flex gap-3 comment-box-post-new comment-box-new-border">
+              <span class="user_avatar-new">{{ comment.initials }}</span>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h6 class="mb-1 user-name-new fw-bold blue-color">
+                    {{ comment.name }}
+                    <span class="badge-new badge-role">{{ comment.role }}</span>
+                  </h6>
+                  <span class="comment-time-new ms-auto">{{ comment.time }}</span>
+                </div>
+                <p class="mb-2 text-start fw-bold">{{ comment.message }}</p>
+              </div>
+            </div>
+      
+            <!-- REPLIES -->
+            <div class="reply-section-new mt-3" *ngIf="comment.replies?.length">
+              <div class="comment-box-reply-new ms-4" *ngFor="let reply of comment.replies">
+                <div class="d-flex gap-3">
+                  <img [src]="reply.avatar" class="user-avatar-new" alt="avatar" />
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h6 class="mb-0">
+                        {{ reply.name }}
+                        <span class="badge badge-{{ reply.role.toLowerCase() }} mx-2">{{ reply.role }}</span>
+                        <span class="comment-time-new text-start">{{ reply.time }}</span>
+                      </h6>
+                    </div>
+                    <p class="mb-2 text-start">{{ reply.message }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Admin Reply Box -->
+            <div class="reply-section-new mt-3 pb-3" *ngIf="comment.hasAdminReplyBox && replyByAdmin">
+              <div class="comment-box-reply-new ms-4">
+                <div class="reply-admin-new">
+                  <div class="position-relative">
+                    <textarea class="form-control post-textarea-new" rows="3" (focus)="postTextFocussed = true"
+                      (blur)="postTextFocussed = false" [(ngModel)]="commentsText" maxlength="200"
+                      *ngIf="!url" placeholder=""></textarea>
+                    <span class="avatar avatar-lg avatar-rounded text-area-avatar-new">
+                      <img src="assets/images/logo_icon.png" alt="Img" />
+                    </span>
+                  </div>
+      
+                  <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3 mt-3">
+                    <div class="d-flex align-items-center">
+                      <button type="submit" class="btn btn-primary d-inline-flex align-items-center ms-2 btn_primary"
+                        (click)="addComment()">
+                        <i class="ti ti-send fs-16 me-2"></i>Post
+                      </button>
+                    </div>
+                    <button class="btn p-0" (click)="enableAudioChat('NEW')" data-bs-toggle="tooltip"
+                      data-bs-placement="top" [attr.title]="tooltipTitle" title="Tooltip on top">
+                      <mat-icon class="audio_mic" [ngClass]="{ 'blinking-mic': recording }">mic_none</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <!-- More Replies link -->
+            <div class="reply-section-new mt-3" *ngIf="comment.showMoreReplies">
+              <div class="reply-more-box-new">
+                <h6 class="more-reply-new" (click)="showMoreReply()">
+                  {{ comment.moreRepliesCount }} more replies
+                </h6>
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
+      
+      
+      
 
 
-      <div class="comment-item mt-2">
+      <!-- <div class="comment-item mt-2">
         <div class="comments-list">
           <div class="comment-box">
             <div class="d-flex gap-3 comment-box-post">
@@ -118,7 +240,6 @@
               </div>
             </div>
 
-            <!-- Reply Section -->
             <div class="reply-section mt-3">
               <div class="comment-box-reply ms-4">
                 <div class="d-flex gap-3">
@@ -146,7 +267,6 @@
           </div>
         </div>
 
-        <!-- Admin Reply section  --> 
         <div class="comments-list">
           <div class="comment-box">
             <div class="d-flex gap-3 comment-box-post">
@@ -170,7 +290,6 @@
               </div>
             </div>
 
-            <!-- Reply Section -->
             <div class="reply-section mt-3 pb-3" *ngIf="replyByAdmin">
               <div class="comment-box-reply ms-4">
                 <div class="reply-admin">
@@ -201,9 +320,6 @@
 
           </div>
         </div>
-        <!-- Admin Reply section  --> 
-
-        <!-- Reply More section  --> 
         <div class="comments-list">
           <div class="comment-box">
             <div class="d-flex gap-3 comment-box-post">
@@ -227,7 +343,6 @@
               </div>
             </div>
 
-            <!-- Reply Section -->
             <div class="reply-section mt-3">
               <div class="reply-more-box">
                 <h6 class="more-reply" (click)="showMoreReply">2 more replies</h6>
@@ -258,9 +373,8 @@
 
           </div>
         </div>
-        <!-- Reply More section  --> 
 
-      </div>
+      </div> -->
 
 
     </div>

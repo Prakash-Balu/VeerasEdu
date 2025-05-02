@@ -42,8 +42,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3097',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -89,8 +89,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3101',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -124,8 +124,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3102',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -159,8 +159,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3125',
-            name: 'Speaking Room',
-            description: 'Speaking Room',
+            name: 'SPEAKING ROOM',
+            description: 'SPEAKING ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -208,8 +208,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3103',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -219,8 +219,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3104',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -230,8 +230,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3105',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -255,8 +255,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3106',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -266,8 +266,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3107',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -277,8 +277,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3108',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -302,8 +302,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3109',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -313,8 +313,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3110',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -324,8 +324,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3111',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -349,8 +349,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3112',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -360,8 +360,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3113',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -371,8 +371,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3114',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -396,8 +396,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3115',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -407,8 +407,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3116',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -418,8 +418,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3117',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -443,8 +443,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3115',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -454,8 +454,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3116',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -465,8 +465,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3117',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -490,8 +490,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3118',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -501,8 +501,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3116',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -512,8 +512,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3119',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -537,8 +537,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3120',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -548,8 +548,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3121',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -559,8 +559,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3122',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -584,8 +584,8 @@ export class NewSidebarComponent {
         subMenu: [
           {
             _id: '6735c99727a6da66983a3123',
-            name: 'Class Room',
-            description: 'Class Room',
+            name: 'CLASS ROOM',
+            description: 'CLASS ROOM',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -595,8 +595,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3124',
-            name: 'Self-Practice',
-            description: 'Self-Practice',
+            name: 'SELF PRACTICE',
+            description: 'SELF PRACTICE',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -606,8 +606,8 @@ export class NewSidebarComponent {
           },
           {
             _id: '6735c99727a6da66983a3125',
-            name: 'Practice With Master',
-            description: 'Practice With Master',
+            name: 'PRACTICE WITH MASTER',
+            description: 'PRACTICE WITH MASTER',
             video_url:
               'https://player.vimeo.com/video/1024349340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
             pageName: 'classroom',
@@ -634,9 +634,20 @@ export class NewSidebarComponent {
 
   toggleSubmenu(segment: any, event: Event) {
     event.stopPropagation(); // Prevents click from affecting parent elements
+
+    // Set expanded property to false for all segments except the clicked segment
+    this.segmentlist.forEach(s => {
+      if (s._id !== segment._id) {
+        s.expanded = false;
+      }
+      if (s.subMenu && s.subMenu.length > 0) {
+        s.subMenu.expanded = false;
+      }
+    });
     segment.expanded = !segment.expanded;
     this.setActiveSegment(segment._id);
   }
+
 
   setActiveSegment(segmentId: string) {
     this.activeSegmentId = segmentId;
@@ -675,16 +686,16 @@ export class NewSidebarComponent {
   getColorCode(menuName: any) {
     let colorCode = '#3f8b5f';
     switch(menuName) {
-      case 'Class Room':
+      case 'CLASS ROOM':
         colorCode = '#3f8b5f';
         break;
-      case 'Self-Practice':
+      case 'SELF PRACTICE':
         colorCode = '#f8f6bd';
         break;
-      case 'Practice With Master':
+      case 'PRACTICE WITH MASTER':
         colorCode = '#4c8baa';
         break;
-      case 'Speaking Room':
+      case 'SPEAKING ROOM':
         colorCode = '#7a68ad';
         break;
     }
@@ -697,9 +708,7 @@ export class NewSidebarComponent {
     
     return {
       'color': colorCode,
-      'font-size': '20px',
-      'position': 'relative',
-      'left': '8px',
+      'font-size': '20px'
     };
     
   }

@@ -79,6 +79,62 @@ export class NewCommentsComponent implements OnInit, AfterViewInit, OnChanges, O
     private timerInterval!: any;
     postTextFocussed = false;
     tooltipTitle: String = 'Speak';
+
+    commentsList = [
+      {
+        name: 'Priya Kumari',
+        initials: 'PK',
+        role: 'LEARNER',
+        time: '30 minutes ago',
+        message: 'Can someone explain the difference between `ngIf` and `hidden` in Angular?',
+        replies: []
+      },
+      {
+        name: 'Anand Iyer',
+        initials: 'AI',
+        role: 'LEARNER',
+        time: '1 hour ago',
+        message: 'What’s the best way to lazy load modules in Angular 18?',
+        replies: [
+          {
+            name: 'Sathya Dev',
+            role: 'MASTER',
+            time: '55 minutes ago',
+            avatar: 'assets/images/logo_icon.png',
+            message: 'Use the new `loadComponent()` syntax for better tree-shaking and lazy loading performance.'
+          }
+        ]
+      },
+      {
+        name: 'Neha Sharma',
+        initials: 'NS',
+        role: 'LEARNER',
+        time: '2 hours ago',
+        message: 'I’m trying to create a dynamic form array. Anyone got a simple example?',
+        replies: [],
+        hasAdminReplyBox: true
+      },
+      {
+        name: 'Rohan Mehta',
+        initials: 'RM',
+        role: 'LEARNER',
+        time: '3 hours ago',
+        message: 'Is there any plugin to visualize Angular state using NGXS?',
+        replies: [
+          {
+            name: 'Manoj',
+            role: 'MASTER',
+            time: '2 hours ago',
+            avatar: 'assets/images/logo_icon.png',
+            message: 'Yes, you can use NGXS DevTools or integrate it with Redux DevTools for real-time tracking.'
+          }
+        ],
+        showMoreReplies: true,
+        moreRepliesCount: 1
+      }
+    ];
+    
+    
   
     ngOnInit(): void {
       if (this.authService.tokenValue) {
