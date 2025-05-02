@@ -16,12 +16,12 @@
   font-weight: bold;
   font-family: "Times New Roman", Times, serif;
 }
-.sub-title {
+/* .sub-title {
   width: max-content;
   position: relative;
   color: var(--tg-text-blue);
   overflow: hidden;
-}
+} */
 .sub-title-svg {
   position: absolute;
   color: var(--tg-common-color-yellow);
@@ -182,7 +182,25 @@
   cursor: pointer;
 }
 
-
+.journey-title {
+  font-size: 30px;
+  font-weight: var(--tg-fw-bold);
+  color: var(--tg-common-color-black);
+  width: max-content;
+  margin: 0 auto;
+  font-family: var(--tg-fontfamily-proxima);
+}
+.journey-title .sub-title {
+  position: relative;
+}
+.journey-highlighter {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  color: var(--tg-common-color-yellow);
+}
 
 
 @media (max-width: 820px) {

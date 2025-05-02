@@ -94,7 +94,7 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
   padding-top: 100px;
 }
 .banner-row {
-  row-gap: 100px;
+  row-gap: 10px;
 }
 .carousel-first {
   display: flex;
@@ -427,6 +427,26 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
   border-radius: 1rem;
 }
 
+.journey-title {
+  font-size: 30px;
+  font-weight: var(--tg-fw-bold);
+  color: var(--tg-common-color-black);
+  width: max-content;
+  margin: 0 auto;
+  font-family: var(--tg-fontfamily-proxima);
+}
+.journey-title .sub-title {
+  position: relative;
+}
+.journey-highlighter {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  color: var(--tg-common-color-yellow);
+}
+
 @media only screen and (min-width: 1900px) {
   .slider_video {
     width: 100%;
@@ -440,8 +460,8 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
   }
 
   .slider_video {
-    width: 100%;
-    height: 600px;
+    width: 80%;
+    height: 550px;
   }
 }
 

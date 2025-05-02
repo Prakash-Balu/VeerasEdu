@@ -37,30 +37,40 @@
   gap: 5px;
   text-decoration: none;
   font-size: 20px;
-  color: #5a4b26;
+  color: #4643ff;
   font-weight: var(--tg-fw-semi-bold);
   background-color: #ffffff;
   text-transform: uppercase;
   border-radius: 24px;
-  border: 2px solid #5a4b26;
+  border: 2px solid #4643ff;
 }
 .login-btn:hover {
-  box-shadow: 0 6px 12px rgb(0 0 0 / 20%), 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 10px rgba(45,104,255,.5);
   transition: 0.3s;
 }
 
+
+
 .login-btn-icon {
   width: 30px;
-  background: linear-gradient(45deg, #5a4b26, #ae9975);
-  padding: 1px 2px 3px 6px;
+  background: linear-gradient(119deg,#1d1b70 1.7%,#4643ff 116%);
+  color: #fff;
   aspect-ratio: 1/1;
   object-fit: contain;
-  border-radius: 50px;
+  font-size:15px;
+  border-radius: 50%;
   margin-left: 4px;
+  padding: 7px 2px 3px 10px;
 }
 .login-btn-icon:hover img {
-  background: linear-gradient(45deg, #ae9975, #ae9975);
+  /* background: linear-gradient(45deg, #ae9975, #ae9975); */
+  box-shadow: 2px 2px 10px rgba(45,104,255,.5);
   transition: 0.3s;
+}
+
+.login-btn-icon:hover {
+  background: linear-gradient(90deg,#0048ff,#0048ff 376%);
+  opacity: 1;
 }
 
 .btns-wrapper {

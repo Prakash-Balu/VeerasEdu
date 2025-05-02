@@ -97,7 +97,15 @@ body {
   --tg-fontfamily-youtube-dark: "YouTube Sans Dark", sans-serif;
   --tg-fontfamily-youtube-light: "YouTube Sans Light", sans-serif;
   --tg-fontfamily-lexend-deca: "Lexend Deca", sans-serif;
+  --tg-fontfamily-proxima: "proxima-nova", sans-serif;
 }
+
+@font-face {
+  font-family: "proxima-nova";
+  src: url("./assets/fonts/Proxima Nova Bold.otf");
+}
+
+
 @font-face {
   font-family: "Copperplate";
   src: url("./assets/fonts/Copperplate/CopperPlate.ttf");

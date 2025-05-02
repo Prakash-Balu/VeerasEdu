@@ -158,7 +158,7 @@
               <button class="btn btn-primary continue-button w-auto m-auto" (click)="subscribeNew(i)">Subscribe</button>
               <!-- <button class="btn btn-details continue-button w-auto m-auto" [innerHTML]="plan?.viewDtlBtnText" (click)="openModal(plan)"></button> -->
             </div>
-            <div class="d-flex flex-column text-center plan_renew mb-1">
+            <div class="d-flex d-none flex-column text-center plan_renew mb-1">
               <p class="fw-bold">{{ plansNew[i].validFrom | date: 'dd-MMMM-yyyy' }} to {{ plansNew[i].vaildTo | date: 'dd-MMMM-yyyy' }}</p>
               <p class="fw-bold">Your next renewal date is {{ plansNew[i].renewal | date: 'dd-MMMM-yyyy' }}</p>
             </div>
