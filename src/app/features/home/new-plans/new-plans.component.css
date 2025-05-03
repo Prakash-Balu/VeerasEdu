@@ -306,3 +306,23 @@
 #subscribeSection {
   scroll-margin-top: 90px;
 }
+
+.journey-title {
+  font-size: 30px;
+  font-weight: var(--tg-fw-bold);
+  color: var(--tg-common-color-black);
+  width: max-content;
+  margin: 0 auto;
+  font-family: var(--tg-fontfamily-proxima);
+}
+.journey-title .sub-title {
+  position: relative;
+}
+.journey-highlighter {
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  color: var(--tg-common-color-yellow);
+}
