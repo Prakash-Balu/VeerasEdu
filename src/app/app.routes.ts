@@ -49,15 +49,15 @@ export const routes: Routes = [
           ),
       },
 
-      // {
-      //   path: 'demo-classroom',
-      //   // canActivate: [AuthGuard],
-      //   loadComponent: () =>
-      //     import('./demo-classroom/demo-classroom.component').then(
-      //       (m) => m.DemoClassroomComponent
-      //     ),
-      //   data: { showFooter: false, isMobile: false, page: 'Demo-classroom' },
-      // },
+      {
+        path: 'demo-classroom',
+        // canActivate: [AuthGuard],
+        loadComponent: () =>
+          import('./features/demo-classroom/demo-classroom.component').then(
+            (m) => m.DemoClassroomComponent
+          ),
+        data: { showFooter: false, isMobile: false, page: 'Demo-classroom' },
+      },
       // {
       //   path: 'classrooms',
       //   canActivate: [AuthGuard],

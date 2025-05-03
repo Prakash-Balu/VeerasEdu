@@ -12,7 +12,7 @@ import {
   faBars,
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
-import { SegmentService } from '../../core/services/segments.service';
+import { SegmentService } from '../../shared/services/segments.service';
 import { NewVideoPlayerComponent } from './new-video-player/new-video-player.component';
 import { MaterialModule } from '../../material-module';
 import { NewSidebarComponent } from './new-sidebar/new-sidebar.component';
