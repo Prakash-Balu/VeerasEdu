@@ -459,9 +459,9 @@ h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font
     font-size: 32px;
   }
 
-  .slider_video {
+  .slider_video { 
     width: 80%;
-    height: 550px;
+    height: 465px;
   }
 }
 

@@ -37,6 +37,7 @@ html {
   overflow-x: hidden;
 }
 body {
+  background-color: #f8f8f8;
   font-family: "Poppins", "Montserrat", sans-serif;
   /* overflow: hidden; */
 }
