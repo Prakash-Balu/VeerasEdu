@@ -33,7 +33,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 3px 6px;
+  padding: 3px 14px;
   gap: 5px;
   text-decoration: none;
   font-size: 18px;
@@ -52,12 +52,12 @@
 
 
 .login-btn-icon {
-  width: 30px;
+  width: 28px;
   background: linear-gradient(119deg,#1d1b70 1.7%,#4643ff 116%);
   color: #fff;
   aspect-ratio: 1/1;
   object-fit: contain;
-  font-size:15px;
+  font-size:13px;
   border-radius: 50%;
   margin-left: 4px;
   padding: 7px 2px 3px 10px;

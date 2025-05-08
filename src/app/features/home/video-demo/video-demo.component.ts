@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -24,6 +25,11 @@ export class VideoDemoComponent implements OnInit, AfterViewInit {
   player!: any;
   // videoId: number = 1019159531;
   videoId: string = 'EngW7tLk6R8';
+  // Reference to the video element
+  @ViewChild('guide_video', { static: false }) videoElement!: ElementRef;
+
+  // Flag to track if the user has scrolled
+  private hasScrolled = false;
 
   constructor(private utilsService: UtilsService) {}
 
@@ -33,6 +39,10 @@ export class VideoDemoComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.initializePlayer();
+    const video: HTMLVideoElement = this.videoElement.nativeElement;
+    if (video) {
+      video.muted = true;  // Ensure the video is muted initially
+    }
   }
 
   initializePlayer() {
@@ -112,4 +122,26 @@ export class VideoDemoComponent implements OnInit, AfterViewInit {
     //   });
     // }
   }
+
+  @HostListener('window:scroll', ['$event'])
+    onWindowScroll(event: Event): void {
+      if (!this.hasScrolled) {
+        this.hasScrolled = true;  // Mark that the user has scrolled at least once
+        this.checkVideoInView();  // Check if the video is in the viewport after scrolling
+      }
+    }
+  
+    checkVideoInView(): void {
+      const video: HTMLVideoElement = this.videoElement.nativeElement;
+      const rect = video.getBoundingClientRect();
+  
+      // Check if the video is in the viewport
+      const isInView = rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+  
+      if (isInView && video.paused) {
+        video.play();  // Play the video if it's in the viewport
+      }
+    }
+
+  
 }
