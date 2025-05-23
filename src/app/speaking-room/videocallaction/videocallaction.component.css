@@ -1,0 +1,45 @@
+.video-call-action {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    align-items: center;
+    width: 100%;
+}.video-call-action ul {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.video-call-action ul li {
+    display: inline-block;
+    margin: 0 6px;
+}
+.video-call-action ul li a {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #6a6a6a4d;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    color: #fff;
+    text-decoration:none;
+    cursor: pointer;
+}
+.video-call-action ul li a .material-icons {
+    font-size: 24px;
+}
+.video-call-action ul li a.call-end {
+    background-color: red;
+}
+.video-call-action ul li a.call-mute {
+    background-color: #0057ff;
+}
+.video-call-action ul li a.syllabus-sheet {
+    background-color: #8d7026;
+}

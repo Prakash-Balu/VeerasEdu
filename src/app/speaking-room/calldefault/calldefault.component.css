@@ -1,0 +1,23 @@
+.chat-right-section {
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(./assets/chat-bg.png);
+}
+.call-default-content img {
+    max-width: 100px;
+}
+
+.call-default-content {
+    text-align: center;
+}
+.call-default-user {color: #5a4b25;font-weight: 700;margin-bottom: 0;font-size: 20px;}
+
+.call-default-text {
+    margin-bottom: 0;
+    font-size: 16px;
+}

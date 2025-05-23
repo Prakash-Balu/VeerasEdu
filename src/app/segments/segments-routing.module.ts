@@ -28,7 +28,9 @@ const routes: Routes = [
         data: { showFooter: false, isMobile: false, page: 'Practice With Master' },
       },
       // {
-      //   path: 'speakingroom'
+      //   path: 'speakingroom',
+      //   loadComponent: () => import('../speaking-room/speaking-room.component').then((m) => m.SpeakingRoomComponent),
+      //   data: { showFooter: false, isMobile: false, page: 'Speaking Room' },
       // }
     ]
   },  

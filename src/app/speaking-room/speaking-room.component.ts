@@ -5,34 +5,46 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { MaterialModule } from '../material-module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { CallingComponent } from "./calling/calling.component";
+import { CalldefaultComponent } from './calldefault/calldefault.component';
 
 @Component({
   selector: 'app-speaking-room',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, RouterLink, MaterialModule, NgScrollbarModule],
+  imports: [
+    FontAwesomeModule,
+    CommonModule,
+    RouterLink,
+    MaterialModule,
+    NgScrollbarModule,
+    CallingComponent,
+    CalldefaultComponent
+],
   templateUrl: './speaking-room.component.html',
   styleUrl: './speaking-room.component.css',
 })
 export class SpeakingRoomComponent {
-  faArrowLeft = faArrowLeft;
-  users = [
-    { name: 'Tamizh', lastActive: '20 Min Ago', callType: 'voice' },
-    { name: 'Raja Raman', lastActive: '10 Min Ago', callType: 'voice' },
-    { name: 'Thennarasu', lastActive: '30 Min Ago', callType: 'video' },
-    { name: 'Prakash', lastActive: '40 Min Ago', callType: 'voice' },
-  ];
-
   constructor() {}
 
   ngOnInit() {}
 
-  isClassVisible = false;
-
-  toggleClass(show: boolean) {
-    this.isClassVisible =show; // Toggle the class visibility
+  visible: boolean = true;
+  hideDefaultcall() {
+    this.visible = this.visible ? false : true;
   }
 
-  isMuted: boolean[] = [false, false, false]; 
+  isFavorite: boolean = false;
+  clickEvent() {
+    this.isFavorite = !this.isFavorite;
+  }
+
+  mobmenuactive: boolean = false;
+  mobmenuactive_click() {
+    this.mobmenuactive = !this.mobmenuactive;
+  }
+  chatlists = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  isMuted: boolean[] = [false, false, false];
 
   toggleMute(index: number): void {
     this.isMuted[index] = !this.isMuted[index];

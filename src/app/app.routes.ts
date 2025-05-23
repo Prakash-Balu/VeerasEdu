@@ -159,6 +159,22 @@ export const routes: Routes = [
           ),
         data: { showFooter: false, showHeader: false, isMobile: false },
       },
+      {
+        path: 'callconnected',
+        loadComponent: () =>
+          import('./speaking-room/callconnected/callconnected.component').then(
+            (m) => m.CallconnectedComponent
+          ),
+        data: { showFooter: false, showHeader: false, isMobile: false },
+      },
+      {
+        path: 'syllabus',
+        loadComponent: () =>
+          import('./speaking-room/syllabus/syllabus.component').then(
+            (m) => m.SyllabusComponent
+          ),
+        data: { showFooter: false, showHeader: false, isMobile: false },
+      },
     ],
   },
 ];

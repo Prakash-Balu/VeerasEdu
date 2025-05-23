@@ -1,0 +1,112 @@
+
+.video-screen-body {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - 50px);
+    padding: 10px;
+}
+
+.video-screen-main {
+    height: calc(100% - 60px);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.videoscreen-sub {
+    background: #d7d7d7;
+    width: 49%;
+    margin: 0.5%;
+    border-radius: 10px;
+    position: relative;
+}
+.connected-username {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    line-height: 1;
+    font-weight: 500;
+}
+.self-video {
+    border: 2px solid #e0a100;
+}
+.videoscreen-sub-left {
+    height: 100%;
+    width: 70%;
+}
+
+.videoscreen-sub-right {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 10px;
+}
+
+.videoscreen-sub-left .videoscreen-sub {
+    height: inherit;
+    width: 100%;
+    margin: 0;
+}
+
+.videoscreen-sub-right .videoscreen-sub {
+    width: 100%;
+    height: inherit;
+    margin-bottom: 10px;
+}
+
+.videoscreen-sub-right .videoscreen-sub:last-child {
+    margin-bottom: 0;
+}
+@media screen and (max-width:991px) and (orientation:portrait){
+
+    .videoscreen-sub-left {
+        width: 100%;
+    }
+    
+    .videoscreen-sub-right {
+        height: 100%;
+        padding: 0;
+    }
+    .videoscreen-sub-left {
+        height: 70% ;
+    }
+    
+    .videoscreen-sub {
+        height: 100% !important;
+    }
+    
+    .videoscreen-sub-right {
+        height: 30% ;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    }
+@media screen and (max-width:575px){
+
+.videoscreen-sub-left {
+    width: 100%;
+}
+
+.videoscreen-sub-right {
+    height: 100%;
+    padding: 0;
+}
+.videoscreen-sub-left {
+    height: 70% ;
+}
+
+.videoscreen-sub {
+    height: 100% !important;
+}
+
+.videoscreen-sub-right {
+    height: 30% ;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+}
